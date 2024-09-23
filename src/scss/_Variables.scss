@@ -3,6 +3,7 @@
 
 // Colors
 
+$white:#FFFFFF;
 $lightTurquose: #97f5ec;
 $turquose: #39dfe6;
 $light: #dddeff;
@@ -26,3 +27,8 @@ $font-size-h6: 16px;
 $font-weight-regular: 400;
 $font-weight-semibold: 500;
 $font-weight-bold: 700;
+
+*{
+    margin:0;
+    padding:0;
+}
