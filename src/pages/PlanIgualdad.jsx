@@ -1,10 +1,15 @@
 import React from "react";
-import { Footer } from "../components/footer/Footer";
+import { RequestForm } from "../components/forms/RequestForm/RequestForm";
 
 
-export default function PlanIgualdad() {
-  return <div>PlanIgualdad
 
-      <Footer/>
-  </div>;
+function PlanIgualdad() {
+  return (
+    <div>
+      <RequestForm 
+      text="PETICIONES"/>
+    </div>
+  )
 }
+
+export default PlanIgualdad;
