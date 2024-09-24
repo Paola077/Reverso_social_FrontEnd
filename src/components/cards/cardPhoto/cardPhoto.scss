@@ -1,0 +1,62 @@
+@import '../../../scss/Variables.scss';
+
+.cardPhotoContainer {
+    display: flex;
+    justify-content: center; 
+    gap: 5rem; 
+    padding: 1.25rem; 
+  }
+  
+  .cardPhoto {
+    width: 17rem; // Ancho de cada tarjeta
+    background-color: $lightLila2;
+    $white: #ffffff;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+  
+  }
+  
+  .cardPhotoImage {
+   max-width: 100%;
+   object-fit: cover; 
+  }
+  
+  .cardPhotoInfo {
+    width: 100%; 
+    background-color: $lightLila2;
+    color: $white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .cardPhotoName {
+    font-family: $font-family-title;
+    font-size: $font-size-h4;
+    font-weight: $font-weight-semibold;
+    margin-bottom: 0.5rem;
+  }
+  .cardTitleContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+   
+  }
+  
+  .cardPhotoTitle {
+    font-family: $font-family-title;
+    font-size: $font-size-h6;
+    font-weight: $font-weight-regular;
+    margin-left: 1rem;
+
+  }
+  
+  .linkedin-icon {
+    font-size: 2.25rem;
+    color: $white; 
+    margin-right: 1rem;
+  }
+  
