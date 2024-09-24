@@ -1,0 +1,16 @@
+@import "../../../scss/Variables.scss";
+
+.aceptCancel{
+    width: 27rem;
+    height: 3.9rem;
+    border-radius: 5rem;
+    font-family:$font-family-title; 
+    font-size: $font-size-h5;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+    transition: .3s;
+
+    &:hover{
+        transform: scale(0.97);
+    }
+}
