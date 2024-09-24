@@ -1,4 +1,4 @@
-import './cardPhoto.scss'
+import './_CardPhoto.scss'
 import { FaLinkedin } from 'react-icons/fa'
 
 const CardPhoto = ({ imageUrl, name, title, linkedinUrl }) => {
