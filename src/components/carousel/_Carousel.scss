@@ -3,21 +3,27 @@
 .carousel-container {
   background-color: $lightLila2;
   padding: 1.25rem;
-  border-radius: 0.9rem;
+  border-radius: 1.5rem;
   text-align: center;
   color: $light;
+  max-width: 80rem;
+  margin: auto;
+  height: 25rem;
+
+
 
   h2 {
     font-family: $font-family-title;
     font-size: $font-size-h3;
     color: white;
-    margin-bottom: 1.25rem;
+    margin-top:1.8rem;
   }
 
   .carousel {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 4rem;
 
     .prev,
     .next {

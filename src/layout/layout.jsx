@@ -11,7 +11,7 @@ const Layout = () =>
       <Navbar/>
       <main>
         <Outlet />
-        <Carousel />
+
       </main>
       <Footer />
     </div>

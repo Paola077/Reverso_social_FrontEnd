@@ -2,6 +2,8 @@ import React from "react";
 import CardPhoto from "../components/cards/cardPhoto/CardPhoto";
 import AboutUs from "../components/sections/AboutUs";
 import Carousel from "../components/carousel/Carousel";
+import Intro from "../components/intro/Intro"
+import Collaborate from "../components/sections/collaborate/Collaborate";
 
 
 const PlanIgualdad = () => {
@@ -27,8 +29,12 @@ const PlanIgualdad = () => {
   ];
   return (
     <div>
+      <Intro />
       <div className="carousel">
         <Carousel/>
+      </div>
+      <div>
+        <Collaborate />
       </div>
       <div className="aboutUsContainer">
       <AboutUs/>

@@ -16,11 +16,11 @@
     flex-wrap: wrap;
     justify-content: space-between;
     background-color: $purple;
-    box-shadow: 5px 5px 10px #00000033;
-    border-radius: 0 15px 15px 15px;
+    box-shadow: 0.313rem 0.313rem 0.625rem #00000033;
+    border-radius: 0 2.5rem 2.5rem 2.5rem;
     padding: 3rem;
-    width: 35rem;
-    height: 8rem;
+    width: 40rem;
+    height: 8.5rem;
 
     &__title {
       font-family: $font-family-title;
@@ -35,11 +35,14 @@
   }
 
   &__image {
+    width: 25rem;
+    height: 15rem;
+    overflow: hidden;
+    border-radius: 2.5rem;
+      box-shadow: 0.313rem 0.313rem 0.625rem #00000033;
     &__collaborateWomen {
-      width: 25rem;
-      height: 15rem;
-      border-radius: 50px;
-      box-shadow: 5px 5px 10px #00000033;
+      width: 25rem !important;
+      box-shadow: 0.313rem 0.313rem 0.625rem #00000033;
     }
   }
 }
