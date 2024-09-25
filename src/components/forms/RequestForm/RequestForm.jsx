@@ -4,6 +4,7 @@ import { InputForm } from "../../Inputs/InputForm";
 import { AceptCancelButton } from "../../buttons/aceptCancelComponent/AceptCancelButton";
 
 export const RequestForm = ({text})=>{
+    
 const [FormData, setFormData] = useState ({
     title:"",
     data:"",
@@ -23,7 +24,7 @@ const handleChange = (e) =>{
             <form onSubmit="">
                 <div className="formBox">
                     <button className="buttonExit">
-                    <img src="src/components/forms/RequestForm/Exit.svg" alt="Cerrar formulario" />
+                    <img src="public\icons\Exit.svg" alt="Cerrar formulario" />
                     </button>
                     
                     <h2 className="requestTitle">{text}</h2>
