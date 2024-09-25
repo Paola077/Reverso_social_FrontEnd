@@ -23,7 +23,7 @@ const router = createBrowserRouter([
         element: <PlanIgualdad />,
       },
       {
-        path: "reverso-social/formulario",
+        path: "reverso-social/formulario/:formType",
         element: <RSForms />,
       },
       {
