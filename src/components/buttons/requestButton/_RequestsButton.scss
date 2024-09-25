@@ -10,6 +10,6 @@
     transition: background-color 0.3s ease;
 
     &:hover {
-        background-color: darken($turquose, 10%); 
+        transform: scale(0.97);
     }
 }
