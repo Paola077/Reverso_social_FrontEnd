@@ -10,7 +10,6 @@
   .cardPhoto {
     width: 17rem; // Ancho de cada tarjeta
     background-color: $lightLila2;
-    $white: #ffffff;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); 
     display: flex;
     flex-direction: column;
@@ -19,8 +18,10 @@
   }
   
   .cardPhotoImage {
-   max-width: 100%;
+   width: 17rem;
+   height: 17rem;
    object-fit: cover; 
+   image-rendering: auto;
   }
   
   .cardPhotoInfo {

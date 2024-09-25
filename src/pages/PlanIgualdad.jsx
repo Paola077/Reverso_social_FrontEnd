@@ -17,8 +17,8 @@ const PlanIgualdad = () => {
       linkedinUrl: "https://www.linkedin.com/in/lolacoach/",
     },
     {
-      imageUrl: "src/components/cards/cardPhoto/SR.png",
-      name: "Susana",
+      imageUrl: "src/components/cards/cardPhoto/Susana.jpg",
+      name: "Susana Ruiz",
       title: "Data Scientist",
       linkedinUrl: "",
     },
