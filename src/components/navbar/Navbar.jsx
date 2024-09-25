@@ -1,8 +1,8 @@
 import React from "react";
 import { useLocation, NavLink } from "react-router-dom";
 import { AppBar, Toolbar, Button, Box } from "@mui/material";
-import Search from "./search/Search"; // Componente de búsqueda
-import "./_Navbar.scss"; // Archivo de estilos SASS
+import Search from "./search/Search";
+import "./_Navbar.scss"; // Asegúrate de que los estilos están importados
 
 const Navbar = () => {
   const location = useLocation();
@@ -19,7 +19,6 @@ const Navbar = () => {
       }`}
     >
       <Toolbar className="navbar-toolbar">
-        {/* Logo dinámico (FEMsenior o Reverso Social) */}
         <div className="logo-container">
           {isFemseniors ? (
             <img
@@ -35,8 +34,6 @@ const Navbar = () => {
             />
           )}
         </div>
-
-        {/* Enlaces dinámicos */}
         <Box className="links-container">
           {isReversoSocial ? (
             <>
@@ -84,12 +81,10 @@ const Navbar = () => {
           )}
         </Box>
 
-        {/* Barra de búsqueda */}
         <div className="search">
-          <Search />
+          <Search disabled={isReversoSocial} />
         </div>
 
-        {/* Botones dinámicos */}
         <Box className="auth-buttons">
           {isFemseniors ? (
             <>

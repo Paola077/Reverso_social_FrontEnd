@@ -1,5 +1,4 @@
 @import "../../scss/_Variables.scss";
-
 .navbar {
   background-color: transparent !important;
   box-shadow: none !important;
@@ -27,54 +26,68 @@
   }
 
   .links-container {
-    width: 15%;
+    width: 30%;
     display: flex;
     gap: 30px;
     align-items: center;
+
     .nav-link {
       font-size: 16px;
       color: $dark;
       text-decoration: none;
       font-size: $font-size-h6;
       font-weight: $font-weight-semibold;
+      padding: 0.5rem 1.5rem;
 
       &:hover {
         background-color: $lila;
         color: white;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
       }
       &:active {
         font-size: $font-size-h6;
         font-weight: $font-weight-semibold;
       }
     }
+    a:-webkit-any-link {
+      text-decoration: none !important;
+    }
 
     .dropdown {
       position: relative;
       .nav-link {
         color: $dark;
-
         font-size: $font-size-h6;
+        padding: 0.5rem 1.5rem;
+
+        &:hover {
+          color: white;
+          border-top-right-radius: 10px;
+          border-top-left-radius: 10px;
+        }
       }
       .dropdown-menu {
-        font-weight: $font-weight-regular;
+        width: 100%;
         display: none;
         position: absolute;
-        top: 100%;
-        left: 0;
+        top: 30%;
+        left: 0%;
+        padding-left: 0;
         background-color: white;
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
         z-index: 10;
-        padding: 10px 0;
         border-radius: 8px;
 
         li {
           padding: 10px 20px;
-          cursor: pointer;
+          font-weight: $font-weight-regular;
+          font-size: 15px;
+          text-decoration: none !important;
+
           &:hover,
           &:focus {
-            background-color: $lila;
-            color: white;
-            text-decoration: none;
+            transform: scale(0.9);
           }
         }
       }
@@ -127,7 +140,6 @@
 }
 
 .femsenior-navbar {
-  background-color: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
   .nav-link {
     color: white;
     text-transform: capitalize;
@@ -135,6 +147,22 @@
 
     &:hover {
       color: #d4d4d4;
+    }
+  }
+}
+
+.reverso-navbar {
+  .search {
+    background-color: transparent !important;
+    pointer-events: none !important; 
+    input {
+      background-color: transparent !important; 
+      color: transparent !important; 
+      border: none !important; 
+    }
+
+    .search-icon {
+      color: transparent !important; 
     }
   }
 }
