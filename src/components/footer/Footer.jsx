@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./_Footer.scss";
 import { SlSocialInstagram } from "react-icons/sl";
 import { BsFacebook } from "react-icons/bs";
@@ -6,6 +7,8 @@ import { RequestButton } from "../buttons/requestButton/RequestsButton";
 
 
 export const Footer = () =>{
+
+    const navigate = useNavigate();
     
     const handleClick1 =  ()=> {
         window.open('https://www.instagram.com/')
@@ -28,7 +31,8 @@ return(
                     width={"16rem"} 
                     height={"2rem"}
                     marginRight={"1.5rem"} 
-                    fontSize={"0.8rem"}/>
+                    fontSize={"0.8rem"}
+                    onClick={()=> navigate("reverso-social/formulario/peticiones")}/>
                 <BsFacebook className="footerFb" onClick={handleClick2}/>
                 <SlSocialInstagram className="footerIg" onClick={handleClick1}/>
             </div>
