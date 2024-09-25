@@ -1,0 +1,36 @@
+@import "../../scss/Variables.scss";
+
+.inputBox{
+    display: flex;
+    justify-content: space-between;
+    width: 60.25rem;
+    margin: auto;
+
+    h4{
+        font-family: $font-family-title;
+        font-size: $font-size-h5;
+        font-weight: $font-weight-semibold;
+        color: $dark;
+    }
+
+    .inputForm{
+        width: 40rem;
+        padding: 1.125rem ;
+        background-color: white;
+        border-radius: 0.625rem;
+        margin-bottom: 1.5rem;
+        border: 0.15rem solid;
+        
+    
+        &::placeholder {
+            color:$lightLila ;  
+            opacity: 0.75;  
+            font-family: $font-family-text;
+            font-size: $font-size-h6;
+        }
+        
+        &:focus::placeholder {
+            opacity: 1;
+        }
+    }
+}
