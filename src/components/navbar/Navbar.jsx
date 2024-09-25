@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation, NavLink } from "react-router-dom";
 import { AppBar, Toolbar, Button, Box } from "@mui/material";
 import Search from "./search/Search";
-import "./_Navbar.scss"; // Asegúrate de que los estilos están importados
+import "./_Navbar.scss"; 
 
 const Navbar = () => {
   const location = useLocation();
