@@ -42,8 +42,8 @@ function Carousel() {
                   alt={service.title}
                   className="card-image"
                 />
+                <p className="title">{service.title}</p>
               </div>
-              <p className="title">{service.title}</p>
             </div>
           ))}
         </div>
