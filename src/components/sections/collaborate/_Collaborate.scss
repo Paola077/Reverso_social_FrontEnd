@@ -1,0 +1,45 @@
+@import "../../../scss/Variables.scss";
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  padding: 4rem;
+  margin: auto;
+
+  &__contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: $purple;
+    box-shadow: 5px 5px 10px #00000033;
+    border-radius: 0 15px 15px 15px;
+    padding: 3rem;
+    width: 35rem;
+    height: 8rem;
+
+    &__title {
+      font-family: $font-family-title;
+      color: $white;
+      font-size: $font-size-h3;
+    }
+
+    &__button {
+      font-family: $font-family-title;
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  &__image {
+    &__collaborateWomen {
+      width: 25rem;
+      height: 15rem;
+      border-radius: 50px;
+      box-shadow: 5px 5px 10px #00000033;
+    }
+  }
+}
