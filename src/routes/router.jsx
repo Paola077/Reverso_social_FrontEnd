@@ -23,10 +23,6 @@ const router = createBrowserRouter([
         element: <PlanIgualdad />,
       },
       {
-        path: "reverso-social/formulario/:formType",
-        element: <RSForms />,
-      },
-      {
         path: "reverso-social/femsenior",
         element: <Femsenior />,
         children: [
@@ -56,6 +52,10 @@ const router = createBrowserRouter([
         path: "reverso-social/login",
         element: <Login />,
       },
+      {
+        path: "formulario/:formType",
+        element: <RSForms />,
+      }
     ],
   },
 ]);

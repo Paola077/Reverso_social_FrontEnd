@@ -32,7 +32,7 @@ return(
                     height={"2rem"}
                     marginRight={"1.5rem"} 
                     fontSize={"0.8rem"}
-                    onClick={()=> navigate("reverso-social/formulario/peticiones")}/>
+                    onClick={()=> navigate("formulario/peticiones")}/>
                 <BsFacebook className="footerFb" onClick={handleClick2}/>
                 <SlSocialInstagram className="footerIg" onClick={handleClick1}/>
             </div>

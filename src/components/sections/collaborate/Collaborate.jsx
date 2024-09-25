@@ -1,7 +1,9 @@
 import "./_Collaborate.scss";
 import { RequestButton } from "../../buttons/requestButton/RequestsButton";
+import { useNavigate } from "react-router-dom";
 
 const Collaborate = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="container">
@@ -10,10 +12,11 @@ const Collaborate = () => {
           <RequestButton
             className="container__contact__button"
             text="CONTACTA CON NOSOTRAS"
-            width="18rem"
-            height="50px"
+            width="22rem"
+            height="3.5rem"
             fontSize="18px"
             marginRight="5px"
+            onClick={ ()=> navigate("/formulario/colabora")}
           />
         </div>
         <div className="container__image">
