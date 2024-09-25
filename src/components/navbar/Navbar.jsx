@@ -103,7 +103,7 @@ const Navbar = () => {
             <Button
               className="nav-link nav-button"
               component={NavLink}
-              to="/contact"
+              to="/formulario/colabora"
             >
               Colabora
             </Button>
