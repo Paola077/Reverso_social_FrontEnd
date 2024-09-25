@@ -1,6 +1,8 @@
 import React from "react";
 import CardPhoto from "../components/cards/cardPhoto/CardPhoto";
 import AboutUs from "../components/sections/AboutUs";
+import Carousel from "../components/carousel/Carousel";
+
 
 const PlanIgualdad = () => {
   const people = [
@@ -17,14 +19,17 @@ const PlanIgualdad = () => {
       linkedinUrl: "https://www.linkedin.com/in/lolacoach/",
     },
     {
-      imageUrl: "src/components/cards/cardPhoto/SR.png",
-      name: "Susana",
+      imageUrl: "src/components/cards/cardPhoto/Susana.png",
+      name: "Susana Ruiz",
       title: "Data Scientist",
       linkedinUrl: "",
     },
   ];
   return (
     <div>
+     <div className="carousel">
+     <Carousel/>
+     </div>
       <div className="aboutUsContainer">
       <AboutUs/>
       </div>
