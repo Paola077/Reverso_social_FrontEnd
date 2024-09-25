@@ -7,6 +7,7 @@ import Services from "../pages/Services";
 import Employment from "../pages/Employment";
 import Resources from "../pages/Resources";
 import Login from "../pages/Login";
+import RSForms from "../pages/RSForms";
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "reverso-social",
         element: <PlanIgualdad />,
+      },
+      {
+        path: "reverso-social/formulario/:formType",
+        element: <RSForms />,
       },
       {
         path: "reverso-social/femsenior",

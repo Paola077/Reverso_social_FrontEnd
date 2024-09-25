@@ -4,6 +4,7 @@ import { InputForm } from "../../Inputs/InputForm";
 import { AceptCancelButton } from "../../buttons/aceptCancelComponent/AceptCancelButton";
 
 export const RequestForm = ({text})=>{
+    
 const [FormData, setFormData] = useState ({
     title:"",
     data:"",
