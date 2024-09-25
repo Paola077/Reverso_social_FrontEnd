@@ -88,7 +88,7 @@ const Navbar = () => {
         <Box className="auth-buttons">
           {isFemseniors ? (
             <>
-              <Button className="nav-link" component={NavLink} to="/login">
+              <Button className="nav-link signin-button" component={NavLink} to="/login">
                 Iniciar Sesión
               </Button>
               <Button

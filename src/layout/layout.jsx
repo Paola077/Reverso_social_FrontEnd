@@ -1,22 +1,20 @@
 import { Outlet } from "react-router-dom";
 import { Footer } from "../components/footer/Footer";
-import Collaborate from "../components/sections/collaborate/Collaborate";
-import Carousel from "../components/carousel/Carousel";
 import Navbar from "../components/navbar/Navbar";
+import "./_Layout.scss";
 
-const Layout = () =>
-{
+const Layout = () => {
   return (
-    <div>
-      <Navbar/>
-      <main>
-        <Outlet />
-
-      </main>
+    <div className="layout-container">
+      <div className="gradient-container">
+        <Navbar className="layout-navbar" />
+        <main className="main-content">
+          <Outlet />
+        </main>
+      </div>
       <Footer />
     </div>
   );
-}
-
+};
 
 export default Layout;
