@@ -1,20 +1,18 @@
 import { Outlet } from "react-router-dom";
 import { Footer } from "../components/footer/Footer";
-import Collaborate from "../components/sections/collaborate/Collaborate";
-import Carousel from "../components/carousel/Carousel";
 import Navbar from "../components/navbar/Navbar";
-import "./_Layout.scss"; 
+import "./_Layout.scss";
 
 const Layout = () => {
   return (
     <div className="layout-container">
-      <div className="gradient-reverso">
+      <div className="gradient-container">
         <Navbar className="layout-navbar" />
-        <main>
+        <main className="main-content">
           <Outlet />
         </main>
       </div>
-      {/* <Footer className="layout-footer" /> */}
+      <Footer />
     </div>
   );
 };
