@@ -1,32 +1,34 @@
-// .search-container {
-//   width: 40%;
-// }
+@import "../../../scss/_Variables.scss";
 
-// .search {
-//   position: relative;
+.search-container {
+  width: 100%;
+  display: flex;
+  justify-content: center; 
+}
 
-  
+.search {
+  position: relative; 
+  display: flex;
+  align-items: center; 
+  background-color: rgba(199, 237, 247, 1); 
+  border-radius: 20px;
+  padding: 0 15px;
+  width: 20rem; 
 
-//   margin-left: 0;
+  .search-icon {
+    position: absolute; 
+    left: 10px; 
+    color: $dark; 
+  }
 
-//   @media (min-width: 600px) {
-//     margin-left: 8px;
-//   }
-// }
-
-// .styled-input-base {
-//   width: 100%;
-// background-color: rgba(199, 237, 247, 1);
-//   .MuiInputBase-input {
-//     padding: 8px 8px 8px 0;
-//     padding-left: calc(1em + 32px);
-//     flex-grow: none !important;
-//     @media (min-width: 600px) {
-//       width: 12ch;
-
-//       &:focus {
-//         width: 20ch;
-//       }
-//     }
-//   }
-// }
+  .styled-input-base {
+    padding-left: 40px; 
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: $dark; 
+    
+   
+  }
+}
