@@ -1,0 +1,46 @@
+@import "../../scss/Variables.scss";
+
+
+footer{
+    background-color:$purple;
+    height: 9.75rem;
+
+    .footerBox{
+        max-width: 90rem;
+        height: 100%;
+        margin: auto;
+        display: flex;
+        align-self: auto;
+        justify-content: space-between;
+
+        .footerText{
+            padding-left: 1rem;
+            align-self: center;
+
+            .footerTitle{
+                font-weight:400;
+                
+            }
+            p{
+                color: white;
+                font-family: $font-family-text;
+                padding-bottom: 0.05rem;
+                font-weight:200;
+            }
+        }
+    }
+    
+    .footerSocials{
+
+        padding-right: 1rem;
+        align-self: center;
+        .footerFb{
+            fill: white;
+        }
+        .footerIg{
+            fill: white;
+            padding-left: 1.5rem;
+        }
+    }
+    
+}

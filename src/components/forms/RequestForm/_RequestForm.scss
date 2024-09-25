@@ -1,0 +1,51 @@
+@import "../../../scss/Variables.scss";
+
+.formBackground{
+    width: 100vw;
+    min-height: 100vh;
+    background: linear-gradient( #121335, $purple);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+
+    
+
+    .formBox{
+        width: 74rem;
+        padding: 5rem 0;
+        background-color: white;
+        margin: auto;
+        border-radius: 1.25rem;
+        position: relative;
+
+        .buttonExit{
+            background-color: transparent;
+            border: none;
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+    
+            img{
+                width: 3rem;
+            }
+        }
+        .requestTitle{
+            text-align: center;
+            font-family: $font-family-title;
+            font-size: $font-size-h4;
+            font-weight: $font-weight-bold;
+            padding-bottom: 4rem;
+            color: $purple;
+        }
+    
+        .buttonBox{
+            padding-top: 3rem;
+            width: 60.25rem;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+        }
+    
+    }
+}
