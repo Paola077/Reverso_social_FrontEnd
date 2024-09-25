@@ -19,7 +19,7 @@ const Collaborate = () => {
         <div className="container__image">
           <img
             className="container__image__collaborateWomen"
-            src="src/components/sections/collaborate/collaborate.jpg"
+            src="images\collaborate.jpg"
             alt="collaborateWoman"
           />
         </div>

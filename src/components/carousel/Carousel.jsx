@@ -3,10 +3,10 @@ import ModalWeOffer from "../modal/ModalWeOffer";
 import "./_Carousel.scss";
 
 const services = [
-  { title: "CONSULTORÍAS", image: "src/components/carousel/consultoria.jpg", text: "Ofrecemos consultorías personalizadas para mejorar procesos internos y optimizar la productividad de las empresas. Trabajamos con profesionales especializados en diversas áreas." },
-  { title: "FORMACIONES", image: "src/components/carousel/formaciones.jpg", text: "Nuestras formaciones abarcan temas actuales y relevantes para el crecimiento personal y profesional. Cursos prácticos y teóricos impartidos por expertos en sus respectivos campos." },
-  { title: "AUDITORÍAS", image: "src/components/carousel/auditoria.jpg",  text: "Realizamos auditorías completas para optimizar el rendimiento y asegurar el cumplimiento normativo de las empresas. Identificamos áreas de mejora y ofrecemos recomendaciones claras."  },
-  { title: "RED MUJERES", image: "src/components/carousel/red-mujeres.jpg", text: "Fomentamos la creación de redes de apoyo y empoderamiento para mujeres en el ámbito laboral. Proporcionamos recursos y espacios para promover la igualdad de género en el trabajo."  },
+  { title: "CONSULTORÍAS", image: "images/consultoria.jpg", text: "Ofrecemos consultorías personalizadas para mejorar procesos internos y optimizar la productividad de las empresas. Trabajamos con profesionales especializados en diversas áreas." },
+  { title: "FORMACIONES", image: "images/formaciones.jpg", text: "Nuestras formaciones abarcan temas actuales y relevantes para el crecimiento personal y profesional. Cursos prácticos y teóricos impartidos por expertos en sus respectivos campos." },
+  { title: "AUDITORÍAS", image: "images/auditoria.jpg",  text: "Realizamos auditorías completas para optimizar el rendimiento y asegurar el cumplimiento normativo de las empresas. Identificamos áreas de mejora y ofrecemos recomendaciones claras."  },
+  { title: "RED MUJERES", image: "images/red-mujeres.jpg", text: "Fomentamos la creación de redes de apoyo y empoderamiento para mujeres en el ámbito laboral. Proporcionamos recursos y espacios para promover la igualdad de género en el trabajo."  },
 ];
 
 function Carousel() {
