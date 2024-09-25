@@ -1,6 +1,7 @@
 import React from "react";
 import CardPhoto from "../components/cards/cardPhoto/CardPhoto";
 import AboutUs from "../components/sections/AboutUs";
+import SignInUpForm from "../components/forms/logInForm/SignInUpForm";
 
 const PlanIgualdad = () => {
   const people = [
@@ -25,7 +26,7 @@ const PlanIgualdad = () => {
   ];
   return (
     <div>
-      <div className="aboutUsContainer">
+     {/*  <div className="aboutUsContainer">
       <AboutUs/>
       </div>
       <div className="cardPhotoContainer">
@@ -38,7 +39,8 @@ const PlanIgualdad = () => {
             linkedinUrl={person.linkedinUrl}
           />
         ))}
-      </div>
+      </div> */}
+   <SignInUpForm/>
     </div>
   );
 };
