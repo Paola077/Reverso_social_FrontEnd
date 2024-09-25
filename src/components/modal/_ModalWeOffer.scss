@@ -6,11 +6,11 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); // Fondo oscuro semi-transparente
+    background-color: rgba(0, 0, 0, 0.5); 
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999; // Asegura que el modal esté en el frente
+    z-index: 999; 
   }
   
   .modalOfferContent {
@@ -44,7 +44,7 @@
     text-align: center;
     font-size: $font-size-h2;
     font-family: $font-family-title;
-    font-weight: $font-weight-bold 700;
+    font-weight: $font-weight-bold;
     margin-bottom: 1.5rem;
     color: $dark;
   }
@@ -55,10 +55,6 @@
     align-items: flex-start;
     gap: 2rem;
   
-    @media (max-width: 768px) {
-      flex-direction: column; // Para pantallas pequeñas, apila los elementos
-      align-items: center;
-    }
   }
   
   .modalOfferText {
@@ -72,11 +68,11 @@
   
   .modalOfferImage {
     flex: 1;
-    max-width: 18rem; // Controla el ancho máximo de la imagen
+    max-width: 18rem; 
     height: 18rem;
     img {
       width: 100%;
-      height: 100%; // Se asegura que la imagen mantenga la proporción
+      height: 100%; 
       object-fit: cover;
       object-position: center;
     }
