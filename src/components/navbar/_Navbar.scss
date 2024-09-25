@@ -35,7 +35,7 @@
       font-size: 16px;
       color: $dark;
       text-decoration: none;
-      font-size: $font-size-h6;
+      font-size: $font-size-h5;
       font-weight: $font-weight-semibold;
       padding: 0.5rem 1.5rem;
 
@@ -55,7 +55,7 @@
 
       .nav-link {
         color: $dark;
-        font-size: $font-size-h6;
+        font-size: $font-size-h5;
         padding: 0.5rem 1.5rem;
 
         &:hover,
@@ -101,7 +101,6 @@
 
           &:hover {
             transform: scale(0.95);
-            // background-color: $light-gray;
           }
         }
       }
@@ -148,6 +147,11 @@
       &:hover {
         background-color: $lila;
       }
+    }
+    .signin-button{
+      color: $dark;
+      font-size: $font-size-h5;
+      font-weight: $font-weight-semibold;
     }
   }
 }
