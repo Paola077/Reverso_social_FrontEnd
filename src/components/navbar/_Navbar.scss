@@ -39,45 +39,59 @@
       font-weight: $font-weight-semibold;
       padding: 0.5rem 1.5rem;
 
-      &:hover {
+      &:hover,
+      &:active {
         background-color: $lila;
         color: white;
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
       }
-      &:active {
-        font-size: $font-size-h6;
-        font-weight: $font-weight-semibold;
-      }
     }
     a:-webkit-any-link {
       text-decoration: none !important;
     }
-
     .dropdown {
       position: relative;
+
       .nav-link {
         color: $dark;
         font-size: $font-size-h6;
         padding: 0.5rem 1.5rem;
 
-        &:hover {
+        &:hover,
+        &:focus {
           color: white;
           border-top-right-radius: 10px;
           border-top-left-radius: 10px;
+          background-color: $lila;
         }
       }
+
+      &:hover,
+      &:focus-within {
+        .nav-link {
+          border-top-right-radius: 10px;
+          border-top-left-radius: 10px;
+          background-color: $lila;
+          color: white;
+        }
+
+        .dropdown-menu {
+          display: inline-block;
+        }
+      }
+
       .dropdown-menu {
         width: 100%;
         display: none;
         position: absolute;
-        top: 30%;
-        left: 0%;
-        padding-left: 0;
+        top: 90%;
+        left: 0;
         background-color: white;
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
         z-index: 10;
         border-radius: 8px;
+        list-style: none;
 
         li {
           padding: 10px 20px;
@@ -85,14 +99,11 @@
           font-size: 15px;
           text-decoration: none !important;
 
-          &:hover,
-          &:focus {
-            transform: scale(0.9);
+          &:hover {
+            transform: scale(0.95);
+            // background-color: $light-gray;
           }
         }
-      }
-      &:hover .dropdown-menu {
-        display: inline-block;
       }
     }
   }
@@ -108,6 +119,7 @@
       padding: 5px 15px;
       background-color: rgba(199, 237, 247, 1);
       color: $dark;
+      text-transform: capitalize;
       &:focus {
         outline: none;
       }
@@ -121,16 +133,17 @@
     align-items: center;
     gap: 15px;
     text-transform: capitalize;
-
     .nav-link {
       text-decoration: none;
+          text-transform: capitalize;
+
     }
+
     .nav-button {
       background-color: $purple;
       color: #fff;
       border-radius: 60px;
       padding: 8px 20px;
-      text-transform: capitalize;
       font-size: $font-size-h5;
       &:hover {
         background-color: $lila;
