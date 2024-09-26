@@ -1,22 +1,23 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { Footer } from "../components/footer/Footer";
-import Collaborate from "../components/sections/collaborate/Collaborate";
-import Carousel from "../components/carousel/Carousel";
 import Navbar from "../components/navbar/Navbar";
+import "./_Layout.scss";
 
-const Layout = () =>
-{
+const Layout = () => {
+  const location = useLocation();
+
+  const isFormPage = location.pathname.startsWith("/formulario")
   return (
-    <div>
-      <Navbar/>
-      <main>
-        <Outlet />
-        <Carousel />
-      </main>
+    <div className="layout-container">
+      <div className="gradient-container">
+          {!isFormPage && <Navbar  className="layout-navbar"/>}
+        <main className="main-content">
+          <Outlet />
+        </main>
+      </div>
       <Footer />
     </div>
   );
-}
-
+};
 
 export default Layout;
