@@ -1,84 +1,89 @@
-@import '../../scss/Variables.scss';
+@import "../../scss/Variables.scss";
 
-.intro{
-  margin:0 4rem ;
+.intro {
+  margin: 0 4rem;
 }
 
 .introContainer {
-    display: flex;
-    flex-direction: column; 
-    margin-left: 1rem;
-    padding: 1.5rem; 
-  }
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+  padding: 1.5rem;
+}
 
-  .introTitle {
-    font-family: $font-family-title;
-    font-size: $font-size-h1;
-    font-weight: $font-weight-bold;
-    color: $dark;
-    text-align:left ;
-    position: relative; 
+.introTitle {
+  font-family: $font-family-title;
+  font-size: $font-size-h1;
+  font-weight: $font-weight-bold;
+  color: $dark;
+  text-align: left;
+  position: relative;
+}
+
+.introSubTitle {
+  font-family: $font-family-title;
+  font-size: $font-size-h2;
+  font-weight: $font-weight-bold;
+  color: $dark;
+  text-align: left;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 75%;
+    height: 0.01rem;
+    right: 0;
+    background-color: $dark;
+    margin-left: 1rem;
   }
-  
-  .introSubTitle {
-    font-family: $font-family-title;
-    font-size: $font-size-h2;
-    font-weight: $font-weight-bold;
-    color: $dark;
-    text-align: left;
-    position: relative; 
-   
-    &::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        width: 75%;
-        height: 0.01rem;
-        right: 0;
-        background-color: $dark;
-        margin-left: 1rem; 
-    }
-  }
-  
-  .textIntro {
+}
+
+.textIntro {
+  font-family: $font-family-text;
+  font-size: $font-size-h5;
+  font-weight: $font-weight-regular;
+  color: $dark;
+  text-align: justify;
+  margin-top: 1.5rem;
+  line-height: 2rem;
+  margin-bottom: 25px;
+}
+.intro {
+  .introList {
+    list-style-type: disc;
+    padding-left: 20px;
     font-family: $font-family-text;
     font-size: $font-size-h5;
     font-weight: $font-weight-regular;
     color: $dark;
     text-align: justify;
-    margin-top: 1.5rem; 
+    margin-top: 1.5rem;
     line-height: 2rem;
-    margin-bottom: 25px; 
-  
+    margin: auto;
   }
-  .intro {
-    .introList {
-      list-style-type: disc; 
-      padding-left: 20px; 
-      font-family: $font-family-text;
-      font-size: $font-size-h5;
-      font-weight: $font-weight-regular;
-      color: $dark;
-      text-align: justify;
-      margin-top: 1.5rem; 
-      line-height: 2rem;
-      margin: auto;
-      }
-  
-    .introList li {
-      margin-bottom: 10px; 
-    }
+
+  .introList li {
+    margin-bottom: 10px;
   }
-  .bold {
-    font-weight: bold;
-  }
-  .textIntroFinal {
-    font-family: $font-family-text;
-    font-size: $font-size-h5;
-    font-weight: $font-weight-regular;
-    color: $dark;
-    text-align: center;
-    margin-top: 1.5rem; 
-    line-height: 2rem;
-  //  margin-bottom: 25px; 
-  }
+}
+.bold {
+  font-weight: bold;
+}
+.textIntroFinal {
+  font-family: $font-family-text;
+  font-size: $font-size-h5;
+  font-weight: $font-weight-regular;
+  color: $dark;
+  text-align: center;
+  margin-top: 1.5rem;
+  line-height: 2rem;
+  //  margin-bottom: 25px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}

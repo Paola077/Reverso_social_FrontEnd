@@ -1,0 +1,59 @@
+@import "../../../scss/Variables.scss";
+
+.popUpWindow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: $white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  &__content {
+    background-color: $white;
+    padding: 2.5rem;
+    border-radius: 1.25rem;
+    width: 90%;
+    max-width: 37.5rem;
+    text-align: center;
+    position: relative;
+    box-shadow: 0px 4px 20px #0000001a;
+    color: $dark;
+
+    &__close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+
+      &__icon {
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+
+    &__title {
+      font-family: $font-family-title;
+      font-size: $font-size-h3;
+      font-weight: $font-weight-bold;
+      margin-bottom: 1.25rem;
+    }
+
+    &__body {
+      margin-top: 1.25rem;
+
+      &__text {
+        font-family: $font-family-title;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: $dark;
+        margin-bottom: 1.25rem;
+      }
+    }
+  }
+}

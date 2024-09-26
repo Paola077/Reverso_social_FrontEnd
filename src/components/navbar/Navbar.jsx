@@ -1,16 +1,33 @@
 import React from "react";
 import { useLocation, NavLink } from "react-router-dom";
-import { AppBar, Toolbar, Button, Box } from "@mui/material";
+import { AppBar, Toolbar, Box } from "@mui/material";
 import Search from "./search/Search";
-import "./_Navbar.scss"; 
+import { Button } from "../buttons/button/Button";
+import "./_Navbar.scss";
 
 const Navbar = () => {
   const location = useLocation();
   const isFemseniors = location.pathname.startsWith(
     "/reverso-social/femsenior"
   );
-  const isReversoSocial = location.pathname === "/reverso-social";
+  const isReversoSocial =
+    location.pathname === "/reverso-social" &&
+    "/formulario/colabora" &&
+    "/formulario/peticiones";
+  const handleChange = (e) => { 
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
+    // const handeSubmit = (e) => {
+    //e.preventDefault()
+    // }
+  };
+
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <AppBar
       position="static"
@@ -43,25 +60,20 @@ const Navbar = () => {
                 </NavLink>
                 <ul className="dropdown-menu">
                   <li>
-                    <NavLink to="/reverso-social/proposito">
+                    <NavLink to="#intro" onClick={() => scrollToSection("intro")}>
                       Nuestro propósito
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/reverso-social/ofrecemos">
+                    <NavLink to="#carousel" onClick={() => scrollToSection("carousel")}>
                       Qué ofrecemos
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/reverso-social/queremos">
-                      Qué queremos
-                    </NavLink>
+                    <NavLink to="#collaborate" onClick={() => scrollToSection("collaborate")}>Contáctanos</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/reverso-social/contacto">Contáctanos</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/reverso-social/somos">Quienes somos</NavLink>
+                    <NavLink to="#aboutUs" onClick={() => scrollToSection("aboutUs")}>Quienes somos</NavLink>
                   </li>
                 </ul>
               </div>
@@ -74,7 +86,10 @@ const Navbar = () => {
               <NavLink to="/reverso-social" className="nav-link">
                 Reverso Social
               </NavLink>
-              <NavLink to="/formulario/colabora" className="nav-link">
+              <NavLink
+                to="/formulario/colabora"
+                className="nav-link"
+              >
                 Colabora
               </NavLink>
             </>
@@ -88,25 +103,50 @@ const Navbar = () => {
         <Box className="auth-buttons">
           {isFemseniors ? (
             <>
-              <Button className="nav-link signin-button" component={NavLink} to="/login">
-                Iniciar Sesión
+              <Button
+                textButton={"Iniciar sesión"}
+                backgroundColor={"transparent"}
+                border={"none"}
+                color={"#35399B"}
+                height={"2rem"}
+                width={"8rem"}
+                onChange={handleChange}
+                component={NavLink}
+                to="/login"
+              >
+                Iniciar sesión
               </Button>
               <Button
-                className="nav-link nav-button"
+                className="nav-link signin-button"
                 component={NavLink}
-                to="/signin"
+                to="/reverso-social/login"
+                textButton={"Registrarse"}
+                backgroundColor={"#35399B"}
+                border={"none"}
+                height={"2rem"}
+                width={"8rem"}
+                color={"#fff"}
               >
                 Registrarse
               </Button>
+             
             </>
           ) : (
             <Button
-              className="nav-link nav-button"
+              // className="nav-link nav-button"
+              backgroundColor={"#35399B"}
+              height={"2rem"}
+              width={"8rem"}
+              color={"#fff"}
+              textButton={"Colabora"}
               component={NavLink}
+              border={"none"}
+              onChange={handleChange}
               to="/formulario/colabora"
             >
               Colabora
             </Button>
+          
           )}
         </Box>
       </Toolbar>
