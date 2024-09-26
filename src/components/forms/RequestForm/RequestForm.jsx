@@ -23,7 +23,7 @@ export const RequestForm = ({ text }) => {
       <form onSubmit="">
         <div className="formBox">
           <button className="buttonExit">
-            <img src="public\icons\Exit.svg" alt="Cerrar formulario" />
+            <img src="/public/icons/Exit.svg" alt="Cerrar formulario" />
           </button>
 
           <h2 className="requestTitle">{text}</h2>

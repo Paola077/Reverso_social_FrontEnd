@@ -11,8 +11,9 @@ const Navbar = () => {
     "/reverso-social/femsenior"
   );
   const isReversoSocial =
-    location.pathname ===
-    "/reverso-social" || "/reverso-social/formulario/colabora";
+    location.pathname === "/reverso-social" &&
+    "/formulario/colabora" &&
+    "/formulario/peticiones";
   const handleChange = (e) => { 
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -85,7 +86,7 @@ const Navbar = () => {
                 Reverso Social
               </NavLink>
               <NavLink
-                to="reverso-social/formulario/colabora"
+                to="/formulario/colabora"
                 className="nav-link"
               >
                 Colabora
@@ -140,7 +141,7 @@ const Navbar = () => {
               component={NavLink}
               border={"none"}
               onChange={handleChange}
-              to="reverso-social/formulario/colabora"
+              to="/formulario/colabora"
             >
               Colabora
             </Button>
