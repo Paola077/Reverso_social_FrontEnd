@@ -1,15 +1,25 @@
 import React from "react";
 import { useLocation, NavLink } from "react-router-dom";
-import { AppBar, Toolbar, Button, Box } from "@mui/material";
+import { AppBar, Toolbar, Box } from "@mui/material";
 import Search from "./search/Search";
-import "./_Navbar.scss"; 
+import { Button } from "../buttons/button/Button";
+import "./_Navbar.scss";
 
 const Navbar = () => {
   const location = useLocation();
   const isFemseniors = location.pathname.startsWith(
     "/reverso-social/femsenior"
   );
-  const isReversoSocial = location.pathname === "/reverso-social";
+  const isReversoSocial =
+    location.pathname ===
+    "/reverso-social" || "/reverso-social/formulario/colabora";
+  const handleChange = (e) => { 
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+    // const handeSubmit = (e) => {
+    //e.preventDefault()
+    // }
+  };
 
   return (
     <AppBar
@@ -74,7 +84,10 @@ const Navbar = () => {
               <NavLink to="/reverso-social" className="nav-link">
                 Reverso Social
               </NavLink>
-              <NavLink to="/colabora" className="nav-link">
+              <NavLink
+                to="reverso-social/formulario/colabora"
+                className="nav-link"
+              >
                 Colabora
               </NavLink>
             </>
@@ -88,25 +101,50 @@ const Navbar = () => {
         <Box className="auth-buttons">
           {isFemseniors ? (
             <>
-              <Button className="nav-link signin-button" component={NavLink} to="/login">
-                Iniciar Sesión
+              <Button
+                textButton={"Iniciar sesión"}
+                backgroundColor={"transparent"}
+                border={"none"}
+                color={"#35399B"}
+                height={"2rem"}
+                width={"8rem"}
+                onChange={handleChange}
+                component={NavLink}
+                to="/login"
+              >
+                Iniciar sesión
               </Button>
               <Button
-                className="nav-link nav-button"
+                className="nav-link signin-button"
                 component={NavLink}
-                to="/signin"
+                to="/reverso-social/login"
+                textButton={"Registrarse"}
+                backgroundColor={"#35399B"}
+                border={"none"}
+                height={"2rem"}
+                width={"8rem"}
+                color={"#fff"}
               >
                 Registrarse
               </Button>
+             
             </>
           ) : (
             <Button
-              className="nav-link nav-button"
+              // className="nav-link nav-button"
+              backgroundColor={"#35399B"}
+              height={"2rem"}
+              width={"8rem"}
+              color={"#fff"}
+              textButton={"Colabora"}
               component={NavLink}
-              to="/contact"
+              border={"none"}
+              onChange={handleChange}
+              to="reverso-social/formulario/colabora"
             >
               Colabora
             </Button>
+          
           )}
         </Box>
       </Toolbar>
