@@ -2,9 +2,8 @@ import React from "react";
 import CardPhoto from "../components/cards/cardPhoto/CardPhoto";
 import AboutUs from "../components/sections/AboutUs";
 import Carousel from "../components/carousel/Carousel";
-import Intro from "../components/intro/Intro"
+import Intro from "../components/intro/Intro";
 import Collaborate from "../components/sections/collaborate/Collaborate";
-
 
 const PlanIgualdad = () => {
   const people = [
@@ -27,19 +26,26 @@ const PlanIgualdad = () => {
       linkedinUrl: "",
     },
   ];
+
   return (
     <div>
-      <Intro />
-      <div className="carousel">
-        <Carousel/>
+      <div id="intro">
+        <Intro />
       </div>
-      <div>
+
+      <div id="carousel" className="carousel">
+        <Carousel />
+      </div>
+
+      <div id="collaborate">
         <Collaborate />
       </div>
-      <div className="aboutUsContainer">
-      <AboutUs/>
+
+      <div id="aboutUs" className="aboutUsContainer">
+        <AboutUs />
       </div>
-      <div className="cardPhotoContainer">
+
+      <div id="people" className="cardPhotoContainer">
         {people.map((person, index) => (
           <CardPhoto
             key={index}
