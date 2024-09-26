@@ -1,32 +1,32 @@
 //@import '../../scss/Variables.scss';
+@import '../../../scss/Variables.scss';
 
 * {
 	box-sizing: border-box;
 }
 
 body {
-	background: #f6f5f7;
+	background: $white;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	font-family: 'Montserrat', sans-serif;
+	font-family: $font-family-text;
 	height: 100vh;
 	margin: -20px 0 50px;
 }
 
-h1 {
-	font-weight: bold;
-	margin: 0;
-}
+
 
 h2 {
 	text-align: center;
+	font-size: $font-size-h2;
+	margin: 0;
 }
 
 p {
 	font-size: 14px;
-	font-weight: 100;
+	font-weight: $font-weight-regular;
 	line-height: 20px;
 	letter-spacing: 0.5px;
 	margin: 20px 0 30px;
@@ -34,22 +34,18 @@ p {
 
 span {
 	font-size: 12px;
-}
-
-a {
-	color: #333;
-	font-size: 14px;
-	text-decoration: none;
-	margin: 15px 0;
+	cursor: pointer;
+	color: $lila
+	
 }
 
 button {
 	border-radius: 20px;
-	border: 1px solid #4050de;
-	background-color: #5e4ef4;
-	color: #FFFFFF;
+	border: 1px solid $purple;
+	background-color: $lila;
+	color: $white;
 	font-size: 12px;
-	font-weight: bold;
+	font-weight: $font-weight-bold;
 	padding: 12px 45px;
 	letter-spacing: 1px;
 	text-transform: uppercase;
@@ -66,7 +62,7 @@ button:focus {
 
 button.ghost {
 	background-color: transparent;
-	border-color: #FFFFFF;
+	background-color: $lila;
 }
 
 form {

@@ -1,46 +1,58 @@
+import React, { useState } from 'react';
 import './_SignInUpForm.scss'
 
-const SignInUpForm=()=>{
+const SignInUpForm=({ defaultToSignUp = false })=>{
+
+	const [isRightPanelActive, setIsRightPanelActive] = useState(defaultToSignUp);
+
+  const handleSignUpClick = () => {
+    setIsRightPanelActive(true);
+  };
+
+  const handleSignInClick = () => {
+    setIsRightPanelActive(false);
+  };
     return(
         <>
    
-<div className="container" id="container">
+<div className={`container ${isRightPanelActive ? 'right-panel-active' : ''}`} id="container">
 	<div className="form-container sign-up-container">
 		<form action="#">
-			<h1>Create Account</h1>
-			<input type="text" placeholder="Name" />
+			<h2>Crea una cuenta</h2>
+			<input type="text" placeholder="Nombre" />
 			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<button>Sign Up</button>
+			<input type="date" placeholder="Fecha de nacimiento" />
+			<input type="password" placeholder="Contraseña" />
+			<button>Entrar</button>
 		</form>
 	</div>
 	<div className="form-container sign-in-container">
 		<form action="#">
-			<h1>Accede a tu cuenta</h1>
+			<h2>Accede a tu cuenta</h2>
 			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<a href="#">Olvidaste tu contraseña?</a>
+			<input type="password" placeholder="Contraseña" />
 			<button>Entrar</button>
+			<p href="#">No tienes cuenta? Accede 
+				{" "}
+			<span className="ghost" onClick={handleSignUpClick} id="signUp"> Aqui</span>
+			</p>
 		</form>
 	</div>
 	<div className="overlay-container">
 		<div className="overlay">
 			<div className="overlay-panel overlay-left">
-				<h1>Welcome Back!</h1>
-				<p>To keep connected with us please login with your personal info</p>
-				<button className="ghost" id="signIn">Sign In</button>
+			<h2>Reverso Social</h2>
+			<h2>FEMsenior</h2>
+				<button className="ghost" onClick={handleSignInClick} id="signIn">Sign In</button>
 			</div>
 			<div className="overlay-panel overlay-right">
 				<p>Bienvenida a </p>
-				<h1>Reverso Social</h1>
-				<h1>FEMsenior</h1>
-				<p>Enter your personal details and start journey with us</p>
-				<button className="ghost" id="signUp">Sign Up</button>
+				<h2>Reverso Social</h2>
+				<h2>FEMsenior</h2>
 			</div>
 		</div>
 	</div>
 </div>
-
         </>
     )
 }
