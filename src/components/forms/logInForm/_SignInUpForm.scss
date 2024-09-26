@@ -1,11 +1,10 @@
-//@import '../../scss/Variables.scss';
 @import '../../../scss/Variables.scss';
 
 * {
 	box-sizing: border-box;
 }
 
-body {
+/* body {
 	background: $white;
 	display: flex;
 	justify-content: center;
@@ -14,19 +13,24 @@ body {
 	font-family: $font-family-text;
 	height: 100vh;
 	margin: -20px 0 50px;
-}
-
-
+} */
 
 h2 {
 	text-align: center;
-	font-size: $font-size-h2;
+	font-family: $font-family-title;
+	font-size: $font-size-h3;
+	margin: 0;
+}
+h3 {
+	text-align: center;
+	font-family: $font-family-title;
+	font-size: $font-weight-regular;
 	margin: 0;
 }
 
 p {
-	font-size: 14px;
 	font-weight: $font-weight-regular;
+	font-family: $font-family-text;
 	line-height: 20px;
 	letter-spacing: 0.5px;
 	margin: 20px 0 30px;
@@ -37,11 +41,12 @@ span {
 	cursor: pointer;
 	color: $lila
 	
+	
 }
 
 button {
 	border-radius: 20px;
-	border: 1px solid $purple;
+	border: 1px solid $lightLila;
 	background-color: $lila;
 	color: $white;
 	font-size: 12px;
@@ -50,6 +55,7 @@ button {
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
+	//width: 17rem;
 }
 
 button:active {
@@ -77,7 +83,7 @@ form {
 }
 
 input {
-	background-color: #eee;
+	//background-color: #eee;
 	border: none;
 	padding: 12px 15px;
 	margin: 8px 0;
@@ -156,8 +162,8 @@ input {
 
 .overlay {
 	background: #CED2FD;
-	background: -webkit-linear-gradient(to right, #CED2FD, #7176F8);
-	background: linear-gradient(to right, #CED2FD, #7176F8);
+	//background: -webkit-linear-gradient(to right, #CED2FD, $lightLila);
+	background: linear-gradient(to right, #CED2FD, $lightLila);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -172,21 +178,24 @@ input {
 
 .container.right-panel-active .overlay {
   	transform: translateX(50%);
+	margin-block-end: 20px;
 }
 
 .overlay-panel {
 	position: absolute;
+	background: linear-gradient(to right, #CED2FD, $lila);
 	display: flex;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-between;
 	flex-direction: column;
-	padding: 0 40px;
+	padding: 100px;
 	text-align: center;
 	top: 0;
 	height: 100%;
 	width: 50%;
 	transform: translateX(0);
 	transition: transform 0.6s ease-in-out;
+	
 }
 
 .overlay-left {
@@ -200,6 +209,7 @@ input {
 .overlay-right {
 	right: 0;
 	transform: translateX(0);
+	
 }
 
 .container.right-panel-active .overlay-right {
