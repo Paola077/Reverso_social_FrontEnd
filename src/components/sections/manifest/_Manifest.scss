@@ -1,0 +1,29 @@
+@import '../../../scss/Variables.scss';
+
+.manifestContainer {
+    background-color: $lightLila;
+    color: $white;
+    font-family: $font-family-title;
+    width: 100;
+    max-width: 61%;
+    display: flex;
+    line-height: 1.9rem;
+    font-size: $font-size-h5;
+    margin-left: 1rem;
+   
+   
+}
+
+.h3Text {
+font-size: $font-size-h4;
+font-weight: $font-weight-bold;
+}
+
+.h4Text {
+font-size: $font-size-h5;
+
+}
+
+.manifest p {
+    margin-bottom: 1.5rem;
+}
