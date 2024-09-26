@@ -1,0 +1,79 @@
+@import '../../scss/Variables.scss';
+
+.modalOfferOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; 
+  }
+  
+  .modalOfferContent {
+    background-color: $white;
+    padding: 3.5rem 5rem;
+    border-radius: 0 2rem 2rem 2rem;
+    width: 80%;
+    max-width: 40rem; 
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+   
+  }
+  
+  .modalOfferClose {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .closeIcon {
+    width: 2.5rem; 
+    height: 2.5rem;
+  }
+  
+  .modalOfferTitle {
+    text-align: center;
+    font-size: $font-size-h2;
+    font-family: $font-family-title;
+    font-weight: $font-weight-bold;
+    margin-bottom: 1.5rem;
+    color: $dark;
+  }
+  
+  .modalOfferBody {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+  
+  }
+  
+  .modalOfferText {
+    flex: 1;
+    text-align: left;
+    font-size: $font-size-h5;
+    font-family: $font-family-text;
+    font-weight: $font-weight-regular;
+    color: $dark;
+  }
+  
+  .modalOfferImage {
+    flex: 1;
+    max-width: 18rem; 
+    height: 18rem;
+    img {
+      width: 100%;
+      height: 100%; 
+      object-fit: cover;
+      object-position: center;
+    }
+  }

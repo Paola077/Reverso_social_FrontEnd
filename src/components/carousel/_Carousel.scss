@@ -1,30 +1,39 @@
-@import "../../scss/Variables";
+@import "../../scss/Variables.scss";
 
 .carousel-container {
-  background-color: $lila;
-  padding: 20px;
-  border-radius: 15px;
+  background-color: $lightLila2;
+  padding: 1.25rem;
+  border-radius: 1.5rem;
   text-align: center;
   color: $light;
+  max-width: 80rem;
+  margin: auto;
+  margin-top:6rem;
+  height: 29rem;
+  box-shadow: 0.313rem 0.313rem 0.625rem #00000033;
+  
+
+
 
   h2 {
     font-family: $font-family-title;
-    font-size: $font-size-h2;
+    font-size: $font-size-h3;
     color: white;
-    margin-bottom: 20px;
+    margin-top:2rem;
   }
 
   .carousel {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 3rem;
 
     .prev,
     .next {
       background: none;
       border: none;
-      font-size: 50px;
-      color: $light;
+      font-size: 3.75rem;
+      color: $white;
       cursor: pointer;
     }
 
@@ -33,44 +42,44 @@
       flex-direction: row;
       flex-wrap: wrap;
       overflow: hidden;
-      width: 80%;
       justify-content: center;
+      
 
       .slide {
-        min-width: 200px;
+        width: 15rem;
         margin: 0 15px;
         text-align: center;
 
         .card {
           width: 100%;
-          height: 150px;
-          background-color: $light;
-          border-radius: 10px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          opacity: 0.5;
-          transition: opacity 0.5s ease, transform 0.5s ease;
+          background-color: $white;
+          border-radius:  0.9rem 0.9rem 0.9rem 0;
+          overflow: hidden;
+          transition: transform 0.3s ease;
+          box-shadow: 0 4px 10px #0000001a;
 
           .card-image {
             width: 100%;
-            height: 100%;
+            height: 12rem;
             object-fit: cover;
-            border-radius: 10px;
           }
-        }
 
-        .title {
-          margin-top: 10px;
-          font-family: $font-family-title;
-          font-size: $font-size-h5;
-          font-weight: $font-weight-semibold;
-          color: $dark;
+          .title {
+            padding: 1rem;
+            font-family: $font-family-title;
+            font-size: $font-size-h6;
+            font-weight: $font-weight-semibold;
+            color: $dark;
+            background-color: $white;
+          }
+
+          &:hover {
+            transform: scale(1.05);
+          }
         }
 
         &.active .card {
           opacity: 1;
-          transform: scale(1.1);
         }
       }
     }

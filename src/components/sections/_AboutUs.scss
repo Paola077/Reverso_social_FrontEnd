@@ -5,7 +5,9 @@
     flex-direction: column; 
     align-items: center; 
     padding: 1.5rem; 
-   
+    max-width: 83rem;
+    margin: auto;
+  
   }
   
   .aboutUsTitle {
@@ -15,6 +17,7 @@
     color: $dark;
     text-align: center;
     position: relative; 
+    margin-bottom: 3rem;
   
     &::before {
         content: "";
@@ -44,10 +47,9 @@
     font-size: $font-size-h5;
     font-weight: $font-weight-regular;
     color: $dark;
-    text-align: center;
+    padding-bottom: 1.5rem;
     margin-top: 1.5rem; 
     line-height: 2rem;
     margin: auto;
-  
-   
+
   }

@@ -1,24 +1,27 @@
 import React from "react";
 import CardPhoto from "../components/cards/cardPhoto/CardPhoto";
 import AboutUs from "../components/sections/AboutUs";
-import SignInUpForm from "../components/forms/logInForm/SignInUpForm";
+import Carousel from "../components/carousel/Carousel";
+import Intro from "../components/intro/Intro"
+import Collaborate from "../components/sections/collaborate/Collaborate";
+
 
 const PlanIgualdad = () => {
   const people = [
     {
-      imageUrl: "src/components/cards/cardPhoto/Pilar.png",
+      imageUrl: "images/Pilar.png",
       name: "Pilar Limón",
       title: "Software Engineer",
       linkedinUrl: "https://www.linkedin.com/in/pilar-lim%C3%B3n-b6135843/",
     },
     {
-      imageUrl: "src/components/cards/cardPhoto/Lola.png",
+      imageUrl: "images/Lola.png",
       name: "Lola Martínez Cueto",
       title: "UX Designer",
       linkedinUrl: "https://www.linkedin.com/in/lolacoach/",
     },
     {
-      imageUrl: "src/components/cards/cardPhoto/Susana.jpg",
+      imageUrl: "images/Susana.png",
       name: "Susana Ruiz",
       title: "Data Scientist",
       linkedinUrl: "",
@@ -26,7 +29,14 @@ const PlanIgualdad = () => {
   ];
   return (
     <div>
-     {/*  <div className="aboutUsContainer">
+      <Intro />
+      <div className="carousel">
+        <Carousel/>
+      </div>
+      <div>
+        <Collaborate />
+      </div>
+      <div className="aboutUsContainer">
       <AboutUs/>
       </div>
       <div className="cardPhotoContainer">
@@ -39,8 +49,7 @@ const PlanIgualdad = () => {
             linkedinUrl={person.linkedinUrl}
           />
         ))}
-      </div> */}
-   <SignInUpForm/>
+      </div> 
     </div>
   );
 };
