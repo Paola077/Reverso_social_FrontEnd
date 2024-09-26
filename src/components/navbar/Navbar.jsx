@@ -22,6 +22,12 @@ const Navbar = () => {
     // }
   };
 
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
   return (
     <AppBar
       position="static"
@@ -54,25 +60,20 @@ const Navbar = () => {
                 </NavLink>
                 <ul className="dropdown-menu">
                   <li>
-                    <NavLink to="/reverso-social/proposito">
+                    <NavLink to="#intro" onClick={() => scrollToSection("intro")}>
                       Nuestro propósito
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/reverso-social/ofrecemos">
+                    <NavLink to="#carousel" onClick={() => scrollToSection("carousel")}>
                       Qué ofrecemos
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to="/reverso-social/queremos">
-                      Qué queremos
-                    </NavLink>
+                    <NavLink to="#collaborate" onClick={() => scrollToSection("collaborate")}>Contáctanos</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/reverso-social/contacto">Contáctanos</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/reverso-social/somos">Quienes somos</NavLink>
+                    <NavLink to="#aboutUs" onClick={() => scrollToSection("aboutUs")}>Quienes somos</NavLink>
                   </li>
                 </ul>
               </div>
