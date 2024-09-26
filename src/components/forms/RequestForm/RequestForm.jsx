@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./_RequestForm.scss"
 import { InputForm } from "../../Inputs/InputForm";
-import { AceptCancelButton } from "../../buttons/aceptCancelComponent/AceptCancelButton";
+import { Button } from "../../buttons/button/Button";
 import { useNavigate } from "react-router-dom";
 
 export const RequestForm = ({text})=>{
@@ -69,14 +69,14 @@ const handleChange = (e) =>{
                     />
 
                     <div className="buttonBox">
-                        <AceptCancelButton 
+                        <Button 
                         textButton={"Cancelar"}
                         backgroundColor={"white"}
                         border={"0.15rem solid #35399b"}
                         color={"#35399b"}
                         onClick={() => setFormData({ title: "", data: "", description: "", contact: "" })}
                         />
-                        <AceptCancelButton 
+                        <Button 
                         textButton={"Aceptar"}
                         backgroundColor={"#35399b"}
                         border={"0.15rem solid #35399b"}

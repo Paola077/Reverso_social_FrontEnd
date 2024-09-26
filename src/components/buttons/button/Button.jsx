@@ -1,7 +1,7 @@
 import React from "react";
-import "./_AceptCancelButton.scss"
+import "./_Button.scss"
 
-export const AceptCancelButton = ({textButton, onClick, backgroundColor, border, color, type})=>{
+export const Button = ({textButton, onClick, backgroundColor, border, color, type})=>{
 
     return(
         <button className="aceptCancel"
