@@ -7,12 +7,12 @@ import { useNavigate } from "react-router-dom";
 export const RequestForm = ({text})=>{
     
     const navigate = useNavigate();
-const [FormData, setFormData] = useState ({
-    title:"",
-    data:"",
-    description:"",
-    contact:""
-})
+    const [FormData, setFormData] = useState ({
+        title:"",
+        data:"",
+        description:"",
+        contact:""
+    })
 
 const handleChange = (e) =>{
     setFormData({...formData, [e.target.name]: e.target.vale})

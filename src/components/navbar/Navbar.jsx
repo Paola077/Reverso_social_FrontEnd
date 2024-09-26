@@ -74,7 +74,7 @@ const Navbar = () => {
               <NavLink to="/reverso-social" className="nav-link">
                 Reverso Social
               </NavLink>
-              <NavLink to="/colabora" className="nav-link">
+              <NavLink to="/formulario/colabora" className="nav-link">
                 Colabora
               </NavLink>
             </>
