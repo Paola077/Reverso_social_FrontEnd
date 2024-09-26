@@ -19,7 +19,8 @@
         background-color: white;
         border-radius: 0.625rem;
         margin-bottom: 1.5rem;
-        border: 0.15rem solid;
+        border: 0.15rem solid #7176f8;
+        transition: border-color 0.3s ease;
         
     
         &::placeholder {
@@ -28,9 +29,20 @@
             font-family: $font-family-text;
             font-size: $font-size-h6;
         }
-        
+        &:focus {
+            border-color: #7176f8 !important;
+            outline: none; 
+        }
+
         &:focus::placeholder {
             opacity: 1;
         }
     }
+    
+    option{
+        color:#4248E5;
+        font-family: $font-family-text;
+        
+    }
+
 }
