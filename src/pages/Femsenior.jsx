@@ -1,10 +1,13 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import Manifest from "../components/sections/manifest/Manifest";
 
 function Femsenior() {
   return (
     <>
-      <div>Femsenior</div>
+       <div className="manifestContainer">
+      <Manifest/>
+      </div>
       <Outlet />
     </>
   );
