@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import "./_SignInUpForm.scss";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient} from "@tanstack/react-query";
 import { userRegister, userLogin } from "../../../services/userApi";
 import logoReversoWhite from "../../../../public/images/logoReversoWhite.png"
 import FSLogoWhite from "../../../../public/images/FSLogoWhite.png"
 
 const SignInUpForm = ({ defaultToSignUp = false }) => {
   const [isRightPanelActive, setIsRightPanelActive] = useState(defaultToSignUp);
+  const queryClient = useQueryClient();
   const [data, setData] = useState(null);
+
   const [error, setError] = useState(null);
   const [form, setForm] = useState({
     name: "",
@@ -52,11 +54,15 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
 
   const handleSignUpClick = () => {
     resetForm();
+	setData(null);
+    setError(null);
     setIsRightPanelActive(true);
   };
 
   const handleSignInClick = () => {
     resetForm();
+	setData(null);
+    setError(null);
     setIsRightPanelActive(false);
   };
 
@@ -73,26 +79,24 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
     mutationFn: (form) => userLogin(form),
     onSuccess: (res) => {
       setData(res);
-      console.log(res);
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },
     onError: (res) => {
       setError(res?.response.data);
-      console.log(res);
     },
   });
 
   return (
     <>
       <div
-        className={`container ${
-          isRightPanelActive ? "right-panel-active" : ""
+        className={`signContainer ${
+          isRightPanelActive ? "rightPanelActive" : ""
         }`}
         id="container"
       >
-        <div className="form-container sign-up-container">
+        <div className="formContainer signUpContainer">
           <form action="#">
-            <h2>Crea una cuenta</h2>
+            <h2 className="registerTitle">Crea una cuenta</h2>
 
             <input
               type="text"
@@ -102,7 +106,7 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
               value={form.name}
               required
             />
-            {data?.name && <p className="error-text">{data?.name.message}</p>}
+            {data?.name && <p className="errorText">{data?.name.message}</p>}
             
              <input
               type="text"
@@ -112,7 +116,7 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
               value={form.lastname}
               required
             />
-            {data?.lastname && <p className="error-text">{data?.lastname.message}</p>}
+            {data?.lastname && <p className="errorText">{data?.lastname.message}</p>}
 
             <input
               type="email"
@@ -122,7 +126,7 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
               value={form.email}
               required
             />
-            {data?.email && <p className="error-text">{data?.email.message}</p>}
+            {data?.email && <p className="errorText">{data?.email.message}</p>}
             
              <input
               type="text"
@@ -132,7 +136,7 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
               value={form.username}
               required
             />
-            {data?.username && <p className="error-text">{data?.username.message}</p>}
+            {data?.username && <p className="errorText">{data?.username.message}</p>}
 
             <input
               type="date"
@@ -143,7 +147,7 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
               required
             />
             {data?.birthday && (
-              <p className="error-text">{data?.birthday.message}</p>
+              <p className="errorText">{data?.birthday.message}</p>
             )}
 
             <input
@@ -155,16 +159,16 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
               required
             />
             {data?.password && (
-              <p className="error-text">{data?.password.message}</p>
+              <p className="errorText">{data?.password.message}</p>
             )}
 
-            <button className="ghost" onClick={handleRegister}>Entrar</button>
+            <button className="ghost" onClick={handleRegister}>Registrar</button>
             
           </form>
         </div>
-        <div className="form-container sign-in-container">
+        <div className="formContainer signInContainer">
           <form action="#">
-            <h2>Accede a tu cuenta</h2>
+            <h2 className="logInTitle">Accede a tu cuenta</h2>
             <input
               type="email"
               placeholder="Email"
@@ -172,7 +176,7 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
               name="email"
               value={form.email}
             />
-            {data?.email && <p className="error-text">{data?.email.message}</p>}
+            {data?.email && <p className="errorText">{data?.email.message}</p>}
 
             <input
               type="password"
@@ -182,10 +186,10 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
               value={form.password}
             />
             {data?.password && (
-              <p className="error-text">{data?.password.message}</p>
+              <p className="errorText">{data?.password.message}</p>
             )}
-            {error && <p className="error-text">{error?.message}</p>}
-            <button onClick={handleLogin}>Entrar</button>
+            {error && <p className="errorText">{error?.message}</p>}
+            <button onClick={handleLogin}>Ingresar</button>
             <p href="#">
               No tienes cuenta? Accede{" "}
               <span className="ghost" onClick={handleSignUpClick} id="signUp">
@@ -196,16 +200,16 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
           </form>
         </div>
 
-        <div className="overlay-container">
+        <div className="overlayContainer">
           <div className="overlay">
-            <div className="overlay-panel overlay-left">
+            <div className="overlayPanel overlayLeft">
               <h3>Bienvenida a </h3>
               <div className="overlayLogo">
 				<img src={logoReversoWhite}></img>
 				<img src={FSLogoWhite}></img>
               </div>
             </div>
-            <div className="overlay-panel overlay-right">
+            <div className="overlayPanel overlayRight">
               <h3>Bienvenida a </h3>
 
               <div className="overlayLogo">
