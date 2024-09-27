@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./_SignInUpForm.scss";
-import logoFemsenior from "../../../../public/images/logoFemsenior.svg";
-import logoReversoSocial from "../../../../public/images/logoReversoSocial.svg";
 import { useMutation } from "@tanstack/react-query";
 import { userRegister, userLogin } from "../../../services/userApi";
+import logoReversoWhite from "../../../../public/images/logoReversoWhite.png"
+import FSLogoWhite from "../../../../public/images/FSLogoWhite.png"
 
 const SignInUpForm = ({ defaultToSignUp = false }) => {
   const [isRightPanelActive, setIsRightPanelActive] = useState(defaultToSignUp);
@@ -19,7 +19,9 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
   const resetForm = () => {
     setForm({
       name: "",
+      lastname: "",
       email: "",
+      username: "",
       password: "",
       birthday: "",
     });
@@ -62,7 +64,7 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
     mutationFn: (form) => userRegister(form),
     onSuccess: (res) => {
       setData(res);
-      console.log(res);
+      handleSignInClick();
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },
   });
@@ -101,6 +103,16 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
               required
             />
             {data?.name && <p className="error-text">{data?.name.message}</p>}
+            
+             <input
+              type="text"
+              placeholder="Apellido"
+              onChange={handleChange}
+              name="lastname"
+              value={form.lastname}
+              required
+            />
+            {data?.lastname && <p className="error-text">{data?.lastname.message}</p>}
 
             <input
               type="email"
@@ -111,6 +123,16 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
               required
             />
             {data?.email && <p className="error-text">{data?.email.message}</p>}
+            
+             <input
+              type="text"
+              placeholder="Nombre de usuario"
+              onChange={handleChange}
+              name="username"
+              value={form.username}
+              required
+            />
+            {data?.username && <p className="error-text">{data?.username.message}</p>}
 
             <input
               type="date"
@@ -136,7 +158,8 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
               <p className="error-text">{data?.password.message}</p>
             )}
 
-            <button onClick={handleRegister}>Entrar</button>
+            <button className="ghost" onClick={handleRegister}>Entrar</button>
+            
           </form>
         </div>
         <div className="form-container sign-in-container">
@@ -176,17 +199,18 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
         <div className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-left">
-              <img src={logoReversoSocial}></img>
-              <img src={logoFemsenior}></img>
-              <button className="ghost" onClick={handleSignInClick} id="signIn">
-                Sign In
-              </button>
+              <h3>Bienvenida a </h3>
+              <div className="overlayLogo">
+				<img src={logoReversoWhite}></img>
+				<img src={FSLogoWhite}></img>
+              </div>
             </div>
             <div className="overlay-panel overlay-right">
               <h3>Bienvenida a </h3>
-              <div>
-                <img src={logoReversoSocial}></img>
-                <img src={logoFemsenior}></img>
+
+              <div className="overlayLogo">
+				<img src={logoReversoWhite}></img>
+				<img src={FSLogoWhite}></img>
               </div>
             </div>
           </div>

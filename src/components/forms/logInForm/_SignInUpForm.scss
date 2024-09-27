@@ -43,17 +43,17 @@ span {
 }
 
 button {
-  border-radius: 20px;
-  border: 1px solid $lightLila;
-  background-color: $lila;
-  color: $white;
-  font-size: 12px;
-  font-weight: $font-weight-bold;
-  padding: 12px 45px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: transform 80ms ease-in;
-  //width: 17rem;
+	border-radius: 20px;
+	border: 1px solid $lightLila;
+	background-color: $lila;
+	color: $white;
+	font-size: 12px;
+	font-weight: $font-weight-bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+	width: 17rem;
 }
 
 button:active {
@@ -160,72 +160,74 @@ input {
 }
 
 .overlay {
-  background: #ced2fd;
-  //background: -webkit-linear-gradient(to right, #CED2FD, $lightLila);
-  background: linear-gradient(to right, #ced2fd, $lightLila);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 0 0;
-  color: #ffffff;
-  position: relative;
-  left: -100%;
-  height: 100%;
-  width: 200%;
-  transform: translateX(0);
-  transition: transform 0.6s ease-in-out;
+    //background: #CED2FD;
+    //background: -webkit-linear-gradient(to bottom right, #CED2FD, $lightLila);
+    //background: linear-gradient(to bottom right, #CED2FD, $lightLila);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    color: #FFFFFF;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+      transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
 }
 
 .container.right-panel-active .overlay {
-  transform: translateX(50%);
-  margin-block-end: 20px;
+      transform: translateX(50%);
+    //margin-block-end: 20px;
 }
 
 .overlay-panel {
-  position: absolute;
-  background: linear-gradient(to right, #ced2fd, $lila);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
-  padding: 100px;
-  text-align: center;
-  top: 0;
-  height: 100%;
-  width: 50%;
-  transform: translateX(0);
-  transition: transform 0.6s ease-in-out;
+    position: absolute;
+    background: linear-gradient(to bottom left,  $lightLila,$lightLila2,$white);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 100px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+
+
 }
+.overlayLogo{
+    display: flex;
+    align-items: center;
+    //justify-content: space-between;
+    flex-direction: column;
+    margin-block-end: 50px;
+    gap: 20px; 
+
+}
+.overlayLogo img {
+    width: 11.0rem; 
+    height: auto; 
+  }
 
 .overlay-left {
-  transform: translateX(-20%);
+    transform: translateX(-20%);
 }
 
 .container.right-panel-active .overlay-left {
-  transform: translateX(0);
+    transform: translateX(0);
 }
 
 .overlay-right {
-  right: 0;
-  transform: translateX(0);
+    right: 0;
+    transform: translateX(0);
+
 }
 
 .container.right-panel-active .overlay-right {
-  transform: translateX(20%);
-}
-
-.social-container {
-  margin: 20px 0;
-}
-
-.social-container a {
-  border: 1px solid #dddddd;
-  border-radius: 50%;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 5px;
-  height: 40px;
-  width: 40px;
+    //transform: translateX(20%);
 }
 
 .error-text {
@@ -235,3 +237,4 @@ input {
   margin: 0;
   padding: 0;
 }
+
