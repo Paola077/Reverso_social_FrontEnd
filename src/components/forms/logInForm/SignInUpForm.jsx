@@ -165,7 +165,7 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
             <button className="ghost" onClick={handleRegister}>Registrar</button>
 			<p href="#">
               Ya tienes cuenta? Accede{" "}
-              <span className="ghost" onClick={handleSignInClick} id="signUp">
+              <span className="ghost" onClick={handleSignInClick} id="signIn">
                 {" "}
                 Aqui
               </span>
