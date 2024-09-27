@@ -8,6 +8,9 @@ import Employment from "../pages/Employment";
 import Resources from "../pages/Resources";
 import Login from "../pages/Login";
 import RSForms from "../pages/RSForms";
+import FSForms from "../pages/FSForms";
+
+
 
 const router = createBrowserRouter([
   {
@@ -55,7 +58,11 @@ const router = createBrowserRouter([
       {
         path: "formulario/:formType",
         element: <RSForms />,
-      }
+      },
+      {
+        path: "formulariofs/:formType",
+        element: <FSForms />,
+      },
     ],
   },
 ]);

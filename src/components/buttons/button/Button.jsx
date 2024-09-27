@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./_Button.scss";
+import "./_Button.scss";;
 
 export const Button = ({
   textButton,

@@ -8,6 +8,7 @@ export const InputForm = ({
     value,
     onChange,
     name,
+    options = [],
     borderColor
 }) => {
 
@@ -24,6 +25,22 @@ export const InputForm = ({
             name={name}
             style={{ borderColor: borderColor || "#7176f8" }}
             />
+        ): type === "select" ?(
+            <select
+                    className="inputForm"
+                    value={value}
+                    onChange={onChange}
+                    name={name}
+                    style={{ borderColor: borderColor || "#7176f8" }}
+                >
+                    <option value="" disabled>Selecciona una opción</option>
+                    {options.map((option, index) => (
+                        <option key={index} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>
+
         ):(
             <input
             className="inputForm"

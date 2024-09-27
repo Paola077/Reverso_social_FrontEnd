@@ -2,17 +2,20 @@ import React, { useState } from "react";
 import "./_RequestForm.scss";
 import { InputForm } from "../../Inputs/InputForm";
 import { Button } from "../../buttons/button/Button";
+import { useNavigate } from "react-router-dom";
 
-export const RequestForm = ({ text }) => {
-  const [FormData, setFormData] = useState({
-    title: "",
-    data: "",
-    description: "",
-    contact: "",
-  });
+export const RequestForm = ({text})=>{
+    
+    const navigate = useNavigate();
+    const [FormData, setFormData] = useState ({
+        title:"",
+        data:"",
+        description:"",
+        contact:""
+    })
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+const handleChange = (e) =>{
+    setFormData({...formData, [e.target.name]: e.target.vale})
 
     // const handeSubmit = (e) => {
     //e.preventDefault()
@@ -21,10 +24,10 @@ export const RequestForm = ({ text }) => {
   return (
     <div className="formBackground">
       <form onSubmit="">
-        <div className="formBox">
-          <button className="buttonExit">
-            <img src="public\icons\Exit.svg" alt="Cerrar formulario" />
-          </button>
+      <div className="formBox">
+        <button className="buttonExit" onClick={() => navigate("/reverso-social") }>
+          <img src="/icons/Exit.svg" alt="Cerrar formulario" />
+        </button>
 
           <h2 className="requestTitle">{text}</h2>
 
