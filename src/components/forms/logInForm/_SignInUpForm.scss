@@ -37,7 +37,7 @@ p {
 }
 
 span {
-	font-size: 12px;
+	font-size:1.0rem;
 	cursor: pointer;
 	color: $lila
 	
@@ -55,7 +55,7 @@ button {
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
-	//width: 17rem;
+	width: 17rem;
 }
 
 button:active {
@@ -161,9 +161,9 @@ input {
 }
 
 .overlay {
-	background: #CED2FD;
-	//background: -webkit-linear-gradient(to right, #CED2FD, $lightLila);
-	background: linear-gradient(to right, #CED2FD, $lightLila);
+	//background: #CED2FD;
+	//background: -webkit-linear-gradient(to bottom right, #CED2FD, $lightLila);
+	//background: linear-gradient(to bottom right, #CED2FD, $lightLila);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -178,12 +178,13 @@ input {
 
 .container.right-panel-active .overlay {
   	transform: translateX(50%);
-	margin-block-end: 20px;
+	//margin-block-end: 20px;
 }
 
 .overlay-panel {
 	position: absolute;
-	background: linear-gradient(to right, #CED2FD, $lila);
+	background: linear-gradient(to bottom left,  $lightLila,$lightLila2,$white);
+
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -196,7 +197,21 @@ input {
 	transform: translateX(0);
 	transition: transform 0.6s ease-in-out;
 	
+	
 }
+.overlayLogo{
+	display: flex;
+	align-items: center;
+	//justify-content: space-between;
+	flex-direction: column;
+	margin-block-end: 50px;
+	gap: 20px; 
+	
+}
+.overlayLogo img {
+	width: 11.0rem; 
+	height: auto; 
+  }
 
 .overlay-left {
 	transform: translateX(-20%);
@@ -213,21 +228,7 @@ input {
 }
 
 .container.right-panel-active .overlay-right {
-	transform: translateX(20%);
+	//transform: translateX(20%);
 }
 
-.social-container {
-	margin: 20px 0;
-}
-
-.social-container a {
-	border: 1px solid #DDDDDD;
-	border-radius: 50%;
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	margin: 0 5px;
-	height: 40px;
-	width: 40px;
-}
 

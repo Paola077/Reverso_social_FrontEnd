@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./_SignInUpForm.scss";
-import logoFemsenior from "../../../../public/images/logoFemsenior.svg";
-import logoReversoSocial from "../../../../public/images/logoReversoSocial.svg";
+import logoReversoWhite from "../../../../public/images/logoReversoWhite.png"
+import FSLogoWhite from "../../../../public/images/FSLogoWhite.png"
+
 
 const SignInUpForm = ({ defaultToSignUp = false }) => {
   const [isRightPanelActive, setIsRightPanelActive] = useState(defaultToSignUp);
@@ -24,12 +25,16 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
         <div className="form-container sign-up-container">
           <form action="#">
             <h2>Crea una cuenta</h2>
-
             <input type="text" placeholder="Nombre" />
+			<input type="text" placeholder="Apellido" />
+			
             <input type="email" placeholder="Email" />
+			<input type="text" placeholder="Nombre de usuario" />
             <input type="date" placeholder="Fecha de nacimiento" />
             <input type="password" placeholder="Contraseña" />
-            <button>Entrar</button>
+			<button className="ghost" onClick={handleSignInClick} id="signIn">
+                Sign In
+              </button>
           </form>
         </div>
         <div className="form-container sign-in-container">
@@ -51,18 +56,18 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
         <div className="overlay-container">
           <div className="overlay">
             <div className="overlay-panel overlay-left">
-              <img src={logoReversoSocial}></img>
-              <img src={logoFemsenior}></img>
-              <button className="ghost" onClick={handleSignInClick} id="signIn">
-                Sign In
-              </button>
+              <h3>Bienvenida a </h3>
+              <div className="overlayLogo">
+				<img src={logoReversoWhite}></img>
+				<img src={FSLogoWhite}></img>
+              </div>
             </div>
             <div className="overlay-panel overlay-right">
               <h3>Bienvenida a </h3>
-			  <div>
-              <img src={logoReversoSocial}></img>
-              <img src={logoFemsenior}></img>
-			  </div>
+              <div className="overlayLogo">
+				<img src={logoReversoWhite}></img>
+				<img src={FSLogoWhite}></img>
+              </div>
             </div>
           </div>
         </div>
