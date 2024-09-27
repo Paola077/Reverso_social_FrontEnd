@@ -54,6 +54,7 @@ button {
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
 	width: 17rem;
+	margin-top: 10px;
 }
 
 button:active {
@@ -72,7 +73,7 @@ button.ghost {
 form {
   background-color: #ffffff;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   flex-direction: column;
   padding: 0 50px;
@@ -84,7 +85,7 @@ input {
   //background-color: #eee;
   border: none;
   padding: 12px 15px;
-  margin: 8px 0;
+  margin-top: 8px;
   width: 100%;
 }
 
@@ -96,7 +97,7 @@ input {
   overflow: hidden;
   width: 768px;
   max-width: 100%;
-  min-height: 480px;
+  min-height: 600px;
 }
 
 .form-container {
@@ -186,7 +187,7 @@ input {
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-direction: column;
     padding: 100px;
     text-align: center;
@@ -236,5 +237,6 @@ input {
   text-align: left;
   margin: 0;
   padding: 0;
+  margin-left: 15px;
 }
 
