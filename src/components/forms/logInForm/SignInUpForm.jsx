@@ -163,6 +163,13 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
             )}
 
             <button className="ghost" onClick={handleRegister}>Registrar</button>
+			<p href="#">
+              Ya tienes cuenta? Accede{" "}
+              <span className="ghost" onClick={handleSignInClick} id="signUp">
+                {" "}
+                Aqui
+              </span>
+            </p>
             
           </form>
         </div>
