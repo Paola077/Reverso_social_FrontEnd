@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: space-around;
   max-width:83rem;
-  padding: 4rem;
+  padding: 2rem;
   margin: auto;
 
   &__contact {
@@ -21,12 +21,12 @@
     border-radius: 0 2.5rem 2.5rem 2.5rem;
     padding: 3rem;
     width: 40rem;
-    height: 8.5rem;
 
     &__title {
       font-family: $font-family-title;
       color: $white;
       font-size: $font-size-h3;
+      padding-bottom: 2rem;
     }
 
     &__button {

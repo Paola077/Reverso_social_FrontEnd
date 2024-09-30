@@ -74,6 +74,8 @@ const handleChange = (e) =>{
               backgroundColor={"white"}
               border={"0.15rem solid #35399b"}
               color={"#35399b"}
+              width={"20rem"}
+              height={"3rem"}
               onClick={() =>
                 setFormData({
                   title: "",
@@ -89,6 +91,8 @@ const handleChange = (e) =>{
               border={"0.15rem solid #35399b"}
               color={"white"}
               type={"submit"}
+              width={"20rem"}
+              height={"3rem"}
             />
           </div>
         </div>

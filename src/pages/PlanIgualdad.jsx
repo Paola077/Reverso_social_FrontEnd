@@ -10,19 +10,19 @@ const PlanIgualdad = () => {
     {
       imageUrl: "images/Pilar.png",
       name: "Pilar Limón",
-      title: "Software Engineer",
+      title: "Consultora, coordinadora, formadora y desarrolladora de proyectos de género así como en intervención sociolaboral",
       linkedinUrl: "https://www.linkedin.com/in/pilar-lim%C3%B3n-b6135843/",
     },
     {
       imageUrl: "images/Lola.png",
-      name: "Lola Martínez Cueto",
-      title: "UX Designer",
+      name: "Lola Martínez",
+      title: "Formación e investigación de derechos humanos y estudios de género",
       linkedinUrl: "https://www.linkedin.com/in/lolacoach/",
     },
     {
       imageUrl: "images/Susana.png",
       name: "Susana Ruiz",
-      title: "Data Scientist",
+      title: "Especialista en proyectos sociales con personas dependientes y colectivos en situación de vulnerabilidad",
       linkedinUrl: "",
     },
   ];

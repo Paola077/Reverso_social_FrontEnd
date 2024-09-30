@@ -60,7 +60,9 @@ const Intro = () => {
           backgroundColor="#35399B"
           border="none"
           width="12rem"
+          height="3rem"
           color="white"
+          boxShadow="0.2rem 0.2rem 0.4rem rgba(0, 0, 0, 0.25)"
           onClick={handleOpenPopup}
         />
       </div>

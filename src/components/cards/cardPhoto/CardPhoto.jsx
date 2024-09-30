@@ -6,13 +6,13 @@ const CardPhoto = ({ imageUrl, name, title, linkedinUrl }) => {
       <div className='cardPhoto'>
         <img src={imageUrl} alt={name} className='cardPhotoImage' />
         <div className='cardPhotoInfo'>
-          <h4 className='cardPhotoName'>{name}</h4>
           <div className='cardTitleContainer'>
-          <p className='cardPhotoTitle'>{title}</p>
+          <h4 className='cardPhotoName'>{name}</h4>
           <a href={linkedinUrl} target='_blank' rel='noopener noreferrer'>
             <FaLinkedin className="linkedin-icon" />
           </a>
           </div>
+          <p className='cardPhotoTitle'>{title}</p>
         </div>
       </div>
     );
