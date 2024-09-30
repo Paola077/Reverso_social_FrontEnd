@@ -32,8 +32,8 @@ const FSForm = ({ text, formFields }) => {
         <div className="formBackGround">
             <form onSubmit={handleSubmit}>
                 <div className="formBox" >
-                <button className="buttonExit" onClick={() => navigate("/reverso-social/femsenior") }>
-                    <img src="/icons/Exit.svg" alt="Cerrar formulario" />
+                    <button className="buttonExit" onClick={() => navigate("/reverso-social/femsenior") }>
+                        <img src="/icons/Exit.svg" alt="Cerrar formulario" />
                     </button>
                     
                     <h2 className="requestTitle">{text}</h2>
