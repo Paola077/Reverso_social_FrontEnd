@@ -16,10 +16,6 @@ const Navbar = () => {
     "/formulario/peticiones";
   const handleChange = (e) => { 
     setFormData({ ...formData, [e.target.name]: e.target.value });
-
-    // const handeSubmit = (e) => {
-    //e.preventDefault()
-    // }
   };
 
   const scrollToSection = (id) => {
@@ -96,9 +92,7 @@ const Navbar = () => {
           )}
         </Box>
 
-        <div className="search">
           <Search disabled={isReversoSocial} />
-        </div>
 
         <Box className="auth-buttons">
           {isFemseniors ? (
