@@ -107,24 +107,6 @@
     }
   }
 
-  .search {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    input {
-      width: 20rem;
-      border-radius: 20px;
-      padding: 5px 15px;
-      background-color: rgba(199, 237, 247, 1);
-      color: $dark;
-      text-transform: capitalize;
-      &:focus {
-        outline: none;
-      }
-    }
-  }
-
   .auth-buttons {
     width: 25%;
     display: flex;
@@ -134,8 +116,7 @@
     text-transform: capitalize;
     .nav-link {
       text-decoration: none;
-          text-transform: capitalize;
-
+      text-transform: capitalize;
     }
 
     .nav-button {
@@ -148,7 +129,7 @@
         background-color: $lila;
       }
     }
-    .signin-button{
+    .signin-button {
       color: $dark;
       font-size: $font-size-h5;
       font-weight: $font-weight-semibold;
@@ -172,14 +153,15 @@
   .search {
     background-color: transparent !important;
     pointer-events: none !important; 
-    input {
-      background-color: transparent !important; 
-      color: transparent !important; 
-      border: none !important; 
-    }
-
     .search-icon {
-      color: transparent !important; 
+        color: transparent !important;
+        fill: none;
+      }
+    input {
+      background-color: transparent !important;
+      color: transparent !important;
+      border: none !important;
+     
     }
   }
 }

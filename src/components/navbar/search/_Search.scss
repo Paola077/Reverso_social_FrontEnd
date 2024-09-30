@@ -1,34 +1,43 @@
-@import "../../../scss/_Variables.scss";
+@import "../../../scss/Variables.scss";
 
 .search-container {
-  width: 100%;
   display: flex;
   justify-content: center; 
+  align-items: center;
 }
 
 .search {
-  position: relative; 
+  position: relative;
   display: flex;
-  align-items: center; 
-  background-color: rgba(199, 237, 247, 1); 
+  align-items: center;
+  background-color: #a7a8ec; 
   border-radius: 20px;
-  padding: 0 15px;
+  padding: 5px 15px;
   width: 20rem; 
+  text-transform: capitalize;
 
-  .search-icon {
-    position: absolute; 
-    left: 10px; 
-    color: $dark; 
-  }
-
-  .styled-input-base {
-    padding-left: 40px; 
-    width: 100%;
+  input {
     background-color: transparent;
     border: none;
-    outline: none;
+  }
+  .search-icon {
+    position: absolute;
+    left: 10px; 
     color: $dark; 
-    
-   
+    fill: $dark ;
+  }
+  .styled-input-base {
+    padding-left: 40px; 
+    color: $dark; 
+    width: 100%; 
+    background-color: transparent;
+    border: none;
+
+    &::placeholder {
+      color: $dark;
+    }
+    &:focus {
+      outline: none;
+    }
   }
 }

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import "./_SignInUpForm.scss";
 import { useMutation, useQueryClient} from "@tanstack/react-query";
 import { userRegister, userLogin } from "../../../services/userApi";
-import logoReversoWhite from "../../../../public/images/logoReversoWhite.png"
-import FSLogoWhite from "../../../../public/images/FSLogoWhite.png"
+import logoReversoWhite from "../../../../public/images/logoReversoSocial.svg"
+import FSLogoWhite from "../../../../public/images/logoFemsenior.svg"
 
 const SignInUpForm = ({ defaultToSignUp = false }) => {
   const [isRightPanelActive, setIsRightPanelActive] = useState(defaultToSignUp);
@@ -163,6 +163,13 @@ const SignInUpForm = ({ defaultToSignUp = false }) => {
             )}
 
             <button className="ghost" onClick={handleRegister}>Registrar</button>
+			<p href="#">
+              Ya tienes cuenta? Accede{" "}
+              <span className="ghost" onClick={handleSignInClick} id="signIn">
+                {" "}
+                Aqui
+              </span>
+            </p>
             
           </form>
         </div>
