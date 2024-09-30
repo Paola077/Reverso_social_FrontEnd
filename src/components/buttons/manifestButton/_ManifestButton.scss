@@ -1,13 +1,14 @@
-@import '../../../scss/Variables.scss';
+@import "../../../scss/Variables.scss";
 
 .manifestBtn {
-    color: $dark;
-    border-radius: 2rem;
-    width: 8.5rem;
-    height: 2.3rem;
-    border: none;
-    font-size: $font-size-h6;
-    font-family: $font-family-title;
-    font-weight: $font-weight-semibold;
-    background-color: $white;
+  color: $dark;
+  border-radius: 2rem;
+  width: 8.5rem;
+  height: 2.3rem;
+  border: none;
+  font-size: $font-size-h6;
+  font-family: $font-family-title;
+  font-weight: $font-weight-semibold;
+  background-color: $white;
+  cursor: pointer;
 }

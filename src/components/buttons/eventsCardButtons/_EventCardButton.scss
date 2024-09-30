@@ -1,0 +1,35 @@
+@import "../../../scss/Variables.scss";
+
+.buttonContainer {
+  background-color: $lila;
+  border-radius: 0.9rem 0 0 0.9rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 2.5rem;
+  height: 7.5rem;
+  margin: 0;
+
+  &__editButton {
+    &__editIcon {
+      width: 2rem;
+      height: 2rem;
+      cursor: pointer;
+    }
+  }
+
+  &__separator {
+    width: 80%;
+    height: 0.06rem;
+    background-color: $light;
+  }
+
+  &__deleteButton {
+    &__deleteIcon {
+      width: 2rem;
+      height: 2rem;
+      cursor: pointer;
+    }
+  }
+}
