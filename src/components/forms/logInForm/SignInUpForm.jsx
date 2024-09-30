@@ -7,7 +7,7 @@ import FSLogoWhite from "../../../../public/images/FSLogoWhite.svg";
 import { Link, useLocation } from "react-router-dom";
 
 const SignInUpForm = () => {
-  const location = useLocation(); 
+  const location = useLocation();
   const [isRightPanelActive, setIsRightPanelActive] = useState(false);
   const queryClient = useQueryClient();
   const [data, setData] = useState(null);
@@ -23,9 +23,9 @@ const SignInUpForm = () => {
 
   useEffect(() => {
     if (location.pathname === "/reverso-social/login") {
-      setIsRightPanelActive(true); 
-    } else if (location.pathname === "/reverso-social/signin") {
       setIsRightPanelActive(false); 
+    } else if (location.pathname === "/reverso-social/signin") {
+      setIsRightPanelActive(true); 
     }
   }, [location.pathname]);
 
@@ -67,7 +67,7 @@ const SignInUpForm = () => {
     onSuccess: (res) => {
       setData(res);
       resetForm();
-      setIsRightPanelActive(false); 
+      setIsRightPanelActive(false);
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },
   });
@@ -170,10 +170,10 @@ const SignInUpForm = () => {
           <p>
             Ya tienes cuenta? Accede{" "}
             <Link
-              to="/reverso-social/signin"
+              to="/reverso-social/login"
               className="ghost"
-              onClick={() => setIsRightPanelActive(false)} 
-              id="signIn"
+              onClick={() => setIsRightPanelActive(false)}
+              id="login"
             >
               Aquí
             </Link>
@@ -214,10 +214,10 @@ const SignInUpForm = () => {
           <p>
             No tienes cuenta? Regístrate{" "}
             <Link
-              to="/reverso-social/login"
+              to="/reverso-social/signin"
               className="ghost"
               onClick={() => setIsRightPanelActive(true)}
-              id="signUp"
+              id="signIn"
             >
               Aquí
             </Link>

@@ -18,14 +18,12 @@ const Navbar = () => {
   const isReversoSocial =
     location.pathname === "/reverso-social" && !isLoginOrSignin;
 
+  const handleLogInClick = () => {
+    navigate("/reverso-social/login");
+  };
   const handleSignInClick = () => {
     navigate("/reverso-social/signin");
   };
-
-  const handleSignUpClick = () => {
-    navigate("/reverso-social/login");
-  };
-
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -145,7 +143,7 @@ const Navbar = () => {
                 color={"#35399B"}
                 height={"2rem"}
                 width={"8rem"}
-                onClick={handleSignInClick}
+                onClick={handleLogInClick}
               >
                 Iniciar sesión
               </Button>
@@ -156,7 +154,7 @@ const Navbar = () => {
                 height={"2rem"}
                 width={"8rem"}
                 color={"#fff"}
-                onClick={handleSignUpClick}
+                onClick={handleSignInClick}
               >
                 Registrarse
               </Button>

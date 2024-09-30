@@ -3,7 +3,6 @@
 * {
   box-sizing: border-box;
 }
-
 .signContainer {
   background-color: #fff;
   border-radius: 0.6rem;
@@ -69,11 +68,11 @@
         width: 17rem;
         margin-top: 0.62rem;
 
-        :active {
+        &:active {
           transform: scale(0.95);
         }
 
-        :focus {
+        &:focus {
           outline: none;
         }
       }
@@ -98,6 +97,7 @@
       }
     }
   }
+
   .overlayContainer {
     position: absolute;
     top: 0;
@@ -146,6 +146,7 @@
           flex-direction: column;
           margin-block-end: 6.8rem;
           gap: 1.25rem;
+
           img {
             width: 11rem;
             height: auto;
@@ -186,9 +187,11 @@
 
 .rightPanelActive {
   .overlayContainer {
-      transform: translateX(-100%);
+    transform: translateX(-100%);
+
     .overlay {
       transform: translateX(50%);
+
       .overlayLeft {
         transform: translateX(0);
       }
@@ -197,6 +200,7 @@
 
   .signInContainer {
     transform: translateX(100%);
+    opacity: 0;
   }
 
   .signUpContainer {
