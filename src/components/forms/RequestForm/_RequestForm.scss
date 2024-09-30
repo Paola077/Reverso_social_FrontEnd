@@ -3,7 +3,7 @@
 .formBackground{
     width: 100vw;
     min-height: 100vh;
-    background: linear-gradient( #121335, $purple);
+    background: linear-gradient( $purple, $lightTurquose 130%);
     display: flex;
     justify-content: center;
     align-items: center;
