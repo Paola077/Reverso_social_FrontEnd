@@ -96,9 +96,7 @@ const Navbar = () => {
           )}
         </Box>
 
-        <div className="search">
           <Search disabled={isReversoSocial} />
-        </div>
 
         <Box className="auth-buttons">
           {isFemseniors ? (
