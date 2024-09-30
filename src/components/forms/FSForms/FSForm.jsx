@@ -57,6 +57,8 @@ const FSForm = ({ text, formFields }) => {
                         backgroundColor={"white"}
                         border={"0.15rem solid #7176f8"}
                         color={"#7176f8"}
+                        width={"20rem"}
+                        height={"3rem"}
                         onClick={handleCancel}/> 
 
                         <Button 
@@ -65,6 +67,8 @@ const FSForm = ({ text, formFields }) => {
                         border={"0.15rem solid #7176f8"}
                         color={"white"}
                         type={"submit"}
+                        width={"20rem"}
+                        height={"3rem"}
                         />
 
                     </div>
