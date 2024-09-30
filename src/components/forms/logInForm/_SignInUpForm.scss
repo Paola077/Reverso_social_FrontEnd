@@ -1,0 +1,208 @@
+@import "../../../scss/Variables.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+.signContainer {
+  background-color: #fff;
+  border-radius: 0.6rem;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+  width: 48rem;
+  max-width: 100%;
+  min-height: 37.5rem;
+  margin:0 auto;
+
+  .formContainer {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+
+    form {
+      background-color: #ffffff;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-direction: column;
+      padding: 0 3.1rem;
+      height: 100%;
+      text-align: center;
+
+      h2 {
+        text-align: center;
+        font-family: $font-family-title;
+        font-size: $font-size-h3;
+        margin: 0;
+      }
+
+      input {
+        border: none;
+        padding: 0.75rem 0.93rem;
+        margin-top: 0.5rem;
+        width: 100%;
+      }
+
+      .errorText {
+        font-size: 0.87rem;
+        color: red;
+        text-align: left;
+        margin: 0;
+        padding: 0;
+        margin-left: 0.9rem;
+      }
+
+      button {
+        border-radius: 1.25rem;
+        border: 1px solid $lightLila;
+        background-color: $lila;
+        color: $white;
+        font-size: 0.75rem;
+        font-weight: $font-weight-bold;
+        padding: 0.75rem 2.8rem;
+        letter-spacing: 0.06rem;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+        width: 17rem;
+        margin-top: 0.62rem;
+
+        :active {
+          transform: scale(0.95);
+        }
+
+        :focus {
+          outline: none;
+        }
+      }
+
+      button.ghost {
+        background-color: transparent;
+        background-color: $lila;
+      }
+
+      p {
+        font-weight: $font-weight-regular;
+        font-family: $font-family-text;
+        line-height: 1.25rem;
+        letter-spacing:0.03rem;
+        margin: 1.25rem 0 1.8rem;
+        padding-left: 1.5rem;
+        span {
+          font-size: 0.9rem;
+          cursor: pointer;
+          color: $lila;
+        }
+      }
+    }
+  }
+  .overlayContainer {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+
+    .overlay {
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: 0 0;
+      color: #ffffff;
+      position: relative;
+      left: -100%;
+      height: 100%;
+      width: 200%;
+      transform: translateX(0);
+      transition: transform 0.6s ease-in-out;
+
+      .overlayPanel {
+        position: absolute;
+        background: linear-gradient(
+          to bottom left,
+          $lightLila,
+          $lightLila2,
+          $white
+        );
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+        padding: 6.25rem;
+        text-align: center;
+        top: 0;
+        height: 100%;
+        width: 50%;
+        transform: translateX(0);
+        transition: transform 0.6s ease-in-out;
+
+        .overlayLogo {
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          margin-block-end: 6.8rem;
+          gap: 1.25rem;
+          img {
+            width: 11rem;
+            height: auto;
+          }
+        }
+
+        h3 {
+          text-align: center;
+          font-family: $font-family-title;
+          font-size: $font-weight-regular;
+          margin: 0;
+        }
+      }
+
+      .overlayLeft {
+        transform: translateX(-20%);
+      }
+
+      .overlayRight {
+        right: 0;
+        transform: translateX(0);
+      }
+    }
+  }
+
+  .signUpContainer {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+  }
+  .signInContainer {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+  }
+}
+
+.rightPanelActive {
+  .overlayContainer {
+    transform: translateX(-100%);
+    .overlay {
+      transform: translateX(50%);
+      .overlayLeft {
+        transform: translateX(0);
+      }
+    }
+  }
+
+  .signInContainer {
+    transform: translateX(100%);
+  }
+
+  .signUpContainer {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: show 0.6s;
+  }
+}
+

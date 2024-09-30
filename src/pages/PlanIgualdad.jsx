@@ -55,7 +55,7 @@ const PlanIgualdad = () => {
             linkedinUrl={person.linkedinUrl}
           />
         ))}
-      </div>
+      </div> 
     </div>
   );
 };
