@@ -11,6 +11,7 @@ export const Button = ({
   type,
   height,
   width,
+  boxShadow,
   to,
 }) => {
   if (to) {
@@ -28,6 +29,7 @@ export const Button = ({
           justifyContent: "center",
           alignItems: "center",
           textDecoration: "none", 
+          boxShadow: boxShadow
         }}
       >
         {textButton}
@@ -38,7 +40,7 @@ export const Button = ({
   return (
     <button
       className="button"
-      style={{ backgroundColor, border, color, height, width }}
+      style={{ backgroundColor, border, color, height, width, boxShadow }}
       onClick={onClick}
       type={type}
     >
