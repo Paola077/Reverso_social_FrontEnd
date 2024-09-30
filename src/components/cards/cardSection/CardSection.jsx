@@ -6,8 +6,8 @@ const sections = [
   { id: 1, 
     title: "EVENTOS",
     imageUrl: "/icons/Events.svg",
-    date: new Date ("2024-09-30"),
-    time: 1633010400000,
+   /* date: new Date ("2024-09-30"),
+    time: 1633010400000,*/
     modality: "Presencial",
     description: [],
     location: "La Ciba, Barcelona",
@@ -26,7 +26,7 @@ const CardSection = () => {
       setIsPopUpOpen(true);
     };
 
-    const handdleClosePopup = () => {
+    const handleClosePopup = () => {
       setIsPopUpOpen(false);
     }
 
@@ -35,7 +35,7 @@ const CardSection = () => {
       setIsPopUpOpen(false);
     }
 
-    const formattedDate = selectedSection?.date?.toLocalDateString("es-ES", {
+    /*const formattedDate = selectedSection?.date?.toLocalDateString("es-ES", {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
@@ -44,7 +44,7 @@ const CardSection = () => {
     const formattedTime = selectedSection?.time ? new Date(selectedSection.time).toLocaleTimeString("es-ES", {
       hour: '2-digit',
       minute: '2-digit',
-    }) : null;
+    }) : null;*/
   
     return (
       <div className="cardSectionContainer">
@@ -52,7 +52,7 @@ const CardSection = () => {
           <button
             key={section.id}
             className={`sectionCard ${selectedSection === section.id ? "selected" : ""}`}
-            onClick={() => handleSelect(section.id)}
+            onClick={() => handleSelect(section)}
             aria-pressed={selectedSection === section.id}
           >
             <img src={section.imageUrl} alt={section.title} className="sectionImage" />
@@ -62,10 +62,10 @@ const CardSection = () => {
       {selectedSection && (
         <InteractivePop
           isOpen={isPopupOpen}
-          onClose={handdleClosePopup}
+          onClose={handleClosePopup}
           title={selectedSection.title}
-          date={formattedDate}
-          time={formattedTime}
+          /*date={formattedDate}
+          time={formattedTime}*/
           modality={selectedSection.modality}
           location={selectedSection.location}
           description={selectedSection.description}
