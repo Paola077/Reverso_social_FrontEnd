@@ -16,10 +16,6 @@ const Navbar = () => {
     "/formulario/peticiones";
   const handleChange = (e) => { 
     setFormData({ ...formData, [e.target.name]: e.target.value });
-
-    // const handeSubmit = (e) => {
-    //e.preventDefault()
-    // }
   };
 
   const scrollToSection = (id) => {
