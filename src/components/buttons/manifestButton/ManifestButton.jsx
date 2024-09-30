@@ -28,7 +28,7 @@ const ManifestButton = () => {
 
   return (
     <div className="manifestBtnContainer">
-     <button className="manifestBtn" onClick={handleOpenPopup}>
+      <button className="manifestBtn" onClick={handleOpenPopup}>
         Saber más
       </button>
       <ManifestPop
