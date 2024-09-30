@@ -5,18 +5,18 @@ import deleteIcon from "../../../../public/icons/Delete.svg";
 const EventCardButton = () => {
   return (
     <>
-      <div className="buttonContainer">
-        <div className="buttonContainer__editButton">
+      <div className="tabButtonContainer">
+        <div className="tabButtonContainer__editButton">
           <img
-            className="buttonContainer__editButton__editIcon"
+            className="tabButtonContainer__editButton__editIcon"
             src={editIcon}
             alt="Editar"
           />
         </div>
-        <div className="buttonContainer__separator"></div>
-        <div className="buttonContainer__deleteButton">
+        <div className="tabButtonContainer__separator"></div>
+        <div className="tabButtonContainer__deleteButton">
           <img
-            className="buttonContainer__deleteButton__deleteIcon"
+            className="tabButtonContainer__deleteButton__deleteIcon"
             src={deleteIcon}
             alt="Eliminar"
           />
