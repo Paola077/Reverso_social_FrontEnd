@@ -10,7 +10,7 @@
   }
   
   .cardPhoto {
-    width: 17rem; // Ancho de cada tarjeta
+    width: 14rem; // Ancho de cada tarjeta
     background-color: $lightLila2;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); 
     display: flex;
@@ -20,13 +20,14 @@
   }
   
   .cardPhotoImage {
-   width: 17rem;
-   height: 17rem;
-   object-fit: cover; 
-   image-rendering: auto;
+    width: 14rem;
+    height: 14rem;
+    object-fit: cover; 
+    image-rendering: auto;
   }
   
   .cardPhotoInfo {
+    padding-top: 0.8rem;
     width: 100%; 
     background-color: $lightLila2;
     color: $white;
@@ -37,30 +38,33 @@
   
   .cardPhotoName {
     font-family: $font-family-title;
-    font-size: $font-size-h5;
+    font-size: $font-size-h6;
     font-weight: $font-weight-semibold;
-    margin-top: 0.9rem;
-    margin-bottom: 0.5rem;
+    margin-left: 1rem;
+    text-align: left;
+
   }
   .cardTitleContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding-bottom: 1.5rem;
+    padding-bottom: 0.25rem;
    
   }
   
   .cardPhotoTitle {
     font-family: $font-family-title;
-    font-size: $font-size-h6;
+    font-size: 0.8rem;
     font-weight: $font-weight-regular;
+    text-align: left;
     margin-left: 1rem;
-
+    margin-right: 1rem;
+    margin-bottom: 1rem;
   }
   
   .linkedin-icon {
-    font-size: 2.25rem;
+    font-size: 2.2rem;
     color: $white; 
     margin-right: 1rem;
   }
