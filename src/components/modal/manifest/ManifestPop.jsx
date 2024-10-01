@@ -38,8 +38,10 @@ const ManifestPop = ({
               textButton={buttonText}
               backgroundColor="#7176F8"
               border="none"
-              width="15rem"
+              width="19rem"
+              height="3rem"
               color="white"
+              margin="1.5rem"
               onClick={onButtonClick}
             />
           </div>

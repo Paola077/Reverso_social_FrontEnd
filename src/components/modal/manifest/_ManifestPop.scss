@@ -13,8 +13,8 @@
 
   &__content {
     background-color: $white;
-    padding: 2rem;
-    border-radius: 0.5rem;
+    padding: 3rem;
+    border-radius: 0.8rem;
     width: 90%;
     max-width: 55rem;
     position: relative;
@@ -31,8 +31,8 @@
       cursor: pointer;
 
       &__icon {
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 2rem;
+        height: 2rem;
       }
     }
 
@@ -41,6 +41,7 @@
       font-size: $font-size-h4;
       font-weight: $font-weight-bold;
       text-align: center;
+      margin-bottom: 1.5rem;
     }
 
     &__body {
@@ -53,6 +54,7 @@
         font-size: 1rem;
         line-height: 1.6;
         color: $dark;
+        margin-bottom: 1.5rem;
       }
     }
   }
