@@ -1,18 +1,18 @@
 import React from "react";
-import "./_Search.scss"; // Asegúrate de que los estilos de búsqueda se importan correctamente
+import "./_Search.scss";
 import Box from "@mui/material/Box";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 
 const Search = () => {
   return (
-    <Box className="search-container">
+    <Box className="searchContainer">
       <div className="search">
-        <SearchIcon className="search-icon" />
+        <SearchIcon className="searchIcon" />
         <InputBase
           placeholder="Buscar…"
           inputProps={{ "aria-label": "search" }}
-          className="styled-input-base"
+          className="styledInputBase"
         />
       </div>
     </Box>

@@ -1,4 +1,5 @@
 @import "../../scss/Variables.scss";
+
 .navbar {
   background-color: transparent !important;
   box-shadow: none !important;
@@ -7,14 +8,15 @@
   height: 80px;
   font-family: $font-family-title;
   margin: 1rem 0;
+  margin-bottom: 2rem;
 
-  .navbar-toolbar {
+  .navbarToolbar {
     display: flex;
     justify-content: space-around;
     align-items: center;
   }
 
-  .logo-container {
+  .logoContainer {
     display: flex;
     align-items: center;
     width: 10%;
@@ -25,13 +27,13 @@
     }
   }
 
-  .links-container {
+  .linksContainer {
     width: 30%;
     display: flex;
     gap: 30px;
     align-items: center;
 
-    .nav-link {
+    .navLink {
       font-size: 16px;
       color: $dark;
       text-decoration: none;
@@ -47,13 +49,15 @@
         border-top-right-radius: 10px;
       }
     }
+
     a:-webkit-any-link {
       text-decoration: none !important;
     }
+
     .dropdown {
       position: relative;
 
-      .nav-link {
+      .navLink {
         color: $dark;
         font-size: $font-size-h5;
         padding: 0.5rem 1.5rem;
@@ -69,19 +73,19 @@
 
       &:hover,
       &:focus-within {
-        .nav-link {
+        .navLink {
           border-top-right-radius: 10px;
           border-top-left-radius: 10px;
           background-color: $lila;
           color: white;
         }
 
-        .dropdown-menu {
+        .dropdownMenu {
           display: inline-block;
         }
       }
 
-      .dropdown-menu {
+      .dropdownMenu {
         width: 100%;
         display: none;
         position: absolute;
@@ -89,7 +93,7 @@
         left: 0;
         background-color: white;
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-        z-index: 10;
+        z-index: 100;
         border-radius: 8px;
         list-style: none;
 
@@ -107,29 +111,32 @@
     }
   }
 
-  .auth-buttons {
+  .authButtons {
     width: 25%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     gap: 15px;
     text-transform: capitalize;
-    .nav-link {
+
+    .navLink {
       text-decoration: none;
       text-transform: capitalize;
     }
 
-    .nav-button {
+    .navButton {
       background-color: $purple;
       color: #fff;
       border-radius: 60px;
       padding: 8px 20px;
       font-size: $font-size-h5;
+
       &:hover {
         background-color: $lila;
       }
     }
-    .signin-button {
+
+    .signinButton {
       color: $dark;
       font-size: $font-size-h5;
       font-weight: $font-weight-semibold;
@@ -137,8 +144,9 @@
   }
 }
 
-.femsenior-navbar {
-  .nav-link {
+
+.femseniorNavbar {
+  .navLink {
     color: white;
     text-transform: capitalize;
     font-size: $font-size-h5;
@@ -149,19 +157,47 @@
   }
 }
 
-.reverso-navbar {
+.reversoNavbar {
   .search {
     background-color: transparent !important;
-    pointer-events: none !important; 
-    .search-icon {
-        color: transparent !important;
-        fill: none;
-      }
+    pointer-events: none !important;
+
+    .searchIcon {
+      color: transparent !important;
+      fill: none;
+    }
+
     input {
       background-color: transparent !important;
       color: transparent !important;
       border: none !important;
-     
     }
+  }
+}
+
+
+.loginNavbar {
+  @extend .femseniorNavbar; 
+
+  .search {
+    background-color: transparent !important;
+    pointer-events: none !important;
+
+    .searchIcon {
+      color: transparent !important; 
+      fill: none;
+    }
+
+    input {
+      background-color: transparent !important; 
+      color: transparent !important;
+      border: none !important;
+    }
+
+  }
+
+  .authButtons {
+    visibility: hidden; 
+    pointer-events: none;
   }
 }

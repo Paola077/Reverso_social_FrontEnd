@@ -1,8 +1,8 @@
 @import "../../../scss/Variables.scss";
 
-.search-container {
+.searchContainer {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
 }
 
@@ -10,26 +10,26 @@
   position: relative;
   display: flex;
   align-items: center;
-  background-color: #a7a8ec; 
+  background-color: #a7a8ec;
   border-radius: 20px;
   padding: 5px 15px;
-  width: 20rem; 
+  width: 20rem;
   text-transform: capitalize;
 
   input {
     background-color: transparent;
     border: none;
   }
-  .search-icon {
+  .searchIcon {
     position: absolute;
-    left: 10px; 
-    color: $dark; 
-    fill: $dark ;
+    left: 10px;
+    color: $dark;
+    fill: $dark;
   }
-  .styled-input-base {
-    padding-left: 40px; 
-    color: $dark; 
-    width: 100%; 
+  .styledInputBase {
+    padding-left: 40px;
+    color: $dark;
+    width: 100%;
     background-color: transparent;
     border: none;
 
