@@ -6,11 +6,14 @@ import CardSection from "../components/cards/cardSection/CardSection";
 
 
 function Femsenior() {
+  
   return (
     <div>
       <div className="manifestContainer">
         <Manifest />
-        <ManifestButton />
+        <ManifestButton 
+        
+        />
       </div>
       <div>
         <CardSection />
