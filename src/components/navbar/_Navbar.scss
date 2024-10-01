@@ -120,32 +120,9 @@
     gap: 15px;
     text-transform: capitalize;
     flex-wrap: nowrap;
-
-    .navLink {
-      text-decoration: none;
-      text-transform: capitalize;
-    }
-
-    .navButton {
-      background-color: $purple;
-      color: #fff;
-      border-radius: 60px;
-      padding: 8px 20px;
-      font-size: $font-size-h5;
-
-      &:hover {
-        background-color: $lila;
-      }
-    }
-
-    .signinButton {
-      color: $dark;
-      font-size: $font-size-h5;
-      font-weight: $font-weight-semibold;
-    }
+    
   }
 }
-
 
 .femseniorNavbar {
   .navLink {
@@ -177,29 +154,27 @@
   }
 }
 
-
 .loginNavbar {
-  @extend .femseniorNavbar; 
+  @extend .femseniorNavbar;
 
   .search {
     background-color: transparent !important;
     pointer-events: none !important;
 
     .searchIcon {
-      color: transparent !important; 
+      color: transparent !important;
       fill: none;
     }
 
     input {
-      background-color: transparent !important; 
+      background-color: transparent !important;
       color: transparent !important;
       border: none !important;
     }
-
   }
 
   .authButtons {
-    visibility: hidden; 
+    visibility: hidden;
     pointer-events: none;
   }
 }

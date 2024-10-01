@@ -13,7 +13,8 @@ export const Button = ({
   width,
   boxShadow,
   to,
-  margin
+  margin,
+  padding,
 }) => {
   if (to) {
     return (
@@ -32,6 +33,7 @@ export const Button = ({
           textDecoration: "none",
           margin: margin,
           boxShadow: boxShadow,
+          padding: padding,
         }}
       >
         {textButton}
@@ -42,7 +44,16 @@ export const Button = ({
   return (
     <button
       className="button"
-      style={{ backgroundColor, border, color, height, width, boxShadow, margin }}
+      style={{
+        backgroundColor,
+        border,
+        color,
+        height,
+        width,
+        boxShadow,
+        margin,
+        padding
+      }}
       onClick={onClick}
       type={type}
     >

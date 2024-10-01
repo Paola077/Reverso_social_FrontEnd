@@ -143,7 +143,8 @@ const Navbar = () => {
                 border={"none"}
                 color={"#35399B"}
                 height={"2rem"}
-                width={"8rem"}
+                width={"10rem"}
+                padding={('0.25rem')}
                 onClick={handleLogInClick}
               >
                 Iniciar sesión
@@ -156,6 +157,7 @@ const Navbar = () => {
                 height={"2rem"}
                 width={"8rem"}
                 color={"#fff"}
+                padding={('0.25rem')}
                 onClick={handleSignInClick}
               >
                 Registrarse
@@ -167,11 +169,11 @@ const Navbar = () => {
               backgroundColor={"#35399B"}
               height={"2rem"}
               width={"8rem"}
+              padding={('0.25rem')}
               color={"#fff"}
               textButton={"Colabora"}
               component={NavLink}
-                border={"none"}
-                margin={'0 0'}
+              border={"none"}
               to="/formulario/colabora"
             >
               Colabora
