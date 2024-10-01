@@ -137,6 +137,7 @@ const Navbar = () => {
           {isFemseniors ? (
             <>
               <Button
+                className="buttonNav"
                 textButton={"Iniciar sesión"}
                 backgroundColor={"transparent"}
                 border={"none"}
@@ -148,6 +149,7 @@ const Navbar = () => {
                 Iniciar sesión
               </Button>
               <Button
+                className="buttonNav"
                 textButton={"Registrarse"}
                 backgroundColor={"#35399B"}
                 border={"none"}
@@ -161,13 +163,15 @@ const Navbar = () => {
             </>
           ) : isReversoSocial ? (
             <Button
+              className="buttonNav"
               backgroundColor={"#35399B"}
               height={"2rem"}
               width={"8rem"}
               color={"#fff"}
               textButton={"Colabora"}
               component={NavLink}
-              border={"none"}
+                border={"none"}
+                margin={'0 0'}
               to="/formulario/colabora"
             >
               Colabora
