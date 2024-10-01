@@ -155,7 +155,7 @@ const Navbar = () => {
                 backgroundColor={"#35399B"}
                 border={"none"}
                 height={"2rem"}
-                width={"8rem"}
+                width={"10rem"}
                 color={"#fff"}
                 padding={('0.25rem')}
                 onClick={handleSignInClick}
