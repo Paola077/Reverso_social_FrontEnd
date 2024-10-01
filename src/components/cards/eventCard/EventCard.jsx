@@ -12,7 +12,7 @@ const EventCard = ({ title, details, location, date, time }) => {
   };
 
   return (
-    <div className="eventCard" onClick={handleCardClick}>
+   <div className="eventCard" onClick={handleCardClick}>
       <div
         className={`eventCard__lateralButtons ${isSelected ? "show" : "hide"}`}
       >
