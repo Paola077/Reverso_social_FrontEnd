@@ -2,7 +2,7 @@
 
 .manifestContainer {
     max-width: 90rem;
-    margin: auto 2rem;
+    margin: auto;
     color: $white;
     font-family: $font-family-title;
     width: 100%;
@@ -10,11 +10,11 @@
     flex-direction: column;
     line-height: 1.9rem;
     font-size: $font-size-h5;
-    padding-left: 1rem;
+    padding-left: 3rem;
     padding-bottom: 3rem;
 }
 .manifest {
-    max-width: 41%;
+    max-width: 43%;
 }
 
 .h3Text {
