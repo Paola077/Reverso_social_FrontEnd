@@ -27,9 +27,11 @@ const ManifestPop = ({
           <h2 className="popUpWindow__content__title">{title}</h2>
           <div className="popUpWindow__content__body">
             {bodyTexts.map((text, index) => (
-              <p key={index} className="popUpWindow__content__body__text">
-                {text}
-              </p>
+              <p
+                key={index}
+                className="popUpWindow__content__body__text"
+                dangerouslySetInnerHTML={{ __html: text }}
+              />
             ))}
             <Button
               className="popUpWindow__content__body__joinButton"
@@ -37,8 +39,9 @@ const ManifestPop = ({
               backgroundColor="#7176F8"
               border="none"
               width="19rem"
-              height="2.75rem"
+              height="3rem"
               color="white"
+              margin="1.5rem"
               onClick={onButtonClick}
             />
           </div>

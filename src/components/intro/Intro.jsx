@@ -61,6 +61,7 @@ const Intro = () => {
           border="none"
           width="12rem"
           height="3rem"
+          margin={"3rem 0 0"}
           color="white"
           boxShadow="0.2rem 0.2rem 0.4rem rgba(0, 0, 0, 0.25)"
           onClick={handleOpenPopup}
@@ -71,9 +72,12 @@ const Intro = () => {
         onClose={handdleClosePopup}
         title="MANIFIESTO"
         bodyTexts={[
-          "Luego vamos a cambiar el texto esto es un borrador que alguien me pase el texto verdadero please.",
-          "Esto no es ninguna broma no sé que poner no me autocompleta el Lorem Ipsum, todo fatal.",
-          "Por favor empatiza un poco más con mi sufrimiento para esto no hay justicia, que revés, ¿lo pillas? revés.",
+          "Queremos un <strong>cambio estructural</strong> que elimine todas las formas de discriminación por sexo, género, orientación sexual, procedencia, religión o clase social.",
+          "Nos comprometemos a erradicar la violencia de género en todos los ámbitos, <strong>luchar contra la explotación sexual y todas las formas de violencia hacia mujeres y niñas.</strong>",
+          "Fomentamos la participación plena de las mujeres en la vida política, económica y pública, asegurando la igualdad de oportunidades. Defendemos el <strong>acceso universal a la salud sexual y reproductiva, y los derechos reproductivos de las mujeres.</strong>",
+          "Queremos romper con la brecha digital, promoviendo el uso de tecnología para el empoderamiento de las mujeres.",
+          "Apoyamos la profesionalización del trabajo doméstico y la valorización de los cuidados, <strong>promoviendo la igualdad de responsabilidades en el hogar</strong>. Luchamos por un entorno de trabajo seguro, equitativo y accesible, donde la igualdad de remuneración sea una realidad.",
+          "Nos comprometemos a fomentar una educación que prevenga las violencias machistas y construya una <strong>sociedad inclusiva y respetuosa con la diversidad.</strong>",
         ]}
         buttonText="Únete a la comunidad"
       />
