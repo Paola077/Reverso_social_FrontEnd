@@ -5,6 +5,7 @@
   box-shadow: none !important;
   width: 100%;
   display: flex;
+  flex-wrap: nowrap;
   height: 80px;
   font-family: $font-family-title;
   margin: 1rem 0;
@@ -118,6 +119,7 @@
     align-items: center;
     gap: 15px;
     text-transform: capitalize;
+    flex-wrap: nowrap;
 
     .navLink {
       text-decoration: none;
