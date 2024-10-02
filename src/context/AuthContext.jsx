@@ -7,33 +7,25 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [userRole, setUserRole] = useState(null);
-  const [userId, setUserId] = useState(null);
+  const [role, setRole] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
-    if (token) {
-      const decodedToken = jwt_decode(token);
-      // Obtener roles del token
-      const userRoles = decodedToken.roles || decodedToken.authorities;
-      setUserRole(userRoles);
+    const user = localStorage.getItem("user");
+    const storedRole = localStorage.getItem("role");
 
-      // Obtener el ID del usuario (si está en el token)
-      setUserId(decodedToken.userId || decodedToken.sub); // `sub` es común en tokens JWT para almacenar el ID
+    if (token && user && storedRole) {
       setIsAuthenticated(true);
-      
+      setRole(storedRole);
     }
     setLoading(false);
   }, []);
 
-  const login = (token) => {
+  const login = (token, user, role) => {
     localStorage.setItem("authToken", token);
-    const decodedToken = jwt_decode(token);
-    // localStorage.setItem("user", JSON.stringify(user));
-    // Obtener roles y ID al iniciar sesión
-    const userRoles = decodedToken.roles || decodedToken.authorities;
-    setUserRole(userRoles);
-    setUserId(decodedToken.userId || decodedToken.sub);
+    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("role", role);
+
     setIsAuthenticated(true);
     
   };
@@ -46,7 +38,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout, userRole, userId }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
