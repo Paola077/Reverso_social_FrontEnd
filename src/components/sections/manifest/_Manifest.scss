@@ -1,32 +1,31 @@
-@import '../../../scss/Variables.scss';
+@import "../../../scss/Variables.scss";
 
 .manifestContainer {
-    max-width: 90rem;
-    margin: auto;
-    color: $white;
-    font-family: $font-family-title;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    line-height: 1.9rem;
-    font-size: $font-size-h5;
-    padding-left: 1rem;
-    padding-bottom: 3rem;
+  max-width: 90rem;
+  margin: auto;
+  color: $white;
+  font-family: $font-family-title;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.9rem;
+  font-size: $font-size-h5;
+  padding-left: 1rem;
+  padding-bottom: 3rem;
 }
 .manifest {
-    max-width: 41%;
+  max-width: 41%;
 }
 
 .h3Text {
-font-size: $font-size-h4;
-font-weight: $font-weight-bold;
+  font-size: $font-size-h4;
+  font-weight: $font-weight-bold;
 }
 
 .h4Text {
-font-size: $font-size-h5;
-
+  font-size: $font-size-h5;
 }
 
 .manifest p {
-    margin-bottom: 1.75rem;
+  margin-bottom: 1.75rem;
 }
