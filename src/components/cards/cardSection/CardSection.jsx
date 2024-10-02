@@ -27,7 +27,7 @@ const sections = [
     titleSection: "EMPLEO",
     imageUrl: "/icons/Employ.svg",
     title: "Cv de Psicología",
-    type: "Psicología",
+    position: "Psicología",
     description: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"],
     contentText: "Ver el CV:",
     buttonText: "Ver",
@@ -35,7 +35,7 @@ const sections = [
   { id: 4, 
     titleSection: "RECURSOS", 
     imageUrl: "/icons/Resources.svg",
-    title: "Recurso sobre empoderamiento femenino",
+    title: "Empoderamiento femenino",
     description: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"],
     contentText: "RECURSO",
     buttonText: "Ver",
@@ -80,6 +80,7 @@ const CardSection = () => {
           modality={selectedSection.modality}
           location={selectedSection.location}
           type={selectedSection.type}
+          position={selectedSection.position}
           email={selectedSection.email}
           phoneNumber={selectedSection.phoneNumber}
           user_id={selectedSection.user_id}
