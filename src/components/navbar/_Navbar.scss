@@ -120,8 +120,21 @@
     gap: 15px;
     text-transform: capitalize;
     flex-wrap: nowrap;
-    
   }
+}
+
+.logout-icon {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  &:hover {
+    transform: scale(1.1);
+  }
+  .logo-icon-img {
+    width: 2.5rem;
+    fill: $dark;
+  }
+
 }
 
 .femseniorNavbar {
