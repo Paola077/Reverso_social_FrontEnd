@@ -1,4 +1,4 @@
-@import '../../../scss/Variables.scss';
+@import "../../../scss/Variables.scss";
 
 .manifestContainer {
     max-width: 90rem;
@@ -18,15 +18,14 @@
 }
 
 .h3Text {
-font-size: $font-size-h4;
-font-weight: $font-weight-bold;
+  font-size: $font-size-h4;
+  font-weight: $font-weight-bold;
 }
 
 .h4Text {
-font-size: $font-size-h5;
-
+  font-size: $font-size-h5;
 }
 
 .manifest p {
-    margin-bottom: 1.75rem;
+  margin-bottom: 1.75rem;
 }
