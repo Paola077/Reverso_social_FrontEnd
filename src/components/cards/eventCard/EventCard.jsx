@@ -3,6 +3,7 @@ import "./_EventCard.scss";
 import EventCardButton from "../../buttons/eventsCardButtons/EventCardButton";
 import { Button } from "../../buttons/button/Button";
 import Alert from "../../modal/alerts/Alert";
+import { useAuth } from "../../../context/AuthContext";
 
 
 const truncateText = (text, limit) => {
@@ -10,15 +11,15 @@ const truncateText = (text, limit) => {
   return words.length > limit ? words.slice(0, limit).join(" ") + "..." : text;
 };
 
-const EventCard = ({ title, details, location, date, time, summary, role }) => {
-//const { user, isRegistered } = useContext(AuthContext); // Obtener el usuario actual y su estado
+const EventCard = ({ title, details, location, date, time, summary, createdBy  }) => {
+  const { isAuthenticated, userRole, userId } = useAuth();
   const [alertOpen, setAlertOpen] = useState(false); // Estado para manejar la alerta
 
-  //const createdByUser = user && user.id === createdBy; // identificar si el usuario es el creador del evento
+  const createdByUser = userId === createdBy; // identificar si el usuario es el creador del evento
 
   
 const handlePopupOpen = () =>{
-  if (isRegistered) {
+  if (isAuthenticated) {
     console.log ("Abrir pop Up con info")
   } else {
     setAlertOpen(true);
@@ -31,11 +32,11 @@ const closeAlert = () => {
 
   return (
     <div className="eventCard" >
-      {/* {user?.role === "FemSenior" && createdByUser && ( */}
+      {isAuthenticated && userRole === 'FEMSENIOR'  && (
         <div className="eventCard__lateralButtons">
           <EventCardButton />
         </div>
-      {/* )} */}
+      )}
       <div className="eventCard__content">
         <div className="eventCard__content__info">
           <h3 className="eventCard__content__info__title">{title}</h3>
