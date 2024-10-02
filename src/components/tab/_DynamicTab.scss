@@ -1,0 +1,34 @@
+@import '../../scss/Variables.scss';
+.secctionTabContainer {
+ display: flex;
+  position: relative;
+  width: 100%;
+}
+
+.secctionTab{
+  font-family: $font-family-title;
+  font-weight: $font-weight-regular;
+    background-color:$lila; 
+    color: $white;
+    padding: 10px 20px;
+    border-radius: 12px 12px 0 0; 
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    margin-left: 62%;
+    
+    &:hover {
+      background-color: #5a63d8; 
+    }
+  }
+  .underlineTab {
+    width: 100%;
+    height: 1px;
+    background-color: #736DB3; 
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+  }
