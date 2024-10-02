@@ -1,11 +1,13 @@
-import React from 'react'
+import React from "react";
 import { Button } from "../../buttons/button/Button";
 import closeIcon from "/src/components/modal/Exit.svg";
-import "../Interactive/_InteractivePop.scss"
+import "../Interactive/_InteractivePop.scss";
 
-const InteractivePop = ({ isOpen,
+const InteractivePop = ({
+  isOpen,
   onClose,
   title,
+  titleSection,
   date,
   time,
   modality,
@@ -17,36 +19,75 @@ const InteractivePop = ({ isOpen,
   phoneNumber,
   buttonText,
   onButtonClick,
-  }) => {
+  user_id,
+  contentText,
+}) => {
   if (!isOpen) return null;
 
   return (
     <>
-      <div className="popUpWindow">
-        <div className="popUpWindow__content">
-          <button className="popUpWindow__content__close" onClick={onClose}>
-            <img
-              src={closeIcon}
-              alt="Cerrar"
-              className="popUpWindow__content__close__icon"
-            />
+      <div className="popUpInteractive">
+        <div className="popUpContent">
+          <button className="popUpContentClose" onClick={onClose}>
+            <img src={closeIcon} alt="Cerrar" className="popUpCloseIcon" />
           </button>
-          <h2 className="popUpWindow__content__title">{title}</h2>
-          <div className="popUpWindow__content__body">
+          <h2 className="popUpContentTitle">{titleSection}</h2>
+          <h3 className="titlePopUp">{title}</h3>
+          <div className="popUpContentBody">
+            {modality && <p className="popUpModality">{modality}</p>}
+            {type && (
+              <div className="PopUpType">
+                <strong>{type}</strong>
+              </div>
+            )}
             {(description || []).map((text, index) => (
-              <p key={index} className="popUpWindow__content__body__text">
+              <p key={index} className="popUpContentBodyText">
                 {text}
               </p>
             ))}
-            <Button
-              className="popUpWindow__content__body__joinButton"
-              textButton={buttonText}
-              backgroundColor="#7176F8"
-              border="none"
-              width="16rem"
-              color="white"
-              onClick={onButtonClick}
-            />
+          </div>
+          <div className="ContentLocation">
+            {location && (
+              <>
+                <p className="popUpLocationTitle">
+                  <strong>UBICACIÓN</strong>
+                </p>
+                <p className="popUpLocationValue">{location}</p>
+              </>
+            )}
+            {titleSection === "SERVICIOS" && (
+              <div className="contentContact">
+                <p>
+                  <strong>{contentText}</strong>
+                </p>
+                {user_id && (
+                  <div className="popUpContenContact">
+                    <p>{user_id}</p>
+                  </div>
+                )}
+                {phoneNumber && (
+                  <div className="popUpContenContact">
+                    <p>Tel:</p> {phoneNumber}
+                  </div>
+                )}
+                {email && (
+                  <div className="popUpContenContact">
+                    <p>{email}</p>
+                  </div>
+                )}
+              </div>
+            )}
+            {titleSection !== "SERVICIOS" && buttonText && (
+              <Button
+                className="popUpContentJoinButton"
+                textButton={buttonText}
+                backgroundColor="#7176F8"
+                border="none"
+                width="16rem"
+                color="white"
+                onClick={onButtonClick}
+              />
+            )}
           </div>
         </div>
       </div>
