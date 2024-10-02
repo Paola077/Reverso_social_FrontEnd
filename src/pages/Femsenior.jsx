@@ -20,7 +20,9 @@ function Femsenior() {
       </div>
       <div>
         <CardSection onTabChange={handleTabChange} /> 
-        <DynamicTab label={tabLabel}  />
+        <DynamicTab 
+        label={tabLabel} 
+        onClick={() => handleTabChange(tabLabel)} />
       </div>
       <Outlet />
     </div>
