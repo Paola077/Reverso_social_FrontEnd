@@ -26,7 +26,7 @@ const InteractivePop = ({
 
   const renderContactSection = () => (
     <div className="contentContact">
-      <p>
+      <p className="contentText">
         <strong>{contentText}</strong>
       </p>
       {user_id && (
@@ -36,7 +36,7 @@ const InteractivePop = ({
       )}
       {phoneNumber && (
         <div className="popUpContenContact">
-          <p>Tel:</p> {phoneNumber}
+          <p>Tel: {phoneNumber}</p>
         </div>
       )}
       {email && (

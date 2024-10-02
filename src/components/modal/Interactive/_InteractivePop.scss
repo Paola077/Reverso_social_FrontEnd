@@ -1,79 +1,111 @@
 @import "../../../scss/Variables.scss";
 
 .popUpInteractive {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba($color: #C9CDF3, $alpha: 0.5);
-  
-    .popUpContent {
-      background-color: $white;
-      padding: 2.5rem;
-      border-radius: 1.25rem;
-      width: 90%;
-      max-width: 70rem;
-      text-align: center;
-      position: relative;
-      box-shadow: 0px 4px 20px #0000001a;
-      color: $dark;
-  
-      .popUpContentClose {
-        position: absolute;
-        top: 1.25rem;
-        right: 1.25rem;
-        background: none;
-        border: none;
-        cursor: pointer;
-  
-        .popUpCloseIcon {
-          width: 2.5rem;
-          height: 2.5rem;
-        }
-      }
-  
-      .titlePopUp {
-        font-family: $font-family-title;
-        font-size: $font-size-h3;
-        font-weight: $font-weight-bold;
-        margin-bottom: 1.25rem;
-        text-align: left;
-        padding-bottom: 0.5rem;
-      }
-  
-      .popUpContentBody {
-        margin-top: 1.25rem;
-  
-        .popUpContentBodyText {
-          font-family: $font-family-title;
-          font-size: 1rem;
-          line-height: 1.6;
-          color: black;
-          margin-bottom: 1.25rem;
-          text-align: justify;
-        }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba($color: #c9cdf3, $alpha: 0.5);
 
-        .popUpModality,
-        .popUpLocationTitle {
-          font-weight: $font-weight-bold;
-          font-family: $font-family-text;
-          color: $dark;
-          font-size: 1rem;
-          padding-bottom: 0.5rem;
-          text-align: left;
-        }
+  .popUpContent {
+    background-color: $white;
+    padding: 2.5rem;
+    border-radius: 1.25rem;
+    width: 90%;
+    max-width: 70rem;
+    text-align: center;
+    position: relative;
+    box-shadow: 0px 4px 20px #0000001a;
+    color: $dark;
 
-        .popUpLocationValue {
-          font-family: $font-family-text;
-          line-height: 1.6;
-          color: black;
-          text-align: left;
-          padding-bottom: 0.5rem;
-        }
+    .popUpContentClose {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+
+      .popUpCloseIcon {
+        width: 2.5rem;
+        height: 2.5rem;
       }
     }
+
+    .titlePopUp {
+      font-family: $font-family-title;
+      font-size: $font-size-h3;
+      font-weight: $font-weight-bold;
+      margin-bottom: 1.25rem;
+      text-align: left;
+      padding-bottom: 0.5rem;
+    }
+
+    .popUpContentTitle {
+      font-family: $font-family-title;
+    }
+
+    .popUpPosition {
+      font-family: $font-family-text;
+      font-size: 1.25rem;
+      text-align: left;
+    }
+
+    .popUpContentText {
+      font-weight: $font-weight-bold;
+      font-family: $font-family-text;
+      font-size: 1.25rem;
+      text-align: left;
+    }
+
+    .popUpContentBody {
+      margin-top: 1.25rem;
+
+      .popUpContentBodyText {
+        font-family: $font-family-title;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: black;
+        margin-bottom: 1.25rem;
+        text-align: justify;
+      }
+
+      .popUpModality,
+      .popUpPosition {
+        font-weight: $font-weight-bold;
+        font-family: $font-family-text;
+        color: $dark;
+        font-size: 1.25rem;
+        padding-bottom: 0.5rem;
+        text-align: left;
+      }
+    }
+
+    .popUpLocationValue {
+      font-family: $font-family-text;
+      text-align: left;
+      color: black;
+    }
+
+    .popUpLocationTitle {
+      font-family: $font-family-text;
+      text-align: left;
+    }
+
+    .contentText {
+      color: $dark;
+      font-size: 1.25rem;
+      padding-bottom: 0.5rem;
+    }
+    .contentContact {
+      font-family: $font-family-text;
+      font-size: 0.93rem;
+      text-align: left;
+      color: black;
+    }
   }
+}
