@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState }  from "react";
 import { Outlet } from "react-router-dom";
 import Manifest from "../components/sections/manifest/Manifest";
 import ManifestButton from "../components/buttons/manifestButton/ManifestButton";
@@ -6,9 +6,12 @@ import CardSection from "../components/cards/cardSection/CardSection";
 import DynamicTab from "../components/tab/DynamicTab"
 
 function Femsenior() {
-  const handleClick = () => {
-    alert('Haz hecho clic en la pestaña');
+  const [tabLabel, setTabLabel] = useState("NUEVO EVENTO");
+
+  const handleTabChange = (newLabel) => {
+    setTabLabel(newLabel);
   };
+
   return (
     <div>
       <div className="manifestContainer">
@@ -18,8 +21,8 @@ function Femsenior() {
         />
       </div>
       <div>
-        <CardSection />
-        <DynamicTab label="NUEVO EVENTO" onClick={handleClick} />
+        <CardSection onTabChange={handleTabChange} /> 
+        <DynamicTab label={tabLabel}  />
       </div>
       <Outlet />
     </div>

@@ -3,6 +3,7 @@
  display: flex;
   position: relative;
   width: 100%;
+  justify-content: flex-start; 
 }
 
 .secctionTab{
@@ -12,14 +13,12 @@
     color: $white;
     padding: 10px 20px;
     border-radius: 12px 12px 0 0; 
-    display: inline-block;
-    font-size: 14px;
-    font-weight: bold;
+   display: inline-block;
     cursor: pointer;
     transition: background-color 0.3s ease;
     text-align: center;
-    margin-left: 62%;
-    
+    margin-left: auto;
+    margin-right: 29%;
     &:hover {
       background-color: #5a63d8; 
     }
