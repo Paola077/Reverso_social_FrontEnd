@@ -3,16 +3,15 @@
 
 // Colors
 
-$white:#FFFFFF;
+$white: #ffffff;
 $lightTurquose: #97f5ec;
 $turquose: #39dfe6;
 $light: #dddeff;
 $lightLila: #b6b8ff;
-$lightLila2: #8D91FF;
+$lightLila2: #8d91ff;
 $lila: #7176f8;
 $purple: #35399b;
 $dark: #090d6d;
-
 
 // Typography
 
@@ -30,7 +29,46 @@ $font-weight-regular: 400;
 $font-weight-semibold: 600;
 $font-weight-bold: 700;
 
-*{
-    margin:0;
-    padding:0;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+// Mixin
+
+@mixin transparent-background {
+  background-color: transparent !important;
+  color: transparent !important;
+  border: none !important;
+}
+
+@mixin navLink-style {
+      font-size: 16px;
+      color: $dark;
+      text-decoration: none;
+      font-size: $font-size-h5;
+      font-weight: $font-weight-semibold;
+      padding: 0.5rem 1.5rem; 
+}
+
+@mixin navLink-style-hover {
+  color: white;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: $lila;
+}
+
+@mixin search-transparent {
+  background-color: transparent !important;
+  pointer-events: none !important;
+}
+
+@mixin search-icon-transparent {
+  color: transparent !important;
+  fill: none;
+}
+
+@mixin flex_center {
+  align-items: center;
+  display: flex;
 }

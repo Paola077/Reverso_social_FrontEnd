@@ -1,13 +1,22 @@
 import React from "react";
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { AppBar, Toolbar, Box } from "@mui/material";
 import Search from "./search/Search";
 import { Button } from "../buttons/button/Button";
+import { useAuth } from "../../context/AuthContext";
 import "./_Navbar.scss";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { isAuthenticated, logout } = useAuth();
+ const [isLoggedIn, setIsLoggedIn] = useState(isAuthenticated);
+
+
+  useEffect(() => {
+    setIsLoggedIn(isAuthenticated); 
+  }, [isAuthenticated]);
 
   const isFemseniors = location.pathname.startsWith(
     "/reverso-social/femsenior"
@@ -29,6 +38,11 @@ const Navbar = () => {
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/reverso-social/femsenior"); 
   };
 
   return (
@@ -134,7 +148,7 @@ const Navbar = () => {
         </Box>
 
         <Box className="authButtons">
-          {isFemseniors ? (
+          {isFemseniors && !isAuthenticated && (
             <>
               <Button
                 className="buttonNav"
@@ -144,7 +158,7 @@ const Navbar = () => {
                 color={"#35399B"}
                 height={"2rem"}
                 width={"10rem"}
-                padding={('0.25rem')}
+                padding={"0.25rem"}
                 onClick={handleLogInClick}
               >
                 Iniciar sesión
@@ -157,19 +171,33 @@ const Navbar = () => {
                 height={"2rem"}
                 width={"10rem"}
                 color={"#fff"}
-                padding={('0.25rem')}
+                padding={"0.25rem"}
                 onClick={handleSignInClick}
               >
                 Registrarse
               </Button>
             </>
-          ) : isReversoSocial ? (
+          )}
+          {isFemseniors && isAuthenticated && (
+            <button
+              className="logout-icon"
+              onClick={handleLogout}
+              title="Cerrar sesión"
+            >
+              <img
+                className="logo-icon-img"
+                src="/icons/Logout.svg"
+                alt="cerrar sesión"
+              />
+            </button>
+          )}
+          {isReversoSocial && (
             <Button
               className="buttonNav"
               backgroundColor={"#35399B"}
               height={"2rem"}
               width={"8rem"}
-              padding={('0.25rem')}
+              padding={"0.25rem"}
               color={"#fff"}
               textButton={"Colabora"}
               component={NavLink}
@@ -178,7 +206,7 @@ const Navbar = () => {
             >
               Colabora
             </Button>
-          ) : null}
+          )}
         </Box>
       </Toolbar>
     </AppBar>
