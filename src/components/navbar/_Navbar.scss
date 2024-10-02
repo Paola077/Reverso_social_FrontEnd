@@ -12,14 +12,12 @@
   margin-bottom: 2rem;
 
   .navbarToolbar {
-    display: flex;
+    @include flex_center;
     justify-content: space-around;
-    align-items: center;
   }
 
   .logoContainer {
-    display: flex;
-    align-items: center;
+    @include flex_center;
     width: 10%;
     .logo {
       width: 90%;
@@ -30,24 +28,15 @@
 
   .linksContainer {
     width: 30%;
-    display: flex;
     gap: 30px;
-    align-items: center;
+    @include flex_center;
 
     .navLink {
-      font-size: 16px;
-      color: $dark;
-      text-decoration: none;
-      font-size: $font-size-h5;
-      font-weight: $font-weight-semibold;
-      padding: 0.5rem 1.5rem;
+      @include navLink-style;
 
       &:hover,
       &:active {
-        background-color: $lila;
-        color: white;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
+        @include navLink-style-hover;
       }
     }
 
@@ -65,20 +54,14 @@
 
         &:hover,
         &:focus {
-          color: white;
-          border-top-right-radius: 10px;
-          border-top-left-radius: 10px;
-          background-color: $lila;
+          @include navLink-style-hover;
         }
       }
 
       &:hover,
       &:focus-within {
         .navLink {
-          border-top-right-radius: 10px;
-          border-top-left-radius: 10px;
-          background-color: $lila;
-          color: white;
+          @include navLink-style-hover;
         }
 
         .dropdownMenu {
@@ -114,9 +97,8 @@
 
   .authButtons {
     width: 25%;
-    display: flex;
+    @include flex_center;
     justify-content: flex-end;
-    align-items: center;
     gap: 15px;
     text-transform: capitalize;
     flex-wrap: nowrap;
@@ -134,7 +116,6 @@
     width: 2.5rem;
     fill: $dark;
   }
-
 }
 
 .femseniorNavbar {
@@ -142,27 +123,19 @@
     color: white;
     text-transform: capitalize;
     font-size: $font-size-h5;
-
-    &:hover {
-      color: #d4d4d4;
-    }
   }
 }
 
 .reversoNavbar {
   .search {
-    background-color: transparent !important;
-    pointer-events: none !important;
+    @include search-transparent;
 
     .searchIcon {
-      color: transparent !important;
-      fill: none;
+      @include search-icon-transparent;
     }
 
     input {
-      background-color: transparent !important;
-      color: transparent !important;
-      border: none !important;
+      @include transparent-background;
     }
   }
 }
@@ -171,18 +144,14 @@
   @extend .femseniorNavbar;
 
   .search {
-    background-color: transparent !important;
-    pointer-events: none !important;
+    @include search-transparent;
 
     .searchIcon {
-      color: transparent !important;
-      fill: none;
+      @include search-icon-transparent;
     }
 
     input {
-      background-color: transparent !important;
-      color: transparent !important;
-      border: none !important;
+      @include transparent-background;
     }
   }
 
