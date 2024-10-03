@@ -3,7 +3,7 @@
 .intro {
   max-width: 90rem;
   margin: auto;
-  padding:0 3rem;
+  padding: 0 3rem;
 }
 
 .introContainer {
@@ -14,21 +14,12 @@
 }
 
 .introTitle {
-  font-family: $font-family-title;
-  font-size: $font-size-h1;
-  font-weight: $font-weight-bold;
-  color: $dark;
-  text-align: left;
-  position: relative;
+  @include title-font;
 }
 
 .introSubTitle {
-  font-family: $font-family-title;
+  @include title-font;
   font-size: $font-size-h2;
-  font-weight: $font-weight-bold;
-  color: $dark;
-  text-align: left;
-  position: relative;
 
   &::after {
     content: "";
@@ -43,26 +34,14 @@
 }
 
 .textIntro {
-  font-family: $font-family-text;
-  font-size: $font-size-h5;
-  font-weight: $font-weight-regular;
-  color: $dark;
-  text-align: justify;
-  margin-top: 1.5rem;
-  line-height: 2rem;
+  @include text-font;
   margin-bottom: 25px;
 }
 .intro {
   .introList {
     list-style-type: disc;
     padding-left: 20px;
-    font-family: $font-family-text;
-    font-size: $font-size-h5;
-    font-weight: $font-weight-regular;
-    color: $dark;
-    text-align: justify;
-    margin-top: 1.5rem;
-    line-height: 2rem;
+    @include text-font;
     margin: auto;
   }
 
@@ -74,14 +53,8 @@
   font-weight: bold;
 }
 .textIntroFinal {
-  font-family: $font-family-text;
-  font-size: $font-size-h5;
-  font-weight: $font-weight-regular;
-  color: $dark;
+ @include text-font;
   text-align: center;
-  margin-top: 1.5rem;
-  line-height: 2rem;
-  //  margin-bottom: 25px;
 }
 
 .buttonContainer {
