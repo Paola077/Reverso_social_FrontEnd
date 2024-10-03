@@ -1,48 +1,46 @@
 @import "../../scss/Variables.scss";
 
-.inputBox{
-    display: flex;
-    justify-content: space-between;
-    width: 45rem;
-    margin: auto;
+.inputBox {
+  display: flex;
+  justify-content: space-between;
+  width: 45rem;
+  margin: auto;
+  margin-top: 3rem;
 
-    h4{
-        font-family: $font-family-title;
-        font-size: $font-size-h5;
-        font-weight: $font-weight-semibold;
-        color: $dark;
+  h4 {
+    font-family: $font-family-title;
+    font-size: $font-size-h5;
+    font-weight: $font-weight-semibold;
+    color: $dark;
+  }
+
+  .inputForm {
+    width: 30rem;
+    padding: 1.125rem;
+    background-color: white;
+    border-radius: 0.625rem;
+    //margin-bottom: 1rem;
+    border: 0.12rem solid #7176f8;
+    transition: border-color 0.3s ease;
+
+    &::placeholder {
+      color: $lightLila;
+      opacity: 0.75;
+      font-family: $font-family-text;
+      font-size: $font-size-h6;
+    }
+    &:focus {
+      border-color: #7176f8 !important;
+      outline: none;
     }
 
-    .inputForm{
-        width: 30rem;
-        padding: 1.125rem ;
-        background-color: white;
-        border-radius: 0.625rem;
-        margin-bottom: 1rem;
-        border: 0.12rem solid #7176f8;
-        transition: border-color 0.3s ease;
-        
-    
-        &::placeholder {
-            color:$lightLila ;  
-            opacity: 0.75;  
-            font-family: $font-family-text;
-            font-size: $font-size-h6;
-        }
-        &:focus {
-            border-color: #7176f8 !important;
-            outline: none; 
-        }
-
-        &:focus::placeholder {
-            opacity: 1;
-        }
+    &:focus::placeholder {
+      opacity: 1;
     }
-    
-    option{
-        color:#4248E5;
-        font-family: $font-family-text;
-        
-    }
+  }
 
+  option {
+    color: #4248e5;
+    font-family: $font-family-text;
+  }
 }
