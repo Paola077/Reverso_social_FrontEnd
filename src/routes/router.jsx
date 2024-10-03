@@ -1,7 +1,7 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import Layout from "../layout/layout";
 import PlanIgualdad from "../pages/PlanIgualdad";
-import Femsenior from "../pages/Femsenior";
+import Femsenior from "../pages/femsenior/Femsenior";
 import Events from "../pages/Events";
 import Services from "../pages/Services";
 import Employment from "../pages/Employment";
