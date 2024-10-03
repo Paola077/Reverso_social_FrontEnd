@@ -10,7 +10,6 @@ export const createEvent = async (data, token) => {
   const res = await axios.post(EVENT_URL, data, {
     headers,
   });
-  console.log(res);
   return res.data;
 };
 

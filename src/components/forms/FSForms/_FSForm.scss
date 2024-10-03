@@ -1,49 +1,54 @@
 @import "../../../scss/Variables.scss";
 
-.formBackGround{
-    width: 100vw;
-    min-height: 100vh;
-    background: linear-gradient(144deg, #C1C5F9 5%, #4248E5, #C1C5F9 120% );
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
+.formBackGround {
+  width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(144deg, #c1c5f9 5%, #4248e5, #c1c5f9 120%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
 
-    .formBox{
-        width: 58rem;
-        padding: 3rem 0 4.5rem 0;
-        background-color: white;
-        margin: auto;
-        border-radius: 1.25rem;
-        position: relative;
+  .formBox {
+    width: 58rem;
+    padding: 3rem 0 4.5rem 0;
+    background-color: white;
+    margin: auto;
+    border-radius: 1.25rem;
+    position: relative;
 
-        .buttonExit{
-            background-color: transparent;
-            border: none;
-            position: absolute;
-            top: 1.25rem;
-            right: 1.25rem;
-            cursor: pointer;
-    
-            img{
-                width: 2rem;
-            }
-        }
-        .requestTitle{
-            text-align: center;
-            font-family: $font-family-title;
-            font-size: $font-size-h5;
-            font-weight: $font-weight-bold;
-            padding-bottom: 2rem;
-            color: $purple;
-        }
-    
-        .buttonBox{
-            width: 45rem;
-            margin: auto;
-            display: flex;
-            justify-content: space-between;
-        }
-    
+    .buttonExit {
+      background-color: transparent;
+      border: none;
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      cursor: pointer;
+
+      img {
+        width: 2rem;
+      }
     }
+    .requestTitle {
+      text-align: center;
+      font-family: $font-family-title;
+      font-size: $font-size-h5;
+      font-weight: $font-weight-bold;
+      padding-bottom: 2rem;
+      color: $purple;
+    }
+
+    .buttonBox {
+      width: 45rem;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .errorText {
+      color: red;
+      margin-left: 22rem;
+      margin-top: 0.3rem;
+    }
+  }
 }
