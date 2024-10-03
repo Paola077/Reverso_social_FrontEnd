@@ -4,10 +4,13 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { userRegister, userLogin } from "../../../services/userApi";
 import logoReversoWhite from "../../../../public/images/RSLogoWhite.svg";
 import FSLogoWhite from "../../../../public/images/FSLogoWhite.svg";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 
 const SignInUpForm = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { login, isAuthenticated } = useAuth();
   const [isRightPanelActive, setIsRightPanelActive] = useState(false);
   const queryClient = useQueryClient();
   const [data, setData] = useState(null);
@@ -22,10 +25,17 @@ const SignInUpForm = () => {
   });
 
   useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    if (token) {
+      navigate("/reverso-social/femsenior");
+    }
+  }, [navigate]);
+
+  useEffect(() => {
     if (location.pathname === "/reverso-social/login") {
-      setIsRightPanelActive(false); 
+      setIsRightPanelActive(false);
     } else if (location.pathname === "/reverso-social/signin") {
-      setIsRightPanelActive(true); 
+      setIsRightPanelActive(true);
     }
   }, [location.pathname]);
 
@@ -76,12 +86,19 @@ const SignInUpForm = () => {
     mutationFn: (form) => userLogin(form),
     onSuccess: (res) => {
       setData(res);
-      queryClient.invalidateQueries({ queryKey: ["user"] });
+      localStorage.setItem("authToken", res.token); 
+      login(res.token); 
     },
     onError: (res) => {
       setError(res?.response.data);
     },
   });
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/reverso-social/femsenior");
+    }
+  }, [isAuthenticated, navigate]);
 
   return (
     <div
