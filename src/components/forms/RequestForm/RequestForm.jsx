@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./_RequestForm.scss";
 import { InputForm } from "../../Inputs/InputForm";
 import { Button } from "../../buttons/button/Button";
 import { useNavigate } from "react-router-dom";
+import emailjs from "@emailjs/browser";
 
 export const RequestForm = ({ text }) => {
   const navigate = useNavigate();
-  const [FormData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     title: "",
     data: "",
     description: "",
@@ -14,15 +15,35 @@ export const RequestForm = ({ text }) => {
   });
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.vale });
-
-    // const handeSubmit = (e) => {
-    //e.preventDefault()
-    // }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  const refForm = useRef();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const serviceId = "service_r6khmkf";
+    const publicKey = "hCm5mm5jzniCRTXQR";
+    const templateId = "template_bpn88l8";
+
+    emailjs.init(publicKey);
+
+    const templateParams = {
+      name: formData.data,
+      message: formData.description,
+      contact: formData.contact,
+    };
+
+    emailjs
+      .send(serviceId, templateId, templateParams, publicKey)
+      .then((result) => console.log(result.text))
+      .catch((error) => console.error(error));
+  };
+
   return (
     <div className="formBackground">
-      <form onSubmit="">
+      <form ref={refForm} onSubmit={handleSubmit}>
         <div className="formBox">
           <button
             className="buttonExit"
@@ -37,7 +58,7 @@ export const RequestForm = ({ text }) => {
             title={"Título"}
             type={"text"}
             placeholder={"Título"}
-            value={FormData.name}
+            value={formData.title}
             onChange={handleChange}
             name={"title"}
             borderColor={"#35399b"}
@@ -46,7 +67,7 @@ export const RequestForm = ({ text }) => {
             title={"Datos"}
             type={"text"}
             placeholder={"Datos"}
-            value={FormData.name}
+            value={formData.data}
             onChange={handleChange}
             name={"data"}
             borderColor={"#35399b"}
@@ -55,7 +76,7 @@ export const RequestForm = ({ text }) => {
             title={"Descripción"}
             type={"textarea"}
             placeholder={"Descripción"}
-            value={FormData.name}
+            value={formData.description}
             onChange={handleChange}
             name={"description"}
             borderColor={"#35399b"}
@@ -64,7 +85,7 @@ export const RequestForm = ({ text }) => {
             title={"Contacto"}
             type={"text"}
             placeholder={"Contacto"}
-            value={FormData.name}
+            value={formData.contact}
             onChange={handleChange}
             name={"contact"}
             borderColor={"#35399b"}
