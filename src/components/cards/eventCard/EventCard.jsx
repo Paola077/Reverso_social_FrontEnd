@@ -11,32 +11,18 @@ const truncateText = (text, limit) => {
   return words.length > limit ? words.slice(0, limit).join(" ") + "..." : text;
 };
 
-const EventCard = ({
-  title,
-  details,
-  location,
-  date,
-  time,
-  summary,
-  createdBy,
-  modality,
-  type,
-  position,
-  email,
-  phoneNumber,
-  description,
-  contentText,
-  buttonText,
-  name,
-}) => {
-  const { isAuthenticated, userRole, userId } = useAuth();
-  const [alertOpen, setAlertOpen] = useState(false); // Estado para manejar la alerta
+const EventCard = ({ title, details, location, date, time, summary, createdBy, modality, type, position, email, phoneNumber,  description, contentText, buttonText, name  }) => {
+  const { isAuthenticated, role, user } = useAuth();
+  const [alertOpen, setAlertOpen] = useState(false); 
   const [isPopupOpen, setPopupOpen] = useState(false);
-  const createdByUser = userId === createdBy; // identificar si el usuario es el creador del evento
+
+  const createdByUser = user?.email === createdBy; 
+  console.log("Usuario autenticado:", user?.email);
+  console.log("Creado por:", createdBy);
+  console.log("¿Es el creador?", createdByUser);
 
   const handlePopupOpen = () => {
     if (isAuthenticated) {
-      console.log("Abrir pop Up con info");
       setPopupOpen(true);
       console.log("Popup abierto:", isPopupOpen);
     } else {
@@ -49,8 +35,8 @@ const EventCard = ({
   };
 
   return (
-    <div className="eventCard">
-      {isAuthenticated && userRole === "FEMSENIOR" && (
+    <div className="eventCard" >
+      {isAuthenticated  && createdByUser &&(
         <div className="eventCard__lateralButtons">
           <EventCardButton />
         </div>

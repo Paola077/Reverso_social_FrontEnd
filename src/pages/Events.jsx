@@ -12,6 +12,7 @@ function Events() {
     queryKey: ["events"],
     queryFn: getAllEvents,
   });
+  
   return (
     <div>
       {eventsStatus === "loading" || eventsStatus === "pending" ? (
@@ -31,6 +32,7 @@ function Events() {
             description={event.description}
             buttonText={"Apúntate"}
             contentText={"Ubicación"}
+            createdBy={event.creatorEmail}
           />
         ))
       )}
