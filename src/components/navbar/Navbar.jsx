@@ -11,13 +11,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { isAuthenticated, logout } = useAuth();
- const [isLoggedIn, setIsLoggedIn] = useState(isAuthenticated);
-
-
-  useEffect(() => {
-    setIsLoggedIn(isAuthenticated); 
-  }, [isAuthenticated]);
-
   const isFemseniors = location.pathname.startsWith(
     "/reverso-social/femsenior"
   );
@@ -42,7 +35,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/reverso-social/femsenior"); 
+    navigate("/reverso-social/femsenior");
   };
 
   return (
