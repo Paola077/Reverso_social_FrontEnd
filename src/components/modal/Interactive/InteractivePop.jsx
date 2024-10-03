@@ -23,6 +23,8 @@ const InteractivePop = ({
   user_id,
   contentText,
 }) => {
+  if (!isOpen) return null;
+
   const { pathname } = useLocation();
 
   const currentPage = pathname.includes("evento") ? "EVENTOS" : 
@@ -86,7 +88,15 @@ const InteractivePop = ({
         <button className="popUpContentClose" onClick={onClose}>
           <img src={closeIcon} alt="Cerrar" className="popUpCloseIcon" />
         </button>
-        <h2 className="popUpContentTitle">{titleSection}</h2>
+        <div className="popUpHeader">
+          <h2 className="popUpContentTitle">{titleSection}</h2>
+          {currentPage === "EVENTOS" && (date || time) && (
+            <div className="popUpEventDateTime">
+              {date && <p className="popUpDate">{date}</p>}
+              {time && <p className="popUpTime">{time}</p>}
+            </div>
+          )}
+        </div>
         <h3 className="titlePopUp">{title}</h3>
         {position && (
           <div className="popUpPosition">
@@ -100,10 +110,11 @@ const InteractivePop = ({
               <p className="popUpTypeText">
                 <strong>{type}</strong>
               </p>
-              
             </div>
           )}
-          {description && ( <p className="popUpContentBodyText">{description}</p> )}
+          {description && (
+            <p className="popUpContentBodyText">{description}</p>
+          )}
         </div>
         <div className="ContentLocation">
           {location && (
