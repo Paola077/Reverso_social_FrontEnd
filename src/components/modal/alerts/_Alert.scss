@@ -1,49 +1,49 @@
 @import "../../../scss/Variables.scss";
 
-.overlay{
-width: 100vW;
-height: 100vh;
-position: fixed;
-top: 0;
-left: 0;
-display: flex;
-background-color: rgba($color: #C9CDF3, $alpha: 0.5);
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  background-color: rgba($color: #c9cdf3, $alpha: 0.5);
 }
 
-.alertBox{
-    width: 32rem;
-    padding: 3.5rem 5rem;
-    background-color: white;
-    border-radius: 2rem;
-    position: relative;
+.alertBox {
+  width: 32rem;
+  padding: 3.5rem 5rem;
+  background-color: white;
+  border-radius: 2rem;
+  position: relative;
+  margin: auto;
+
+  .buttonExit {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    cursor: pointer;
+
+    img {
+      width: 2rem;
+    }
+  }
+
+  .alertText {
+    font-family: $font-family-title;
+    font-size: $font-size-h5;
+    font-weight: $font-weight-regular;
+    text-align: center;
+    padding-bottom: 3rem;
+  }
+
+  .buttonsBox {
+    display: flex;
+    width: 85%;
     margin: auto;
-
-    .buttonExit{
-        background-color: transparent;
-        border: none;
-            position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
-            cursor: pointer;
-    
-            img{
-                width: 2rem;
-            }
-    }
-
-    .alertText{
-        font-family: $font-family-title;
-        font-size: $font-size-h5;
-        font-weight: $font-weight-regular;
-        text-align: center;
-        padding-bottom: 3rem;
-    }
-
-    .buttonsBox{
-        display: flex;
-        width: 85%;
-        margin: auto;
-        justify-content: space-between;
-        
-    }
+    justify-content: center;
+    gap: 3rem;
+  }
 }
