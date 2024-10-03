@@ -21,6 +21,7 @@ const EventCard = ({ title, details, location, date, time, summary, createdBy  }
 const handlePopupOpen = () =>{
   if (isAuthenticated) {
     console.log ("Abrir pop Up con info")
+    
   } else {
     setAlertOpen(true);
   }
