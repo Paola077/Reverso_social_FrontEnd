@@ -1,18 +1,5 @@
 @import "../../../scss/Variables.scss";
 
-.manifestContainer {
-    max-width: 90rem;
-    margin: auto;
-    color: $white;
-    font-family: $font-family-title;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    line-height: 1.9rem;
-    font-size: $font-size-h5;
-    padding-left: 3rem;
-    padding-bottom: 3rem;
-}
 .manifest {
     max-width: 43%;
 }
