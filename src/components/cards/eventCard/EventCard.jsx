@@ -42,7 +42,7 @@ const closeAlert = () => {
 
   return (
     <div className="eventCard" >
-      {isAuthenticated && role === 'FEMSENIOR' && createdByUser  && (
+      {isAuthenticated && createdByUser  && (
         <div className="eventCard__lateralButtons">
           <EventCardButton />
         </div>
