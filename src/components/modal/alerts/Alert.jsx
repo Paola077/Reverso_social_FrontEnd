@@ -24,7 +24,7 @@ const Alert = ({isOpen, onClose, alert}) => {
                     border={"0.15rem solid #7176f8"}
                     color={"#7176f8"}/>
                     <Button 
-                    textButton={"Aceptar"}
+                    textButton={"Registrarse"}
                     width={"12.5rem"}
                     height={"2.75rem"}
                     backgroundColor={"#7176f8"}

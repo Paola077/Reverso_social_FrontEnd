@@ -44,7 +44,7 @@ const MonthlyCalendar = () => {
           justifyContent: "space-around",
           alignItems: "center",
           backgroundColor: "white",
-          color: "black",
+          color: "#35399b",
         }}
       >
         <button
@@ -100,7 +100,7 @@ const MonthlyCalendar = () => {
           height: "100%",
           width: "100%",
           backgroundColor: "white",
-          color: "black",
+          color: "#35399b",
         }}
         messages={{
           noEventsInRange: "No hay eventos en este rango",

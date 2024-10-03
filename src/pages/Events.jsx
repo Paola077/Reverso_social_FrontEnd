@@ -23,10 +23,14 @@ function Events() {
           <EventCard
             key={event.id}
             title={event.title}
-            location={event.location}
+            modality={event.modality}
             date={event.date}
             time={event.time}
-            details={event.location}
+            location={event.location}
+            type={event.type}
+            description={event.description}
+            buttonText={"Apúntate"}
+            contentText={"Ubicación"}
           />
         ))
       )}

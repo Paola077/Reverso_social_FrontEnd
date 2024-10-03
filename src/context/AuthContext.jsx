@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import {jwtDecode} from 'jwt-decode';
 import React from "react";
 
 export const AuthContext = createContext();
@@ -33,6 +34,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("user");
     setIsAuthenticated(false);
+    setUserRole(null);
   };
 
   return (

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./_Intro.scss";
 import { Button } from "../buttons/button/Button";
 import ManifestPop from "../modal/manifest/ManifestPop";
+import { useNavigate } from "react-router-dom";
 
 const Intro = () => {
   const [isPopupOpen, setPopupOpen] = useState(false);
@@ -10,6 +11,10 @@ const Intro = () => {
   };
   const handdleClosePopup = () => {
     setPopupOpen(false);
+  };
+  const navigate = useNavigate();
+  const handleSignInClick = () => {
+    navigate("/reverso-social/signin");
   };
 
   return (
@@ -81,6 +86,7 @@ const Intro = () => {
           "Nos comprometemos a fomentar una educación que prevenga las violencias machistas y construya una <strong>sociedad inclusiva y respetuosa con la diversidad.</strong>",
         ]}
         buttonText="Únete a la comunidad"
+        onButtonClick={handleSignInClick}
       />
     </div>
   );

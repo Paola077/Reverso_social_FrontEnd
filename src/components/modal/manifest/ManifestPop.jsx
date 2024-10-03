@@ -12,6 +12,7 @@ const ManifestPop = ({
   onButtonClick,
 }) => {
   if (!isOpen) return null;
+  
 
   return (
     <>

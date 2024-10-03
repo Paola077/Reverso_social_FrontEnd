@@ -5,7 +5,7 @@
   justify-content: center;
   padding: 2rem;
   width: 100%;
-  box-sizing: border-box;
+    box-sizing: border-box;
 
   &__lateralButtons {
 
@@ -20,11 +20,12 @@
 
   &__content {
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
     align-items: center;
     background-color: $light;
-    padding: 1rem;
-    max-width: 50rem;
+    padding: 2rem;
+    max-width: 65rem;
     width: 100%;
     box-shadow: 0.5rem 0.25rem 0.5rem #0000001a;
 

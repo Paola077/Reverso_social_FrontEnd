@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import "./_CardSection.scss";
 
- const sections = [
+const sections = [
   { id: 1, title: "EVENTOS", imageUrl: "/icons/Events.svg", tabLabel: "NUEVO EVENTO"  },
   { id: 2, title: "SERVICIOS", imageUrl: "/icons/Services.svg" , tabLabel: "NUEVA MENTORÍA" },
   { id: 3, title: "EMPLEO", imageUrl: "/icons/Employ.svg",tabLabel: "SUBE TU CURRICULUM"  },
