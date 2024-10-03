@@ -86,7 +86,10 @@ const InteractivePop = ({
           {modality && <p className="popUpModality">{modality}</p>}
           {type && (
             <div className="PopUpType">
-              <strong>{type}</strong>
+              <p className="popUpTypeText">
+                <strong>{type}</strong>
+              </p>
+              
             </div>
           )}
           {(description || []).map((text, index) => (
