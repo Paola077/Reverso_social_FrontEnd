@@ -4,6 +4,7 @@ import EventCardButton from "../../buttons/eventsCardButtons/EventCardButton";
 import { Button } from "../../buttons/button/Button";
 import Alert from "../../modal/alerts/Alert";
 import { useAuth } from "../../../context/AuthContext";
+import InteractivePop from "../../modal/Interactive/InteractivePop"
 
 
 const truncateText = (text, limit) => {
@@ -11,21 +12,28 @@ const truncateText = (text, limit) => {
   return words.length > limit ? words.slice(0, limit).join(" ") + "..." : text;
 };
 
-const EventCard = ({ title, details, location, date, time, summary, createdBy  }) => {
+const EventCard = ({ title, details, location, date, time, summary, createdBy, modality, type, position, email, phoneNumber,  description, contentText, buttonText, name  }) => {
   const { isAuthenticated, userRole, userId } = useAuth();
   const [alertOpen, setAlertOpen] = useState(false); // Estado para manejar la alerta
-
+  const [isPopupOpen, setPopupOpen] = useState(false);
   const createdByUser = userId === createdBy; // identificar si el usuario es el creador del evento
 
-  
 const handlePopupOpen = () =>{
   if (isAuthenticated) {
     console.log ("Abrir pop Up con info")
+    setPopupOpen(true);
+    console.log("Popup abierto:", isPopupOpen);
     
   } else {
     setAlertOpen(true);
   }
 }
+
+const handleClosePopup = () => {
+
+  setPopupOpen(false);
+  
+  }
 
 const closeAlert = () => {
   setAlertOpen(false);
@@ -46,7 +54,7 @@ const closeAlert = () => {
             {date && <span>Fecha: {date}</span>}
             {time && <span>Hora: {time}</span>}
             {details && <span>Ubicación: {details}</span>}
-            <span>{truncateText(summary, 20)}</span>
+            {summary ? <span>{truncateText(summary, 20)}</span> : null}
           </div>
         </div>
         <div className="eventCard__content__button">
@@ -66,6 +74,23 @@ const closeAlert = () => {
         isOpen={alertOpen} 
         onClose={closeAlert} 
         alert="Por favor, regístrate para acceder a más información"
+      />
+      <InteractivePop
+      isOpen={isPopupOpen}
+      onClose={handleClosePopup}
+      title={title}
+      modality={modality}
+      date={date}
+      time={time}
+      location={location}
+      type={type}
+      position={position}
+      email={email}
+      phoneNumber={phoneNumber}
+      name={name}
+      description={description}
+      buttonText={buttonText}
+      contentText={contentText}
       />
     </div>
   );

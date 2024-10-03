@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "../../buttons/button/Button";
 import closeIcon from "/src/components/modal/Exit.svg";
 import "../Interactive/_InteractivePop.scss";
+import { useLocation } from 'react-router-dom';
 
 const InteractivePop = ({
   isOpen,
@@ -22,6 +23,14 @@ const InteractivePop = ({
   user_id,
   contentText,
 }) => {
+  const { pathname } = useLocation();
+
+  const currentPage = pathname.includes("evento") ? "EVENTOS" : 
+  pathname.includes("mentoria") ? "SERVICIOS" : 
+  pathname.includes("curriculum") ? "EMPLEO" : 
+  pathname.includes("recurso") ? "RECURSOS" : 
+  "";
+
   if (!isOpen) return null;
 
   const renderContactSection = () => (
@@ -53,8 +62,10 @@ const InteractivePop = ({
       textButton={buttonText}
       backgroundColor="#7176F8"
       border="none"
-      width="16rem"
+      width="13rem"
+      height="3rem"
       color="white"
+      margin="2rem 0 0 0"
       onClick={onButtonClick}
     />
   );
@@ -92,11 +103,7 @@ const InteractivePop = ({
               
             </div>
           )}
-          {(description || []).map((text, index) => (
-            <p key={index} className="popUpContentBodyText">
-              {text}
-            </p>
-          ))}
+          {description && ( <p className="popUpContentBodyText">{description}</p> )}
         </div>
         <div className="ContentLocation">
           {location && (
@@ -109,20 +116,20 @@ const InteractivePop = ({
           )}
         </div>
         <div className="popUpButton">
-          {titleSection === "SERVICIOS" && renderContactSection()}
-          {titleSection === "EMPLEO" && (
+          {currentPage === "SERVICIOS" && renderContactSection()}
+          {currentPage === "EMPLEO" && (
             <>
               {renderContentText()}
               {buttonText && renderButton()}
             </>
           )}
-          {titleSection === "RECURSOS" && (
+          {currentPage === "RECURSOS" && (
             <>
               {renderContentText()}
               {buttonText && renderButton()}
             </>
           )}
-          {titleSection === "EVENTOS" && buttonText && renderButton()}
+          {currentPage === "EVENTOS" && buttonText && renderButton()}
         </div>
       </div>
     </div>

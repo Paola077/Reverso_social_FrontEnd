@@ -2,7 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 import {jwtDecode} from 'jwt-decode';
 import React from "react";
 
-const AuthContext = createContext();
+export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("role", role);
 
     setIsAuthenticated(true);
-    
+    setRole(role);
   };
 
   const logout = () => {
@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, role, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
