@@ -3,7 +3,7 @@ import "./_CardSection.scss";
 
  const sections = [
   { id: 1, title: "EVENTOS", imageUrl: "/icons/Events.svg", tabLabel: "NUEVO EVENTO"  },
-  { id: 2, title: "SERVICIOS", imageUrl: "/icons/Services.svg" , tabLabel: "NUEVA MENTORIA " },
+  { id: 2, title: "SERVICIOS", imageUrl: "/icons/Services.svg" , tabLabel: "NUEVA MENTORÍA" },
   { id: 3, title: "EMPLEO", imageUrl: "/icons/Employ.svg",tabLabel: "SUBE TU CURRICULUM"  },
   { id: 4, title: "RECURSOS", imageUrl: "/icons/Resources.svg", tabLabel: "SUBE UN RECURSO"  },
 ];
