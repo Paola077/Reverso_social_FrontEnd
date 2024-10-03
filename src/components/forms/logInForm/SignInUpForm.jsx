@@ -93,6 +93,7 @@ const SignInUpForm = () => {
         localStorage.setItem("authToken", accessToken);
         localStorage.setItem("user", JSON.stringify({ email: form.email }));
         localStorage.setItem("role", role);
+        
 
         login(accessToken, { email: form.email }, role);
         queryClient.invalidateQueries({ queryKey: ["user"] });
