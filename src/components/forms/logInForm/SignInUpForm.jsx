@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./_SignInUpForm.scss";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { userRegister, userLogin } from "../../../services/userApi";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext"; 
 import logoReversoWhite from "../../../../public/images/RSLogoWhite.svg";
 import FSLogoWhite from "../../../../public/images/FSLogoWhite.svg";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../context/AuthContext";
+import { jwtDecode } from "jwt-decode";
 
 const SignInUpForm = () => {
   const location = useLocation();
@@ -25,11 +26,10 @@ const SignInUpForm = () => {
   });
 
   useEffect(() => {
-    const token = localStorage.getItem("authToken");
-    if (token) {
+    if (isAuthenticated) {
       navigate("/reverso-social/femsenior");
     }
-  }, [navigate]);
+  }, [isAuthenticated, navigate]);
 
   useEffect(() => {
     if (location.pathname === "/reverso-social/login") {
@@ -38,7 +38,6 @@ const SignInUpForm = () => {
       setIsRightPanelActive(true);
     }
   }, [location.pathname]);
-
   const resetForm = () => {
     setForm({
       name: "",
@@ -49,7 +48,6 @@ const SignInUpForm = () => {
       birthday: "",
     });
   };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({
@@ -57,21 +55,18 @@ const SignInUpForm = () => {
       [name]: value,
     });
   };
-
   const handleRegister = async (e) => {
     e.preventDefault();
     setData(null);
     setError(null);
     registerMutation.mutate(form);
   };
-
   const handleLogin = async (e) => {
     e.preventDefault();
     setData(null);
     setError(null);
     loginMutation.mutate(form);
   };
-
   const registerMutation = useMutation({
     mutationFn: (form) => userRegister(form),
     onSuccess: (res) => {
@@ -85,21 +80,34 @@ const SignInUpForm = () => {
   const loginMutation = useMutation({
     mutationFn: (form) => userLogin(form),
     onSuccess: (res) => {
-      setData(res);
-      localStorage.setItem("authToken", res.token); 
-      login(res.token); 
+      console.log("Respuesta completa del servidor:", res);
+
+      const accessToken = res?.accessToken;
+
+      if (accessToken) {
+        const decodedToken = jwtDecode(accessToken);
+        console.log("Token decodificado:", decodedToken);
+
+        const role = decodedToken?.authorities?.[0] || "USER";
+
+        localStorage.setItem("authToken", accessToken);
+        localStorage.setItem("user", JSON.stringify({ email: form.email }));
+        localStorage.setItem("role", role);
+
+        login(accessToken, { email: form.email }, role);
+        queryClient.invalidateQueries({ queryKey: ["user"] });
+
+        navigate("/reverso-social/femsenior");
+      } else {
+        console.error("No se recibió el token de acceso.");
+        setError("Error al recibir los datos de autenticación.");
+      }
     },
     onError: (res) => {
-      setError(res?.response.data);
+      console.error("Error al iniciar sesión:", res);
+      setError(res?.response?.data || "Error al iniciar sesión.");
     },
   });
-
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/reverso-social/femsenior");
-    }
-  }, [isAuthenticated, navigate]);
-
   return (
     <div
       className={`signContainer ${
