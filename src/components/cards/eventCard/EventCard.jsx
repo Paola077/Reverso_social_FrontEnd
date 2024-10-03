@@ -11,12 +11,30 @@ const truncateText = (text, limit) => {
   return words.length > limit ? words.slice(0, limit).join(" ") + "..." : text;
 };
 
-const EventCard = ({ title, details, location, date, time, summary, createdBy, modality, type, position, email, phoneNumber,  description, contentText, buttonText, name  }) => {
+const EventCard = ({
+  title,
+  details,
+  location,
+  date,
+  time,
+  summary,
+  createdBy,
+  modality,
+  type,
+  position,
+  email,
+  phoneNumber,
+  description,
+  contentText,
+  buttonText,
+  name,
+  id,
+}) => {
   const { isAuthenticated, role, user } = useAuth();
-  const [alertOpen, setAlertOpen] = useState(false); 
+  const [alertOpen, setAlertOpen] = useState(false);
   const [isPopupOpen, setPopupOpen] = useState(false);
 
-  const createdByUser = user?.email === createdBy; 
+  const createdByUser = user?.email === createdBy;
   console.log("Usuario autenticado:", user?.email);
   console.log("Creado por:", createdBy);
   console.log("¿Es el creador?", createdByUser);
@@ -35,10 +53,10 @@ const EventCard = ({ title, details, location, date, time, summary, createdBy, m
   };
 
   return (
-    <div className="eventCard" >
-      {isAuthenticated  && createdByUser &&(
+    <div className="eventCard">
+      {isAuthenticated && createdByUser && (
         <div className="eventCard__lateralButtons">
-          <EventCardButton />
+          <EventCardButton id={id} />
         </div>
       )}
       <div className="eventCard__content">

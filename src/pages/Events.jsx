@@ -12,7 +12,7 @@ function Events() {
     queryKey: ["events"],
     queryFn: getAllEvents,
   });
-  
+
   return (
     <div>
       {eventsStatus === "loading" || eventsStatus === "pending" ? (
@@ -22,6 +22,7 @@ function Events() {
       ) : (
         events?.map((event) => (
           <EventCard
+            id={event.id}
             key={event.id}
             title={event.title}
             modality={event.modality}
