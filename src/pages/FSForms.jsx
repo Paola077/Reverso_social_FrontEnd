@@ -15,17 +15,8 @@ const FSForms = () => {
                 {title: "Descripción", type: "textarea", placeholder: "Descripción del evento", name: "description"},
                 {title: "Max número de participantes", type: "number", min:"0",placeholder: "0", name: "participants"},
                 {title: "Modalidad", type: "select", name: "mode", options: [
-                    {label: "Administración y finanzas", value:""},
-                    {label: "Atención al cliente y servicios", value:"customerService"},
-                    {label: "Atención y cuidados", value:"care"},
-                    {label: "Artes y creatividades", value:"art"},
-                    {label: "Dirección y ejecución", value:"executive"},
-                    {label: "Hostelería y turismo", value:"tourism"},
-                    {label: "Psicología", value:"psichology"},
-                    {label: "Sanidad", value:"health"},
-                    {label: "Servicios a la comunidad", value:"comunityServices"},
-                    {label: "Tecnología", value: "tech"},
-                    {label: "Terapias alternativas y desarrollo personal", value:"therapies"}
+                    {label: "Presencial", value:"inPerson"},
+                    {label: "Online", value:"online"}
                 ]},
                 {title: "Localización", type: "text", placeholder: "Dirección", name: "adress"},
             ]
