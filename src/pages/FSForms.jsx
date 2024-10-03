@@ -13,8 +13,8 @@ const FSForms = () => {
                 {title: "Fecha", type: "date", placeholder: "", name: "date"},
                 {title: "Hora", type: "datetime", placeholder: "00:00", name: "time"},
                 {title: "Descripción", type: "textarea", placeholder: "Descripción del evento", name: "description"},
-                {title: "Max número de participantes", type: "number", min:"0",placeholder: "0", name: "participants"},
-                {title: "Modalidad", type: "select", name: "mode", options: [
+                {title: "Max número de participantes", type: "number", min:"0",placeholder: "0", name: "maxParticipants"},
+                {title: "Modalidad", type: "select", name: "modality", options: [
                     {label: "Presencial", value:"inPerson"},
                     {label: "Online", value:"online"}
                 ]},
@@ -31,7 +31,7 @@ const FSForms = () => {
                     {label: "Tecnología", value:"Tecnología"},
                     {label: "Terapias alternativas y desarrollo personal", value:"Terapias alternativas y desarrollo personal"}
                 ]},
-                {title: "Localización", type: "text", placeholder: "Dirección", name: "adress"},
+                {title: "Localización", type: "text", placeholder: "Dirección", name: "location"},
             ]
         },
         mentoria: {
