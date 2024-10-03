@@ -37,14 +37,14 @@ footer{
         display: flex;
         align-items: center;
         .footerFb{
-            fill: white;
+            fill: $lightLila;
             font-size: 2rem;
             cursor: pointer;
         }
         .footerIg{
-            fill: white;
+            fill: $lightLila;
             padding-left: 1.5rem;
-            font-size: 2rem;
+            font-size: 4rem;
             cursor: pointer;
         }
     }

@@ -4,18 +4,17 @@ import { InputForm } from "../../Inputs/InputForm";
 import { Button } from "../../buttons/button/Button";
 import { useNavigate } from "react-router-dom";
 
-export const RequestForm = ({text})=>{
-    
-    const navigate = useNavigate();
-    const [FormData, setFormData] = useState ({
-        title:"",
-        data:"",
-        description:"",
-        contact:""
-    })
+export const RequestForm = ({ text }) => {
+  const navigate = useNavigate();
+  const [FormData, setFormData] = useState({
+    title: "",
+    data: "",
+    description: "",
+    contact: "",
+  });
 
-const handleChange = (e) =>{
-    setFormData({...formData, [e.target.name]: e.target.vale})
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.vale });
 
     // const handeSubmit = (e) => {
     //e.preventDefault()
@@ -24,10 +23,13 @@ const handleChange = (e) =>{
   return (
     <div className="formBackground">
       <form onSubmit="">
-      <div className="formBox">
-        <button className="buttonExit" onClick={() => navigate("/reverso-social") }>
-          <img src="/icons/Exit.svg" alt="Cerrar formulario" />
-        </button>
+        <div className="formBox">
+          <button
+            className="buttonExit"
+            onClick={() => navigate("/reverso-social")}
+          >
+            <img src="/icons/Exit.svg" alt="Cerrar formulario" />
+          </button>
 
           <h2 className="requestTitle">{text}</h2>
 
@@ -74,6 +76,9 @@ const handleChange = (e) =>{
               backgroundColor={"white"}
               border={"0.15rem solid #35399b"}
               color={"#35399b"}
+              width={"20rem"}
+              height={"3rem"}
+              margin={"3rem 0 0"}
               onClick={() =>
                 setFormData({
                   title: "",
@@ -89,6 +94,9 @@ const handleChange = (e) =>{
               border={"0.15rem solid #35399b"}
               color={"white"}
               type={"submit"}
+              width={"20rem"}
+              height={"3rem"}
+              margin={"3rem 0 0"}
             />
           </div>
         </div>

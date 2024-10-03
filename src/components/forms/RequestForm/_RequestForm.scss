@@ -3,7 +3,7 @@
 .formBackground{
     width: 100vw;
     min-height: 100vh;
-    background: linear-gradient( #121335, $purple);
+    background: linear-gradient( $purple, $lightTurquose 130%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,8 +12,8 @@
     
 
     .formBox{
-        width: 74rem;
-        padding: 5rem 0;
+        width: 58rem;
+        padding: 3rem 0 4.5rem 0;
         background-color: white;
         margin: auto;
         border-radius: 1.25rem;
@@ -23,26 +23,25 @@
             background-color: transparent;
             border: none;
             position: absolute;
-            top: 1.5rem;
-            right: 1.5rem;
+            top: 1.25rem;
+            right: 1.25rem;
             cursor: pointer;
     
             img{
-                width: 3rem;
+                width: 2rem;
             }
         }
         .requestTitle{
             text-align: center;
             font-family: $font-family-title;
-            font-size: $font-size-h4;
+            font-size: $font-size-h5;
             font-weight: $font-weight-bold;
-            padding-bottom: 4rem;
+            padding-bottom: 2rem;
             color: $purple;
         }
     
         .buttonBox{
-            padding-top: 3rem;
-            width: 60.25rem;
+            width: 45rem;
             margin: auto;
             display: flex;
             justify-content: space-between;

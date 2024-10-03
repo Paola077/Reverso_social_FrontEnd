@@ -1,95 +1,36 @@
 import React, {useState} from "react";
 import "./_CardSection.scss";
-import InteractivePop from "../../modal/Interactive/InteractivePop";
 
-const sections = [
-  { id: 1, 
-    titleSection: "EVENTOS",
-    imageUrl: "/icons/Events.svg",
-    title: "Mentoria sobre CV",
-    modality: "PRESENCIAL",
-    description: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"],
-    location: "La Ciba, Barcelona",
-    buttonText: "Apúntate",
-  },
-  { id: 2, 
-    titleSection: "SERVICIOS", 
-    imageUrl: "/icons/Services.svg",
-    title: "Empleabilidad",
-    type: "Laboral",
-    description: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"],
-    contentText: "Contacta conmigo",
-    phoneNumber: "601XXXXXX",
-    email: "test@test.com",
-    user_id: "Nombre",
-  },
-  { id: 3,
-    titleSection: "EMPLEO",
-    imageUrl: "/icons/Employ.svg",
-    title: "Cv de Psicología",
-    position: "Psicología",
-    description: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"],
-    contentText: "Ver el CV:",
-    buttonText: "Ver",
-  },
-  { id: 4, 
-    titleSection: "RECURSOS", 
-    imageUrl: "/icons/Resources.svg",
-    title: "Empoderamiento femenino",
-    description: ["Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"],
-    contentText: "RECURSO",
-    buttonText: "Ver",
-  },
+ const sections = [
+  { id: 1, title: "EVENTOS", imageUrl: "/icons/Events.svg", tabLabel: "NUEVO EVENTO"  },
+  { id: 2, title: "SERVICIOS", imageUrl: "/icons/Services.svg" , tabLabel: "NUEVA MENTORÍA" },
+  { id: 3, title: "EMPLEO", imageUrl: "/icons/Employ.svg",tabLabel: "SUBE TU CURRICULUM"  },
+  { id: 4, title: "RECURSOS", imageUrl: "/icons/Resources.svg", tabLabel: "SUBE UN RECURSO"  },
 ];
-const CardSection = () => {
+  const CardSection = ({ onTabChange }) => {
     const [selectedSection, setSelectedSection] = useState(null);
-    const [isPopupOpen, setIsPopUpOpen] = useState(false); 
-
-    const handleSelect = (section) => {
-      setSelectedSection(section);
-      setIsPopUpOpen(true);
+  
+    const handleSelect = (id) => {
+      setSelectedSection(id);
+      const selected = sections.find(section => section.id === id);
+      if (selected && onTabChange) {
+        onTabChange(selected.tabLabel); 
+      }
     };
-
-    const handleClosePopup = () => {
-      setIsPopUpOpen(false);
-    }
-
-    const handleButtonClick = () => {
-      console.log("Botón de popup clickeado");
-      setIsPopUpOpen(false);
-    }
-
+  
     return (
       <div className="cardSectionContainer">
         {sections.map((section) => (
           <button
             key={section.id}
-            className={`sectionCard ${selectedSection?.id === section.id ? "selected" : ""}`}
-            onClick={() => handleSelect(section)}
-            aria-pressed={selectedSection === section.id}>
-            <img src={section.imageUrl} alt={section.titleSection} className="sectionImage" />
-            <h3 className="sectionCardTitle">{section.titleSection}</h3>
+            className={`sectionCard ${selectedSection === section.id ? "selected" : ""}`}
+            onClick={() => handleSelect(section.id)}
+            aria-pressed={selectedSection === section.id}
+          >
+            <img src={section.imageUrl} alt={section.title} className="sectionImage" />
+            <h3 className="sectionCardTitle">{section.title}</h3>
           </button>
         ))}
-      {selectedSection && (
-        <InteractivePop
-          isOpen={isPopupOpen}
-          onClose={handleClosePopup}
-          title={selectedSection.title}
-          titleSection={selectedSection.titleSection}
-          modality={selectedSection.modality}
-          location={selectedSection.location}
-          type={selectedSection.type}
-          position={selectedSection.position}
-          email={selectedSection.email}
-          phoneNumber={selectedSection.phoneNumber}
-          user_id={selectedSection.user_id}
-          description={selectedSection.description}
-          buttonText={selectedSection.buttonText}
-          contentText={selectedSection.contentText}
-          onButtonClick={handleButtonClick}  
-        />
-      )}
       </div>
     );
   };

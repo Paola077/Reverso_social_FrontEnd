@@ -3,7 +3,7 @@
 .inputBox{
     display: flex;
     justify-content: space-between;
-    width: 60.25rem;
+    width: 45rem;
     margin: auto;
 
     h4{
@@ -14,12 +14,12 @@
     }
 
     .inputForm{
-        width: 40rem;
+        width: 30rem;
         padding: 1.125rem ;
         background-color: white;
         border-radius: 0.625rem;
-        margin-bottom: 1.5rem;
-        border: 0.15rem solid #7176f8;
+        margin-bottom: 1rem;
+        border: 0.12rem solid #7176f8;
         transition: border-color 0.3s ease;
         
     

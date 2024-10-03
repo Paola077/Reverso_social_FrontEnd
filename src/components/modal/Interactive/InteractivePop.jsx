@@ -49,7 +49,7 @@ const InteractivePop = ({
 
   const renderButton = () => (
     <Button
-      className="popUpContentJoinButton"
+      className="contentButton"
       textButton={buttonText}
       backgroundColor="#7176F8"
       border="none"
@@ -107,6 +107,8 @@ const InteractivePop = ({
               <p className="popUpLocationValue">{location}</p>
             </>
           )}
+        </div>
+        <div className="popUpButton">
           {titleSection === "SERVICIOS" && renderContactSection()}
           {titleSection === "EMPLEO" && (
             <>

@@ -9,14 +9,19 @@ const Layout = () => {
     "/reverso-social/femsenior"
   );
   const isReversoSocial = location.pathname === "/reverso-social";
-  const isFormPage = location.pathname.startsWith("/formulario");
-
+  const isFormPage = location.pathname.startsWith( "/formulario" );
+ const isLogin =
+   location.pathname === "/reverso-social/login" ||
+   location.pathname === "/reverso-social/signin";
   return (
-    <div className="layout-container">
-      {/* Aplica diferentes clases dependiendo de la página */}
+    <div className="layoutContainer">
       <div
-        className={`gradient-container ${
-          isFemseniors ? "femsenior-gradient" : "reverso-gradient"
+        className={`gradientContainer ${
+          isFormPage || isLogin
+            ? "transparentGradient"
+            : isFemseniors
+            ? "femseniorGradient"
+            : "reversoGradient"
         }`}
       >
         {!isFormPage && <Navbar className="layout-navbar" />}
@@ -24,7 +29,7 @@ const Layout = () => {
           <Outlet />
         </main>
       </div>
-      <Footer />
+      <Footer className="layoutFooter" />
     </div>
   );
 };

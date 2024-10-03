@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./_Button.scss";;
+import "./_Button.scss";
 
 export const Button = ({
   textButton,
@@ -11,7 +11,10 @@ export const Button = ({
   type,
   height,
   width,
+  boxShadow,
   to,
+  margin,
+  padding,
 }) => {
   if (to) {
     return (
@@ -27,7 +30,10 @@ export const Button = ({
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          textDecoration: "none", 
+          textDecoration: "none",
+          margin: margin,
+          boxShadow: boxShadow,
+          padding: padding,
         }}
       >
         {textButton}
@@ -38,7 +44,16 @@ export const Button = ({
   return (
     <button
       className="button"
-      style={{ backgroundColor, border, color, height, width }}
+      style={{
+        backgroundColor,
+        border,
+        color,
+        height,
+        width,
+        boxShadow,
+        margin,
+        padding
+      }}
       onClick={onClick}
       type={type}
     >

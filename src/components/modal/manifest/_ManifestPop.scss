@@ -6,22 +6,21 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: $white;
+  background-color: #bcacd499;
   display: flex;
   justify-content: center;
-  align-items: center;
   z-index: 1000;
 
   &__content {
     background-color: $white;
-    padding: 2.5rem;
-    border-radius: 1.25rem;
+    padding: 3rem;
+    border-radius: 0.8rem;
     width: 90%;
-    max-width: 37.5rem;
-    text-align: center;
+    max-width: 55rem;
     position: relative;
-    box-shadow: 0px 4px 20px #0000001a;
+    box-shadow: 0px 15px 30px #0000001a;
     color: $dark;
+    margin: 2rem 0;
 
     &__close {
       position: absolute;
@@ -32,27 +31,30 @@
       cursor: pointer;
 
       &__icon {
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 2rem;
+        height: 2rem;
       }
     }
 
     &__title {
       font-family: $font-family-title;
-      font-size: $font-size-h3;
+      font-size: $font-size-h4;
       font-weight: $font-weight-bold;
-      margin-bottom: 1.25rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
     }
 
     &__body {
-      margin-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
       &__text {
         font-family: $font-family-title;
         font-size: 1rem;
         line-height: 1.6;
         color: $dark;
-        margin-bottom: 1.25rem;
+        margin-bottom: 1.5rem;
       }
     }
   }

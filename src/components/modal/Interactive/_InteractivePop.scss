@@ -1,6 +1,5 @@
 @import "../../../scss/Variables.scss";
 
-
 .popUpInteractive {
   position: fixed;
   top: 0;
@@ -11,7 +10,7 @@
   justify-content: center;
   align-items: center;
   background-color: rgba($color: #c9cdf3, $alpha: 0.5);
-
+  z-index: 1000;
 
   .popUpContent {
     background-color: $white;
@@ -63,6 +62,7 @@
       font-family: $font-family-text;
       font-size: 1.25rem;
       text-align: left;
+      padding-bottom: 0.93rem;
     }
 
     .popUpContentBody {
@@ -93,6 +93,7 @@
       font-family: $font-family-text;
       text-align: left;
       color: black;
+      padding-bottom: 0.93rem;
     }
 
     .popUpLocationTitle {
@@ -103,7 +104,6 @@
     .contentText {
       color: $dark;
       font-size: 1.25rem;
-      padding-bottom: 0.5rem;
     }
     .contentContact {
       font-family: $font-family-text;
@@ -118,5 +118,7 @@
       font-size: 1.25rem;
       padding-bottom: 0.93rem;
     }
+
+     /*.popUpButton {display: flex; justify-content: center; }*/
   }
 }

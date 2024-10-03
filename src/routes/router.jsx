@@ -1,16 +1,14 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import Layout from "../layout/layout";
 import PlanIgualdad from "../pages/PlanIgualdad";
-import Femsenior from "../pages/Femsenior";
+import Femsenior from "../pages/femsenior/Femsenior";
 import Events from "../pages/Events";
 import Services from "../pages/Services";
 import Employment from "../pages/Employment";
 import Resources from "../pages/Resources";
-import Login from "../pages/Login";
+import SignInUpForm from "../components/forms/logInForm/SignInUpForm"
 import RSForms from "../pages/RSForms";
 import FSForms from "../pages/FSForms";
-
-
 
 const router = createBrowserRouter([
   {
@@ -53,7 +51,11 @@ const router = createBrowserRouter([
       },
       {
         path: "reverso-social/login",
-        element: <Login />,
+        element: <SignInUpForm />, 
+      },
+      {
+        path: "reverso-social/signin",
+        element: <SignInUpForm />, 
       },
       {
         path: "formulario/:formType",

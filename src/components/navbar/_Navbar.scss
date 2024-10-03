@@ -1,22 +1,23 @@
 @import "../../scss/Variables.scss";
+
 .navbar {
   background-color: transparent !important;
   box-shadow: none !important;
   width: 100%;
   display: flex;
+  flex-wrap: nowrap;
   height: 80px;
   font-family: $font-family-title;
   margin: 1rem 0;
+  margin-bottom: 2rem;
 
-  .navbar-toolbar {
-    display: flex;
+  .navbarToolbar {
+    @include flex_center;
     justify-content: space-around;
-    align-items: center;
   }
 
-  .logo-container {
-    display: flex;
-    align-items: center;
+  .logoContainer {
+    @include flex_center;
     width: 10%;
     .logo {
       width: 90%;
@@ -25,63 +26,50 @@
     }
   }
 
-  .links-container {
+  .linksContainer {
     width: 30%;
-    display: flex;
     gap: 30px;
-    align-items: center;
+    @include flex_center;
 
-    .nav-link {
-      font-size: 16px;
-      color: $dark;
-      text-decoration: none;
-      font-size: $font-size-h5;
-      font-weight: $font-weight-semibold;
-      padding: 0.5rem 1.5rem;
+    .navLink {
+      @include navLink-style;
 
       &:hover,
       &:active {
-        background-color: $lila;
-        color: white;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
+        @include navLink-style-hover;
       }
     }
+
     a:-webkit-any-link {
       text-decoration: none !important;
     }
+
     .dropdown {
       position: relative;
 
-      .nav-link {
+      .navLink {
         color: $dark;
         font-size: $font-size-h5;
         padding: 0.5rem 1.5rem;
 
         &:hover,
         &:focus {
-          color: white;
-          border-top-right-radius: 10px;
-          border-top-left-radius: 10px;
-          background-color: $lila;
+          @include navLink-style-hover;
         }
       }
 
       &:hover,
       &:focus-within {
-        .nav-link {
-          border-top-right-radius: 10px;
-          border-top-left-radius: 10px;
-          background-color: $lila;
-          color: white;
+        .navLink {
+          @include navLink-style-hover;
         }
 
-        .dropdown-menu {
+        .dropdownMenu {
           display: inline-block;
         }
       }
 
-      .dropdown-menu {
+      .dropdownMenu {
         width: 100%;
         display: none;
         position: absolute;
@@ -89,7 +77,7 @@
         left: 0;
         background-color: white;
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-        z-index: 10;
+        z-index: 100;
         border-radius: 8px;
         list-style: none;
 
@@ -107,61 +95,68 @@
     }
   }
 
-  .auth-buttons {
+  .authButtons {
     width: 25%;
-    display: flex;
+    @include flex_center;
     justify-content: flex-end;
-    align-items: center;
     gap: 15px;
     text-transform: capitalize;
-    .nav-link {
-      text-decoration: none;
-      text-transform: capitalize;
-    }
-
-    .nav-button {
-      background-color: $purple;
-      color: #fff;
-      border-radius: 60px;
-      padding: 8px 20px;
-      font-size: $font-size-h5;
-      &:hover {
-        background-color: $lila;
-      }
-    }
-    .signin-button {
-      color: $dark;
-      font-size: $font-size-h5;
-      font-weight: $font-weight-semibold;
-    }
+    flex-wrap: nowrap;
   }
 }
 
-.femsenior-navbar {
-  .nav-link {
+.logout-icon {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  &:hover {
+    transform: scale(1.1);
+  }
+  .logo-icon-img {
+    width: 2.5rem;
+    fill: $dark;
+  }
+}
+
+.femseniorNavbar {
+  .navLink {
     color: white;
     text-transform: capitalize;
     font-size: $font-size-h5;
+  }
+}
 
-    &:hover {
-      color: #d4d4d4;
+.reversoNavbar {
+  .search {
+    @include search-transparent;
+
+    .searchIcon {
+      @include search-icon-transparent;
+    }
+
+    input {
+      @include transparent-background;
     }
   }
 }
 
-.reverso-navbar {
+.loginNavbar {
+  @extend .femseniorNavbar;
+
   .search {
-    background-color: transparent !important;
-    pointer-events: none !important; 
-    .search-icon {
-        color: transparent !important;
-        fill: none;
-      }
-    input {
-      background-color: transparent !important;
-      color: transparent !important;
-      border: none !important;
-     
+    @include search-transparent;
+
+    .searchIcon {
+      @include search-icon-transparent;
     }
+
+    input {
+      @include transparent-background;
+    }
+  }
+
+  .authButtons {
+    visibility: hidden;
+    pointer-events: none;
   }
 }

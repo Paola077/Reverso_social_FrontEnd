@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./_Footer.scss";
-import { SlSocialInstagram } from "react-icons/sl";
+import { BiLogoInstagramAlt } from "react-icons/bi";
 import { BsFacebook } from "react-icons/bs";
 import { RequestButton } from "../buttons/requestButton/RequestsButton";
 
@@ -34,7 +34,7 @@ return(
                     fontSize={"0.8rem"}
                     onClick={()=> navigate("formulario/peticiones")}/>
                 <BsFacebook className="footerFb" onClick={handleClick2}/>
-                <SlSocialInstagram className="footerIg" onClick={handleClick1}/>
+                <BiLogoInstagramAlt  className="footerIg" onClick={handleClick1}/>
             </div>
         </div>
 

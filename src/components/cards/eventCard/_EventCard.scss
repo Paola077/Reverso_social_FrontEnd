@@ -1,0 +1,62 @@
+@import "../../../scss/Variables.scss";
+
+.eventCard {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+
+  &__lateralButtons {
+
+    &.show {
+      display: flex;
+    }
+
+    &.hide {
+      display: none;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: $light;
+    padding: 1rem;
+    max-width: 50rem;
+    width: 100%;
+    box-shadow: 0.5rem 0.25rem 0.5rem #0000001a;
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 70%;
+      gap: 1rem;
+
+      &__title {
+        font-family: $font-family-title;
+        font-weight: $font-weight-semibold;
+        font-size: $font-size-h5;
+        color: $dark;
+      }
+
+      &__details {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        font-family: $font-family-title;
+        font-size: $font-size-h6;
+        color: $dark;
+      }
+    }
+
+    &__button {
+      display: flex;
+      justify-content: flex-end;
+      width: 25%;
+    }
+  }
+}

@@ -9,6 +9,9 @@
     font-weight: $font-weight-semibold;
     cursor: pointer;
     transition: .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     &:hover{
         transform: scale(0.97);
