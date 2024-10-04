@@ -23,6 +23,8 @@ const InteractivePop = ({
   user_id,
   contentText,
 }) => {
+  if (!isOpen) return null;
+
   const { pathname } = useLocation();
 
   const currentPage = pathname.includes("evento") ? "EVENTOS" : 
@@ -86,24 +88,34 @@ const InteractivePop = ({
         <button className="popUpContentClose" onClick={onClose}>
           <img src={closeIcon} alt="Cerrar" className="popUpCloseIcon" />
         </button>
-        <h2 className="popUpContentTitle">{titleSection}</h2>
-        <h3 className="titlePopUp">{title}</h3>
+        <div className="titleAndDateContainer">
+          <div>
+            <h3 className="titlePopUp">{title}</h3>
+            {modality && <p className="popUpModality">{modality}</p>}
+          </div>
+          {currentPage === "EVENTOS" && (date || time) && (
+            <div className="dateAndTime">
+              {date && <p className="popUpDate">{date}</p>}
+              {time && <p className="popUpTime">{time}</p>}
+            </div>
+          )}
+        </div>
         {position && (
           <div className="popUpPosition">
             <strong>{position}</strong>
           </div>
         )}
         <div className="popUpContentBody">
-          {modality && <p className="popUpModality">{modality}</p>}
           {type && (
             <div className="PopUpType">
               <p className="popUpTypeText">
                 <strong>{type}</strong>
               </p>
-              
             </div>
           )}
-          {description && ( <p className="popUpContentBodyText">{description}</p> )}
+          {description && (
+            <p className="popUpContentBodyText">{description}</p>
+          )}
         </div>
         <div className="ContentLocation">
           {location && (
@@ -134,7 +146,7 @@ const InteractivePop = ({
       </div>
     </div>
   );
-};
+};  
 
 
 export default InteractivePop;
