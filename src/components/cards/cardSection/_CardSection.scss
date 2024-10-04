@@ -1,54 +1,49 @@
-@import '../../../scss/Variables.scss';
+@import "../../../scss/Variables.scss";
 
 .cardSectionContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 4.5rem; 
-    flex-direction: row;
-    padding: 1.5rem;
-    width: 100%;
-    height: auto;
+  @include flex_center;
+  justify-content: center;
+  gap: 4.5rem;
+  flex-direction: row;
+  padding: 1.5rem;
+  width: 100%;
+  height: auto;
 }
 
 .sectionCard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 12rem; 
-    height: 10rem;
-    text-align: center;
-    cursor: pointer;
-    background-color: $dark;
-    border-radius: 1rem;
-    border: none; 
-    position: relative; 
+  @include flex_center;
+  flex-direction: column;
+  justify-content: center;
+  width: 12rem;
+  height: 10rem;
+  text-align: center;
+  cursor: pointer;
+  background-color: $dark;
+  border-radius: 1rem;
+  border: none;
+  position: relative;
 
-  
-    &.selected::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 1rem;
-        outline: 1rem solid white;
-        pointer-events: none;
-        box-sizing: border-box;
-    }
+  &.selected::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    outline: 1rem solid white;
+    pointer-events: none;
+    box-sizing: border-box;
+  }
 }
 
 .sectionImage {
-    width: 5rem; 
-    height: 5rem;
+  width: 5rem;
+  height: 5rem;
 }
 
 .sectionCardTitle {
-    margin-top: 1rem;
-    font-size: $font-size-h5;
-    font-family: $font-family-title;
-    font-weight: $font-weight-semibold;
-    color: $white;
+  margin-top: 1rem;
+  @include card-title;
+  color: $white;
 }
