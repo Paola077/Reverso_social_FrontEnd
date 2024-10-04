@@ -3,7 +3,7 @@ import "./_SignInUpForm.scss";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { userRegister, userLogin } from "../../../services/userApi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../../../context/AuthContext"; 
+import { useAuth } from "../../../context/AuthContext";
 import logoReversoWhite from "../../../../public/images/RSLogoWhite.svg";
 import FSLogoWhite from "../../../../public/images/FSLogoWhite.svg";
 import { jwtDecode } from "jwt-decode";
@@ -86,18 +86,9 @@ const SignInUpForm = () => {
 
       if (accessToken) {
         const decodedToken = jwtDecode(accessToken);
-        console.log("Token decodificado:", decodedToken);
-
         const role = decodedToken?.authorities?.[0] || "USER";
-
-        localStorage.setItem("authToken", accessToken);
-        localStorage.setItem("user", JSON.stringify({ email: form.email }));
-        localStorage.setItem("role", role);
-        
-
         login(accessToken, { email: form.email }, role);
         queryClient.invalidateQueries({ queryKey: ["user"] });
-
         navigate("/reverso-social/femsenior");
       } else {
         console.error("No se recibió el token de acceso.");

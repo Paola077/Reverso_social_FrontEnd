@@ -5,23 +5,21 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(true);
   const [role, setRole] = useState(null);
   const [token, setToken] = useState(null);
-  const [user, setUser] =useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("authToken");
-    const user = localStorage.getItem("user");
+    const storedToken = localStorage.getItem("authToken");
+    const storedUser = localStorage.getItem("user");
     const storedRole = localStorage.getItem("role");
 
-    if (token && user && storedRole) {
+    if (storedToken && storedUser && storedRole) {
       setIsAuthenticated(true);
       setRole(storedRole);
-      setToken(token);
-      setUser(user);
+      setToken(storedToken);
+      setUser(JSON.parse(storedUser));
     }
-    setLoading(false);
   }, []);
 
   const login = (token, user, role) => {
@@ -29,14 +27,15 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("role", role);
     setToken(token);
-    setIsAuthenticated(true);
     setRole(role);
     setUser(user);
+    setIsAuthenticated(true);
   };
 
   const logout = () => {
     localStorage.removeItem("authToken");
     localStorage.removeItem("user");
+    localStorage.removeItem("role");
     setIsAuthenticated(false);
     setToken(null);
     setRole(null);

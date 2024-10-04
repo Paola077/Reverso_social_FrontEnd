@@ -16,7 +16,7 @@ const EventCardButton = ({ id }) => {
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const { token } = useAuth();
 
-  const mutationEvent = useMutation({
+  const mutationDeleteEvent = useMutation({
     mutationFn: (id) => deleteEvent(id, token),
     onSuccess: () => {
       setIsConfirmationOpen(false);
@@ -30,7 +30,7 @@ const EventCardButton = ({ id }) => {
   });
 
   const handleDelete = () => {
-    mutationEvent.mutate(id);
+    mutationDeleteEvent.mutate(id);
   };
 
   return (
