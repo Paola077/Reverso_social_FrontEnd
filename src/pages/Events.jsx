@@ -2,6 +2,7 @@ import React from "react";
 import EventCard from "../components/cards/eventCard/EventCard";
 import { useQuery } from "@tanstack/react-query";
 import { getAllEvents } from "../services/eventApi";
+import dayjs from "dayjs"; 
 
 function Events() {
   const {
@@ -13,14 +14,27 @@ function Events() {
     queryFn: getAllEvents,
   });
 
+  const currentMonth = dayjs().month();
+  const currentYear = dayjs().year();
+
+  // Filtrar eventos por mes actual
+  const eventsThisMonth = events?.filter((event) => {
+    const eventDate = dayjs(event.date); 
+    return (
+      eventDate.month() === currentMonth && eventDate.year() === currentYear
+    );
+  });
+
   return (
     <div>
       {eventsStatus === "loading" || eventsStatus === "pending" ? (
         <p>Cargando eventos...</p>
       ) : eventsStatus === "error" ? (
         <p>{eventsError?.response?.data?.message}</p>
+      ) : eventsThisMonth.length === 0 ? (
+        <p>No hay eventos para este mes.</p>
       ) : (
-        events?.map((event) => (
+        eventsThisMonth.map((event) => (
           <EventCard
             id={event.id}
             key={event.id}
