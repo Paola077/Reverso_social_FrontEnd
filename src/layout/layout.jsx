@@ -29,7 +29,7 @@ const Layout = () => {
           <Outlet />
         </main>
       </div>
-      <Footer className="layoutFooter" />
+      {!isFormPage &&<Footer className="layoutFooter" />}
     </div>
   );
 };
