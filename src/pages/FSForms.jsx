@@ -80,7 +80,6 @@ const FSForms = () => {
             { label: "Dirección y Ejecución", value: "Dirección y Ejecución" },
             { label: "Hostelería y Turismo", value: "Hostelería y Turismo" },
             { label: "Psicología", value: "Psicología" },
-            { label: "Sanidad", value: "Sanidad" },
             {
               label: "Servicios a la Comunidad",
               value: "Servicios a la Comunidad",
@@ -101,7 +100,7 @@ const FSForms = () => {
       ],
     },
     mentoria: {
-      text: "NUEVA MENTORÍA",
+      text: id ? "EDITAR MENTORÍA" :"NUEVA MENTORÍA",
       fields: [
         {
           title: "Título",
@@ -128,7 +127,6 @@ const FSForms = () => {
             { label: "Dirección y Ejecución", value: "Dirección y Ejecución" },
             { label: "Hostelería y Turismo", value: "Hostelería y Turismo" },
             { label: "Psicología", value: "Psicología" },
-            { label: "Sanidad", value: "Sanidad" },
             {
               label: "Servicios a la Comunidad",
               value: "Servicios a la Comunidad",
@@ -156,7 +154,7 @@ const FSForms = () => {
       ],
     },
     curriculum: {
-      text: "SUBE TU CURRICULUM",
+      text: id ? "EDITAR CURRICULUM" :"SUBE TU CURRICULUM",
       fields: [
         {
           title: "Puesto",
@@ -183,7 +181,6 @@ const FSForms = () => {
             { label: "Dirección y Ejecución", value: "Dirección y Ejecución" },
             { label: "Hostelería y Turismo", value: "Hostelería y Turismo" },
             { label: "Psicología", value: "Psicología" },
-            { label: "Sanidad", value: "Sanidad" },
             {
               label: "Servicios a la Comunidad",
               value: "Servicios a la Comunidad",
@@ -211,7 +208,7 @@ const FSForms = () => {
       ],
     },
     recurso: {
-      text: "NUEVO RECURSO",
+      text:id ? "EDITAR RECURSO" : "NUEVO RECURSO",
       fields: [
         {
           title: "Título",

@@ -18,7 +18,7 @@ const EventCardButton = ({ id }) => {
   const { token } = useAuth();
   const navigate = useNavigate();
 
-  const mutationEvent = useMutation({
+  const mutationDeleteEvent = useMutation({
     mutationFn: (id) => deleteEvent(id, token),
     onSuccess: () => {
       setIsConfirmationOpen(false);
@@ -32,7 +32,7 @@ const EventCardButton = ({ id }) => {
   });
 
   const handleDelete = () => {
-    mutationEvent.mutate(id);
+    mutationDeleteEvent.mutate(id);
   };
 
   return (

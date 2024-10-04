@@ -6,10 +6,11 @@ import { Button } from "../../buttons/button/Button";
 import { createEvent } from "../../../services/eventApi";
 // import { useMutation } from "@tanstack/react-query";
 import { useAuth } from "../../../context/AuthContext";
+import React, { Fragment } from 'react';
 import Alert from "../../modal/alerts/Alert";
 import { updateEvent } from "../../../services/eventApi";
 
-const FSForm = ({ text, formFields, initialData }) => {
+const FSForm = ({ text, formFields, initialData}) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState(initialData || {});
   const [response, setResponse] = useState(null);
@@ -57,20 +58,24 @@ const FSForm = ({ text, formFields, initialData }) => {
 
 
   const handleCancel = () => {
-    setFormData({}); // Resetea los campos del formulario
+    navigate("/reverso-social/femsenior");
   };
 
   // const mutationEvent = useMutation({
   //   mutationFn: (form) => createEvent(form, token),
   //   onSuccess: (res) => {
-  //     setResponse(res);
   //     setIsOpen(true);
   //   },
   //   onError: (error) => {
   //     setError(error?.response?.data);
-  //     console.error("Login Error:", error);
   //   },
   // });
+
+  const handleAlertClose = () => {
+    setIsOpen(false); 
+    navigate("/reverso-social/femsenior/eventos");
+  };
+
 
   return (
     <div className="formBackGround">
@@ -86,19 +91,18 @@ const FSForm = ({ text, formFields, initialData }) => {
           <h2 className="requestTitle">{text}</h2>
 
           {formFields.map((field, index) => (
-            <>
+              <Fragment key={index}>
               <InputForm
-                key={index}
                 title={field.title}
                 type={field.type}
                 placeholder={field.placeholder}
-                value={formData[field.name]}
+                value={formData[field.name] || ''}
                 name={field.name}
                 onChange={handleChange}
                 options={field.options || []}
               />
               <p className="errorText">{error?.[field.name]?.message}</p>
-            </>
+              </Fragment>
           ))}
           <p>{error?.message}</p>
           <div className="buttonBox">
@@ -122,6 +126,7 @@ const FSForm = ({ text, formFields, initialData }) => {
               width={"20rem"}
               height={"3rem"}
               margin={"3rem 0 0"}
+              onClick={handleSubmit}
             />
           </div>
         </div>
@@ -129,7 +134,7 @@ const FSForm = ({ text, formFields, initialData }) => {
       <Alert
         alert={isEdit ? "¡El evento ha sido actualizado!" : "¡Evento creado con éxito!"}
         isOpen={isOpen}
-        onclose={() => setIsOpen(false)}
+        onclose={handleAlertClose}
       >
         <Button
           textButton={"Aceptar"}
@@ -138,7 +143,7 @@ const FSForm = ({ text, formFields, initialData }) => {
           backgroundColor={"#7176f8"}
           border={"0.15rem solid #7176f8"}
           color={"white"}
-          onClick={() => setIsOpen(false)}
+          onClick={handleAlertClose}
         />
       </Alert>
 

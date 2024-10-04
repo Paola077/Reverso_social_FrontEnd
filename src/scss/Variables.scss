@@ -52,6 +52,12 @@ $font-weight-bold: 700;
   color: $dark;
 }
 
+@mixin card-title{
+  font-size: $font-size-h5;
+  font-family: $font-family-title;
+  font-weight: $font-weight-semibold;
+}
+
 @mixin text-font{
  font-family: $font-family-text;
   font-size: $font-size-h5;
