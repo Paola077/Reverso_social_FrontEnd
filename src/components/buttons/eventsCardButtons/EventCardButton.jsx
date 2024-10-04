@@ -8,6 +8,7 @@ import { useAuth } from "../../../context/AuthContext";
 import Alert from "../../modal/alerts/Alert";
 import { Button } from "../button/Button";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const EventCardButton = ({ id }) => {
   const queryClient = useQueryClient();
@@ -15,6 +16,7 @@ const EventCardButton = ({ id }) => {
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const { token } = useAuth();
+  const navigate = useNavigate();
 
   const mutationEvent = useMutation({
     mutationFn: (id) => deleteEvent(id, token),
@@ -36,7 +38,7 @@ const EventCardButton = ({ id }) => {
   return (
     <>
       <div className="tabButtonContainer">
-        <button className="tabButtonContainer__editButton">
+        <button className="tabButtonContainer__editButton" onClick={() => navigate(`/formulariofs/evento/editar/${id}`)}>
           <img
             className="tabButtonContainer__editButton__editIcon"
             src={editIcon}
@@ -89,7 +91,7 @@ const EventCardButton = ({ id }) => {
         <Alert
           alert="¡El evento ha sido eliminado!"
           isOpen={isSuccessOpen}
-          onClose={() => setIsSuccessOpen(false)}
+          onclose={() => setIsSuccessOpen(false)}
         >
           <Button
             textButton={"Aceptar"}
@@ -108,7 +110,7 @@ const EventCardButton = ({ id }) => {
         <Alert
           alert={`Error: ${error.message || "No se pudo eliminar el evento"}`}
           isOpen={!!error}
-          onClose={() => setError(null)}
+          onclose={() => setError(null)}
         >
           <Button
             textButton={"Aceptar"}
