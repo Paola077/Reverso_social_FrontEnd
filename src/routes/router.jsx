@@ -65,6 +65,10 @@ const router = createBrowserRouter([
         path: "formulariofs/:formType",
         element: <FSForms />,
       },
+      {
+        path: "formulariofs/:formType/editar/:id",
+        element: <FSForms />,
+      },
     ],
   },
 ]);

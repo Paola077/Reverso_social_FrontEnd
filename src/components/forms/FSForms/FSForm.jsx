@@ -1,20 +1,31 @@
 import { useNavigate, useParams } from "react-router-dom";
 import "./_FSForm.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InputForm } from "../../Inputs/InputForm";
 import { Button } from "../../buttons/button/Button";
 import { createEvent } from "../../../services/eventApi";
-import { useMutation } from "@tanstack/react-query";
+// import { useMutation } from "@tanstack/react-query";
 import { useAuth } from "../../../context/AuthContext";
 import React, { Fragment } from 'react';
 import Alert from "../../modal/alerts/Alert";
+import { updateEvent } from "../../../services/eventApi";
 
-const FSForm = ({ text, formFields, initialFormData }) => {
+const FSForm = ({ text, formFields, initialData}) => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState(initialData || {});
+  const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const { token } = useAuth();
+  const { id } = useParams();
+
+  const isEdit = Boolean(id);
+
+  useEffect(() => {
+    if (initialData) {
+      setFormData(initialData); // Si hay datos iniciales, actualizamos formData
+    }
+  }, [initialData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,28 +35,41 @@ const FSForm = ({ text, formFields, initialFormData }) => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    setError(null);
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    //console.log("Datos del formulario:", formData);
-    if (text == "NUEVO EVENTO") {
-      mutationEvent.mutate(formData);
+    setResponse(null);
+    setError(null);
+
+    try {
+      if (isEdit) {
+        // Si es modo edición, hacemos un PUT
+        const res = await updateEvent(id, formData, token);
+        setResponse(res);
+      } else {
+        // Si no es edición, creamos un nuevo evento
+        const res = await createEvent(formData, token);
+        setResponse(res);
+      }
+      setIsOpen(true);
+    } catch (err) {
+      setError(err?.response?.data || "Ocurrió un error");
     }
   };
+
 
   const handleCancel = () => {
     navigate("/reverso-social/femsenior");
   };
 
-  const mutationEvent = useMutation({
-    mutationFn: (form) => createEvent(form, token),
-    onSuccess: (res) => {
-      setIsOpen(true);
-    },
-    onError: (error) => {
-      setError(error?.response?.data);
-    },
-  });
+  // const mutationEvent = useMutation({
+  //   mutationFn: (form) => createEvent(form, token),
+  //   onSuccess: (res) => {
+  //     setIsOpen(true);
+  //   },
+  //   onError: (error) => {
+  //     setError(error?.response?.data);
+  //   },
+  // });
 
   const handleAlertClose = () => {
     setIsOpen(false); 
@@ -72,7 +96,7 @@ const FSForm = ({ text, formFields, initialFormData }) => {
                 title={field.title}
                 type={field.type}
                 placeholder={field.placeholder}
-                value={formData[field.name]}
+                value={formData[field.name] || ''}
                 name={field.name}
                 onChange={handleChange}
                 options={field.options || []}
@@ -108,7 +132,7 @@ const FSForm = ({ text, formFields, initialFormData }) => {
         </div>
       </form>
       <Alert
-        alert="Se ha registrado el evento con exito!"
+        alert={isEdit ? "¡El evento ha sido actualizado!" : "¡Evento creado con éxito!"}
         isOpen={isOpen}
         onclose={handleAlertClose}
       >
@@ -122,6 +146,25 @@ const FSForm = ({ text, formFields, initialFormData }) => {
           onClick={handleAlertClose}
         />
       </Alert>
+
+      {/* Mostrar errores si ocurre */}
+      {error && (
+        <Alert
+          alert={`Error: ${error.message || "Ocurrió un error al procesar la solicitud"}`}
+          isOpen={!!error}
+          onClose={() => setError(null)}
+        >
+          <Button
+            textButton={"Aceptar"}
+            width={"12.5rem"}
+            height={"2.75rem"}
+            backgroundColor={"#7176f8"}
+            border={"0.15rem solid #7176f8"}
+            color={"white"}
+            onClick={() => setError(null)}
+          />
+        </Alert>
+      )}
     </div>
   );
 };
