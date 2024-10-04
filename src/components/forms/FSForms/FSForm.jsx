@@ -6,6 +6,7 @@ import { Button } from "../../buttons/button/Button";
 import { createEvent } from "../../../services/eventApi";
 import { useMutation } from "@tanstack/react-query";
 import { useAuth } from "../../../context/AuthContext";
+import React, { Fragment } from 'react';
 import Alert from "../../modal/alerts/Alert";
 
 const FSForm = ({ text, formFields, initialFormData }) => {
@@ -46,6 +47,12 @@ const FSForm = ({ text, formFields, initialFormData }) => {
     },
   });
 
+  const handleAlertClose = () => {
+    setIsOpen(false); 
+    navigate("/reverso-social/femsenior/eventos");
+  };
+
+
   return (
     <div className="formBackGround">
       <form onSubmit={handleSubmit}>
@@ -60,9 +67,8 @@ const FSForm = ({ text, formFields, initialFormData }) => {
           <h2 className="requestTitle">{text}</h2>
 
           {formFields.map((field, index) => (
-            <>
+              <Fragment key={index}>
               <InputForm
-                key={index}
                 title={field.title}
                 type={field.type}
                 placeholder={field.placeholder}
@@ -72,7 +78,7 @@ const FSForm = ({ text, formFields, initialFormData }) => {
                 options={field.options || []}
               />
               <p className="errorText">{error?.[field.name]?.message}</p>
-            </>
+              </Fragment>
           ))}
           <p>{error?.message}</p>
           <div className="buttonBox">
@@ -84,7 +90,7 @@ const FSForm = ({ text, formFields, initialFormData }) => {
               width={"20rem"}
               height={"3rem"}
               margin={"3rem 0 0"}
-              onClick={() => handleCancel()}
+              onClick={handleCancel}
             />
 
             <Button
@@ -96,7 +102,7 @@ const FSForm = ({ text, formFields, initialFormData }) => {
               width={"20rem"}
               height={"3rem"}
               margin={"3rem 0 0"}
-              onClick={() => handleSubmit()}
+              onClick={handleSubmit}
             />
           </div>
         </div>
@@ -104,7 +110,7 @@ const FSForm = ({ text, formFields, initialFormData }) => {
       <Alert
         alert="Se ha registrado el evento con exito!"
         isOpen={isOpen}
-        onclose={() => setIsOpen(false)}
+        onclose={handleAlertClose}
       >
         <Button
           textButton={"Aceptar"}
@@ -113,7 +119,7 @@ const FSForm = ({ text, formFields, initialFormData }) => {
           backgroundColor={"#7176f8"}
           border={"0.15rem solid #7176f8"}
           color={"white"}
-          onClick={() => setIsOpen(false)}
+          onClick={handleAlertClose}
         />
       </Alert>
     </div>
