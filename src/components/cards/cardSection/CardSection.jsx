@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./_CardSection.scss";
+import { Link } from "react-router-dom";
 
 const sections = [
   {
@@ -27,6 +28,7 @@ const sections = [
     tabLabel: "SUBE UN RECURSO",
   },
 ];
+
 const CardSection = ({ onTabChange }) => {
   const [selectedSection, setSelectedSection] = useState(1);
 
@@ -41,21 +43,26 @@ const CardSection = ({ onTabChange }) => {
   return (
     <div className="cardSectionContainer">
       {sections.map((section) => (
-        <button
+        <Link
           key={section.id}
-          className={`sectionCard ${
-            selectedSection === section.id ? "selected" : ""
-          }`}
-          onClick={() => handleSelect(section.id)}
-          aria-pressed={selectedSection === section.id}
+          to={`/reverso-social/femsenior/${section.title.toLowerCase()}`} 
+          className="sectionLink"
         >
-          <img
-            src={section.imageUrl}
-            alt={section.title}
-            className="sectionImage"
-          />
-          <h3 className="sectionCardTitle">{section.title}</h3>
-        </button>
+          <button
+            className={`sectionCard ${
+              selectedSection === section.id ? "selected" : ""
+            }`}
+            onClick={() => handleSelect(section.id)}
+            aria-pressed={selectedSection === section.id}
+          >
+            <img
+              src={section.imageUrl}
+              alt={section.title}
+              className="sectionImage"
+            />
+            <h3 className="sectionCardTitle">{section.title}</h3>
+          </button>
+        </Link>
       ))}
     </div>
   );
