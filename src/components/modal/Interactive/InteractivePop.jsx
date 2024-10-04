@@ -88,23 +88,24 @@ const InteractivePop = ({
         <button className="popUpContentClose" onClick={onClose}>
           <img src={closeIcon} alt="Cerrar" className="popUpCloseIcon" />
         </button>
-        <div className="popUpHeader">
-          <h2 className="popUpContentTitle">{titleSection}</h2>
+        <div className="titleAndDateContainer">
+          <div>
+            <h3 className="titlePopUp">{title}</h3>
+            {modality && <p className="popUpModality">{modality}</p>}
+          </div>
           {currentPage === "EVENTOS" && (date || time) && (
-            <div className="popUpEventDateTime">
+            <div className="dateAndTime">
               {date && <p className="popUpDate">{date}</p>}
               {time && <p className="popUpTime">{time}</p>}
             </div>
           )}
         </div>
-        <h3 className="titlePopUp">{title}</h3>
         {position && (
           <div className="popUpPosition">
             <strong>{position}</strong>
           </div>
         )}
         <div className="popUpContentBody">
-          {modality && <p className="popUpModality">{modality}</p>}
           {type && (
             <div className="PopUpType">
               <p className="popUpTypeText">
@@ -145,7 +146,7 @@ const InteractivePop = ({
       </div>
     </div>
   );
-};
+};  
 
 
 export default InteractivePop;
