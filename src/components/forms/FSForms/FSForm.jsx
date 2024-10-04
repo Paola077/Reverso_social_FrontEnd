@@ -8,10 +8,9 @@ import { useMutation } from "@tanstack/react-query";
 import { useAuth } from "../../../context/AuthContext";
 import Alert from "../../modal/alerts/Alert";
 
-const FSForm = ({ text, formFields }) => {
+const FSForm = ({ text, formFields, initialFormData }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
-  const [response, setResponse] = useState(null);
   const [error, setError] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const { token } = useAuth();
@@ -25,7 +24,6 @@ const FSForm = ({ text, formFields }) => {
   };
 
   const handleSubmit = (e) => {
-    setResponse(null);
     setError(null);
     e.preventDefault();
     //console.log("Datos del formulario:", formData);
@@ -35,18 +33,16 @@ const FSForm = ({ text, formFields }) => {
   };
 
   const handleCancel = () => {
-    setFormData({}); // Resetea los campos del formulario
+    navigate("/reverso-social/femsenior");
   };
 
   const mutationEvent = useMutation({
     mutationFn: (form) => createEvent(form, token),
     onSuccess: (res) => {
-      setResponse(res);
       setIsOpen(true);
     },
     onError: (error) => {
       setError(error?.response?.data);
-      console.error("Login Error:", error);
     },
   });
 
@@ -88,7 +84,7 @@ const FSForm = ({ text, formFields }) => {
               width={"20rem"}
               height={"3rem"}
               margin={"3rem 0 0"}
-              onClick={handleCancel}
+              onClick={() => handleCancel()}
             />
 
             <Button
@@ -100,6 +96,7 @@ const FSForm = ({ text, formFields }) => {
               width={"20rem"}
               height={"3rem"}
               margin={"3rem 0 0"}
+              onClick={() => handleSubmit()}
             />
           </div>
         </div>
