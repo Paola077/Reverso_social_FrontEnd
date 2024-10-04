@@ -21,9 +21,11 @@ return(
         <div className="footerBox">
             <div className="footerText">
                 <p className="footerTitle">Reverso Social</p>
+                <div className="footerParagrafs">
                 <p>Diercción: </p>
                 <p>Teléfono: </p>
                 <p>Correo electrónico:</p>
+                </div>
             </div>
             <div className="footerSocials">
                 <RequestButton 
@@ -32,6 +34,7 @@ return(
                     height={"2rem"}
                     marginRight={"1.5rem"} 
                     fontSize={"0.8rem"}
+                    color={"#090d6d"}
                     onClick={()=> navigate("formulario/peticiones")}/>
                 <BsFacebook className="footerFb" onClick={handleClick2}/>
                 <BiLogoInstagramAlt  className="footerIg" onClick={handleClick1}/>
