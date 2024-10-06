@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate} from "react-router-dom";
 import './_DynamicTab.scss';
+import SectorSelect from '../tabBySector/SectorSelect';
 
-const DynamicTab = ({ label, onClick }) => {
+const DynamicTab = ({ label, onClick,showSector }) => {
   const navigate = useNavigate();
   const getFormRoute = (label) => {
     switch (label) {
@@ -21,6 +22,7 @@ const DynamicTab = ({ label, onClick }) => {
 
     return (
       <div className="secctionTabContainer">
+         {showSector && <SectorSelect />}
       <div className="secctionTab" onClick={() => navigate(getFormRoute(label))}>
         {label}
       </div>
@@ -30,3 +32,5 @@ const DynamicTab = ({ label, onClick }) => {
   };
   
   export default DynamicTab;
+
+  

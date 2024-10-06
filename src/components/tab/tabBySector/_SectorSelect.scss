@@ -1,0 +1,17 @@
+@import '../../../scss/Variables.scss';
+
+
+  .sectorSelect {
+    font-family: $font-family-title;
+    font-weight: $font-weight-regular;
+    background-color: $lila; 
+    color: $white; 
+    padding: 0.62rem 1.25rem;
+    border-radius: 0.75rem; 
+    cursor: pointer;
+    margin-left: 26.3%;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    
+  }
