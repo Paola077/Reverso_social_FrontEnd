@@ -10,3 +10,9 @@ export const USER_LOGIN = BASE_URL + "auth/login";
 export const EVENT_URL = BASE_URL + "events"
 
 export const EVENT_URL_ID = (id) => `${EVENT_URL}/${id}`;
+
+//SERVICES URL  
+
+export const SERVICES_URL = BASE_URL + "services"
+
+export const SERVICES_URL_ID = (id) => `${SERVICES_URL}/${id}`;
