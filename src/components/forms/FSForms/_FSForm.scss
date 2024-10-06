@@ -46,9 +46,7 @@
     }
 
     .errorText {
-      color: red;
-      margin-left: 22rem;
-      margin-top: 0.3rem;
+      @include errorTextForm
     }
   }
 }

@@ -52,6 +52,12 @@ $font-weight-bold: 700;
   color: $dark;
 }
 
+@mixin card-title{
+  font-size: $font-size-h5;
+  font-family: $font-family-title;
+  font-weight: $font-weight-semibold;
+}
+
 @mixin text-font{
  font-family: $font-family-text;
   font-size: $font-size-h5;
@@ -98,4 +104,12 @@ $font-weight-bold: 700;
 @mixin flex_center {
   align-items: center;
   display: flex;
+}
+
+@mixin errorTextForm{
+  color: red;
+      font-family: $font-family-text;
+      font-size: 0.8rem;
+      margin-left: 22rem;
+      margin-top: 0.3rem;
 }
