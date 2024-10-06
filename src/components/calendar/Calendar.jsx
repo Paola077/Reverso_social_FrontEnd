@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import {
@@ -9,7 +10,7 @@ import {
   subMonths,
 } from "date-fns";
 import { es } from "date-fns/locale";
-import { useState } from "react";
+import { getAllEvents } from "../../services/eventApi";
 
 const locales = {
   es: es,
@@ -25,6 +26,30 @@ const localizer = dateFnsLocalizer({
 
 const MonthlyCalendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const eventData = await getAllEvents();
+        const formattedEvents = eventData.map((event) => {
+          const startDate = new Date(`${event.date}T${event.time}`);
+
+          return {
+            title: event.title,
+            start: startDate,
+            end: startDate,
+          };
+        });
+
+        setEvents(formattedEvents);
+      } catch (error) {
+        console.error("Error fetching events:", error);
+      }
+    };
+
+    fetchEvents();
+  }, []);
 
   const goToNextMonth = () => {
     setCurrentDate(addMonths(currentDate, 1));
@@ -89,7 +114,7 @@ const MonthlyCalendar = () => {
       {renderToolbar()}
       <Calendar
         localizer={localizer}
-        events={[]}
+        events={events}
         startAccessor="start"
         endAccessor="end"
         date={currentDate}
