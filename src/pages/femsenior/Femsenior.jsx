@@ -6,16 +6,14 @@ import MonthlyCalendar from "../../components/calendar/Calendar";
 import DynamicTab from "../../components/tab/dynamicTab/DynamicTab";
 import { AuthContext } from "../../context/AuthContext"; 
 import "./_Femsenior.scss";
-feature/alertLogin
 import Alert from "../../components/modal/alerts/Alert";
-import SectorSelect from "../../components/tab/tabBySector/SectorSelect"; dev
+import SectorSelect from "../../components/tab/tabBySector/SectorSelect";
 
 function Femsenior() {
   const location = useLocation();
   const [tabLabel, setTabLabel] = useState("NUEVO EVENTO");
   const { isAuthenticated, role } = useContext(AuthContext);
   const showDynamicTab = isAuthenticated && role === "FEMSENIOR";
- feature/alertLogin
   const [isAlertOpen, setIsAlertOpen] = useState(location.state?.showWelcomeAlert || false);
 
   useEffect(() => {
@@ -34,7 +32,6 @@ function Femsenior() {
   }, [isAlertOpen]);
 
   const [showSector, setShowSector] = useState(false); 
- dev
 
   const handleTabChange = (newLabel) => {
     setTabLabel(newLabel);
