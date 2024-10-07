@@ -3,16 +3,19 @@ import { Outlet, useLocation } from "react-router-dom";
 import Manifest from "../../components/sections/manifest/Manifest";
 import CardSection from "../../components/cards/cardSection/CardSection";
 import MonthlyCalendar from "../../components/calendar/Calendar";
-import DynamicTab from "../../components/tab/DynamicTab";
+import DynamicTab from "../../components/tab/dynamicTab/DynamicTab";
 import { AuthContext } from "../../context/AuthContext"; 
 import "./_Femsenior.scss";
+feature/alertLogin
 import Alert from "../../components/modal/alerts/Alert";
+import SectorSelect from "../../components/tab/tabBySector/SectorSelect"; dev
 
 function Femsenior() {
   const location = useLocation();
   const [tabLabel, setTabLabel] = useState("NUEVO EVENTO");
   const { isAuthenticated, role } = useContext(AuthContext);
   const showDynamicTab = isAuthenticated && role === "FEMSENIOR";
+ feature/alertLogin
   const [isAlertOpen, setIsAlertOpen] = useState(location.state?.showWelcomeAlert || false);
 
   useEffect(() => {
@@ -30,8 +33,16 @@ function Femsenior() {
     }
   }, [isAlertOpen]);
 
+  const [showSector, setShowSector] = useState(false); 
+ dev
+
   const handleTabChange = (newLabel) => {
     setTabLabel(newLabel);
+    if (newLabel === "SUBE TU CURRICULUM") {
+      setShowSector(true);
+    } else {
+      setShowSector(false);
+    }
   };
   return (
     <div>
@@ -49,10 +60,15 @@ function Femsenior() {
       <div>
         <CardSection onTabChange={handleTabChange} />
         {showDynamicTab && (
-        <DynamicTab 
-        label={tabLabel} 
-        onClick={() => handleTabChange(tabLabel)} />
-      )}
+          <DynamicTab 
+            label={tabLabel} 
+            onClick={() => handleTabChange(tabLabel)} 
+            showSector={showSector} 
+          />
+        )}
+        {isAuthenticated && !showDynamicTab && showSector && (
+          <SectorSelect />
+        )}
       </div>
       <Outlet />
     </div>
