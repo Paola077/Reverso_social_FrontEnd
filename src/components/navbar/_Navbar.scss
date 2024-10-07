@@ -3,12 +3,13 @@
 .navbar {
   background-color: transparent !important;
   box-shadow: none !important;
-  width: 100%;
+  max-width: 90rem;
+  margin: auto;
   display: flex;
   flex-wrap: nowrap;
   height: 80px;
   font-family: $font-family-title;
-  margin: 1rem 0;
+  padding: 1rem 0;
   margin-bottom: 2rem;
 
   .navbarToolbar {
@@ -21,16 +22,20 @@
     width: 10%;
     .logo {
       width: 90%;
-      height: 80px;
-      margin-right: 20px;
+      height: 5rem;
+      // margin-right: 20px;
     }
   }
 
   .linksContainer {
     width: 30%;
-    gap: 30px;
+    gap: 1.875rem;
     @include flex_center;
 
+    @media (max-width: 1400px) {
+            width: 50%; /* Ajusta el tamaño para que quepa mejor */
+            gap: 0.5rem; /* Reduce el espacio entre los enlaces */
+          }
     .navLink {
       @include navLink-style;
 
@@ -38,6 +43,14 @@
       &:active {
         @include navLink-style-hover;
       }
+
+      @media (max-width: 1200px) {
+        .navLink {
+          font-size: 0.5rem; /* Disminuir el tamaño del texto */
+          padding: 0.25rem 0.5rem; /* Reducir el padding */
+        }
+      }
+      
     }
 
     a:-webkit-any-link {
@@ -73,18 +86,19 @@
         width: 100%;
         display: none;
         position: absolute;
-        top: 90%;
+        top:115%;
         left: 0;
         background-color: white;
-        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+        box-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.2);
         z-index: 100;
-        border-radius: 8px;
+        border-radius: 0 0 0.5rem 0.5rem;
         list-style: none;
+        padding: 1rem 0.5rem;
 
         li {
-          padding: 10px 20px;
+          padding: 0.8rem;
           font-weight: $font-weight-regular;
-          font-size: 15px;
+          font-size: 1rem;
           text-decoration: none !important;
 
           &:hover {

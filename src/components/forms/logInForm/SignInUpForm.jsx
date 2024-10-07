@@ -7,12 +7,16 @@ import { useAuth } from "../../../context/AuthContext";
 import logoReversoWhite from "../../../../public/images/RSLogoWhite.svg";
 import FSLogoWhite from "../../../../public/images/FSLogoWhite.svg";
 import { jwtDecode } from "jwt-decode";
+import Alert from "../../modal/alerts/Alert";
+
+
 
 const SignInUpForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { login, isAuthenticated } = useAuth();
   const [isRightPanelActive, setIsRightPanelActive] = useState(false);
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
   const queryClient = useQueryClient();
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -27,17 +31,11 @@ const SignInUpForm = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/reverso-social/femsenior");
+      setTimeout(() => {
+        navigate("/reverso-social/femsenior", { state: { showWelcomeAlert: true } });
+      }, 100);
     }
   }, [isAuthenticated, navigate]);
-
-  useEffect(() => {
-    if (location.pathname === "/reverso-social/login") {
-      setIsRightPanelActive(false);
-    } else if (location.pathname === "/reverso-social/signin") {
-      setIsRightPanelActive(true);
-    }
-  }, [location.pathname]);
   const resetForm = () => {
     setForm({
       name: "",
@@ -89,7 +87,7 @@ const SignInUpForm = () => {
         const role = decodedToken?.authorities?.[0] || "USER";
         login(accessToken, { email: form.email }, role);
         queryClient.invalidateQueries({ queryKey: ["user"] });
-        navigate("/reverso-social/femsenior");
+      
       } else {
         console.error("No se recibió el token de acceso.");
         setError("Error al recibir los datos de autenticación.");
@@ -202,6 +200,13 @@ const SignInUpForm = () => {
         className="formContainer signInContainer"
         style={{ display: !isRightPanelActive ? "block" : "none" }}
       >
+         {isAlertOpen && (
+        <Alert 
+          isOpen={isAlertOpen}
+          onclose={() => setIsAlertOpen(false)}
+          alert="¡Bienvenida a la comunidad!"
+        />
+      )}
         <form onSubmit={handleLogin}>
           <h2 className="logInTitle">Accede a tu cuenta</h2>
           <input

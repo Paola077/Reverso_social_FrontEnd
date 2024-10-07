@@ -3,7 +3,7 @@
 
 footer{
     background-color:$purple;
-    height: 9.75rem;
+    height: 7rem;
 
     .footerBox{
         max-width: 90rem;
@@ -19,13 +19,22 @@ footer{
 
             .footerTitle{
                 font-weight:400;
-                
-            }
-            p{
+                font-size: 1rem;
                 color: white;
                 font-family: $font-family-text;
+                padding-bottom: 0.5rem;
+            }
+            .footerParagrafs{
+                display: flex;
+                justify-content: space-between;
+                color: white;
+                font-family: $font-family-text;
+                font-size: 0.9rem;
                 padding-bottom: 0.05rem;
                 font-weight:200;
+                p{
+                    padding-right: 5rem;
+                }
             }
         }
     }

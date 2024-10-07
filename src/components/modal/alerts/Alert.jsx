@@ -1,9 +1,7 @@
-import { Button } from "../../buttons/button/Button";
 import "./_Alert.scss";
 
 const Alert = ({ isOpen, onclose, alert, children }) => {
   if (!isOpen) return null;
-
   return (
     <div className="overlay">
       <div className="alertBox">
