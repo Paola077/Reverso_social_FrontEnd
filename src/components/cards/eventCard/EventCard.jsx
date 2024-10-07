@@ -5,6 +5,7 @@ import { Button } from "../../buttons/button/Button";
 import Alert from "../../modal/alerts/Alert";
 import { useAuth } from "../../../context/AuthContext";
 import InteractivePop from "../../modal/Interactive/InteractivePop";
+import { useLocation } from "react-router-dom";
 
 const truncateText = (text, limit) => {
   const words = text.split(" ");
@@ -33,6 +34,7 @@ const EventCard = ({
   const { isAuthenticated, role, user } = useAuth();
   const [alertOpen, setAlertOpen] = useState(false);
   const [isPopupOpen, setPopupOpen] = useState(false);
+  const pathLocation = useLocation();
 
   const createdByUser = user?.email === createdBy;
   console.log("Usuario autenticado:", user?.email);
@@ -40,7 +42,7 @@ const EventCard = ({
   console.log("¿Es el creador?", createdByUser);
 
   const handlePopupOpen = () => {
-    if (isAuthenticated) {
+    if (isAuthenticated || pathLocation.pathname.includes('/eventos')) {
       setPopupOpen(true);
       console.log("Popup abierto:", isPopupOpen);
     } else {

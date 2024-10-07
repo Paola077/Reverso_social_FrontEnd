@@ -9,7 +9,9 @@
   background-color: #bcacd499;
   display: flex;
   justify-content: center;
+  align-items: center;
   z-index: 1000;
+  overflow: hidden;
 
   &__content {
     background-color: $white;
@@ -17,10 +19,18 @@
     border-radius: 0.8rem;
     width: 90%;
     max-width: 55rem;
+    max-height: 90vh;
     position: relative;
     box-shadow: 0px 15px 30px #0000001a;
     color: $dark;
     margin: 2rem 0;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      display: none; // Esconde la barra de scroll en Chrome, Safari y Edge
+    }
+
+    scrollbar-width: none;
 
     &__close {
       position: absolute;
@@ -34,6 +44,8 @@
         width: 2rem;
         height: 2rem;
       }
+
+      
     }
 
     &__title {

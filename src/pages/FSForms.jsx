@@ -1,13 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import FSForm from "../components/forms/FSForms/FSForm";
 import { useParams } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { getEvent } from "../services/eventApi";
 
 const FSForms = () => {
-  const { formType } = useParams();
+  const { formType, id } = useParams();
+  const { token } = useAuth();
+  const [initialData, setInitialData] = useState();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (id) {
+      // Si estamos en modo edición, obtenemos los datos del evento
+      getEvent(id)
+        .then((data) => {
+          setInitialData(data); // Guardamos los datos para rellenar el formulario
+        })
+        .catch((error) => {
+          console.error("Error al obtener el evento:", error);
+        })
+        .finally(() => setLoading(false)); // Marcamos como finalizada la carga
+    } else {
+      setLoading(false); // Si no hay id, no estamos editando, no necesitamos cargar datos
+    }
+  }, [id]);
+
 
   const formConfigurations = {
     evento: {
-      text: "NUEVO EVENTO",
+      text: id ? "EDITAR EVENTO" : "NUEVO EVENTO",
       fields: [
         {
           title: "Título",
@@ -58,7 +80,6 @@ const FSForms = () => {
             { label: "Dirección y Ejecución", value: "Dirección y Ejecución" },
             { label: "Hostelería y Turismo", value: "Hostelería y Turismo" },
             { label: "Psicología", value: "Psicología" },
-            { label: "Sanidad", value: "Sanidad" },
             {
               label: "Servicios a la Comunidad",
               value: "Servicios a la Comunidad",
@@ -79,7 +100,7 @@ const FSForms = () => {
       ],
     },
     mentoria: {
-      text: "NUEVA MENTORÍA",
+      text: id ? "EDITAR MENTORÍA" :"NUEVA MENTORÍA",
       fields: [
         {
           title: "Título",
@@ -106,7 +127,6 @@ const FSForms = () => {
             { label: "Dirección y Ejecución", value: "Dirección y Ejecución" },
             { label: "Hostelería y Turismo", value: "Hostelería y Turismo" },
             { label: "Psicología", value: "Psicología" },
-            { label: "Sanidad", value: "Sanidad" },
             {
               label: "Servicios a la Comunidad",
               value: "Servicios a la Comunidad",
@@ -134,7 +154,7 @@ const FSForms = () => {
       ],
     },
     curriculum: {
-      text: "SUBE TU CURRICULUM",
+      text: id ? "EDITAR CURRICULUM" :"SUBE TU CURRICULUM",
       fields: [
         {
           title: "Puesto",
@@ -161,7 +181,6 @@ const FSForms = () => {
             { label: "Dirección y Ejecución", value: "Dirección y Ejecución" },
             { label: "Hostelería y Turismo", value: "Hostelería y Turismo" },
             { label: "Psicología", value: "Psicología" },
-            { label: "Sanidad", value: "Sanidad" },
             {
               label: "Servicios a la Comunidad",
               value: "Servicios a la Comunidad",
@@ -189,7 +208,7 @@ const FSForms = () => {
       ],
     },
     recurso: {
-      text: "NUEVO RECURSO",
+      text:id ? "EDITAR RECURSO" : "NUEVO RECURSO",
       fields: [
         {
           title: "Título",
@@ -220,7 +239,10 @@ const FSForms = () => {
     },
   };
   const currentForm = formConfigurations[formType];
-  return <FSForm text={currentForm.text} formFields={currentForm.fields} />;
+  return <FSForm 
+  text={currentForm.text} 
+  formFields={currentForm.fields}
+  initialData={initialData} />;
 };
 
 export default FSForms;

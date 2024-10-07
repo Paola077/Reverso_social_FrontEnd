@@ -11,6 +11,9 @@ import {
 } from "date-fns";
 import { es } from "date-fns/locale";
 import { getAllEvents } from "../../services/eventApi";
+import { useAuth } from "../../context/AuthContext";
+import { useLocation } from "react-router-dom";
+import InteractivePop from "../modal/Interactive/InteractivePop";
 
 const locales = {
   es: es,
@@ -27,6 +30,11 @@ const localizer = dateFnsLocalizer({
 const MonthlyCalendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [events, setEvents] = useState([]);
+  const { isAuthenticated, role, user } = useAuth();
+  const [isPopupOpen, setPopupOpen] = useState(false);
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [popupData, setPopupData] = useState({});
+  const pathLocation = useLocation();
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -36,9 +44,10 @@ const MonthlyCalendar = () => {
           const startDate = new Date(`${event.date}T${event.time}`);
 
           return {
-            title: event.title,
+            title: "E",
             start: startDate,
             end: startDate,
+            eventData: event,
           };
         });
 
@@ -103,6 +112,35 @@ const MonthlyCalendar = () => {
     );
   };
 
+  const eventStyleGetter = (event) => {
+    const style = {
+      backgroundColor: "#7176f8",
+      borderRadius: "50%",
+      color: "white",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      width: "20px",
+      height: "20px",
+      fontSize: "0.8rem",
+      cursor: "pointer",
+    };
+    return { style };
+  };
+
+  const handlePopupOpen = (event) => {
+    if (isAuthenticated || pathLocation.pathname.includes("/eventos")) {
+      setPopupOpen(true);
+      setPopupData(event.eventData);
+    } else {
+      setAlertOpen(true);
+    }
+  };
+
+  const handleClosePopup = () => {
+    setPopupOpen(false);
+  };
+
   return (
     <div
       style={{
@@ -134,7 +172,33 @@ const MonthlyCalendar = () => {
           month: {
             header: () => null,
           },
+          event: ({ event }) => (
+            <div
+              title={event.eventData?.title || "Evento"}
+              onClick={() => handlePopupOpen(event)}
+            >
+              {event.title}
+            </div>
+          ),
         }}
+        eventPropGetter={eventStyleGetter}
+      />
+      <InteractivePop
+        isOpen={isPopupOpen}
+        onClose={handleClosePopup}
+        title={popupData.title}
+        modality={popupData.modality}
+        date={popupData.date}
+        time={popupData.time}
+        location={popupData.location}
+        type={popupData.type}
+        position={popupData.position}
+        email={popupData.email}
+        phoneNumber={popupData.phoneNumber}
+        name={popupData.name}
+        description={popupData.description}
+        buttonText={popupData.buttonText || "Apúntate"}
+        contentText={popupData.contentText}
       />
     </div>
   );
