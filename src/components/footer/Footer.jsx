@@ -22,9 +22,9 @@ return(
             <div className="footerText">
                 <p className="footerTitle">Reverso Social</p>
                 <div className="footerParagrafs">
-                <p>Diercción: </p>
-                <p>Teléfono: </p>
-                <p>Correo electrónico:</p>
+                {/* <p>Diercción: </p>
+                <p>Teléfono: </p> */}
+                <p>Correo electrónico: reverso.social.igualdad@gmail.com</p>
                 </div>
             </div>
             <div className="footerSocials">
