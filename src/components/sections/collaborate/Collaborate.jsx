@@ -16,6 +16,7 @@ const Collaborate = () => {
             height="3.5rem"
             fontSize="18px"
             marginRight="5px"
+            color="white"
             onClick={ ()=> navigate("/formulario/colabora")}
           />
         </div>

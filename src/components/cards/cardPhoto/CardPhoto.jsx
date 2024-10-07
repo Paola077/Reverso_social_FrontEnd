@@ -4,7 +4,9 @@ import { FaLinkedin } from 'react-icons/fa'
 const CardPhoto = ({ imageUrl, name, title, linkedinUrl }) => {
     return (
       <div className='cardPhoto'>
-        <img src={imageUrl} alt={name} className='cardPhotoImage' />
+        <div className='cardPhotoCircle'>
+          <img src={imageUrl} alt={name} className='cardPhotoImage' />
+        </div>
         <div className='cardPhotoInfo'>
           <div className='cardTitleContainer'>
           <h4 className='cardPhotoName'>{name}</h4>

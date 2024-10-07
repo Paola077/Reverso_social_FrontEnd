@@ -105,3 +105,11 @@ $font-weight-bold: 700;
   align-items: center;
   display: flex;
 }
+
+@mixin errorTextForm{
+  color: red;
+      font-family: $font-family-text;
+      font-size: 0.8rem;
+      margin-left: 22rem;
+      margin-top: 0.3rem;
+}
