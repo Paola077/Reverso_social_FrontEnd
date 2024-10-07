@@ -7,7 +7,10 @@
   top: 0;
   left: 0;
   display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgba($color: #c9cdf3, $alpha: 0.5);
+  z-index: 9999;
 }
 
 .alertBox {
@@ -17,6 +20,7 @@
   border-radius: 2rem;
   position: relative;
   margin: auto;
+  z-index: 10000;
 
   .buttonExit {
     background-color: transparent;

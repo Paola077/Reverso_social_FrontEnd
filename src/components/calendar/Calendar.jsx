@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import {
@@ -15,9 +15,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useLocation } from "react-router-dom";
 import InteractivePop from "../modal/Interactive/InteractivePop";
 
-const locales = {
-  es: es,
-};
+const locales = { es: es };
 
 const localizer = dateFnsLocalizer({
   format,
@@ -61,11 +59,15 @@ const MonthlyCalendar = () => {
   }, []);
 
   const goToNextMonth = () => {
-    setCurrentDate(addMonths(currentDate, 1));
+    const newDate = addMonths(currentDate, 1);
+    console.log("Nuevo mes seleccionado (siguiente):", newDate);
+    setCurrentDate(newDate); 
   };
 
   const goToPreviousMonth = () => {
-    setCurrentDate(subMonths(currentDate, 1));
+    const newDate = subMonths(currentDate, 1);
+    console.log("Nuevo mes seleccionado (anterior):", newDate);
+    setCurrentDate(newDate); 
   };
 
   const renderToolbar = () => {
@@ -152,11 +154,11 @@ const MonthlyCalendar = () => {
       {renderToolbar()}
       <Calendar
         localizer={localizer}
-        events={events}
+        events={[]}
         startAccessor="start"
         endAccessor="end"
         date={currentDate}
-        onNavigate={setCurrentDate}
+        onNavigate={setCurrentDate} 
         views={["month"]}
         toolbar={false}
         style={{
