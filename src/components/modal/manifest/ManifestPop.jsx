@@ -1,7 +1,7 @@
 import { Button } from "../../buttons/button/Button";
 import "./_ManifestPop.scss";
 import closeIcon from "/src/components/modal/Exit.svg";
-import React from "react";
+// import React, { useEffect } from "react";
 
 const ManifestPop = ({
   isOpen,
@@ -11,8 +11,21 @@ const ManifestPop = ({
   buttonText,
   onButtonClick,
 }) => {
+
+  // useEffect(() => {
+  //   if (isOpen) {
+  //     document.body.style.overflow = 'hidden'; // Deshabilitar scroll en el body
+  //   } else {
+  //     document.body.style.overflow = 'auto'; // Restaurar scroll cuando el modal se cierra
+  //   }
+
+  //   return () => {
+  //     document.body.style.overflow = 'auto'; // Asegurarse de restaurar scroll al desmontar
+  //   };
+  // }, [isOpen]);
   if (!isOpen) return null;
   
+
 
   return (
     <>
