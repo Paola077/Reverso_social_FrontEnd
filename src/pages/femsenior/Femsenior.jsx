@@ -4,7 +4,7 @@ import Manifest from "../../components/sections/manifest/Manifest";
 import CardSection from "../../components/cards/cardSection/CardSection";
 import MonthlyCalendar from "../../components/calendar/Calendar";
 import DynamicTab from "../../components/tab/dynamicTab/DynamicTab";
-import { AuthContext } from "../../context/AuthContext"; 
+import { AuthContext } from "../../context/AuthContext";
 import "./_Femsenior.scss";
 import Alert from "../../components/modal/alerts/Alert";
 import SectorSelect from "../../components/tab/tabBySector/SectorSelect";
@@ -33,6 +33,8 @@ function Femsenior() {
 
   const [showSector, setShowSector] = useState(false); 
 
+  const [currentDate, setCurrentDate] = useState(new Date());
+
   const handleTabChange = (newLabel) => {
     setTabLabel(newLabel);
     if (newLabel === "SUBE TU CURRICULUM") {
@@ -41,6 +43,9 @@ function Femsenior() {
       setShowSector(false);
     }
   };
+
+  console.log("Fecha actual seleccionada en Femsenior:", currentDate); 
+
   return (
     <div>
        {isAlertOpen && (
@@ -52,22 +57,23 @@ function Femsenior() {
       )}
       <div className="header">
         <Manifest />
-        <MonthlyCalendar />
+        <MonthlyCalendar
+          currentDate={currentDate}
+          setCurrentDate={setCurrentDate}
+        />
       </div>
       <div>
         <CardSection onTabChange={handleTabChange} />
         {showDynamicTab && (
-          <DynamicTab 
-            label={tabLabel} 
-            onClick={() => handleTabChange(tabLabel)} 
-            showSector={showSector} 
+          <DynamicTab
+            label={tabLabel}
+            onClick={() => handleTabChange(tabLabel)}
+            showSector={showSector}
           />
         )}
-        {isAuthenticated && !showDynamicTab && showSector && (
-          <SectorSelect />
-        )}
+        {isAuthenticated && !showDynamicTab && showSector && <SectorSelect />}
       </div>
-      <Outlet />
+      <Outlet context={{ currentDate }} />
     </div>
   );
 }
