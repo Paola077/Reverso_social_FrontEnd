@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import dayjs from "dayjs";
 import EventCard from "../components/cards/eventCard/EventCard";
 import { useQuery } from "@tanstack/react-query";
 import { getAllEvents } from "../services/eventApi";
-import { useOutletContext } from "react-router-dom"; 
+import { DateContext } from "../context/DateContext";
+
 function Events() {
-  const { currentDate } = useOutletContext();
+  const { currentDate } = useContext(DateContext); 
   const [filteredEvents, setFilteredEvents] = useState([]);
 
   const {
@@ -19,19 +20,17 @@ function Events() {
 
   useEffect(() => {
     if (events && currentDate) {
-      const currentMonth = dayjs(currentDate).month();
-      const currentYear = dayjs(currentDate).year();
+      const startOfMonth = dayjs(currentDate).startOf("month").toDate();
+      const endOfMonth = dayjs(currentDate).endOf("month").toDate();
 
       const eventsThisMonth = events.filter((event) => {
-        const eventDate = dayjs(event.date);
-        return (
-          eventDate.month() === currentMonth && eventDate.year() === currentYear
-        );
+        const eventDate = new Date(event.date); 
+        return eventDate >= startOfMonth && eventDate <= endOfMonth;
       });
 
       setFilteredEvents(eventsThisMonth);
     }
-  }, [events, currentDate]); 
+  }, [events, currentDate]);
 
   return (
     <div>

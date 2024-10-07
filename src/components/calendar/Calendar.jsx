@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import {
@@ -14,6 +14,7 @@ import { getAllEvents } from "../../services/eventApi";
 import { useAuth } from "../../context/AuthContext";
 import { useLocation } from "react-router-dom";
 import InteractivePop from "../modal/Interactive/InteractivePop";
+import  {DateContext}  from "../../context/DateContext";
 
 const locales = { es: es };
 
@@ -26,11 +27,10 @@ const localizer = dateFnsLocalizer({
 });
 
 const MonthlyCalendar = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
+  const { currentDate, setCurrentDate } = useContext(DateContext); // Usamos el contexto
   const [events, setEvents] = useState([]);
   const { isAuthenticated, role, user } = useAuth();
   const [isPopupOpen, setPopupOpen] = useState(false);
-  const [alertOpen, setAlertOpen] = useState(false);
   const [popupData, setPopupData] = useState({});
   const pathLocation = useLocation();
 
@@ -60,14 +60,12 @@ const MonthlyCalendar = () => {
 
   const goToNextMonth = () => {
     const newDate = addMonths(currentDate, 1);
-    console.log("Nuevo mes seleccionado (siguiente):", newDate);
-    setCurrentDate(newDate);
+    setCurrentDate(newDate); // Cambiamos el mes globalmente
   };
 
   const goToPreviousMonth = () => {
     const newDate = subMonths(currentDate, 1);
-    console.log("Nuevo mes seleccionado (anterior):", newDate);
-    setCurrentDate(newDate);
+    setCurrentDate(newDate); // Cambiamos el mes globalmente
   };
 
   const renderToolbar = () => {
@@ -158,7 +156,7 @@ const MonthlyCalendar = () => {
         startAccessor="start"
         endAccessor="end"
         date={currentDate}
-        onNavigate={setCurrentDate}
+        onNavigate={setCurrentDate} // Asegurar que navega al cambiar el mes
         views={["month"]}
         toolbar={false}
         style={{

@@ -5,15 +5,18 @@ import router from "./routes/router";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import "./scss/_Global.scss";
 import { AuthProvider } from "./context/AuthContext";
+import { DateProvider } from "./context/DateContext"; // Cambiar a DateProvider
 
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-      </QueryClientProvider>
+      <DateProvider>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
+      </DateProvider>
     </AuthProvider>
   </StrictMode>
 );
