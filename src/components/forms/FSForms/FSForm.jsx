@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import { InputForm } from "../../Inputs/InputForm";
 import { Button } from "../../buttons/button/Button";
 import { createEvent } from "../../../services/eventApi";
+import { createService } from "../../../services/servicesApi";
 // import { useMutation } from "@tanstack/react-query";
 import { useAuth } from "../../../context/AuthContext";
 import React, { Fragment } from 'react';
 import Alert from "../../modal/alerts/Alert";
 import { updateEvent } from "../../../services/eventApi";
 
-const FSForm = ({ text, formFields, initialData}) => {
+const FSForm = ({ text, formType, formFields, initialData}) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState(initialData || {});
   const [response, setResponse] = useState(null);
@@ -41,15 +42,22 @@ const FSForm = ({ text, formFields, initialData}) => {
     setError(null);
 
     try {
+      let res;
       if (isEdit) {
-        // Si es modo edición, hacemos un PUT
-        const res = await updateEvent(id, formData, token);
-        setResponse(res);
+        if (formType === "evento") {
+          res = await updateEvent(id, formData, token);
+        } else if (formType === "servicio") {
+          res = await updateService(id, formData, token);
+        }
       } else {
-        // Si no es edición, creamos un nuevo evento
-        const res = await createEvent(formData, token);
-        setResponse(res);
+        if (formType === "evento") {
+          res = await createEvent(formData, token);
+        } else if (formType === "servicio") {
+          res = await createService(formData, token);
+        }
       }
+      
+      setResponse(res);
       setIsOpen(true);
     } catch (err) {
       setError(err?.response?.data || "Ocurrió un error");
@@ -61,19 +69,13 @@ const FSForm = ({ text, formFields, initialData}) => {
     navigate("/reverso-social/femsenior");
   };
 
-  // const mutationEvent = useMutation({
-  //   mutationFn: (form) => createEvent(form, token),
-  //   onSuccess: (res) => {
-  //     setIsOpen(true);
-  //   },
-  //   onError: (error) => {
-  //     setError(error?.response?.data);
-  //   },
-  // });
-
   const handleAlertClose = () => {
-    setIsOpen(false); 
-    navigate("/reverso-social/femsenior/eventos");
+    setIsOpen(false);
+    if (formType === "evento") {
+      navigate("/reverso-social/femsenior/eventos"); 
+    } else if (formType === "servicio") {
+      navigate("/reverso-social/femsenior/servicios");
+    }
   };
 
 
@@ -87,7 +89,6 @@ const FSForm = ({ text, formFields, initialData}) => {
           >
             <img src="/icons/Exit.svg" alt="Cerrar formulario" />
           </button>
-
           <h2 className="requestTitle">{text}</h2>
 
           {formFields.map((field, index) => (
@@ -132,7 +133,14 @@ const FSForm = ({ text, formFields, initialData}) => {
         </div>
       </form>
       <Alert
-        alert={isEdit ? "¡El evento ha sido actualizado!" : "¡Evento creado con éxito!"}
+        alert={isEdit 
+          ? formType === "servicio" 
+            ? "¡El servicio ha sido actualizado!" 
+            : "¡El evento ha sido actualizado!" 
+          : formType === "servicio" 
+            ? "¡El servicio ha sido creado con éxito!" 
+            : "¡Evento creado con éxito!"
+      }
         isOpen={isOpen}
         onclose={handleAlertClose}
       >
@@ -146,8 +154,6 @@ const FSForm = ({ text, formFields, initialData}) => {
           onClick={handleAlertClose}
         />
       </Alert>
-
-      {/* Mostrar errores si ocurre */}
       {error && (
         <Alert
           alert={`Error: ${error.message || "Ocurrió un error al procesar la solicitud"}`}

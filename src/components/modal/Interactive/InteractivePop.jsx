@@ -8,7 +8,6 @@ const InteractivePop = ({
   isOpen,
   onClose,
   title,
-  titleSection,
   date,
   time,
   modality,
@@ -28,7 +27,7 @@ const InteractivePop = ({
   const { pathname } = useLocation();
 
   const currentPage = pathname.includes("evento") ? "EVENTOS" : 
-  pathname.includes("mentoria") ? "SERVICIOS" : 
+  pathname.includes("servicio") ? "SERVICIOS" : 
   pathname.includes("curriculum") ? "EMPLEO" : 
   pathname.includes("recurso") ? "RECURSOS" : 
   "";
