@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import {
@@ -61,13 +61,13 @@ const MonthlyCalendar = () => {
   const goToNextMonth = () => {
     const newDate = addMonths(currentDate, 1);
     console.log("Nuevo mes seleccionado (siguiente):", newDate);
-    setCurrentDate(newDate); 
+    setCurrentDate(newDate);
   };
 
   const goToPreviousMonth = () => {
     const newDate = subMonths(currentDate, 1);
     console.log("Nuevo mes seleccionado (anterior):", newDate);
-    setCurrentDate(newDate); 
+    setCurrentDate(newDate);
   };
 
   const renderToolbar = () => {
@@ -154,11 +154,11 @@ const MonthlyCalendar = () => {
       {renderToolbar()}
       <Calendar
         localizer={localizer}
-        events={[]}
+        events={events}
         startAccessor="start"
         endAccessor="end"
         date={currentDate}
-        onNavigate={setCurrentDate} 
+        onNavigate={setCurrentDate}
         views={["month"]}
         toolbar={false}
         style={{
