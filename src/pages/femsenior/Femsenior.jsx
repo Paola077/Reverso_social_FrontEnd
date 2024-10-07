@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Outlet } from "react-router-dom";
 import Manifest from "../../components/sections/manifest/Manifest";
-import ManifestButton from "../../components/buttons/manifestButton/ManifestButton";
 import CardSection from "../../components/cards/cardSection/CardSection";
 import MonthlyCalendar from "../../components/calendar/Calendar";
 import DynamicTab from "../../components/tab/dynamicTab/DynamicTab";
@@ -15,6 +14,8 @@ function Femsenior() {
   const showDynamicTab = isAuthenticated && role === "FEMSENIOR";
   const [showSector, setShowSector] = useState(false);
 
+  const [currentDate, setCurrentDate] = useState(new Date());
+
   const handleTabChange = (newLabel) => {
     setTabLabel(newLabel);
     if (newLabel === "SUBE TU CURRICULUM") {
@@ -23,11 +24,17 @@ function Femsenior() {
       setShowSector(false);
     }
   };
+
+  console.log("Fecha actual seleccionada en Femsenior:", currentDate); 
+
   return (
     <div>
       <div className="header">
         <Manifest />
-        <MonthlyCalendar />
+        <MonthlyCalendar
+          currentDate={currentDate}
+          setCurrentDate={setCurrentDate}
+        />
       </div>
       <div>
         <CardSection onTabChange={handleTabChange} />
@@ -40,7 +47,7 @@ function Femsenior() {
         )}
         {isAuthenticated && !showDynamicTab && showSector && <SectorSelect />}
       </div>
-      <Outlet />
+      <Outlet context={{ currentDate }} />
     </div>
   );
 }
