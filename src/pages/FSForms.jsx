@@ -10,6 +10,8 @@ const FSForms = () => {
   const [initialData, setInitialData] = useState();
   const [loading, setLoading] = useState(true);
 
+  console.log("formType:", formType); 
+
   useEffect(() => {
     if (id) {
       // Si estamos en modo edición, obtenemos los datos del evento
@@ -99,14 +101,26 @@ const FSForms = () => {
         },
       ],
     },
-    mentoria: {
-      text: id ? "EDITAR MENTORÍA" :"NUEVA MENTORÍA",
+    servicio: {
+      text: id ? "EDITAR SERVICIO" :"NUEVO SERVICIO",
       fields: [
         {
           title: "Título",
           type: "text",
           placeholder: "Título de la mentoría",
           name: "title",
+        },
+        {
+          title: "Tipo",
+          type: "select",
+          name: "type",
+          optionText: "Selecciona el tipo de servicio",
+          options: [
+            {
+              label: "Mentorías",
+              value: "Mentorías",
+            }
+          ]
         },
         {
           title: "Sector",
@@ -240,7 +254,8 @@ const FSForms = () => {
   };
   const currentForm = formConfigurations[formType];
   return <FSForm 
-  text={currentForm.text} 
+  text={currentForm.text}
+  formType={formType} 
   formFields={currentForm.fields}
   initialData={initialData} />;
 };

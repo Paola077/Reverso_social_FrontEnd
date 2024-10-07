@@ -9,8 +9,8 @@ const DynamicTab = ({ label, onClick,showSector }) => {
     switch (label) {
       case "NUEVO EVENTO":
         return "/formulariofs/evento";
-      case "NUEVA MENTORÍA":
-        return "/formulariofs/mentoria";
+      case "NUEVO SERVICIO":
+        return "/formulariofs/servicio";
       case "SUBE TU CURRICULUM":
         return "/formulariofs/curriculum";
       case "SUBE UN RECURSO":

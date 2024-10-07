@@ -13,7 +13,7 @@ const sections = [
     id: 2,
     title: "SERVICIOS",
     imageUrl: "/icons/Services.svg",
-    tabLabel: "NUEVA MENTORÍA",
+    tabLabel: "NUEVO SERVICIO",
   },
   {
     id: 3,
