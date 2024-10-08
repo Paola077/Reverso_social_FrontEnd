@@ -42,7 +42,7 @@ const MonthlyCalendar = () => {
           const startDate = new Date(`${event.date}T${event.time}`);
 
           return {
-            title: "E",
+            title: ".",
             start: startDate,
             end: startDate,
             eventData: event,
@@ -89,6 +89,7 @@ const MonthlyCalendar = () => {
             border: "none",
             background: "none",
             cursor: "pointer",
+            color: "#7176f8"
           }}
         >
           {"<"}
@@ -104,6 +105,7 @@ const MonthlyCalendar = () => {
             border: "none",
             background: "none",
             cursor: "pointer",
+            color: "#7176f8"
           }}
         >
           {">"}
@@ -120,10 +122,11 @@ const MonthlyCalendar = () => {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      width: "20px",
-      height: "20px",
+      width: "0.8rem",
+      height: "0.8rem",
       fontSize: "0.8rem",
       cursor: "pointer",
+      color:"#7176f8",
     };
     return { style };
   };

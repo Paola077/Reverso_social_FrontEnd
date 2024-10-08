@@ -10,7 +10,7 @@ import Alert from "../../modal/alerts/Alert";
 import { Button } from "../button/Button";
 import { useNavigate } from "react-router-dom";
 import { deleteEmployOffer } from "../../../services/employApi";
-// import { deleteResource } from "../../../services/resourceApi";
+import { deleteResource } from "../../../services/resourceApi";
 
 const EventCardButton = ({ id, entityType }) => {
   const queryClient = useQueryClient();
@@ -24,7 +24,7 @@ const EventCardButton = ({ id, entityType }) => {
     "evento": deleteEvent,
     "servicio": deleteService,
     "curriculum": deleteEmployOffer,
-    // "recurso": deleteResource,
+    "recurso": deleteResource,
   };
 
   const mutationDelete = useMutation({

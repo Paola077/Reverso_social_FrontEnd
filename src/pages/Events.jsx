@@ -56,6 +56,7 @@ function Events() {
             contentText={"Ubicación"}
             createdBy={event.creatorEmail}
             entityType="evento"
+            sector={event.sector}
           />
         ))
       )}
