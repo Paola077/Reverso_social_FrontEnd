@@ -3,6 +3,7 @@ import FSForm from "../components/forms/FSForms/FSForm";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { getEvent } from "../services/eventApi";
+import { getService } from "../services/servicesApi";
 
 const FSForms = () => {
   const { formType, id } = useParams();
@@ -14,19 +15,38 @@ const FSForms = () => {
 
   useEffect(() => {
     if (id) {
-      // Si estamos en modo edición, obtenemos los datos del evento
-      getEvent(id)
+      let fetchData;
+      switch (formType) {
+        case "evento":
+          fetchData = getEvent(id);
+          break;
+        case "servicio":
+          fetchData = getService(id);
+          break;
+        case "curriculum":
+          fetchData = getEmployById(id);
+          break;
+        case "recurso":
+          fetchData = getResource(id);
+          break;
+        default:
+          break;
+      }
+
+      if (fetchData){
+        fetchData
         .then((data) => {
-          setInitialData(data); // Guardamos los datos para rellenar el formulario
+          setInitialData(data);
         })
         .catch((error) => {
-          console.error("Error al obtener el evento:", error);
+          console.log("Error al obtener los datos:", error);
         })
-        .finally(() => setLoading(false)); // Marcamos como finalizada la carga
-    } else {
-      setLoading(false); // Si no hay id, no estamos editando, no necesitamos cargar datos
+        .finally(() => setLoading(false))
+      }
+    }else {
+      setLoading(false);
     }
-  }, [id]);
+  }, [id, formType]);
 
 
   const formConfigurations = {
