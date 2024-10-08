@@ -39,7 +39,7 @@ export const createService = async (data, token) => {
     if (token) {
       headers = { Authorization: `Bearer ${token}` };
     }
-    const res = await axios.delete(EVENT_URL_ID(id), {
+    const res = await axios.delete(SERVICES_URL_ID(id), {
       headers,
     });
     return res.data;

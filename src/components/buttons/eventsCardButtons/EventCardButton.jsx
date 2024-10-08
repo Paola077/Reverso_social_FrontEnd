@@ -8,8 +8,9 @@ import { useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import Alert from "../../modal/alerts/Alert";
 import { Button } from "../button/Button";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { deleteEmployOffer } from "../../../services/employApi";
+// import { deleteResource } from "../../../services/resourceApi";
 
 const EventCardButton = ({ id, entityType }) => {
   const queryClient = useQueryClient();
@@ -20,10 +21,10 @@ const EventCardButton = ({ id, entityType }) => {
   const navigate = useNavigate();
 
   const deleteFunctionMap = {
-    evento: deleteEvent,
-    servicio: deleteService,
-    // curriculum: deleteCurriculum,
-    // recurso: deleteResource,
+    "evento": deleteEvent,
+    "servicio": deleteService,
+    "curriculum": deleteEmployOffer,
+    // "recurso": deleteResource,
   };
 
   const mutationDelete = useMutation({

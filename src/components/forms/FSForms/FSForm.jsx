@@ -9,7 +9,8 @@ import { createService, updateService } from "../../../services/servicesApi";
 import { useAuth } from "../../../context/AuthContext";
 import React, { Fragment } from 'react';
 import Alert from "../../modal/alerts/Alert";
-
+import { createEmployOffer, updateEmployOffer } from "../../../services/employApi";
+// import { createResource, updateResource } from "../../../services/resourceApi"
 
 const FSForm = ({ text, formType, formFields, initialData}) => {
   const navigate = useNavigate();
@@ -48,15 +49,21 @@ const FSForm = ({ text, formType, formFields, initialData}) => {
           res = await updateEvent(id, formData, token);
         } else if (formType === "servicio") {
           res = await updateService(id, formData, token);
+        } else if (formType === "curriculum"){
+          res = await updateEmployOffer(id, formData, token);
+        } else if(formType === "recurso"){
+          res = await updateResource(id, formData, token);
         }
       } else {
         if (formType === "evento") {
           res = await createEvent(formData, token);
         } else if (formType === "servicio") {
           res = await createService(formData, token);
+        } else if (formType === "curriculum"){
+          res = await createEmployOffer(formData, token);
+        } else if(formType === "recurso"){
+          res = await createResource(formData, token);
         }
-
-        //AQUÍ AÑADIR POST Y PUT DE EMPLEO Y RECURSOS
       }
       
       setResponse(res);
