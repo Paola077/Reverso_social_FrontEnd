@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./_EventCard.scss";
 import EventCardButton from "../../buttons/eventsCardButtons/EventCardButton";
 import { Button } from "../../buttons/button/Button";
@@ -30,27 +30,27 @@ const EventCard = ({
   buttonText,
   name,
   id,
-  entityType, sector
+  entityType,
+  sector,
 }) => {
   const { isAuthenticated, role, user } = useAuth();
   const [alertOpenForMoreInfo, setAlertOpenForMoreInfo] = useState(false);
-  const [alertOpenForRegistration, setAlertOpenForRegistration] = useState(false);
+  const [alertOpenForRegistration, setAlertOpenForRegistration] =
+    useState(false);
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [isAttending, setIsAttending] = useState(false);
   const pathLocation = useLocation();
   const navigate = useNavigate();
   const createdByUser = user?.email === createdBy;
-  console.log("Usuario autenticado:", user?.email);
-  console.log("Creado por:", createdBy);
-  console.log("¿Es el creador?", createdByUser);
-  console.log(user);
+
+  const eventDate = new Date(date);
+  const isPastEvent = eventDate < new Date();
+
   const handlePopupOpen = () => {
-
-    if (isAuthenticated || pathLocation.pathname.includes('/eventos')) { 
-
+    if (isAuthenticated || pathLocation.pathname.includes("/eventos")) {
       setPopupOpen(true);
     } else {
-      setAlertOpenForMoreInfo(true); 
+      setAlertOpenForMoreInfo(true);
     }
   };
 
@@ -58,7 +58,7 @@ const EventCard = ({
     if (isAuthenticated) {
       setIsAttending(!isAttending);
     } else {
-      setAlertOpenForRegistration(true); 
+      setAlertOpenForRegistration(true);
     }
   };
 
@@ -68,7 +68,7 @@ const EventCard = ({
 
   return (
     <div className="eventCard">
-      {isAuthenticated && (createdByUser || role === "ADMIN") && (
+      {isAuthenticated && (createdByUser || role === "FEMSENIORADMIN") && (
         <div className="eventCard__lateralButtons">
           <EventCardButton id={id} entityType={entityType} />
         </div>
@@ -76,7 +76,7 @@ const EventCard = ({
       <div className="eventCard__content">
         <div className="eventCard__content__info">
           <h3 className="eventCard__content__info__title">{title}</h3>
-            
+
           <div className="eventCard__content__info__details">
             {sector && <span>{sector}</span>}
             {location && <span>{location}</span>}
@@ -87,21 +87,27 @@ const EventCard = ({
           </div>
         </div>
         <div className="eventCard__content__button">
-          <Button
-            textButton={"Ver"}
-            backgroundColor={"white"}
-            border={"none"}
-            color={"black"}
-            width={"8rem"}
-            height={"2.5rem"}
-            boxShadow={"0.2rem 0.2rem 0.4rem rgba(0, 0, 0, 0.25)"}
-            onClick={handlePopupOpen}
-          />
+          {isPastEvent ? (
+            <span className="pastEvent">
+              Finalizado
+            </span>
+          ) : (
+            <Button
+              textButton={"Ver"}
+              backgroundColor={"white"}
+              border={"none"}
+              color={"black"}
+              width={"8rem"}
+              height={"2.5rem"}
+              boxShadow={"0.2rem 0.2rem 0.4rem rgba(0, 0, 0, 0.25)"}
+              onClick={handlePopupOpen}
+            />
+          )}
         </div>
       </div>
       <Alert
-          isOpen={alertOpenForMoreInfo}
-          onclose={() => setAlertOpenForMoreInfo(false)}
+        isOpen={alertOpenForMoreInfo}
+        onclose={() => setAlertOpenForMoreInfo(false)}
         alert="Por favor, regístrate para acceder a más información"
       >
         <Button
@@ -137,7 +143,13 @@ const EventCard = ({
         phoneNumber={phoneNumber}
         name={name}
         description={description}
-        buttonText={!createdByUser ? (isAttending ? "Cancelar asistencia" : "Apúntate") : null}
+        buttonText={
+          !createdByUser
+            ? isAttending
+              ? "Cancelar asistencia"
+              : "Apúntate"
+            : null
+        }
         onButtonClick={toggleAttendance}
         contentText={contentText}
       />
@@ -146,7 +158,7 @@ const EventCard = ({
         onclose={() => setAlertOpenForRegistration(false)}
         alert="Necesitas estar registrada para apuntarte."
       >
-         <Button
+        <Button
           textButton={"Cancelar"}
           backgroundColor={"white"}
           width={"12.5rem"}
@@ -162,7 +174,7 @@ const EventCard = ({
           backgroundColor={"#7176f8"}
           border={"0.15rem solid #7176f8"}
           color={"white"}
-          onClick={() => navigate("/reverso-social/login")} 
+          onClick={() => navigate("/reverso-social/login")}
         />
       </Alert>
     </div>
