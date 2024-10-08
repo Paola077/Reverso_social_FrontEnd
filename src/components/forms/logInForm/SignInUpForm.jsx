@@ -84,6 +84,10 @@ const SignInUpForm = () => {
       setIsSignPanelActive(false);
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },
+    onError: (error) => {
+      console.log("error: ", error);
+      setError(error?.response?.data || "Error al registrarse.");
+    },
   });
 
   const loginMutation = useMutation({
@@ -99,8 +103,9 @@ const SignInUpForm = () => {
         setError("Error al recibir los datos de autenticación.");
       }
     },
-    onError: (res) => {
-      setError(res?.response?.data || "Error al iniciar sesión.");
+    onError: (error) => {
+      console.log("error: ", error);
+      setError(error?.response?.data || "Error al iniciar sesión.");
     },
   });
 
@@ -122,7 +127,7 @@ const SignInUpForm = () => {
             name="name"
             value={form.name}
           />
-          {data?.name && <p className="errorText">{data?.name.message}</p>}
+          {error?.name && <p className="errorText">{error?.name.message}</p>}
 
           <input
             type="text"
@@ -131,8 +136,8 @@ const SignInUpForm = () => {
             name="lastname"
             value={form.lastname}
           />
-          {data?.lastname && (
-            <p className="errorText">{data?.lastname.message}</p>
+          {error?.lastname && (
+            <p className="errorText">{error?.lastname.message}</p>
           )}
 
           <input
@@ -142,7 +147,7 @@ const SignInUpForm = () => {
             name="email"
             value={form.email}
           />
-          {data?.email && <p className="errorText">{data?.email.message}</p>}
+          {error?.email && <p className="errorText">{error?.email.message}</p>}
 
           <input
             type="text"
@@ -151,8 +156,8 @@ const SignInUpForm = () => {
             name="username"
             value={form.username}
           />
-          {data?.username && (
-            <p className="errorText">{data?.username.message}</p>
+          {error?.username && (
+            <p className="errorText">{error?.username.message}</p>
           )}
 
           <input
@@ -162,8 +167,8 @@ const SignInUpForm = () => {
             name="birthday"
             value={form.birthday}
           />
-          {data?.birthday && (
-            <p className="errorText">{data?.birthday.message}</p>
+          {error?.birthday && (
+            <p className="errorText">{error?.birthday.message}</p>
           )}
 
           <input
@@ -173,8 +178,8 @@ const SignInUpForm = () => {
             name="password"
             value={form.password}
           />
-          {data?.password && (
-            <p className="errorText">{data?.password.message}</p>
+          {error?.password && (
+            <p className="errorText">{error?.password.message}</p>
           )}
 
           <button className="ghost" type="submit">
@@ -212,19 +217,19 @@ const SignInUpForm = () => {
             placeholder="Email"
             onChange={handleChange}
             name="email"
-            value={form.email}      
+            value={form.email}
           />
-          {data?.email && <p className="errorText">{data?.email.message}</p>}
+          {error?.email && <p className="errorText">{error?.email.message}</p>}
 
           <input
             type="password"
             placeholder="Contraseña"
             onChange={handleChange}
             name="password"
-            value={form.password}    
+            value={form.password}
           />
-          {data?.password && (
-            <p className="errorText">{data?.password.message}</p>
+          {error?.password && (
+            <p className="errorText">{error?.password.message}</p>
           )}
           {error && <p className="errorText">{error?.message}</p>}
 
