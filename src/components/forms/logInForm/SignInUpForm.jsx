@@ -212,8 +212,7 @@ const SignInUpForm = () => {
             placeholder="Email"
             onChange={handleChange}
             name="email"
-            value={form.email}
-            required
+            value={form.email}      
           />
           {data?.email && <p className="errorText">{data?.email.message}</p>}
 
@@ -222,8 +221,7 @@ const SignInUpForm = () => {
             placeholder="Contraseña"
             onChange={handleChange}
             name="password"
-            value={form.password}
-            required
+            value={form.password}    
           />
           {data?.password && (
             <p className="errorText">{data?.password.message}</p>
