@@ -26,7 +26,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 3rem;
+    margin-top: 1.5rem;
+    overflow: hidden;
 
     .prev,
     .next {
@@ -40,23 +41,33 @@
     .carousel-slides {
       display: flex;
       flex-direction: row;
-      flex-wrap: wrap;
-      // overflow: hidden;
-      justify-content: center;
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      -ms-overflow-style: none;  
+      scrollbar-width: none; 
+      height: 18rem;
+      align-items: center;
       
+      .carousel-slides::-webkit-scrollbar {
+        display: none;             // Ocultar en Chrome, Safari y Opera
+      }
 
       .slide {
+        flex: 0 0 auto;
         width: 15rem;
         margin: 0 15px;
         text-align: center;
+        transition: opacity 0.3s ease;
 
         .card {
           width: 100%;
           background-color: $white;
           border-radius:  0.9rem 0.9rem 0.9rem 0;
-          overflow: hidden;
           transition: transform 0.3s ease;
           box-shadow: 0 4px 10px #0000001a;
+          overflow: hidden;
+          transform-origin: center;
 
           .card-image {
             width: 100%;
@@ -80,6 +91,19 @@
 
         &.active .card {
           opacity: 1;
+
+        }
+
+        .prev, .next {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          background-color: rgba(0, 0, 0, 0.5);
+          color: white;
+          border: none;
+          cursor: pointer;
+          padding: 0.5rem;
+          z-index: 1;
         }
       }
     }
