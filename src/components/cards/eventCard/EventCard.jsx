@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./_EventCard.scss";
 import EventCardButton from "../../buttons/eventsCardButtons/EventCardButton";
 import { Button } from "../../buttons/button/Button";
@@ -40,14 +40,12 @@ const EventCard = ({
   const pathLocation = useLocation();
   const navigate = useNavigate();
   const createdByUser = user?.email === createdBy;
-  console.log("Usuario autenticado:", user?.email);
-  console.log("Creado por:", createdBy);
-  console.log("¿Es el creador?", createdByUser);
-  console.log(user);
+
+  const eventDate = new Date(date);
+  const isPastEvent = eventDate < new Date();
+
   const handlePopupOpen = () => {
-
-    if (isAuthenticated || pathLocation.pathname.includes('/eventos')) { 
-
+    if (isAuthenticated || pathLocation.pathname.includes("/eventos")) {
       setPopupOpen(true);
     } else {
       setAlertOpenForMoreInfo(true); 
@@ -87,16 +85,22 @@ const EventCard = ({
           </div>
         </div>
         <div className="eventCard__content__button">
-          <Button
-            textButton={"Ver"}
-            backgroundColor={"white"}
-            border={"none"}
-            color={"black"}
-            width={"8rem"}
-            height={"2.5rem"}
-            boxShadow={"0.2rem 0.2rem 0.4rem rgba(0, 0, 0, 0.25)"}
-            onClick={handlePopupOpen}
-          />
+          {isPastEvent ? (
+            <span className="pastEvent">
+              Finalizado
+            </span>
+          ) : (
+            <Button
+              textButton={"Ver"}
+              backgroundColor={"white"}
+              border={"none"}
+              color={"black"}
+              width={"8rem"}
+              height={"2.5rem"}
+              boxShadow={"0.2rem 0.2rem 0.4rem rgba(0, 0, 0, 0.25)"}
+              onClick={handlePopupOpen}
+            />
+          )}
         </div>
       </div>
       <Alert
