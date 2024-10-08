@@ -49,7 +49,8 @@
         text-align: left;
         margin: 0;
         padding: 0;
-        margin-left: 0.5rem;
+        margin-left: 1rem;
+        align-self: flex-start;
       }
 
       button {
@@ -92,6 +93,12 @@
           cursor: pointer;
           color: $lila;
         }
+      }
+    }
+
+    .inputError {
+      input {
+        height: 1.5rem;
       }
     }
   }

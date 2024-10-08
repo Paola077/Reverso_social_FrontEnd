@@ -118,7 +118,7 @@ const SignInUpForm = () => {
         className="formContainer signUpContainer"
         style={{ display: isSignPanelActive ? "block" : "none" }}
       >
-        <form onSubmit={handleRegister}>
+        <form onSubmit={handleRegister} className={error ? "inputError" : ""}>
           <h2 className="registerTitle">Crea una cuenta</h2>
           <input
             type="text"
