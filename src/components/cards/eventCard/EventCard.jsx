@@ -5,7 +5,7 @@ import { Button } from "../../buttons/button/Button";
 import Alert from "../../modal/alerts/Alert";
 import { useAuth } from "../../../context/AuthContext";
 import InteractivePop from "../../modal/Interactive/InteractivePop";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const truncateText = (text, limit) => {
   const words = text.split(" ");
@@ -33,21 +33,32 @@ const EventCard = ({
   entityType,
 }) => {
   const { isAuthenticated, role, user } = useAuth();
-  const [alertOpen, setAlertOpen] = useState(false);
+  const [alertOpenForMoreInfo, setAlertOpenForMoreInfo] = useState(false);
+  const [alertOpenForRegistration, setAlertOpenForRegistration] = useState(false);
   const [isPopupOpen, setPopupOpen] = useState(false);
+  const [isAttending, setIsAttending] = useState(false);
   const pathLocation = useLocation();
-
+  const navigate = useNavigate();
   const createdByUser = user?.email === createdBy;
   console.log("Usuario autenticado:", user?.email);
   console.log("Creado por:", createdBy);
   console.log("¿Es el creador?", createdByUser);
   console.log(user);
   const handlePopupOpen = () => {
-    if (isAuthenticated || pathLocation.pathname.includes("/eventos")) {
+
+    if (isAuthenticated || pathLocation.pathname.includes('/eventos')) { 
+
       setPopupOpen(true);
-      console.log("Popup abierto:", isPopupOpen);
     } else {
-      setAlertOpen(true);
+      setAlertOpenForMoreInfo(true); 
+    }
+  };
+
+  const toggleAttendance = () => {
+    if (isAuthenticated) {
+      setIsAttending(!isAttending);
+    } else {
+      setAlertOpenForRegistration(true); 
     }
   };
 
@@ -87,8 +98,8 @@ const EventCard = ({
         </div>
       </div>
       <Alert
-        isOpen={alertOpen}
-        onclose={() => setAlertOpen(false)}
+          isOpen={alertOpenForMoreInfo}
+          onclose={() => setAlertOpenForMoreInfo(false)}
         alert="Por favor, regístrate para acceder a más información"
       >
         <Button
@@ -98,7 +109,7 @@ const EventCard = ({
           height={"2.75rem"}
           border={"0.15rem solid #7176f8"}
           color={"#7176f8"}
-          onClick={() => setAlertOpen(false)}
+          onClick={() => setAlertOpenForMoreInfo(false)}
         />
         <Button
           textButton={"Registrarse"}
@@ -107,6 +118,7 @@ const EventCard = ({
           backgroundColor={"#7176f8"}
           border={"0.15rem solid #7176f8"}
           color={"white"}
+          onClick={() => navigate("/reverso-social/login")}
         />
       </Alert>
       <InteractivePop
@@ -123,9 +135,34 @@ const EventCard = ({
         phoneNumber={phoneNumber}
         name={name}
         description={description}
-        buttonText={buttonText}
+        buttonText={!createdByUser ? (isAttending ? "Cancelar asistencia" : "Apúntate") : null}
+        onButtonClick={toggleAttendance}
         contentText={contentText}
       />
+      <Alert
+        isOpen={alertOpenForRegistration}
+        onclose={() => setAlertOpenForRegistration(false)}
+        alert="Necesitas estar registrada para apuntarte."
+      >
+         <Button
+          textButton={"Cancelar"}
+          backgroundColor={"white"}
+          width={"12.5rem"}
+          height={"2.75rem"}
+          border={"0.15rem solid #7176f8"}
+          color={"#7176f8"}
+          onClick={() => setAlertOpenForRegistration(false)}
+        />
+        <Button
+          textButton={"Registrarse"}
+          width={"12.5rem"}
+          height={"2.75rem"}
+          backgroundColor={"#7176f8"}
+          border={"0.15rem solid #7176f8"}
+          color={"white"}
+          onClick={() => navigate("/reverso-social/login")} 
+        />
+      </Alert>
     </div>
   );
 };
