@@ -34,13 +34,13 @@ function Carousel() {
 
 const handlePrevClick = () => {
   if (carouselRef.current) {
-    carouselRef.current.scrollLeft -= 300; // Desplaza a la izquierda
+    carouselRef.current.scrollLeft -= 300; 
   }
 };
 
 const handleNextClick = () => {
   if (carouselRef.current) {
-    carouselRef.current.scrollLeft += 300; // Desplaza a la derecha
+    carouselRef.current.scrollLeft += 300; 
   }
 };
 
