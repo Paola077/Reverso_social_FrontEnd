@@ -13,21 +13,22 @@
   background-color: #a7a8ec;
   border-radius: 20px;
   padding: 5px 15px;
-  width: 20rem;
+  width: 20rem; // Mantén este ancho para que no se vea más delgada
   text-transform: capitalize;
 
   input {
     background-color: transparent;
     border: none;
+    flex: 1; // Asegúrate de que el input ocupe el espacio disponible
   }
   .searchIcon {
     position: absolute;
     left: 10px;
-    color: $dark;
+    color: $dark; // Asegúrate de que $dark esté definido
     fill: $dark;
   }
   .styledInputBase {
-    padding-left: 40px;
+    padding-left: 40px; // Espaciado a la izquierda para el icono
     color: $dark;
     width: 100%;
     background-color: transparent;
@@ -38,6 +39,32 @@
     }
     &:focus {
       outline: none;
+    }
+  }
+}
+
+// Estilos para el dropdown
+.dropdownSearch {
+  position: absolute;
+  background-color: #a7a8ec; // Mismo color que la barra de búsqueda
+  width: 100%; // Asegúrate de que el dropdown tenga el mismo ancho que la barra de búsqueda
+  border-radius: 8px; // Bordes redondeados para el dropdown
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000; // Asegúrate de que el dropdown esté sobre otros elementos;
+
+  .dropdownMenuSearch {
+    list-style: none; // Quitar los puntos de la lista
+    padding: 0; // Sin padding
+    margin: 0; // Sin margen
+
+    li {
+      padding: 10px; // Espaciado entre elementos
+      cursor: pointer;
+      color: $dark; // Cambia esto al color deseado para el texto
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1); // Color de fondo en hover
+      }
     }
   }
 }
