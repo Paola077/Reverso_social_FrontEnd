@@ -55,6 +55,7 @@ function Events() {
             buttonText={"Apúntate"}
             contentText={"Ubicación"}
             createdBy={event.creatorEmail}
+            entityType="evento"
           />
         ))
       )}

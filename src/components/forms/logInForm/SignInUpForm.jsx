@@ -16,7 +16,6 @@ const SignInUpForm = () => {
   const [isSignPanelActive, setIsSignPanelActive] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const queryClient = useQueryClient();
-  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [form, setForm] = useState({
     name: "",
@@ -64,28 +63,24 @@ const SignInUpForm = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setData(null);
     setError(null);
     registerMutation.mutate(form);
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setData(null);
     setError(null);
     loginMutation.mutate(form);
   };
 
   const registerMutation = useMutation({
     mutationFn: (form) => userRegister(form),
-    onSuccess: (res) => {
-      setData(res);
+    onSuccess: () => {
       resetForm();
       setIsSignPanelActive(false);
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },
     onError: (error) => {
-      console.log("error: ", error);
       setError(error?.response?.data || "Error al registrarse.");
     },
   });
@@ -104,10 +99,15 @@ const SignInUpForm = () => {
       }
     },
     onError: (error) => {
-      console.log("error: ", error);
       setError(error?.response?.data || "Error al iniciar sesión.");
     },
   });
+
+  const handlePanel = () => {
+    resetForm();
+    setError(null);
+    setIsSignPanelActive(!isSignPanelActive);
+  };
 
   return (
     <div
@@ -118,7 +118,7 @@ const SignInUpForm = () => {
         className="formContainer signUpContainer"
         style={{ display: isSignPanelActive ? "block" : "none" }}
       >
-        <form onSubmit={handleRegister}>
+        <form onSubmit={handleRegister} className={error ? "inputError" : ""}>
           <h2 className="registerTitle">Crea una cuenta</h2>
           <input
             type="text"
@@ -141,7 +141,7 @@ const SignInUpForm = () => {
           )}
 
           <input
-            type="email"
+            type="text"
             placeholder="Email"
             onChange={handleChange}
             name="email"
@@ -190,7 +190,7 @@ const SignInUpForm = () => {
             <Link
               to="/reverso-social/login"
               className="ghost"
-              onClick={() => setIsSignPanelActive(false)}
+              onClick={() => handlePanel()}
               id="login"
             >
               Aquí
@@ -213,7 +213,7 @@ const SignInUpForm = () => {
         <form onSubmit={handleLogin}>
           <h2 className="logInTitle">Accede a tu cuenta</h2>
           <input
-            type="email"
+            type="text"
             placeholder="Email"
             onChange={handleChange}
             name="email"
@@ -239,7 +239,7 @@ const SignInUpForm = () => {
             <Link
               to="/reverso-social/signin"
               className="ghost"
-              onClick={() => setIsSignPanelActive(true)}
+              onClick={() => handlePanel()}
               id="signIn"
             >
               Aquí

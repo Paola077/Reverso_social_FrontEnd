@@ -12,8 +12,7 @@ function Services() {
     queryKey: ["service"],
     queryFn: getAllServices,
   });
-
-  return (
+    return (
     <div>
       {servicesStatus === "loading" || servicesStatus === "pending" ? (
         <p>Cargando servicios...</p>
@@ -31,6 +30,7 @@ function Services() {
             email={services.email}
             phone_number={services.phone_number}
             createdBy={services.creatorEmail}
+            entityType="servicio"
           />
         ))
       )}
