@@ -84,7 +84,12 @@ const FSForm = ({ text, formType, formFields, initialData}) => {
       navigate("/reverso-social/femsenior/eventos"); 
     } else if (formType === "servicio") {
       navigate("/reverso-social/femsenior/servicios");
+    } else if (formType === "curriculum") {
+      navigate("/reverso-social/femsenior/empleo");
+    } else if (formType === "recurso") {
+      navigate("/reverso-social/femsenior/recursos");
     }
+    
   };
 
 
@@ -94,7 +99,7 @@ const FSForm = ({ text, formType, formFields, initialData}) => {
         <div className="formBox">
           <button
             className="buttonExit"
-            onClick={() => navigate("/reverso-social/femsenior")}
+            onClick={handleAlertClose}
           >
             <img src="/icons/Exit.svg" alt="Cerrar formulario" />
           </button>
