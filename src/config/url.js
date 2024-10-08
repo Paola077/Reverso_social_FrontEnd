@@ -22,3 +22,9 @@ export const SERVICES_URL_ID = (id) => `${SERVICES_URL}/${id}`;
 export const EMPLOY_URL = BASE_URL + "employs"
 
 export const EMPLOY_URL_ID = (id) => `${EMPLOY_URL}/${id}`;
+
+//RESOURCE URL
+
+export const RESOURCE_URL = BASE_URL + "resource"
+
+export const RESOURCE_URL_ID = (id) =>`${RESOURCE_URL}/${id}`;
