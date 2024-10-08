@@ -3,13 +3,13 @@ import "./_FSForm.scss";
 import { useEffect, useState } from "react";
 import { InputForm } from "../../Inputs/InputForm";
 import { Button } from "../../buttons/button/Button";
-import { createEvent } from "../../../services/eventApi";
-import { createService } from "../../../services/servicesApi";
+import { createEvent, updateEvent } from "../../../services/eventApi";
+import { createService, updateService } from "../../../services/servicesApi";
 // import { useMutation } from "@tanstack/react-query";
 import { useAuth } from "../../../context/AuthContext";
 import React, { Fragment } from 'react';
 import Alert from "../../modal/alerts/Alert";
-import { updateEvent } from "../../../services/eventApi";
+
 
 const FSForm = ({ text, formType, formFields, initialData}) => {
   const navigate = useNavigate();
@@ -55,6 +55,8 @@ const FSForm = ({ text, formType, formFields, initialData}) => {
         } else if (formType === "servicio") {
           res = await createService(formData, token);
         }
+
+        //AQUÍ AÑADIR POST Y PUT DE EMPLEO Y RECURSOS
       }
       
       setResponse(res);
