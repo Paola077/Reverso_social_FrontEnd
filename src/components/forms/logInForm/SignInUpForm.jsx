@@ -9,13 +9,11 @@ import FSLogoWhite from "../../../../public/images/FSLogoWhite.svg";
 import { jwtDecode } from "jwt-decode";
 import Alert from "../../modal/alerts/Alert";
 
-
-
 const SignInUpForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { login, isAuthenticated } = useAuth();
-  const [isRightPanelActive, setIsRightPanelActive] = useState(false);
+  const [isSignPanelActive, setIsSignPanelActive] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const queryClient = useQueryClient();
   const [data, setData] = useState(null);
@@ -30,12 +28,21 @@ const SignInUpForm = () => {
   });
 
   useEffect(() => {
+    if (location.state?.isSignPanelActive) {
+      setIsSignPanelActive(true);
+    }
+  }, [location]);
+
+  useEffect(() => {
     if (isAuthenticated) {
       setTimeout(() => {
-        navigate("/reverso-social/femsenior", { state: { showWelcomeAlert: true } });
+        navigate("/reverso-social/femsenior", {
+          state: { showWelcomeAlert: true },
+        });
       }, 100);
     }
   }, [isAuthenticated, navigate]);
+
   const resetForm = () => {
     setForm({
       name: "",
@@ -46,6 +53,7 @@ const SignInUpForm = () => {
       birthday: "",
     });
   };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({
@@ -53,24 +61,27 @@ const SignInUpForm = () => {
       [name]: value,
     });
   };
+
   const handleRegister = async (e) => {
     e.preventDefault();
     setData(null);
     setError(null);
     registerMutation.mutate(form);
   };
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setData(null);
     setError(null);
     loginMutation.mutate(form);
   };
+
   const registerMutation = useMutation({
     mutationFn: (form) => userRegister(form),
     onSuccess: (res) => {
       setData(res);
       resetForm();
-      setIsRightPanelActive(false);
+      setIsSignPanelActive(false);
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },
   });
@@ -78,36 +89,29 @@ const SignInUpForm = () => {
   const loginMutation = useMutation({
     mutationFn: (form) => userLogin(form),
     onSuccess: (res) => {
-      console.log("Respuesta completa del servidor:", res);
-
       const accessToken = res?.accessToken;
-
       if (accessToken) {
         const decodedToken = jwtDecode(accessToken);
         const role = decodedToken?.authorities?.[0] || "USER";
         login(accessToken, { email: form.email }, role);
         queryClient.invalidateQueries({ queryKey: ["user"] });
-      
       } else {
-        console.error("No se recibió el token de acceso.");
         setError("Error al recibir los datos de autenticación.");
       }
     },
     onError: (res) => {
-      console.error("Error al iniciar sesión:", res);
       setError(res?.response?.data || "Error al iniciar sesión.");
     },
   });
+
   return (
     <div
-      className={`signContainer ${
-        isRightPanelActive ? "rightPanelActive" : ""
-      }`}
+      className={`signContainer ${isSignPanelActive ? "signPanelActive" : ""}`}
       id="container"
     >
       <div
         className="formContainer signUpContainer"
-        style={{ display: isRightPanelActive ? "block" : "none" }}
+        style={{ display: isSignPanelActive ? "block" : "none" }}
       >
         <form onSubmit={handleRegister}>
           <h2 className="registerTitle">Crea una cuenta</h2>
@@ -117,7 +121,6 @@ const SignInUpForm = () => {
             onChange={handleChange}
             name="name"
             value={form.name}
-            required
           />
           {data?.name && <p className="errorText">{data?.name.message}</p>}
 
@@ -127,7 +130,6 @@ const SignInUpForm = () => {
             onChange={handleChange}
             name="lastname"
             value={form.lastname}
-            required
           />
           {data?.lastname && (
             <p className="errorText">{data?.lastname.message}</p>
@@ -139,7 +141,6 @@ const SignInUpForm = () => {
             onChange={handleChange}
             name="email"
             value={form.email}
-            required
           />
           {data?.email && <p className="errorText">{data?.email.message}</p>}
 
@@ -149,7 +150,6 @@ const SignInUpForm = () => {
             onChange={handleChange}
             name="username"
             value={form.username}
-            required
           />
           {data?.username && (
             <p className="errorText">{data?.username.message}</p>
@@ -161,7 +161,6 @@ const SignInUpForm = () => {
             onChange={handleChange}
             name="birthday"
             value={form.birthday}
-            required
           />
           {data?.birthday && (
             <p className="errorText">{data?.birthday.message}</p>
@@ -173,7 +172,6 @@ const SignInUpForm = () => {
             onChange={handleChange}
             name="password"
             value={form.password}
-            required
           />
           {data?.password && (
             <p className="errorText">{data?.password.message}</p>
@@ -187,7 +185,7 @@ const SignInUpForm = () => {
             <Link
               to="/reverso-social/login"
               className="ghost"
-              onClick={() => setIsRightPanelActive(false)}
+              onClick={() => setIsSignPanelActive(false)}
               id="login"
             >
               Aquí
@@ -198,15 +196,15 @@ const SignInUpForm = () => {
 
       <div
         className="formContainer signInContainer"
-        style={{ display: !isRightPanelActive ? "block" : "none" }}
+        style={{ display: !isSignPanelActive ? "block" : "none" }}
       >
-         {isAlertOpen && (
-        <Alert 
-          isOpen={isAlertOpen}
-          onclose={() => setIsAlertOpen(false)}
-          alert="¡Bienvenida a la comunidad!"
-        />
-      )}
+        {isAlertOpen && (
+          <Alert
+            isOpen={isAlertOpen}
+            onclose={() => setIsAlertOpen(false)}
+            alert="¡Bienvenida a la comunidad!"
+          />
+        )}
         <form onSubmit={handleLogin}>
           <h2 className="logInTitle">Accede a tu cuenta</h2>
           <input
@@ -238,7 +236,7 @@ const SignInUpForm = () => {
             <Link
               to="/reverso-social/signin"
               className="ghost"
-              onClick={() => setIsRightPanelActive(true)}
+              onClick={() => setIsSignPanelActive(true)}
               id="signIn"
             >
               Aquí
@@ -247,18 +245,18 @@ const SignInUpForm = () => {
         </form>
       </div>
 
-      <div className="overlayContainer">
-        <div className="overlay">
-          <div className="overlayPanel overlayLeft">
+      <div className="loginContainer">
+        <div className="login">
+          <div className="loginPanel loginLeft">
             <h3>Bienvenida a </h3>
-            <div className="overlayLogo">
+            <div className="loginLogo">
               <img src={logoReversoWhite} alt="Logo Reverso" />
               <img src={FSLogoWhite} alt="Logo Femsenior" />
             </div>
           </div>
-          <div className="overlayPanel overlayRight">
+          <div className="loginPanel loginRight">
             <h3>Bienvenida a </h3>
-            <div className="overlayLogo">
+            <div className="loginLogo">
               <img src={logoReversoWhite} alt="Logo Reverso" />
               <img src={FSLogoWhite} alt="Logo Femsenior" />
             </div>
