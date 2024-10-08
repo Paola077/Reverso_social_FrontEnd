@@ -81,7 +81,6 @@ const SignInUpForm = () => {
       queryClient.invalidateQueries({ queryKey: ["user"] });
     },
     onError: (error) => {
-      console.log("error: ", error);
       setError(error?.response?.data || "Error al registrarse.");
     },
   });
@@ -100,7 +99,6 @@ const SignInUpForm = () => {
       }
     },
     onError: (error) => {
-      console.log("error: ", error);
       setError(error?.response?.data || "Error al iniciar sesión.");
     },
   });
@@ -143,7 +141,7 @@ const SignInUpForm = () => {
           )}
 
           <input
-            type="email"
+            type="text"
             placeholder="Email"
             onChange={handleChange}
             name="email"
@@ -215,7 +213,7 @@ const SignInUpForm = () => {
         <form onSubmit={handleLogin}>
           <h2 className="logInTitle">Accede a tu cuenta</h2>
           <input
-            type="email"
+            type="text"
             placeholder="Email"
             onChange={handleChange}
             name="email"
