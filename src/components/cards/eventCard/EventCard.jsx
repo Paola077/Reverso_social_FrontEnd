@@ -30,6 +30,7 @@ const EventCard = ({
   buttonText,
   name,
   id,
+  entityType
 }) => {
   const { isAuthenticated, role, user } = useAuth();
   const [alertOpen, setAlertOpen] = useState(false);
@@ -40,7 +41,7 @@ const EventCard = ({
   console.log("Usuario autenticado:", user?.email);
   console.log("Creado por:", createdBy);
   console.log("¿Es el creador?", createdByUser);
-
+  console.log(user); 
   const handlePopupOpen = () => {
     if (isAuthenticated || pathLocation.pathname.includes('/eventos')) {
       setPopupOpen(true);
@@ -58,7 +59,7 @@ const EventCard = ({
     <div className="eventCard">
       {isAuthenticated && createdByUser && (
         <div className="eventCard__lateralButtons">
-          <EventCardButton id={id} />
+          <EventCardButton id={id} entityType={entityType}/>
         </div>
       )}
       <div className="eventCard__content">
