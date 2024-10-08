@@ -14,7 +14,10 @@ function Femsenior() {
   const [tabLabel, setTabLabel] = useState("NUEVO EVENTO");
   const { isAuthenticated, role } = useContext(AuthContext);
   const showDynamicTab =
-    isAuthenticated && (role === "FEMSENIOR" || role === "ADMIN");
+    isAuthenticated &&
+    (role === "FEMSENIOR" ||
+      role === "FEMSENIORADMIN" ||
+      role === "REVERSOADMIN");
   const [isAlertOpen, setIsAlertOpen] = useState(
     location.state?.showWelcomeAlert || false
   );

@@ -30,11 +30,13 @@ const EventCard = ({
   buttonText,
   name,
   id,
-  entityType, sector
+  entityType,
+  sector,
 }) => {
   const { isAuthenticated, role, user } = useAuth();
   const [alertOpenForMoreInfo, setAlertOpenForMoreInfo] = useState(false);
-  const [alertOpenForRegistration, setAlertOpenForRegistration] = useState(false);
+  const [alertOpenForRegistration, setAlertOpenForRegistration] =
+    useState(false);
   const [isPopupOpen, setPopupOpen] = useState(false);
   const [isAttending, setIsAttending] = useState(false);
   const pathLocation = useLocation();
@@ -48,7 +50,7 @@ const EventCard = ({
     if (isAuthenticated || pathLocation.pathname.includes("/eventos")) {
       setPopupOpen(true);
     } else {
-      setAlertOpenForMoreInfo(true); 
+      setAlertOpenForMoreInfo(true);
     }
   };
 
@@ -56,7 +58,7 @@ const EventCard = ({
     if (isAuthenticated) {
       setIsAttending(!isAttending);
     } else {
-      setAlertOpenForRegistration(true); 
+      setAlertOpenForRegistration(true);
     }
   };
 
@@ -66,7 +68,7 @@ const EventCard = ({
 
   return (
     <div className="eventCard">
-      {isAuthenticated && (createdByUser || role === "ADMIN") && (
+      {isAuthenticated && (createdByUser || role === "FEMSENIORADMIN") && (
         <div className="eventCard__lateralButtons">
           <EventCardButton id={id} entityType={entityType} />
         </div>
@@ -74,7 +76,7 @@ const EventCard = ({
       <div className="eventCard__content">
         <div className="eventCard__content__info">
           <h3 className="eventCard__content__info__title">{title}</h3>
-            
+
           <div className="eventCard__content__info__details">
             {sector && <span>{sector}</span>}
             {location && <span>{location}</span>}
@@ -104,8 +106,8 @@ const EventCard = ({
         </div>
       </div>
       <Alert
-          isOpen={alertOpenForMoreInfo}
-          onclose={() => setAlertOpenForMoreInfo(false)}
+        isOpen={alertOpenForMoreInfo}
+        onclose={() => setAlertOpenForMoreInfo(false)}
         alert="Por favor, regístrate para acceder a más información"
       >
         <Button
@@ -141,7 +143,13 @@ const EventCard = ({
         phoneNumber={phoneNumber}
         name={name}
         description={description}
-        buttonText={!createdByUser ? (isAttending ? "Cancelar asistencia" : "Apúntate") : null}
+        buttonText={
+          !createdByUser
+            ? isAttending
+              ? "Cancelar asistencia"
+              : "Apúntate"
+            : null
+        }
         onButtonClick={toggleAttendance}
         contentText={contentText}
       />
@@ -150,7 +158,7 @@ const EventCard = ({
         onclose={() => setAlertOpenForRegistration(false)}
         alert="Necesitas estar registrada para apuntarte."
       >
-         <Button
+        <Button
           textButton={"Cancelar"}
           backgroundColor={"white"}
           width={"12.5rem"}
@@ -166,7 +174,7 @@ const EventCard = ({
           backgroundColor={"#7176f8"}
           border={"0.15rem solid #7176f8"}
           color={"white"}
-          onClick={() => navigate("/reverso-social/login")} 
+          onClick={() => navigate("/reverso-social/login")}
         />
       </Alert>
     </div>
