@@ -16,3 +16,9 @@ export const EVENT_URL_ID = (id) => `${EVENT_URL}/${id}`;
 export const SERVICES_URL = BASE_URL + "services"
 
 export const SERVICES_URL_ID = (id) => `${SERVICES_URL}/${id}`;
+
+// EMPLOYS URL
+
+export const EMPLOY_URL = BASE_URL + "employs"
+
+export const EMPLOY_URL_ID = (id) => `${EMPLOY_URL}/${id}`;
