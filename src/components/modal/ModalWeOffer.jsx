@@ -14,8 +14,8 @@ const ModalWeOffer = ({ isOpen, onClose, title, text, imageUrl }) => {
         </button>
         <h3 className="modalOfferTitle">{title}</h3>
         <div className="modalOfferBody">
-          <div className="modalOfferText">
-            <p>{text}</p>
+          <div className="modalOfferText" dangerouslySetInnerHTML={{ __html: text }}>
+            {/* <p >{text}</p> */}
           </div>
           <div className="modalOfferImage">
             <img src={imageUrl} alt={title} />
