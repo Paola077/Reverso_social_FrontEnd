@@ -30,7 +30,7 @@ const EventCard = ({
   buttonText,
   name,
   id,
-  entityType
+  entityType, sector
 }) => {
   const { isAuthenticated, role, user } = useAuth();
   const [alertOpen, setAlertOpen] = useState(false);
@@ -65,7 +65,9 @@ const EventCard = ({
       <div className="eventCard__content">
         <div className="eventCard__content__info">
           <h3 className="eventCard__content__info__title">{title}</h3>
+            
           <div className="eventCard__content__info__details">
+            {sector && <span>{sector}</span>}
             {location && <span>{location}</span>}
             {date && <span>Fecha: {date}</span>}
             {time && <span>Hora: {time}</span>}

@@ -10,7 +10,7 @@ import { useAuth } from "../../../context/AuthContext";
 import React, { Fragment } from 'react';
 import Alert from "../../modal/alerts/Alert";
 import { createEmployOffer, updateEmployOffer } from "../../../services/employApi";
-// import { createResource, updateResource } from "../../../services/resourceApi"
+import { createResource, updateResource } from "../../../services/resourceApi"
 
 const FSForm = ({ text, formType, formFields, initialData}) => {
   const navigate = useNavigate();
