@@ -23,9 +23,11 @@ const Navbar = () => {
   const handleLogInClick = () => {
     navigate("/reverso-social/login");
   };
+
   const handleSignInClick = () => {
-    navigate("/reverso-social/signin");
+    navigate("/reverso-social/signin", { state: { isSignPanelActive: true } }); 
   };
+
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -165,7 +167,7 @@ const Navbar = () => {
                 width={"10rem"}
                 color={"#fff"}
                 padding={"0.25rem"}
-                onClick={handleSignInClick}
+                onClick={handleSignInClick} 
               >
                 Registrarse
               </Button>

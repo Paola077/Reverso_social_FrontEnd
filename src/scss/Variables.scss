@@ -47,7 +47,7 @@ $font-weight-bold: 700;
 
 @mixin subtitle-font{
   font-family: $font-family-title;
-  font-size: $font-size-h1;
+  font-size: $font-size-h2;
   font-weight: $font-weight-bold;
   color: $dark;
 }
