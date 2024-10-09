@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { getEvent } from "../services/eventApi";
 import { getService } from "../services/servicesApi";
+import { getEmploy } from "../services/employApi";
 import { getResourceById } from "../services/resourceApi";
 
 const FSForms = () => {
@@ -12,7 +13,7 @@ const FSForms = () => {
   const [initialData, setInitialData] = useState();
   const [loading, setLoading] = useState(true);
 
-  console.log("formType:", formType); 
+  console.log("formType:", formType);
 
   useEffect(() => {
     if (id) {
@@ -25,7 +26,7 @@ const FSForms = () => {
           fetchData = getService(id);
           break;
         case "curriculum":
-          fetchData = getEmployById(id);
+          fetchData = getEmploy(id);
           break;
         case "recurso":
           fetchData = getResourceById(id);
@@ -34,21 +35,20 @@ const FSForms = () => {
           break;
       }
 
-      if (fetchData){
+      if (fetchData) {
         fetchData
-        .then((data) => {
-          setInitialData(data);
-        })
-        .catch((error) => {
-          console.log("Error al obtener los datos:", error);
-        })
-        .finally(() => setLoading(false))
+          .then((data) => {
+            setInitialData(data);
+          })
+          .catch((error) => {
+            console.log("Error al obtener los datos:", error);
+          })
+          .finally(() => setLoading(false));
       }
-    }else {
+    } else {
       setLoading(false);
     }
   }, [id, formType]);
-
 
   const formConfigurations = {
     evento: {
@@ -123,7 +123,7 @@ const FSForms = () => {
       ],
     },
     servicio: {
-      text: id ? "EDITAR SERVICIO" :"NUEVO SERVICIO",
+      text: id ? "EDITAR SERVICIO" : "NUEVO SERVICIO",
       fields: [
         {
           title: "Título",
@@ -140,8 +140,8 @@ const FSForms = () => {
             {
               label: "Mentorías",
               value: "Mentorías",
-            }
-          ]
+            },
+          ],
         },
         {
           title: "Sector",
@@ -189,13 +189,13 @@ const FSForms = () => {
       ],
     },
     curriculum: {
-      text: id ? "EDITAR CURRICULUM" :"SUBE TU CURRICULUM",
+      text: id ? "EDITAR CURRICULUM" : "SUBE TU CURRICULUM",
       fields: [
         {
           title: "Puesto",
           type: "text",
           placeholder: "Puesto con el que te ofreces",
-          name: "work",
+          name: "position",
         },
         {
           title: "Sector",
@@ -243,7 +243,7 @@ const FSForms = () => {
       ],
     },
     recurso: {
-      text:id ? "EDITAR RECURSO" : "NUEVO RECURSO",
+      text: id ? "EDITAR RECURSO" : "NUEVO RECURSO",
       fields: [
         {
           title: "Título",
@@ -275,11 +275,14 @@ const FSForms = () => {
     },
   };
   const currentForm = formConfigurations[formType];
-  return <FSForm 
-  text={currentForm.text}
-  formType={formType} 
-  formFields={currentForm.fields}
-  initialData={initialData} />;
+  return (
+    <FSForm
+      text={currentForm.text}
+      formType={formType}
+      formFields={currentForm.fields}
+      initialData={initialData}
+    />
+  );
 };
 
 export default FSForms;

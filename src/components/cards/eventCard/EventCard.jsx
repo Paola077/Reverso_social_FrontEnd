@@ -78,7 +78,7 @@ const EventCard = ({
           <h3 className="eventCard__content__info__title">{title}</h3>
 
           <div className="eventCard__content__info__details">
-            {sector && <span>{sector}</span>}
+            {sector && entityType == "evento" && <span>{sector}</span>}
             {location && <span>{location}</span>}
             {date && <span>Fecha: {date}</span>}
             {time && <span>Hora: {time}</span>}
@@ -88,9 +88,7 @@ const EventCard = ({
         </div>
         <div className="eventCard__content__button">
           {isPastEvent ? (
-            <span className="pastEvent">
-              Finalizado
-            </span>
+            <span className="pastEvent">Finalizado</span>
           ) : (
             <Button
               textButton={"Ver"}
