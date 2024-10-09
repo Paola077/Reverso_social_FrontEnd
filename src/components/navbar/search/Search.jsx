@@ -10,6 +10,7 @@ const Search = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
   const navigate = useNavigate();
 
   const fetchResults = useCallback(async (value) => {
@@ -28,7 +29,6 @@ const Search = () => {
       }
 
       const data = await response.json();
-      console.log("Respuesta del servidor (JSON):", data);
       setResults(data);
       setDropdownVisible(data.length > 0);
     } catch (error) {
@@ -43,18 +43,32 @@ const Search = () => {
   const handleSearch = (event) => {
     const value = event.target.value;
     setQuery(value);
+    setSelectedIndex(-1);
     debouncedFetchResults(value);
   };
 
-  const handleClickOutside = (event) => {
+  const handleClickOutside = useCallback((event) => {
     if (!event.target.closest(".search")) {
       setDropdownVisible(false);
     }
-  };
+  }, []);
 
   const handleSelectResult = (eventId) => {
+    setQuery('');
     navigate(`/reverso-social/femsenior/eventos/${eventId}`);
     setDropdownVisible(false);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "ArrowDown") {
+      setSelectedIndex((prevIndex) =>
+        prevIndex < results.length - 1 ? prevIndex + 1 : prevIndex
+      );
+    } else if (event.key === "ArrowUp") {
+      setSelectedIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0));
+    } else if (event.key === "Enter" && selectedIndex !== -1) {
+      handleSelectResult(results[selectedIndex].id);
+    }
   };
 
   useEffect(() => {
@@ -62,7 +76,7 @@ const Search = () => {
     return () => {
       document.removeEventListener("click", handleClickOutside);
     };
-  }, []);
+  }, [handleClickOutside]);
 
   return (
     <Box className="searchContainer">
@@ -74,12 +88,17 @@ const Search = () => {
           className="styledInputBase"
           value={query}
           onChange={handleSearch}
+          onKeyDown={handleKeyDown} 
         />
         {dropdownVisible && results.length > 0 && (
           <div className="dropdownSearch">
             <ul className="dropdownMenuSearch">
-              {results.map((event) => (
-                <li key={event.id} onClick={() => handleSelectResult(event.id)}>
+              {results.map((event, index) => (
+                <li
+                  key={event.id}
+                  className={index === selectedIndex ? "selected" : ""}
+                  onClick={() => handleSelectResult(event.id)}
+                >
                   {event.title}
                 </li>
               ))}
