@@ -6,7 +6,7 @@ const Collaborate = () => {
   const navigate = useNavigate();
   const buttonWidth = window.innerWidth < 420 ? "13rem" : "22rem"; 
   const buttonHeight = window.innerWidth < 420 ? "2rem" : "3.5rem"; 
-  const buttonFontSize = window.innerWidth < 420 ? "0.8rem" : "1.125rem";
+  const buttonFontSize = window.innerWidth < 420 ? "0.7rem" : "1.125rem";
   return (
     <>
       <div className="container">
