@@ -78,7 +78,7 @@ const Intro = () => {
         title="MANIFIESTO"
         bodyTexts={[
           "Nos dirigimos a <strong>CARGOS POLÍTICOS Y SINDICALES, ADMINISTRACIÓN PUBLICA, EMPRESAS PRIVADAS, SOCIEDADES, ETC.</strong>",
-          "Queremos un <strong>cambio estructural dentro de todas las instituciones</strong>, que elimine todas las formas de discriminación por sexo, género, orientación sexual, procedencia, religión o clase social.",
+          "Queremos un <strong>cambio estructural dentro de todas las instituciones y empresas</strong>, que elimine todas las formas de discriminación por sexo, género, orientación sexual, procedencia, religión o clase social.",
           "Nos comprometemos a erradicar la violencia de género en todos los ámbitos, <strong>luchar contra la explotación sexual y todas las formas de violencia hacia mujeres y niñas.</strong>",
           "Fomentamos la participación plena de las mujeres en la vida política, económica y pública, asegurando la igualdad de oportunidades. Defendemos el <strong>acceso universal a la salud sexual y reproductiva, y los derechos reproductivos de las mujeres.</strong>",
           "Queremos romper con la brecha digital, promoviendo el uso de tecnología para el empoderamiento de las mujeres.",

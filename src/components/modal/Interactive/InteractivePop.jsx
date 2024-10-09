@@ -1,8 +1,8 @@
 import React from "react";
 import { Button } from "../../buttons/button/Button";
-import closeIcon from "/src/components/modal/Exit.svg";
+import closeIcon from "/icons/Exit.svg";
 import "../Interactive/_InteractivePop.scss";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 const InteractivePop = ({
   isOpen,
@@ -26,11 +26,15 @@ const InteractivePop = ({
 
   const { pathname } = useLocation();
 
-  const currentPage = pathname.includes("evento") ? "EVENTOS" : 
-  pathname.includes("servicio") ? "SERVICIOS" : 
-  pathname.includes("curriculum") ? "EMPLEO" : 
-  pathname.includes("recurso") ? "RECURSOS" : 
-  "";
+  const currentPage = pathname.includes("evento")
+    ? "EVENTOS"
+    : pathname.includes("servicio")
+    ? "SERVICIOS"
+    : pathname.includes("curriculum")
+    ? "EMPLEO"
+    : pathname.includes("recurso")
+    ? "RECURSOS"
+    : "";
 
   if (!isOpen) return null;
 
@@ -112,9 +116,7 @@ const InteractivePop = ({
               </p>
             </div>
           )}
-          {description && (
-            <p className="popUpContentBodyText">{description}</p>
-          )}
+          {description && <p className="popUpContentBodyText">{description}</p>}
         </div>
         <div className="ContentLocation">
           {location && (
@@ -145,7 +147,6 @@ const InteractivePop = ({
       </div>
     </div>
   );
-};  
-
+};
 
 export default InteractivePop;

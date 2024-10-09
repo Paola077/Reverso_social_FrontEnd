@@ -10,7 +10,7 @@ export const createEmployOffer = async (data, token) => {
   return res.data;
 };
 
-export const getEmployById = async (id) => {
+export const getEmploy = async (id) => {
   const res = await axios.get(EMPLOY_URL_ID(id));
   return res.data;
 };

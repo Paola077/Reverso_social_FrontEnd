@@ -3,15 +3,19 @@ import "./_FSForm.scss";
 import { useEffect, useState } from "react";
 import { InputForm } from "../../Inputs/InputForm";
 import { Button } from "../../buttons/button/Button";
-import { createEvent } from "../../../services/eventApi";
-import { createService } from "../../../services/servicesApi";
+import { createEvent, updateEvent } from "../../../services/eventApi";
+import { createService, updateService } from "../../../services/servicesApi";
 // import { useMutation } from "@tanstack/react-query";
 import { useAuth } from "../../../context/AuthContext";
-import React, { Fragment } from 'react';
+import React, { Fragment } from "react";
 import Alert from "../../modal/alerts/Alert";
-import { updateEvent } from "../../../services/eventApi";
+import {
+  createEmployOffer,
+  updateEmployOffer,
+} from "../../../services/employApi";
+import { createResource, updateResource } from "../../../services/resourceApi";
 
-const FSForm = ({ text, formType, formFields, initialData}) => {
+const FSForm = ({ text, formType, formFields, initialData }) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState(initialData || {});
   const [response, setResponse] = useState(null);
@@ -48,22 +52,29 @@ const FSForm = ({ text, formType, formFields, initialData}) => {
           res = await updateEvent(id, formData, token);
         } else if (formType === "servicio") {
           res = await updateService(id, formData, token);
+        } else if (formType === "curriculum") {
+          res = await updateEmployOffer(id, formData, token);
+        } else if (formType === "recurso") {
+          res = await updateResource(id, formData, token);
         }
       } else {
         if (formType === "evento") {
           res = await createEvent(formData, token);
         } else if (formType === "servicio") {
           res = await createService(formData, token);
+        } else if (formType === "curriculum") {
+          res = await createEmployOffer(formData, token);
+        } else if (formType === "recurso") {
+          res = await createResource(formData, token);
         }
       }
-      
+
       setResponse(res);
       setIsOpen(true);
     } catch (err) {
       setError(err?.response?.data || "Ocurrió un error");
     }
   };
-
 
   const handleCancel = () => {
     navigate("/reverso-social/femsenior");
@@ -72,38 +83,38 @@ const FSForm = ({ text, formType, formFields, initialData}) => {
   const handleAlertClose = () => {
     setIsOpen(false);
     if (formType === "evento") {
-      navigate("/reverso-social/femsenior/eventos"); 
+      navigate("/reverso-social/femsenior/eventos");
     } else if (formType === "servicio") {
       navigate("/reverso-social/femsenior/servicios");
+    } else if (formType === "curriculum") {
+      navigate("/reverso-social/femsenior/empleo");
+    } else if (formType === "recurso") {
+      navigate("/reverso-social/femsenior/recursos");
     }
   };
-
 
   return (
     <div className="formBackGround">
       <form onSubmit={handleSubmit}>
         <div className="formBox">
-          <button
-            className="buttonExit"
-            onClick={() => navigate("/reverso-social/femsenior")}
-          >
+          <button className="buttonExit" onClick={handleAlertClose}>
             <img src="/icons/Exit.svg" alt="Cerrar formulario" />
           </button>
           <h2 className="requestTitle">{text}</h2>
 
           {formFields.map((field, index) => (
-              <Fragment key={index}>
+            <Fragment key={index}>
               <InputForm
                 title={field.title}
                 type={field.type}
                 placeholder={field.placeholder}
-                value={formData[field.name] || ''}
+                value={formData[field.name] || ""}
                 name={field.name}
                 onChange={handleChange}
                 options={field.options || []}
               />
               <p className="errorText">{error?.[field.name]?.message}</p>
-              </Fragment>
+            </Fragment>
           ))}
           <p>{error?.message}</p>
           <div className="buttonBox">
@@ -133,14 +144,23 @@ const FSForm = ({ text, formType, formFields, initialData}) => {
         </div>
       </form>
       <Alert
-        alert={isEdit 
-          ? formType === "servicio" 
-            ? "¡El servicio ha sido actualizado!" 
-            : "¡El evento ha sido actualizado!" 
-          : formType === "servicio" 
-            ? "¡El servicio ha sido creado con éxito!" 
-            : "¡Evento creado con éxito!"
-      }
+        alert={
+          isEdit
+            ? formType === "servicio"
+              ? "¡El servicio ha sido actualizado!"
+              : formType === "evento"
+              ? "¡El evento ha sido actualizado!"
+              : formType === "recurso"
+              ? "¡El recurso ha sido actualizado!"
+              : "¡El currículum ha sido actualizado!"
+            : formType === "servicio"
+            ? "¡El servicio ha sido creado con éxito!"
+            : formType === "evento"
+            ? "¡Evento creado con éxito!"
+            : formType === "recurso"
+            ? "¡Recurso creado con éxito!"
+            : "¡Currículum creado con éxito!"
+        }
         isOpen={isOpen}
         onclose={handleAlertClose}
       >
@@ -156,7 +176,9 @@ const FSForm = ({ text, formType, formFields, initialData}) => {
       </Alert>
       {error && (
         <Alert
-          alert={`Error: ${error.message || "Ocurrió un error al procesar la solicitud"}`}
+          alert={`Error: ${
+            error?.message || "Ocurrió un error al procesar la solicitud"
+          }`}
           isOpen={!!error}
           onClose={() => setError(null)}
         >

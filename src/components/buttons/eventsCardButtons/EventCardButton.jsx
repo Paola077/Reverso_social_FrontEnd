@@ -1,16 +1,18 @@
 import "./_EventCardButton.scss";
-import editIcon from "../../../../public/icons/Edit.svg";
-import deleteIcon from "../../../../public/icons/Delete.svg";
+import editIcon from "/icons/Edit.svg";
+import deleteIcon from "/icons/Delete.svg";
 import { deleteEvent } from "../../../services/eventApi";
+import { deleteService } from "../../../services/servicesApi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useAuth } from "../../../context/AuthContext";
 import Alert from "../../modal/alerts/Alert";
 import { Button } from "../button/Button";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { deleteEmployOffer } from "../../../services/employApi";
+import { deleteResource } from "../../../services/resourceApi";
 
-const EventCardButton = ({ id }) => {
+const EventCardButton = ({ id, entityType }) => {
   const queryClient = useQueryClient();
   const [error, setError] = useState(null);
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
@@ -18,12 +20,19 @@ const EventCardButton = ({ id }) => {
   const { token } = useAuth();
   const navigate = useNavigate();
 
-  const mutationDeleteEvent = useMutation({
-    mutationFn: (id) => deleteEvent(id, token),
+  const deleteFunctionMap = {
+    "evento": deleteEvent,
+    "servicio": deleteService,
+    "curriculum": deleteEmployOffer,
+    "recurso": deleteResource,
+  };
+
+  const mutationDelete = useMutation({
+    mutationFn: (id) => deleteFunctionMap[entityType](id, token),
     onSuccess: () => {
       setIsConfirmationOpen(false);
       setIsSuccessOpen(true);
-      queryClient.invalidateQueries("events");
+      queryClient.invalidateQueries(entityType); 
     },
     onError: (error) => {
       console.log("Error al eliminar: ", error);
@@ -32,13 +41,13 @@ const EventCardButton = ({ id }) => {
   });
 
   const handleDelete = () => {
-    mutationDeleteEvent.mutate(id);
+    mutationDelete.mutate(id);
   };
 
   return (
     <>
       <div className="tabButtonContainer">
-        <button className="tabButtonContainer__editButton" onClick={() => navigate(`/formulariofs/evento/editar/${id}`)}>
+        <button className="tabButtonContainer__editButton" onClick={() => navigate(`/formulariofs/${entityType}/editar/${id}`)}>
           <img
             className="tabButtonContainer__editButton__editIcon"
             src={editIcon}
@@ -61,7 +70,7 @@ const EventCardButton = ({ id }) => {
       {/* Modal de confirmación */}
       {isConfirmationOpen && (
         <Alert
-          alert="¿Quieres eliminar este evento?"
+          alert={`¿Quieres eliminar este ${entityType}?`}
           isOpen={isConfirmationOpen}
           onclose={() => setIsConfirmationOpen(false)}
         >
@@ -89,7 +98,7 @@ const EventCardButton = ({ id }) => {
       {/* Modal de éxito */}
       {isSuccessOpen && (
         <Alert
-          alert="¡El evento ha sido eliminado!"
+          alert={`¡El ${entityType} ha sido eliminado!`}
           isOpen={isSuccessOpen}
           onclose={() => setIsSuccessOpen(false)}
         >

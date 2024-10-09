@@ -4,8 +4,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { userRegister, userLogin } from "../../../services/userApi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
-import logoReversoWhite from "../../../../public/images/RSLogoWhite.svg";
-import FSLogoWhite from "../../../../public/images/FSLogoWhite.svg";
+import logoReversoWhite from "/images/RSLogoWhite.svg";
+import FSLogoWhite from "/images/FSLogoWhite.svg";
 import { jwtDecode } from "jwt-decode";
 import Alert from "../../modal/alerts/Alert";
 
@@ -16,7 +16,6 @@ const SignInUpForm = () => {
   const [isSignPanelActive, setIsSignPanelActive] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const queryClient = useQueryClient();
-  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [form, setForm] = useState({
     name: "",
@@ -64,25 +63,25 @@ const SignInUpForm = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setData(null);
     setError(null);
     registerMutation.mutate(form);
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setData(null);
     setError(null);
     loginMutation.mutate(form);
   };
 
   const registerMutation = useMutation({
     mutationFn: (form) => userRegister(form),
-    onSuccess: (res) => {
-      setData(res);
+    onSuccess: () => {
       resetForm();
       setIsSignPanelActive(false);
       queryClient.invalidateQueries({ queryKey: ["user"] });
+    },
+    onError: (error) => {
+      setError(error?.response?.data || "Error al registrarse.");
     },
   });
 
@@ -99,10 +98,16 @@ const SignInUpForm = () => {
         setError("Error al recibir los datos de autenticación.");
       }
     },
-    onError: (res) => {
-      setError(res?.response?.data || "Error al iniciar sesión.");
+    onError: (error) => {
+      setError(error?.response?.data || "Error al iniciar sesión.");
     },
   });
+
+  const handlePanel = () => {
+    resetForm();
+    setError(null);
+    setIsSignPanelActive(!isSignPanelActive);
+  };
 
   return (
     <div
@@ -113,7 +118,7 @@ const SignInUpForm = () => {
         className="formContainer signUpContainer"
         style={{ display: isSignPanelActive ? "block" : "none" }}
       >
-        <form onSubmit={handleRegister}>
+        <form onSubmit={handleRegister} className={error ? "inputError" : ""}>
           <h2 className="registerTitle">Crea una cuenta</h2>
           <input
             type="text"
@@ -122,7 +127,7 @@ const SignInUpForm = () => {
             name="name"
             value={form.name}
           />
-          {data?.name && <p className="errorText">{data?.name.message}</p>}
+          {error?.name && <p className="errorText">{error?.name.message}</p>}
 
           <input
             type="text"
@@ -131,18 +136,18 @@ const SignInUpForm = () => {
             name="lastname"
             value={form.lastname}
           />
-          {data?.lastname && (
-            <p className="errorText">{data?.lastname.message}</p>
+          {error?.lastname && (
+            <p className="errorText">{error?.lastname.message}</p>
           )}
 
           <input
-            type="email"
+            type="text"
             placeholder="Email"
             onChange={handleChange}
             name="email"
             value={form.email}
           />
-          {data?.email && <p className="errorText">{data?.email.message}</p>}
+          {error?.email && <p className="errorText">{error?.email.message}</p>}
 
           <input
             type="text"
@@ -151,8 +156,8 @@ const SignInUpForm = () => {
             name="username"
             value={form.username}
           />
-          {data?.username && (
-            <p className="errorText">{data?.username.message}</p>
+          {error?.username && (
+            <p className="errorText">{error?.username.message}</p>
           )}
 
           <input
@@ -162,8 +167,8 @@ const SignInUpForm = () => {
             name="birthday"
             value={form.birthday}
           />
-          {data?.birthday && (
-            <p className="errorText">{data?.birthday.message}</p>
+          {error?.birthday && (
+            <p className="errorText">{error?.birthday.message}</p>
           )}
 
           <input
@@ -173,8 +178,8 @@ const SignInUpForm = () => {
             name="password"
             value={form.password}
           />
-          {data?.password && (
-            <p className="errorText">{data?.password.message}</p>
+          {error?.password && (
+            <p className="errorText">{error?.password.message}</p>
           )}
 
           <button className="ghost" type="submit">
@@ -185,7 +190,7 @@ const SignInUpForm = () => {
             <Link
               to="/reverso-social/login"
               className="ghost"
-              onClick={() => setIsSignPanelActive(false)}
+              onClick={() => handlePanel()}
               id="login"
             >
               Aquí
@@ -208,14 +213,13 @@ const SignInUpForm = () => {
         <form onSubmit={handleLogin}>
           <h2 className="logInTitle">Accede a tu cuenta</h2>
           <input
-            type="email"
+            type="text"
             placeholder="Email"
             onChange={handleChange}
             name="email"
             value={form.email}
-            required
           />
-          {data?.email && <p className="errorText">{data?.email.message}</p>}
+          {error?.email && <p className="errorText">{error?.email.message}</p>}
 
           <input
             type="password"
@@ -223,10 +227,9 @@ const SignInUpForm = () => {
             onChange={handleChange}
             name="password"
             value={form.password}
-            required
           />
-          {data?.password && (
-            <p className="errorText">{data?.password.message}</p>
+          {error?.password && (
+            <p className="errorText">{error?.password.message}</p>
           )}
           {error && <p className="errorText">{error?.message}</p>}
 
@@ -236,7 +239,7 @@ const SignInUpForm = () => {
             <Link
               to="/reverso-social/signin"
               className="ghost"
-              onClick={() => setIsSignPanelActive(true)}
+              onClick={() => handlePanel()}
               id="signIn"
             >
               Aquí
