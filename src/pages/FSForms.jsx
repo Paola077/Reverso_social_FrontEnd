@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { getEvent } from "../services/eventApi";
 import { getService } from "../services/servicesApi";
+import { getResourceById } from "../services/resourceApi";
 
 const FSForms = () => {
   const { formType, id } = useParams();
@@ -27,7 +28,7 @@ const FSForms = () => {
           fetchData = getEmployById(id);
           break;
         case "recurso":
-          fetchData = getResource(id);
+          fetchData = getResourceById(id);
           break;
         default:
           break;
@@ -248,13 +249,13 @@ const FSForms = () => {
           title: "Título",
           type: "text",
           placeholder: "Título del recurso",
-          name: "resorce",
+          name: "title",
         },
         {
           title: "Enlace",
           type: "url",
           placeholder: "Enlace del recurso",
-          name: "link",
+          name: "url",
         },
         {
           title: "Descripción",
@@ -264,10 +265,11 @@ const FSForms = () => {
         },
         {
           title: "Documento",
-          type: "file",
+          //type: "file",
+          type: "text",
           placeholder: "Selecciona un documento",
-          name: "document",
-          accept: "multimedia",
+          name: "file",
+          //accept: "multimedia",
         },
       ],
     },

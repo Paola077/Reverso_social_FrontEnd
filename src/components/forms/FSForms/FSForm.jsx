@@ -148,12 +148,20 @@ const FSForm = ({ text, formType, formFields, initialData}) => {
       </form>
       <Alert
         alert={isEdit 
-          ? formType === "servicio" 
-            ? "¡El servicio ha sido actualizado!" 
-            : "¡El evento ha sido actualizado!" 
-          : formType === "servicio" 
-            ? "¡El servicio ha sido creado con éxito!" 
-            : "¡Evento creado con éxito!"
+          ? formType === "servicio"
+          ? "¡El servicio ha sido actualizado!"
+          : formType === "evento"
+            ? "¡El evento ha sido actualizado!"
+            : formType === "recurso"
+              ? "¡El recurso ha sido actualizado!"
+              : "¡El currículum ha sido actualizado!"
+        : formType === "servicio"
+          ? "¡El servicio ha sido creado con éxito!"
+          : formType === "evento"
+            ? "¡Evento creado con éxito!"
+            : formType === "recurso"
+              ? "¡Recurso creado con éxito!"
+              : "¡Currículum creado con éxito!"
       }
         isOpen={isOpen}
         onclose={handleAlertClose}
