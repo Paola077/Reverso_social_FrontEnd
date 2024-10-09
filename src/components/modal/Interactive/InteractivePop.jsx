@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "../../buttons/button/Button";
 import closeIcon from "/icons/Exit.svg";
 import "../Interactive/_InteractivePop.scss";
-import { useLocation } from 'react-router-dom';
+import { useAuth } from "../../../context/AuthContext";
 
 const InteractivePop = ({
   isOpen,
@@ -19,67 +19,16 @@ const InteractivePop = ({
   phoneNumber,
   buttonText,
   onButtonClick,
-  user_id,
+  createdBy, // Recibiendo el email del creador
+  participantsCount, // Número de participantes
   contentText,
 }) => {
-  if (!isOpen) return null;
+  const { user } = useAuth(); // Obtener el usuario autenticado desde el contexto de autenticación
 
-  const { pathname } = useLocation();
-
-  const currentPage = pathname.includes("evento") ? "EVENTOS" : 
-  pathname.includes("servicio") ? "SERVICIOS" : 
-  pathname.includes("curriculum") ? "EMPLEO" : 
-  pathname.includes("recurso") ? "RECURSOS" : 
-  "";
+  // Comparar si el usuario autenticado es el creador del evento
+  const isCreator = user?.email === createdBy;
 
   if (!isOpen) return null;
-
-  const renderContactSection = () => (
-    <div className="contentContact">
-      <p className="contentText">
-        <strong>{contentText}</strong>
-      </p>
-      {user_id && (
-        <div className="popUpContenContact">
-          <p>{user_id}</p>
-        </div>
-      )}
-      {phoneNumber && (
-        <div className="popUpContenContact">
-          <p>Tel: {phoneNumber}</p>
-        </div>
-      )}
-      {email && (
-        <div className="popUpContenContact">
-          <p>{email}</p>
-        </div>
-      )}
-    </div>
-  );
-
-  const renderButton = () => (
-    <Button
-      className="contentButton"
-      textButton={buttonText}
-      backgroundColor="#7176F8"
-      border="none"
-      width="13rem"
-      height="3rem"
-      color="white"
-      margin="2rem 0 0 0"
-      onClick={onButtonClick}
-    />
-  );
-
-  const renderContentText = () => (
-    <div className="employmentSection">
-      {contentText && (
-        <div className="popUpContentText">
-          <p>{contentText}</p>
-        </div>
-      )}
-    </div>
-  );
 
   return (
     <div className="popUpInteractive">
@@ -92,60 +41,50 @@ const InteractivePop = ({
             <h3 className="titlePopUp">{title}</h3>
             {modality && <p className="popUpModality">{modality}</p>}
           </div>
-          {currentPage === "EVENTOS" && (date || time) && (
-            <div className="dateAndTime">
-              {date && <p className="popUpDate">{date}</p>}
-              {time && <p className="popUpTime">{time}</p>}
-            </div>
-          )}
+          {date && <p className="popUpDate">{date}</p>}
+          {time && <p className="popUpTime">{time}</p>}
         </div>
-        {position && (
-          <div className="popUpPosition">
-            <strong>{position}</strong>
-          </div>
-        )}
+
         <div className="popUpContentBody">
-          {type && (
-            <div className="PopUpType">
-              <p className="popUpTypeText">
-                <strong>{type}</strong>
-              </p>
-            </div>
-          )}
-          {description && (
-            <p className="popUpContentBodyText">{description}</p>
-          )}
+          {description && <p className="popUpContentBodyText">{description}</p>}
         </div>
-        <div className="ContentLocation">
+
+        <div className="popUpContactSection">
           {location && (
             <>
-              <p className="popUpLocationTitle">
-                <strong>UBICACIÓN</strong>
+              <p>
+                <strong>Ubicación:</strong> {location}
               </p>
-              <p className="popUpLocationValue">{location}</p>
             </>
           )}
+          {phoneNumber && <p>Tel: {phoneNumber}</p>}
+          {email && <p>Email: {email}</p>}
         </div>
+
+        {isCreator && (
+          <div className="participantsCount">
+            <strong>Número de participantes inscritos:</strong>{" "}
+            {participantsCount}
+          </div>
+        )}
+
         <div className="popUpButton">
-          {currentPage === "SERVICIOS" && renderContactSection()}
-          {currentPage === "EMPLEO" && (
-            <>
-              {renderContentText()}
-              {buttonText && renderButton()}
-            </>
+          {buttonText && (
+            <Button
+              textButton={buttonText}
+              backgroundColor="#7176F8"
+              border="none"
+              width="13rem"
+              height="3rem"
+              color="white"
+              margin="2rem 0 0 0"
+              onClick={onButtonClick}
+            />
           )}
-          {currentPage === "RECURSOS" && (
-            <>
-              {renderContentText()}
-              {buttonText && renderButton()}
-            </>
-          )}
-          {currentPage === "EVENTOS" && buttonText && renderButton()}
         </div>
       </div>
     </div>
   );
-};  
-
+};
 
 export default InteractivePop;

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState } from "react";
 import "./_EventCard.scss";
 import EventCardButton from "../../buttons/eventsCardButtons/EventCardButton";
 import { Button } from "../../buttons/button/Button";
@@ -19,7 +19,7 @@ const EventCard = ({
   date,
   time,
   summary,
-  createdBy,
+  createdBy, 
   modality,
   type,
   position,
@@ -88,9 +88,7 @@ const EventCard = ({
         </div>
         <div className="eventCard__content__button">
           {isPastEvent ? (
-            <span className="pastEvent">
-              Finalizado
-            </span>
+            <span className="pastEvent">Finalizado</span>
           ) : (
             <Button
               textButton={"Ver"}
@@ -152,6 +150,7 @@ const EventCard = ({
         }
         onButtonClick={toggleAttendance}
         contentText={contentText}
+        createdBy={createdBy} 
       />
       <Alert
         isOpen={alertOpenForRegistration}
