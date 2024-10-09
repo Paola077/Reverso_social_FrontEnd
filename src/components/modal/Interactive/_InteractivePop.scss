@@ -23,35 +23,39 @@
     box-shadow: 0px 4px 20px #0000001a;
     color: $dark;
 
-    .titleAndDateContainer{
-      display: flex;
+    .popUpButton {
+      @include flex-center;
+      justify-content: center;
+    }
+
+    .titleAndDateContainer {
+      @include flex-center;
       justify-content: space-between;
-      align-items: center;
       padding-right: 3.12rem;
       font-family: $font-family-title;
       font-weight: $font-weight-semibold;
 
-        .dateAndTime {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-end;
-          gap: 0.31rem;
-          padding-bottom: 0.62rem;
-        }
+      .dateAndTime {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.31rem;
+        padding-bottom: 0.62rem;
+      }
 
-        .popUpDate {
-          font-size: 1.56rem;
-        }
-        .popUpTime {
-          margin: 0;
-          font-size: 1rem;
-        }
+      .popUpDate {
+        font-size: 1.56rem;
+      }
+      .popUpTime {
+        margin: 0;
+        font-size: $font-size-h6;
+      }
 
-        .popUpModality {
-          text-align: left;
-          font-weight: $font-weight-bold;
-          font-size: 1.15rem;
-        }
+      .popUpModality {
+        text-align: left;
+        font-weight: $font-weight-bold;
+        font-size: 1.15rem;
+      }
     }
 
     .popUpContentClose {
@@ -85,14 +89,12 @@
 
     .popUpPosition {
       font-family: $font-family-text;
-      font-size: 1.25rem;
+      font-size: $font-size-h5;
       text-align: left;
     }
 
     .popUpContentText {
-      font-weight: $font-weight-bold;
-      font-family: $font-family-text;
-      font-size: 1.25rem;
+      @include text-font-bold;
       text-align: left;
       padding-bottom: 0.93rem;
     }
@@ -102,7 +104,7 @@
 
       .popUpContentBodyText {
         font-family: $font-family-title;
-        font-size: 1rem;
+        font-size: $font-size-h6;
         line-height: 1.6;
         color: black;
         margin-bottom: 1.25rem;
@@ -110,15 +112,12 @@
       }
 
       .popUpPosition {
-        font-weight: $font-weight-bold;
-        font-family: $font-family-text;
+        @include text-font-bold;
         color: $dark;
-        font-size: 1.25rem;
         padding-bottom: 0.5rem;
         text-align: left;
       }
     }
-
 
     .popUpLocationValue {
       font-family: $font-family-text;
@@ -134,7 +133,7 @@
 
     .contentText {
       color: $dark;
-      font-size: 1.25rem;
+      font-size: $font-size-h5;
     }
     .contentContact {
       font-family: $font-family-text;
@@ -146,15 +145,18 @@
     .popUpTypeText {
       text-align: left;
       font-family: $font-family-text;
-      font-size: 1.25rem;
+      font-size: $font-size-h5;
       padding-bottom: 0.93rem;
     }
 
     .popUpEventDateTime {
       text-align: right;
       padding-right: 2.5rem;
-      }
+    }
 
-     /*.popUpButton {display: flex; justify-content: center; }*/
+    .participantsCount {
+      margin-top: 1rem;
+      color: $lightLila;
+    }
   }
 }
