@@ -1,6 +1,6 @@
 import "./_EventCardButton.scss";
-import editIcon from "../../../../public/icons/Edit.svg";
-import deleteIcon from "../../../../public/icons/Delete.svg";
+import editIcon from "/icons/Edit.svg";
+import deleteIcon from "/icons/Delete.svg";
 import { deleteEvent } from "../../../services/eventApi";
 import { deleteService } from "../../../services/servicesApi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";

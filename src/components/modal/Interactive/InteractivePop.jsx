@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "../../buttons/button/Button";
-import closeIcon from "/src/components/modal/Exit.svg";
+import closeIcon from "/icons/Exit.svg";
 import "../Interactive/_InteractivePop.scss";
 import { useLocation } from 'react-router-dom';
 
