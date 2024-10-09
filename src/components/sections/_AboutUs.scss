@@ -18,6 +18,14 @@
     text-align: center;
     position: relative; 
     margin-bottom: 3rem;
+    transition: all 0.3s ease-in-out;
+
+    @media (max-width:1024px) {
+      font-size: $font-size-h3;
+    }
+    @media (max-width:720px) {
+      font-size: $font-size-h4;
+    }
   
     &::before {
         content: "";
@@ -40,6 +48,8 @@
         background-color: $dark;
         transform: translateX(-5%);
     }
+
+    
   }
   
   .textAboutUs {
