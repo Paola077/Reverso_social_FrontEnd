@@ -28,12 +28,12 @@
   @media (max-width: 720px) {
     margin-top: 3.5rem;
     border-radius: 0;
+    padding-left: 0;
   }
 
   @media (max-width: 480px) {
     width: 100vw; // Se extiende al 100% del ancho de la pantalla
     height: 16rem;
-    padding-left: 0;
   }
 
   h2 {
@@ -59,9 +59,14 @@
     justify-content: center;
     margin-top: 1.5rem;
     overflow: hidden;
+    transition: all 0.3s ease-out;
 
-    @media (max-width: 480px) {
-      width: 100vw; // Se extiende al 100% del ancho de la pantalla
+
+    @media (max-width: 720px) {
+      width: 100vw; 
+    }
+
+    @media (max-width:480px){
       margin: 0;
     }
 
@@ -73,8 +78,8 @@
       color: $white;
       cursor: pointer;
 
-      @media (max-width: 480px) {
-        display: none; // Ocultar flechas en pantallas pequeñas
+      @media (max-width: 720px) {
+        display: none; 
       }
     }
 
@@ -87,13 +92,13 @@
       scrollbar-width: none;
       height: 18rem;
       align-items: center;
-      margin: 0; // Asegúrate de que no haya margen
-    padding: 0;
+      transition: all 0.3s ease-out;
+
 
       @media (max-width: 480px) {
         flex-wrap: nowrap;
-        scroll-snap-type: x mandatory; // Para que las imágenes se alineen al deslizar
-        -webkit-overflow-scrolling: touch; // Permitir desplazamiento táctil
+        scroll-snap-type: x mandatory; 
+        -webkit-overflow-scrolling: touch; 
         height: 11rem;
         
       }
@@ -159,7 +164,8 @@
             @media (max-width: 480px) {
               font-size: 0.875rem; // Reducir el tamaño del texto
               padding-bottom: 0.75rem;
-              padding-top: 0;
+              padding-top: 0.05rem;
+              font-size: 0.7rem;
             }
           }
 
