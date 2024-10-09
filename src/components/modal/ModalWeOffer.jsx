@@ -1,5 +1,5 @@
 import './_ModalWeOffer.scss';
-import closeIcon from '/src/components/modal/Exit.svg';
+import closeIcon from '/icons/Exit.svg';
 
 import React from 'react'
 
