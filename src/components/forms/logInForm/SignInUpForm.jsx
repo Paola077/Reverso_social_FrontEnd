@@ -4,8 +4,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { userRegister, userLogin } from "../../../services/userApi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
-import logoReversoWhite from "../../../../public/images/RSLogoWhite.svg";
-import FSLogoWhite from "../../../../public/images/FSLogoWhite.svg";
+import logoReversoWhite from "/images/RSLogoWhite.svg";
+import FSLogoWhite from "/images/FSLogoWhite.svg";
 import { jwtDecode } from "jwt-decode";
 import Alert from "../../modal/alerts/Alert";
 
