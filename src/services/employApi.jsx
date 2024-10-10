@@ -3,13 +3,11 @@ import { EMPLOY_URL, EMPLOY_URL_ID } from "../config/url";
 
 export const createEmployOffer = async (data, token) => {
   const formData = new FormData();
-  formData.append("position", data.position);
-  formData.append("description", data.description);
-  formData.append("sector", data.sector);
+  data.position ? formData.append("position", data.position) : null;
+  data.description ? formData.append("description", data.description) : null;
+  data.sector ? formData.append("sector", data.sector) : null;
+  data.curriculum ? formData.append("curriculum", data.curriculum) : null;
 
-  if (data.curriculum) {
-    formData.append("curriculum", data.curriculum);
-  }
   let headers = { "Content-Type": "multipart/form-data" };
   if (token) {
     headers = { Authorization: `Bearer ${token}` };
