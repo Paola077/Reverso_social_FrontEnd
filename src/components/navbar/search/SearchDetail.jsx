@@ -39,7 +39,6 @@ const SearchDetail = () => {
       id={item.id}
       title={item.title}
       type={item.type}
-      position={item.type}
       modality={item.modality}
       date={item.date}
       time={item.time}
