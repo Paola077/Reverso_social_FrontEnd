@@ -88,24 +88,23 @@ const Navbar = () => {
         {isMenuOpen && (
           <Box
             sx={{
-              position: "absolute", // Menú flotante
-              top: "-1rem", // Un poco por debajo del icono
-              right: 0, // Alineado con el icono
-              width: "100vw", // Ancho del menú
+              position: "absolute",
+              top: "-1rem",
+              right: 0,
+              width: "100vw",
               backgroundColor: "white",
               boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
               zIndex: 10,
               padding: "1rem",
               display: "flex",
-              flexDirection: "column", // Mostrar los enlaces en columna
-              gap: "0.5rem", // Espacio entre los enlaces
+              flexDirection: "column",
+              gap: "0.5rem",
               borderRadius: "0 0 20px 20px",
-              paddingTop: "4rem",
+              paddingTop: "4.5rem",
             }}
           >
-            {/* Botón "X" para cerrar el menú */}
             <IconButton
-              onClick={handleMenuToggle} // Cierra el menú al hacer clic
+              onClick={handleMenuToggle}
               sx={{
                 position: "absolute",
                 top: "10px",
@@ -113,46 +112,78 @@ const Navbar = () => {
                 color: "black",
               }}
             >
-              &#10005; {/* El carácter X */}
+              &#10005;
             </IconButton>
 
-            {/* Mostrar el enlace solo si no estás exactamente en /reverso-social */}
-            {location.pathname === "/reverso-social" ? null : (
-              <NavLink to="/reverso-social" className="navLinkBurger">
-                Reverso Social
-              </NavLink>
+            {location.pathname.startsWith("/reverso-social/femsenior") && (
+              <>
+                <NavLink
+                  to="/reverso-social"
+                  className="navLinkBurger navLinkBold"
+                >
+                  Reverso Social
+                </NavLink>
+
+                <NavLink
+                  to="/formulario/colabora"
+                  className="navLinkBurger navLinkBold"
+                >
+                  Contactar
+                </NavLink>
+
+                <NavLink
+                  to="/reverso-social/login"
+                  className="navLinkBurger navLinkBold"
+                >
+                  Iniciar sesión
+                </NavLink>
+
+                <NavLink
+                  to="/reverso-social/signin"
+                  className="navLinkBurger navLinkBold"
+                >
+                  Registrarse
+                </NavLink>
+              </>
             )}
 
-            <NavLink
-              to="#intro"
-              className="navLinkBurger"
-              onClick={() => scrollToSection("intro")}
-            >
-              Nuestro propósito
-            </NavLink>
-            <NavLink
-              to="#carousel"
-              className="navLinkBurger"
-              onClick={() => scrollToSection("carousel")}
-            >
-              Qué ofrecemos
-            </NavLink>
-            <NavLink
-              to="#aboutUs"
-              className="navLinkBurger"
-              onClick={() => scrollToSection("aboutUs")}
-            >
-              Quienes somos
-            </NavLink>
-            <NavLink to="/formulario/colabora" className="navLinkBurger">
-              Contáctanos
-            </NavLink>
+            {location.pathname === "/reverso-social" && (
+              <>
+                <NavLink
+                  to="/reverso-social/femsenior"
+                  className="navLinkBurger navLinkBold"
+                >
+                  FEMseniors
+                </NavLink>
 
-            {/* Mostrar el enlace solo si no estás exactamente en /reverso-social/femsenior */}
-            {!location.pathname.startsWith("/reverso-social/femsenior") && (
-              <NavLink to="/reverso-social/femsenior" className="navLinkBurger">
-                FEMseniors
-              </NavLink>
+                <NavLink
+                  to="#intro"
+                  className="navLinkBurger"
+                  onClick={() => scrollToSection("intro")}
+                >
+                  Nuestro propósito
+                </NavLink>
+                <NavLink
+                  to="#carousel"
+                  className="navLinkBurger"
+                  onClick={() => scrollToSection("carousel")}
+                >
+                  Qué ofrecemos
+                </NavLink>
+                <NavLink
+                  to="#aboutUs"
+                  className="navLinkBurger"
+                  onClick={() => scrollToSection("aboutUs")}
+                >
+                  Quienes somos
+                </NavLink>
+                <NavLink
+                  to="/formulario/colabora"
+                  className="navLinkBurger navLinkBold"
+                >
+                  Contactar
+                </NavLink>
+              </>
             )}
           </Box>
         )}

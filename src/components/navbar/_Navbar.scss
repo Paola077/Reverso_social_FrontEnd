@@ -52,11 +52,6 @@
     .navLink {
       @include navLink-style;
 
-      &:hover,
-      &:active {
-        @include navLink-style-hover;
-      }
-
       @media (max-width: 1200px) {
         font-size: 0.5rem;
         padding: 0.25rem 0.5rem;
@@ -74,19 +69,10 @@
         color: $dark;
         font-size: $font-size-h5;
         padding: 0.5rem 1.5rem;
-
-        &:hover,
-        &:focus {
-          @include navLink-style-hover;
-        }
       }
 
       &:hover,
       &:focus-within {
-        .navLink {
-          @include navLink-style-hover;
-        }
-
         .dropdownMenu {
           display: inline-block;
         }
@@ -141,7 +127,6 @@
     }
   }
 
-  /* Botón de menú hamburguesa */
   .menuButton {
     display: none;
 
@@ -156,30 +141,35 @@
     }
   }
   a:-webkit-any-link {
-    text-decoration: none !important; /* Elimina el subrayado */
+    text-decoration: none !important;
     cursor: pointer;
-  }
+    color: $dark;
+    font-size: $font-size-h6;
+  
   .drawerLinks {
-    width: 100%; /* Asegurar que los enlaces ocupen todo el ancho */
+    width: 100%;
     display: flex;
-    flex-direction: column; /* Poner los enlaces en columna */
-    gap: 1rem; /* Espacio entre los enlaces */
+    flex-direction: column;
+    gap: 1rem;
     padding: 0.25rem 0;
     list-style: none !important;
     text-decoration: none !important;
 
     .navLinkBurger {
-      color: $dark; /* Color de los enlaces */
-      border: none !important; /* Quita cualquier borde inferior que pueda parecer un subrayado */
-      box-shadow: none !important; /* Elimina cualquier sombra que pudiera parecer un subrayado */
+      color: $dark;
+      border: none !important;
+      box-shadow: none !important;
 
+      &.navLinkBold {
+        font-weight: $font-weight-bold ;
+      }
       &:hover,
       &:active,
       &:focus {
-        text-decoration: none !important; /* Asegura que no haya subrayado en hover, active, o focus */
-        border: none !important; /* Elimina cualquier borde en hover, active, o focus */
-        box-shadow: none !important; /* Elimina cualquier sombra en hover, active, o focus */
-      }
+        text-decoration: none !important;
+        border: none !important;
+        box-shadow: none !important;
+      }}
     }
   }
 
