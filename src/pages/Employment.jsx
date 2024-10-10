@@ -28,9 +28,9 @@ function Employment() {
             description={employ.description}
             summary={employ.description}
             createdBy={employ.creatorEmail}
-            curriculum={employ.curriculum}
-            buttonText={"Prueba"}
-            contentText={"Prueba"}
+            curriculum={employ.curriculumUrl}
+            buttonText={"Descargar"}
+            contentText={"Ver el CV"}
             entityType="curriculum"
           />
         ))
