@@ -20,14 +20,13 @@ const InteractivePop = ({
   phoneNumber,
   buttonText,
   onButtonClick,
-  createdBy, // Recibiendo el email del creador
-  participantsCount, // Número de participantes
+  createdBy,
+  participantsCount,
   contentText,
   sector,
 }) => {
-  const { user } = useAuth(); // Obtener el usuario autenticado desde el contexto de autenticación
+  const { user } = useAuth();
 
-  // Comparar si el usuario autenticado es el creador del evento
   const isCreator = user?.email === createdBy;
 
   const { pathname } = useLocation();
@@ -83,32 +82,25 @@ const InteractivePop = ({
           {phoneNumber && <p>Tel: {phoneNumber}</p>}
           {email && <p>Email: {email}</p>}
         </div>
-
-        {isCreator && (
-          <div className="participantsCount">
-            <strong>Número de participantes inscritos:</strong>{" "}
-            {participantsCount}
-          </div>
-        )}
-
         <div className="popUpButton">
-          {buttonText && (
-            <Button
-              textButton={buttonText}
-              backgroundColor="#7176F8"
-              border="none"
-              width="13rem"
-              height="3rem"
-              color="white"
-              margin="2rem 0 0 0"
-              onClick={onButtonClick}
-            />
-          {currentPage === "SERVICIOS" && renderContactSection()}
-          {currentPage === "EMPLEO" && (
-            <div className="buttonCurriculum">
-              {renderContentText()}
-              {buttonText && renderButton()}
+          {isCreator ? (
+            <div className="participantsCount">
+              <strong>Número de participantes inscritos:</strong>{" "}
+              {participantsCount}
             </div>
+          ) : (
+            buttonText && (
+              <Button
+                textButton={buttonText}
+                backgroundColor="#7176F8"
+                border="none"
+                width="13rem"
+                height="3rem"
+                color="white"
+                margin="2rem 0 0 0"
+                onClick={onButtonClick}
+              />
+            )
           )}
         </div>
       </div>
