@@ -1,5 +1,4 @@
 import React from "react";
-import Alert from "../components/modal/alerts/Alert";
 import { useQuery } from "@tanstack/react-query";
 import { getAllResources } from "../services/resourceApi";
 import EventCard from "../components/cards/eventCard/EventCard";
@@ -13,6 +12,7 @@ function Resources() {
     queryKey: ["resources"],
     queryFn: getAllResources,
   });
+  
   return (
     <div>
       {resourcesStatus === "loading" || resourcesStatus === "pending" ? (
@@ -29,10 +29,12 @@ function Resources() {
             key={resource.id}
             title={resource.title}
             description={resource.description}
-            url={resource.url}
-            contentText={"RECURSO"}
+            resourceFile={resource.fileUrl}
+            buttonText={"Descargar"}
             entityType="recurso"
             createdBy={resource.creatorEmail}
+            summary={resource.description}
+            resourceUrl={resource.url}
           />
         ))
       )}
