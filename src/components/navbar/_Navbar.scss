@@ -20,10 +20,18 @@
   .logoContainer {
     @include flex_center;
     width: 10%;
+
     .logo {
       width: 90%;
       height: 5rem;
-      // margin-right: 20px;
+    }
+
+    .logofemsenior {
+      width: 100%;
+    }
+    @media (max-width: 480px) {
+      width: 30%;
+      z-index: 1000;
     }
   }
 
@@ -33,24 +41,21 @@
     @include flex_center;
 
     @media (max-width: 1400px) {
-            width: 50%; /* Ajusta el tamaño para que quepa mejor */
-            gap: 0.5rem; /* Reduce el espacio entre los enlaces */
-          }
+      width: 50%;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 480px) {
+      display: none;
+    }
+
     .navLink {
       @include navLink-style;
 
-      &:hover,
-      &:active {
-        @include navLink-style-hover;
-      }
-
       @media (max-width: 1200px) {
-        .navLink {
-          font-size: 0.5rem; /* Disminuir el tamaño del texto */
-          padding: 0.25rem 0.5rem; /* Reducir el padding */
-        }
+        font-size: 0.5rem;
+        padding: 0.25rem 0.5rem;
       }
-      
     }
 
     a:-webkit-any-link {
@@ -64,19 +69,10 @@
         color: $dark;
         font-size: $font-size-h5;
         padding: 0.5rem 1.5rem;
-
-        &:hover,
-        &:focus {
-          @include navLink-style-hover;
-        }
       }
 
       &:hover,
       &:focus-within {
-        .navLink {
-          @include navLink-style-hover;
-        }
-
         .dropdownMenu {
           display: inline-block;
         }
@@ -86,7 +82,7 @@
         width: 100%;
         display: none;
         position: absolute;
-        top:115%;
+        top: 115%;
         left: 0;
         background-color: white;
         box-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.2);
@@ -116,19 +112,80 @@
     gap: 15px;
     text-transform: capitalize;
     flex-wrap: nowrap;
-  }
-}
 
-.logout-icon {
-  border: none;
-  cursor: pointer;
-  background-color: transparent;
-  &:hover {
-    transform: scale(1.1);
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
-  .logo-icon-img {
-    width: 2.5rem;
-    fill: $dark;
+
+  .searchContainer {
+    width: 20%;
+    @include flex_center;
+
+    @media (max-width: 480px) {
+      display: none;
+    }
+  }
+
+  .menuButton {
+    display: none;
+
+    @media (max-width: 480px) {
+      display: block;
+      margin-left: auto;
+      color: $dark;
+
+      svg {
+        font-size: $font-size-h1;
+      }
+    }
+  }
+  a:-webkit-any-link {
+    text-decoration: none !important;
+    cursor: pointer;
+    color: $dark;
+    font-size: $font-size-h6;
+  
+  .drawerLinks {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0.25rem 0;
+    list-style: none !important;
+    text-decoration: none !important;
+
+    .navLinkBurger {
+      color: $dark;
+      border: none !important;
+      box-shadow: none !important;
+
+      &.navLinkBold {
+        font-weight: $font-weight-bold ;
+      }
+      &:hover,
+      &:active,
+      &:focus {
+        text-decoration: none !important;
+        border: none !important;
+        box-shadow: none !important;
+      }}
+    }
+  }
+
+  .logout-icon {
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    .logo-icon-img {
+      width: 2.5rem;
+      fill: $dark;
+    }
   }
 }
 

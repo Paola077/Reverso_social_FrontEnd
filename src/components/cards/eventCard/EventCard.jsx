@@ -34,6 +34,7 @@ const EventCard = ({
   entityType,
   maxParticipants: propMaxParticipants,
   sector,
+  curriculum,
 }) => {
   const { isAuthenticated, user, role, token } = useAuth();
   const [isAttending, setIsAttending] = useState(false);
@@ -122,6 +123,29 @@ const EventCard = ({
     }
   };
 
+  const handleButton = () => {
+    switch (entityType) {
+      case "evento":
+        toggleAttendance();
+        break;
+      case "servicio":
+        break;
+      case "curriculum":
+        if (isAuthenticated) {
+          window.location.href = curriculum;
+        } else {
+          setAlertOpenForRegistration(true);
+        }
+        window.location.href = curriculum;
+        break;
+      case "recurso":
+        fetchData = getResourceById(id);
+        break;
+      default:
+        break;
+    }
+  };
+
   const toggleAttendance = () => {
     if (!isAuthenticated) {
       setAlertOpenForRegistration(true);
@@ -161,7 +185,7 @@ if (!createdByUser) {
 }
   return (
     <div className="eventCard">
-      {isAuthenticated && (createdByUser || role === "ADMIN") && (
+      {isAuthenticated && (createdByUser || role === "FEMSENIORADMIN") && (
         <div className="eventCard__lateralButtons">
           <EventCardButton id={id} entityType={entityType} />
         </div>
@@ -171,7 +195,7 @@ if (!createdByUser) {
         <div className="eventCard__content__info">
           <h3 className="eventCard__content__info__title">{title}</h3>
           <div className="eventCard__content__info__details">
-            {sector && <span>{sector}</span>}
+            {sector && entityType == "evento" && <span>{sector}</span>}
             {location && <span>{location}</span>}
             {date && <span>Fecha: {date}</span>}
             {time && <span>Hora: {time}</span>}
@@ -181,16 +205,20 @@ if (!createdByUser) {
         </div>
 
         <div className="eventCard__content__button">
-          <Button
-            textButton={"Ver"}
-            backgroundColor={"white"}
-            border={"none"}
-            color={"black"}
-            width={"8rem"}
-            height={"2.5rem"}
-            boxShadow={"0.2rem 0.2rem 0.4rem rgba(0, 0, 0, 0.25)"}
-            onClick={handlePopupOpen}
-          />
+          {isPastEvent ? (
+            <span className="pastEvent">Finalizado</span>
+          ) : (
+            <Button
+              textButton={"Ver"}
+              backgroundColor={"white"}
+              border={"none"}
+              color={"black"}
+              width={"8rem"}
+              height={"2.5rem"}
+              boxShadow={"0.2rem 0.2rem 0.4rem rgba(0, 0, 0, 0.25)"}
+              onClick={handlePopupOpen}
+            />
+          )}
         </div>
       </div>
 
@@ -259,7 +287,7 @@ if (!createdByUser) {
         onclose={() => setAlertOpenForRegistration(false)}
         alert="Necesitas estar registrada para apuntarte."
       >
-        <Button
+        <Button 
           textButton={"Cancelar"}
           backgroundColor={"white"}
           width={"12.5rem"}
@@ -276,6 +304,7 @@ if (!createdByUser) {
           border={"0.15rem solid #7176f8"}
           color={"white"}
           onClick={() => navigate("/reverso-social/login")}
+        
         />
       </Alert>
     </div>

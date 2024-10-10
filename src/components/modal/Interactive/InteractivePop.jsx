@@ -1,8 +1,8 @@
 import React from "react";
 import { Button } from "../../buttons/button/Button";
-import closeIcon from "/src/components/modal/Exit.svg";
+import closeIcon from "/icons/Exit.svg";
 import "../Interactive/_InteractivePop.scss";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 
 const InteractivePop = ({
   isOpen,
@@ -21,17 +21,21 @@ const InteractivePop = ({
   onButtonClick,
   user_id,
   contentText,
+  sector,
 }) => {
   if (!isOpen) return null;
 
   const { pathname } = useLocation();
 
-  const currentPage = pathname.includes("evento") ? "EVENTOS" : 
-  pathname.includes("servicio") ? "SERVICIOS" : 
-  pathname.includes("curriculum") ? "EMPLEO" : 
-  pathname.includes("recurso") ? "RECURSOS" : 
-  "";
-
+  const currentPage = pathname.includes("evento")
+    ? "EVENTOS"
+    : pathname.includes("servicio")
+    ? "SERVICIOS"
+    : pathname.includes("empleo")
+    ? "EMPLEO"
+    : pathname.includes("recurso")
+    ? "RECURSOS"
+    : "";
   if (!isOpen) return null;
 
   const renderContactSection = () => (
@@ -91,6 +95,9 @@ const InteractivePop = ({
           <div>
             <h3 className="titlePopUp">{title}</h3>
             {modality && <p className="popUpModality">{modality}</p>}
+            {sector && currentPage !== "EVENTOS" && (
+              <p className="popUpModality">{sector}</p>
+            )}
           </div>
           {currentPage === "EVENTOS" && (date || time) && (
             <div className="dateAndTime">
@@ -112,9 +119,7 @@ const InteractivePop = ({
               </p>
             </div>
           )}
-          {description && (
-            <p className="popUpContentBodyText">{description}</p>
-          )}
+          {description && <p className="popUpContentBodyText">{description}</p>}
         </div>
         <div className="ContentLocation">
           {location && (
@@ -129,10 +134,10 @@ const InteractivePop = ({
         <div className="popUpButton">
           {currentPage === "SERVICIOS" && renderContactSection()}
           {currentPage === "EMPLEO" && (
-            <>
+            <div className="buttonCurriculum">
               {renderContentText()}
               {buttonText && renderButton()}
-            </>
+            </div>
           )}
           {currentPage === "RECURSOS" && (
             <>
@@ -145,7 +150,6 @@ const InteractivePop = ({
       </div>
     </div>
   );
-};  
-
+};
 
 export default InteractivePop;

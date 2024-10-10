@@ -6,7 +6,7 @@ import { getAllEvents } from "../services/eventApi";
 import { DateContext } from "../context/DateContext";
 
 function Events() {
-  const { currentDate } = useContext(DateContext); 
+  const { currentDate } = useContext(DateContext);
   const [filteredEvents, setFilteredEvents] = useState([]);
 
   const {
@@ -22,13 +22,26 @@ function Events() {
     if (events && currentDate) {
       const startOfMonth = dayjs(currentDate).startOf("month").toDate();
       const endOfMonth = dayjs(currentDate).endOf("month").toDate();
+      const today = new Date();
 
       const eventsThisMonth = events.filter((event) => {
-        const eventDate = new Date(event.date); 
+        const eventDate = new Date(event.date);
         return eventDate >= startOfMonth && eventDate <= endOfMonth;
       });
 
-      setFilteredEvents(eventsThisMonth);
+      const sortedEvents = eventsThisMonth.sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+
+        const isPastA = dateA < today;
+        const isPastB = dateB < today;
+
+        if (isPastA && !isPastB) return 1; 
+        if (!isPastA && isPastB) return -1; 
+        return dateA - dateB;
+      });
+
+      setFilteredEvents(sortedEvents);
     }
   }, [events, currentDate]);
 
