@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import debounce from "lodash.debounce";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Search = () => {
   const [query, setQuery] = useState("");
@@ -14,25 +14,43 @@ const Search = () => {
   const navigate = useNavigate();
 
   const fetchResults = useCallback(async (value) => {
-    if (value.trim() === "") {
-      setResults([]);
-      setDropdownVisible(false);
+    if (!value.trim()) {
+      resetSearch();
       return;
     }
-
     try {
-      const response = await fetch(
-        `http://localhost:3001/api/events/search?title=${value.trim()}`
-      );
-      if (!response.ok) {
-        throw new Error("Error en la búsqueda");
-      }
+      const [eventsData, servicesData] = await Promise.all([
+        fetch(
+          `http://localhost:3001/api/events/search?title=${value.trim()}`
+        ).then((res) => {
+          if (!res.ok) throw new Error("Error en la búsqueda de eventos");
+          return res.json();
+        }),
+        fetch(
+          `http://localhost:3001/api/services/search?title=${value.trim()}`
+        ).then((res) => {
+          if (!res.ok) throw new Error("Error en la búsqueda de servicios");
+          return res.json();
+        }),
+      ]);
 
-      const data = await response.json();
-      setResults(data);
-      setDropdownVisible(data.length > 0);
+      const combinedResults = [
+        ...eventsData.map((item) => ({
+          ...item,
+          section: "events",
+          id: item.id,
+        })),
+        ...servicesData.map((item) => ({
+          ...item,
+          section: "services",
+        })),
+      ];
+
+      setResults(combinedResults);
+      setDropdownVisible(combinedResults.length > 0);
     } catch (error) {
-      console.error("Error al buscar eventos:", error);
+      console.error("Error al buscar eventos y servicios:", error);
+      resetSearch();
     }
   }, []);
 
@@ -40,36 +58,54 @@ const Search = () => {
     fetchResults,
   ]);
 
-  const handleSearch = (event) => {
+  const handleSearchChange = (event) => {
     const value = event.target.value;
     setQuery(value);
     setSelectedIndex(-1);
     debouncedFetchResults(value);
   };
 
-  const handleClickOutside = useCallback((event) => {
-    if (!event.target.closest(".search")) {
-      setDropdownVisible(false);
+  const handleSelectResult = (result) => {
+    if (!result || !result.id || !result.section) {
+      console.error("Resultado no válido:", result);
+      return;
     }
-  }, []);
 
-  const handleSelectResult = (eventId) => {
-    setQuery('');
-    navigate(`/reverso-social/femsenior/eventos/${eventId}`);
-    setDropdownVisible(false);
+    navigate(
+      `/reverso-social/femsenior/detalles/${result.section}/${result.id}`
+    );
+
+    resetSearch();
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === "ArrowDown") {
-      setSelectedIndex((prevIndex) =>
-        prevIndex < results.length - 1 ? prevIndex + 1 : prevIndex
-      );
-    } else if (event.key === "ArrowUp") {
-      setSelectedIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0));
-    } else if (event.key === "Enter" && selectedIndex !== -1) {
-      handleSelectResult(results[selectedIndex].id);
+    switch (event.key) {
+      case "ArrowDown":
+        setSelectedIndex((prevIndex) =>
+          prevIndex < results.length - 1 ? prevIndex + 1 : prevIndex
+        );
+        break;
+      case "ArrowUp":
+        setSelectedIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : 0));
+        break;
+      case "Enter":
+        if (selectedIndex !== -1) handleSelectResult(results[selectedIndex]);
+        break;
+      default:
+        break;
     }
   };
+
+  const resetSearch = () => {
+    setResults([]);
+    setDropdownVisible(false);
+    setQuery("");
+    setSelectedIndex(-1);
+  };
+
+  const handleClickOutside = useCallback((event) => {
+    if (!event.target.closest(".search")) resetSearch();
+  }, []);
 
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
@@ -87,19 +123,25 @@ const Search = () => {
           placeholder="Buscar…"
           className="styledInputBase"
           value={query}
-          onChange={handleSearch}
-          onKeyDown={handleKeyDown} 
+          onChange={handleSearchChange}
+          onKeyDown={handleKeyDown}
         />
         {dropdownVisible && results.length > 0 && (
           <div className="dropdownSearch">
             <ul className="dropdownMenuSearch">
-              {results.map((event, index) => (
+              {results.map((result, index) => (
                 <li
-                  key={event.id}
+                  key={result.id}
                   className={index === selectedIndex ? "selected" : ""}
-                  onClick={() => handleSelectResult(event.id)}
+                  onClick={() => handleSelectResult(result)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") handleSelectResult(result);
+                  }}
+                  tabIndex={0}
+                  role="button"
+                  onFocus={() => setSelectedIndex(index)}
                 >
-                  {event.title}
+                  {result.title}
                 </li>
               ))}
             </ul>

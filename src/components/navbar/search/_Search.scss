@@ -11,8 +11,8 @@
   display: flex;
   align-items: center;
   background-color: #a7a8ec;
-  border-radius: 20px;
-  padding: 5px 15px;
+  border-radius: 1.25rem;
+  padding: 0.3125rem 0.9375rem;
   width: 20rem; 
   text-transform: capitalize;
 
@@ -20,20 +20,20 @@
     background-color: transparent;
     border: none;
     flex: 1; 
-    font-size: 16px;
+    font-size: 1rem;
   }
   .searchIcon {
-    left: 10px;
+    left: 0.62rem;
     color: $dark; 
     fill: $dark;
   }
   .styledInputBase {
-    padding-left: 40px; 
+    padding-left: 2.5rem; 
     color: $dark;
     width: 100%;
     background-color: transparent;
     border: none;
-    font-size: 16px;
+    font-size: 1rem;
 
     &::placeholder {
       color: $dark;
@@ -50,10 +50,10 @@
   left: 0;
   background-color: #a7a8ec; 
   width: 100%; 
-  border-radius: 8px; 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem; 
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  max-height: 200px; 
+  max-height: 12.5rem; 
   overflow-y: auto;
 
   .dropdownMenuSearch {
@@ -62,14 +62,20 @@
     margin: 0; 
 
     li {
-      padding: 5px; 
+      padding: 0.31rem; 
       cursor: pointer;
       color: $dark; 
 
       &:hover,
       &.selected {
-        background-color: rgba(255, 255, 255, 0.1); 
+        background-color: rgba(255, 255, 255, 0.2); 
+        color:$dark;
       }
+
+    &.selected {
+      background-color: $light; 
+      color: $dark; 
+    }
     }
   }
 }

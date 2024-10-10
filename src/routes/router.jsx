@@ -3,7 +3,7 @@ import Layout from "../layout/layout";
 import PlanIgualdad from "../pages/PlanIgualdad";
 import Femsenior from "../pages/femsenior/Femsenior";
 import Events from "../pages/Events";
-import EventDetail from "../components/navbar/search/EventDetail";
+import SearchDetail from "../components/navbar/search/SearchDetail"
 import Services from "../pages/Services";
 import Employment from "../pages/Employment";
 import Resources from "../pages/Resources";
@@ -37,10 +37,6 @@ const router = createBrowserRouter([
             element: <Events />,
           },
           {
-            path: "eventos/:id",
-            element: <EventDetail/>
-          },
-          {
             path: "servicios",
             element: <Services />,
           },
@@ -52,6 +48,10 @@ const router = createBrowserRouter([
             path: "recursos",
             element: <Resources />,
           },
+          {
+            path: "detalles/:section/:id",
+            element: <SearchDetail/>
+          }
         ],
       },
       {
