@@ -7,11 +7,10 @@
   width: 100vw;
   height: 100vh;
   background-color: #bcacd499;
-  display: flex;
   justify-content: center;
-  align-items: center;
   z-index: 1000;
   overflow: hidden;
+  @include flex-center;
 
   @media (max-width:720px) {
     height: 100%;
@@ -34,7 +33,7 @@
   
 
     &::-webkit-scrollbar {
-      display: none; // Esconde la barra de scroll en Chrome, Safari y Edge
+      display: none;
     }
 
     scrollbar-width: none;
@@ -76,13 +75,12 @@
     }
 
     &__body {
-      display: flex;
+      @include flex-center;
       flex-direction: column;
-      align-items: center;
 
       &__text {
         font-family: $font-family-title;
-        font-size: 1rem;
+        font-size: $font-size-h5;
         line-height: 1.6;
         color: $dark;
         margin-bottom: 1.5rem;
@@ -98,4 +96,9 @@
       }
     }
   }
+Button{
+  @media (max-width: 480px) {
+         width: 100% !important;
+        }
+}
 }

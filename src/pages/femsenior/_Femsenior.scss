@@ -12,4 +12,10 @@
   font-size: $font-size-h5;
   padding-left: 1rem;
   padding-bottom: 3rem;
+  @media (max-width: 480px) {
+    flex-direction: column;
+    padding: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
 }
