@@ -5,7 +5,6 @@ import { InputForm } from "../../Inputs/InputForm";
 import { Button } from "../../buttons/button/Button";
 import { createEvent, updateEvent } from "../../../services/eventApi";
 import { createService, updateService } from "../../../services/servicesApi";
-// import { useMutation } from "@tanstack/react-query";
 import { useAuth } from "../../../context/AuthContext";
 import React, { Fragment } from "react";
 import Alert from "../../modal/alerts/Alert";
@@ -52,12 +51,6 @@ const FSForm = ({ text, formType, formFields, initialData }) => {
     e.preventDefault();
     setResponse(null);
     setError(null);
-
-    const sectorField = formFields.find((field) => field.name === "sector");
-    if (sectorField && !formData[sectorField.name]) {
-      setError({ message: "No se ha seleccionado el sector" });
-      return;
-    }
 
     try {
       let res;
@@ -190,25 +183,6 @@ const FSForm = ({ text, formType, formFields, initialData }) => {
           onClick={handleAlertClose}
         />
       </Alert>
-      {/* {error && (
-        <Alert
-          alert={`Error: ${
-            error?.message || "Ocurrió un error al procesar la solicitud"
-          }`}
-          isOpen={!!error}
-          onClose={() => setError(null)}
-        >
-          <Button
-            textButton={"Aceptar"}
-            width={"12.5rem"}
-            height={"2.75rem"}
-            backgroundColor={"#7176f8"}
-            border={"0.15rem solid #7176f8"}
-            color={"white"}
-            onClick={() => setError(null)}
-          />
-        </Alert>
-      )} */}
     </div>
   );
 };
