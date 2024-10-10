@@ -20,10 +20,18 @@
   .logoContainer {
     @include flex_center;
     width: 10%;
+
     .logo {
       width: 90%;
       height: 5rem;
-      // margin-right: 20px;
+    }
+
+    .logofemsenior {
+      width: 100%;
+    }
+    @media (max-width: 480px) {
+      width: 30%;
+      z-index: 1000;
     }
   }
 
@@ -33,9 +41,14 @@
     @include flex_center;
 
     @media (max-width: 1400px) {
-            width: 50%; /* Ajusta el tamaño para que quepa mejor */
-            gap: 0.5rem; /* Reduce el espacio entre los enlaces */
-          }
+      width: 50%;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 480px) {
+      display: none;
+    }
+
     .navLink {
       @include navLink-style;
 
@@ -45,12 +58,9 @@
       }
 
       @media (max-width: 1200px) {
-        .navLink {
-          font-size: 0.5rem; /* Disminuir el tamaño del texto */
-          padding: 0.25rem 0.5rem; /* Reducir el padding */
-        }
+        font-size: 0.5rem;
+        padding: 0.25rem 0.5rem;
       }
-      
     }
 
     a:-webkit-any-link {
@@ -86,7 +96,7 @@
         width: 100%;
         display: none;
         position: absolute;
-        top:115%;
+        top: 115%;
         left: 0;
         background-color: white;
         box-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.2);
@@ -116,19 +126,76 @@
     gap: 15px;
     text-transform: capitalize;
     flex-wrap: nowrap;
-  }
-}
 
-.logout-icon {
-  border: none;
-  cursor: pointer;
-  background-color: transparent;
-  &:hover {
-    transform: scale(1.1);
+    @media (max-width: 480px) {
+      display: none;
+    }
   }
-  .logo-icon-img {
-    width: 2.5rem;
-    fill: $dark;
+
+  .searchContainer {
+    width: 20%;
+    @include flex_center;
+
+    @media (max-width: 480px) {
+      display: none;
+    }
+  }
+
+  /* Botón de menú hamburguesa */
+  .menuButton {
+    display: none;
+
+    @media (max-width: 480px) {
+      display: block;
+      margin-left: auto;
+      color: $dark;
+
+      svg {
+        font-size: $font-size-h1;
+      }
+    }
+  }
+  a:-webkit-any-link {
+    text-decoration: none !important; /* Elimina el subrayado */
+    cursor: pointer;
+  }
+  .drawerLinks {
+    width: 100%; /* Asegurar que los enlaces ocupen todo el ancho */
+    display: flex;
+    flex-direction: column; /* Poner los enlaces en columna */
+    gap: 1rem; /* Espacio entre los enlaces */
+    padding: 0.25rem 0;
+    list-style: none !important;
+    text-decoration: none !important;
+
+    .navLinkBurger {
+      color: $dark; /* Color de los enlaces */
+      border: none !important; /* Quita cualquier borde inferior que pueda parecer un subrayado */
+      box-shadow: none !important; /* Elimina cualquier sombra que pudiera parecer un subrayado */
+
+      &:hover,
+      &:active,
+      &:focus {
+        text-decoration: none !important; /* Asegura que no haya subrayado en hover, active, o focus */
+        border: none !important; /* Elimina cualquier borde en hover, active, o focus */
+        box-shadow: none !important; /* Elimina cualquier sombra en hover, active, o focus */
+      }
+    }
+  }
+
+  .logout-icon {
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    .logo-icon-img {
+      width: 2.5rem;
+      fill: $dark;
+    }
   }
 }
 

@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { AppBar, Toolbar, Box } from "@mui/material";
+import { AppBar, Toolbar, Box, IconButton, Popover } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 import Search from "./search/Search";
 import { Button } from "../buttons/button/Button";
 import { useAuth } from "../../context/AuthContext";
 import "./_Navbar.scss";
 
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const navigate = useNavigate();
   const location = useLocation();
   const { isAuthenticated, logout } = useAuth();
@@ -25,7 +27,7 @@ const Navbar = () => {
   };
 
   const handleSignInClick = () => {
-    navigate("/reverso-social/signin", { state: { isSignPanelActive: true } }); 
+    navigate("/reverso-social/signin", { state: { isSignPanelActive: true } });
   };
 
   const scrollToSection = (id) => {
@@ -38,6 +40,10 @@ const Navbar = () => {
   const handleLogout = () => {
     logout();
     navigate("/reverso-social/femsenior");
+  };
+
+  const handleMenuToggle = () => {
+    setIsMenuOpen((prev) => !prev);
   };
 
   return (
@@ -57,7 +63,7 @@ const Navbar = () => {
             <img
               src="/images/logoFemsenior.svg"
               alt="Logo FEMsenior"
-              className="logo"
+              className="logo logofemsenior"
             />
           ) : (
             <img
@@ -67,6 +73,89 @@ const Navbar = () => {
             />
           )}
         </div>
+
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          className="menuButton"
+          onClick={handleMenuToggle}
+          sx={{ position: "relative" }}
+        >
+          <MenuIcon className="burger" />
+        </IconButton>
+
+        {isMenuOpen && (
+          <Box
+            sx={{
+              position: "absolute", // Menú flotante
+              top: "-1rem", // Un poco por debajo del icono
+              right: 0, // Alineado con el icono
+              width: "100vw", // Ancho del menú
+              backgroundColor: "white",
+              boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
+              zIndex: 10,
+              padding: "1rem",
+              display: "flex",
+              flexDirection: "column", // Mostrar los enlaces en columna
+              gap: "0.5rem", // Espacio entre los enlaces
+              borderRadius: "0 0 20px 20px",
+              paddingTop: "4rem",
+            }}
+          >
+            {/* Botón "X" para cerrar el menú */}
+            <IconButton
+              onClick={handleMenuToggle} // Cierra el menú al hacer clic
+              sx={{
+                position: "absolute",
+                top: "10px",
+                right: "10px",
+                color: "black",
+              }}
+            >
+              &#10005; {/* El carácter X */}
+            </IconButton>
+
+            {/* Mostrar el enlace solo si no estás exactamente en /reverso-social */}
+            {location.pathname === "/reverso-social" ? null : (
+              <NavLink to="/reverso-social" className="navLinkBurger">
+                Reverso Social
+              </NavLink>
+            )}
+
+            <NavLink
+              to="#intro"
+              className="navLinkBurger"
+              onClick={() => scrollToSection("intro")}
+            >
+              Nuestro propósito
+            </NavLink>
+            <NavLink
+              to="#carousel"
+              className="navLinkBurger"
+              onClick={() => scrollToSection("carousel")}
+            >
+              Qué ofrecemos
+            </NavLink>
+            <NavLink
+              to="#aboutUs"
+              className="navLinkBurger"
+              onClick={() => scrollToSection("aboutUs")}
+            >
+              Quienes somos
+            </NavLink>
+            <NavLink to="/formulario/colabora" className="navLinkBurger">
+              Contáctanos
+            </NavLink>
+
+            {/* Mostrar el enlace solo si no estás exactamente en /reverso-social/femsenior */}
+            {!location.pathname.startsWith("/reverso-social/femsenior") && (
+              <NavLink to="/reverso-social/femsenior" className="navLinkBurger">
+                FEMseniors
+              </NavLink>
+            )}
+          </Box>
+        )}
 
         <Box className="linksContainer">
           {isReversoSocial ? (
@@ -167,7 +256,7 @@ const Navbar = () => {
                 width={"10rem"}
                 color={"#fff"}
                 padding={"0.25rem"}
-                onClick={handleSignInClick} 
+                onClick={handleSignInClick}
               >
                 Registrarse
               </Button>

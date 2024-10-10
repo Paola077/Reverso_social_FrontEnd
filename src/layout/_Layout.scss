@@ -3,12 +3,18 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+   @media (max-width: 480px) {
+    max-width: 480px
+  }
 }
 
 .layoutContainer {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+   @media (max-width: 480px) {
+    max-width: 480px
+  }
 }
 
 .reversoGradient {
@@ -44,6 +50,9 @@ body {
   position: relative;
   width: 100%;
   max-width: 1440px;
+   @media (max-width: 480px) {
+    max-width: 480px
+  }
 }
 
 .mainContent {
@@ -58,4 +67,7 @@ body {
   width: 100%;
   margin-top: auto;
   max-width: 1440px;
+  @media (max-width: 480px) {
+    max-width: 480px
+  }
 }
