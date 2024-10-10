@@ -56,6 +56,46 @@ footer{
             font-size: 4rem;
             cursor: pointer;
         }
+        transition: all 0.3s ease-in-out;
+
     }
     
+    @media (max-width:720px) {
+        height: auto;
+        .footerBox {
+            flex-direction: column;  
+            justify-content: space-between;
+            align-items: flex-start;
+
+            .footerSocials {
+                order: 1;  
+                margin: 1rem 0;
+                padding: 0;
+                
+                .footerFb{
+                    font-size: 1.5rem;
+                }
+                .footerIg{
+                    font-size: 2.5rem;
+                    padding-left:0.5rem;
+                }
+            }
+
+            .footerText {
+                order: 2;   
+
+                .footerTitle {
+                    font-size: 0.875rem;  
+                }
+
+                .footerParagrafs {
+                    font-size: 0.8rem;    
+
+                    p {
+                        padding-bottom: 1rem;
+                    }
+                }
+            }
+        }
+    }
 }

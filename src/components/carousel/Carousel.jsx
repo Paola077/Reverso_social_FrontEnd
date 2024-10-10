@@ -53,7 +53,8 @@ const handleNextClick = () => {
   };
 
   return (
-    <div className="carousel-container">
+    <div className="carousel-box">
+      <div className="carousel-container">
       <h2>QUÉ OFRECEMOS</h2>
       <div className="carousel">
         <button className="prev" onClick={handlePrevClick}>
@@ -91,6 +92,7 @@ const handleNextClick = () => {
           imageUrl={selectedService.image}
         />
       )}
+    </div>
     </div>
   );
 }

@@ -17,6 +17,11 @@ const Intro = () => {
     navigate("/reverso-social/signin");
   };
 
+  const buttonWidth = window.innerWidth < 420 ? "9rem" : "12rem"; 
+  const buttonHeight = window.innerWidth < 420 ? "1.9rem" : "3rem";
+  const buttonMargin = window.innerWidth < 420 ? " 1.2rem 0 0" : "3rem 0 0" ; 
+  
+
   return (
     <div className="intro">
       <h1 className="introTitle">REVERSO SOCIAL</h1>
@@ -64,9 +69,9 @@ const Intro = () => {
           textButton="Saber más"
           backgroundColor="#35399B"
           border="none"
-          width="12rem"
-          height="3rem"
-          margin={"3rem 0 0"}
+          width={buttonWidth}
+          height={buttonHeight}
+          margin={buttonMargin}
           color="white"
           boxShadow="0.2rem 0.2rem 0.4rem rgba(0, 0, 0, 0.25)"
           onClick={handleOpenPopup}
