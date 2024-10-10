@@ -122,7 +122,9 @@ const FSForm = ({ text, formType, formFields, initialData }) => {
                 title={field.title}
                 type={field.type}
                 placeholder={field.placeholder}
-                value={field.type === "file" ? "" : formData[field.name] || ""}
+                value={
+                  field.type === "file" ? undefined : formData[field.name] || ""
+                }
                 name={field.name}
                 onChange={handleChange}
                 options={field.options || []}
@@ -188,7 +190,7 @@ const FSForm = ({ text, formType, formFields, initialData }) => {
           onClick={handleAlertClose}
         />
       </Alert>
-      {error && (
+      {/* {error && (
         <Alert
           alert={`Error: ${
             error?.message || "Ocurrió un error al procesar la solicitud"
@@ -206,7 +208,7 @@ const FSForm = ({ text, formType, formFields, initialData }) => {
             onClick={() => setError(null)}
           />
         </Alert>
-      )}
+      )} */}
     </div>
   );
 };
