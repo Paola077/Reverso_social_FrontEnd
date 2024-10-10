@@ -15,11 +15,21 @@
 
 .introTitle {
   @include title-font;
+  transition: all 0.6s ease-in-out;
+
+  @media (max-width: 1024px){
+    font-size: $font-size-h2;
+  }
+
+  @media (max-width: 480px){
+    font-size: $font-size-h4;
+  }
 }
 
 .introSubTitle {
   @include title-font;
   font-size: $font-size-h2;
+  transition: all 0.3s ease-in-out;
 
   &::after {
     content: "";
@@ -30,24 +40,72 @@
     right: 0;
     background-color: $dark;
     margin-left: 1rem;
+    transition: all 0.6s ease-in-out;
+
+    @media (max-width: 1300px){
+      width: 65%;
+    }
+    @media(max-width: 1160px){
+      width:60%
+    }
+    @media(max-width: 1024px){
+      width:55%
+    }
+    @media(max-width: 890px){
+      width:50%
+    }
+    
+  }
+
+  @media (max-width: 1024px){
+    font-size: $font-size-h4;
+  }
+  @media (max-width: 480px){
+    font-size: $font-size-h6;
   }
 }
 
 .textIntro {
   @include text-font;
-  margin-bottom: 25px;
+  margin-bottom: 1.9rem;
+  transition: all 0.3s ease-in-out;
+
+  @media (max-width: 1024px){
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5rem;
+  }
+  @media (max-width: 480px){
+    font-size: 0.8rem;
+    margin-top: 0.7rem;
+    margin-bottom: 1rem;
+    line-height: 1.1rem;
+  }
 }
 .intro {
   .introList {
     list-style-type: disc;
-    padding-left: 20px;
+    padding-left: 1rem;
     @include text-font;
     margin: auto;
+    
   }
 
   .introList li {
-    margin-bottom: 10px;
+    margin-bottom: 0.9rem;
+
+    @media (max-width: 1024px){
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.5rem;
+    }
+    @media (max-width: 480px){
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+      line-height: 1.1rem;
+    }
   }
+
 }
 .bold {
   font-weight: bold;
@@ -55,6 +113,17 @@
 .textIntroFinal {
  @include text-font;
   text-align: center;
+  
+  @media (max-width: 1024px){
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.5rem;
+  }
+  @media (max-width: 480px){
+    font-size: 1rem;
+    margin-bottom: 0;
+    line-height: 1.1rem;
+  }
 }
 
 .buttonContainer {

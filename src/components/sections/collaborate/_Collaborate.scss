@@ -9,6 +9,7 @@
   max-width:83rem;
   padding: 2rem;
   margin: auto;
+  transition: all 0.3s ease-in-out;
 
   &__contact {
     display: flex;
@@ -21,12 +22,25 @@
     border-radius: 0 2.5rem 2.5rem 2.5rem;
     padding: 3rem;
     width: 40rem;
+    transition: all 0.5s ease-in-out;
+
+    @media (max-width:720px) {
+      padding: 1.25rem;
+      border-radius: 0 2rem 2rem 2rem;
+    }
 
     &__title {
       font-family: $font-family-title;
+      padding-bottom: 3rem;
       color: $white;
       font-size: $font-size-h3;
-      padding-bottom: 2rem;
+      
+      transition: all 0.5s ease-in-out;
+
+      @media (max-width:720px) {
+        font-size: $font-size-h5;
+        padding-bottom: 1.5rem;
+      }
     }
 
     &__button {
@@ -44,6 +58,20 @@
     &__collaborateWomen {
       width: 25rem !important;
       box-shadow: 0.313rem 0.313rem 0.625rem #00000033;
+    }
+
+    @media(max-width: 1143px){
+      display: none;
+    }
+    
+  }
+  &.image-hidden {
+    &__contact {
+      flex-grow: 1;
+    }
+
+    &__image {
+      display: none;
     }
   }
 }

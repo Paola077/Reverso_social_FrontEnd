@@ -22,6 +22,10 @@ body {
   background-size: 100% 38%;
   background-repeat: no-repeat;
   width: 100%;
+
+  @media (max-width:480px) {
+    background-size: 100% 30%;
+  }
 }
 
 .femseniorGradient {
