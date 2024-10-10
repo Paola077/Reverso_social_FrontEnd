@@ -28,6 +28,7 @@ const ManifestButton = () => {
       <ManifestPop
         isOpen={isPopupOpen}
         onClose={handleClosePopup}
+        className='manifestPop'
         title="MANIFIESTO"
         bodyTexts={[
           "<strong>Las mujeres de 50 años o más nos enfrentamos diariamente a estereotipos y prejuicios sociales asociados con la edad.</strong> Desde <strong>FEMsenior</strong> queremos, mediante la acción, <strong>cambiar la narrativa y mostrar la edad como una fuente de poder </strong> en lugar de una limitación.",

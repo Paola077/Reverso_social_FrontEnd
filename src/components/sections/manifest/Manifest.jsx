@@ -32,7 +32,7 @@ const Manifest = () => {
           ¡No dejes que los estereotipos te detengan!
         </span>
       </p>
-      <ManifestButton />
+      <ManifestButton className='manifestButton' />
     </div>
   );
 };
