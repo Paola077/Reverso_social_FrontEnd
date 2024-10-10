@@ -66,6 +66,16 @@
       cursor: pointer;
       color: $dark; 
 
+      div {
+        display: flex;
+        flex-direction: column; 
+      }
+
+      .sectionLabel {
+        font-size: 0.75rem; 
+        color: $dark; 
+      }
+
       &:hover,
       &.selected {
         background-color: rgba(255, 255, 255, 0.2); 

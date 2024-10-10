@@ -38,7 +38,10 @@ const SearchDetail = () => {
     <EventCard
       id={item.id}
       title={item.title}
+      type={item.type}
+      position={item.type}
       modality={item.modality}
+      date={item.date}
       time={item.time}
       location={item.location}
       description={item.description}
