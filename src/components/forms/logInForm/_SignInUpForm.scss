@@ -30,10 +30,14 @@
       height: 100%;
       text-align: center;
 
-      h2 {
+      .logInTitle, .registerTitle{
         text-align: center;
         @include subtitle-font;
         margin: 0;
+
+        @media (max-width:720px) {
+          font-size: $font-size-h3;
+        }
       }
 
       input {
@@ -66,6 +70,10 @@
         transition: transform 80ms ease-in;
         width: 17rem;
         margin-top: 0.62rem;
+        
+        @media (max-width:720px) {
+          width: 14rem;
+        }
 
         &:active {
           transform: scale(0.95);
@@ -88,6 +96,10 @@
         letter-spacing: 0.03rem;
         margin: 1.25rem 0 1.8rem;
         padding-left: 1.5rem;
+        
+        @media (max-width:720px) {
+          font-size: 0.8rem;
+        }
         span {
           font-size: 0.9rem;
           cursor: pointer;
@@ -180,6 +192,8 @@
     width: 50%;
     opacity: 0;
     z-index: 1;
+
+    
   }
   .signInContainer {
     left: 0;
@@ -212,4 +226,51 @@
     z-index: 5;
     animation: show 0.6s;
   }
+
+  
 }
+
+@media (max-width:480px) {
+      *{
+        box-sizing: content-box;
+      }
+      .loginContainer{
+        display: none;
+        
+      }
+
+      .signContainer .formContainer form {
+        padding: 0;
+      }
+
+      .input{
+        margin: auto;
+      }
+
+      .signPanelActive .signUpContainer{
+        transform: translateX(50%);
+      }
+
+      .signContainer .signInContainer {
+        left: 0; // Asegúrate de que esté alineado a la izquierda
+        width: 100%; // Cambia a 100% para centrarlo
+        z-index: 2;
+        padding: 0 0;
+      }
+
+      .signContainer{
+        box-shadow: none;
+      }
+      .registerTitle .logInTitle{
+        font-size: 0.5rem;
+      }
+
+      input{
+        max-width: 15rem;
+      }
+
+      button {
+        max-width: 8rem;
+      }
+      
+    }
