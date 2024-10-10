@@ -54,6 +54,9 @@
     @media(max-width: 890px){
       width:50%
     }
+    @media(max-width: 480px){
+      display: none;
+    }
     
   }
 

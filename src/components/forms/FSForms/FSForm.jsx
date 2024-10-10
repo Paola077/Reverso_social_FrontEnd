@@ -101,6 +101,12 @@ const FSForm = ({ text, formType, formFields, initialData }) => {
     }
   };
 
+  const buttonMargin = window.innerWidth < 480 ? "2rem  auto 0" : "3rem 0.5rem 0 0";
+  const buttonWidth = window.innerWidth < 1024 ? "15rem" : "20rem";
+  const buttonHeight = window.innerWidth < 1024 ? "2.5rem" : "3rem";
+
+
+
   return (
     <div className="formBackGround">
       <form onSubmit={handleSubmit}>
@@ -131,9 +137,9 @@ const FSForm = ({ text, formType, formFields, initialData }) => {
               backgroundColor={"white"}
               border={"0.15rem solid #7176f8"}
               color={"#7176f8"}
-              width={"20rem"}
-              height={"3rem"}
-              margin={"3rem 0 0"}
+              width={buttonWidth}
+              height={buttonHeight}
+              margin={buttonMargin}
               onClick={handleCancel}
             />
 
@@ -143,9 +149,9 @@ const FSForm = ({ text, formType, formFields, initialData }) => {
               border={"0.15rem solid #7176f8"}
               color={"white"}
               type={"submit"}
-              width={"20rem"}
-              height={"3rem"}
-              margin={"3rem 0 0"}
+              width={buttonWidth}
+              height={buttonHeight}
+              margin={buttonMargin}
               onClick={handleSubmit}
             />
           </div>

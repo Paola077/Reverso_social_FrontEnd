@@ -18,6 +18,7 @@
 
   &__content {
     background-color: $white;
+    position: relative;
     padding: 3rem;
     border-radius: 0.8rem;
     width: 90%;
@@ -48,10 +49,14 @@
     &__close {
       position: absolute;
       top: 1.25rem;
-      right: 1.25rem;
+      right: 1.25rem !important;
       background: none;
       border: none;
       cursor: pointer;
+
+      @media (max-width:480px) {
+        right: 9%;
+    }
 
       &__icon {
         width: 2rem;
@@ -96,9 +101,9 @@
       }
     }
   }
-Button{
-  @media (max-width: 480px) {
-         width: 100% !important;
-        }
-}
+//   .popUpWindow__content__body__joinButton {
+//   @media (max-width: 480px) {
+//          width: 100% !important;
+//         }
+// }
 }
