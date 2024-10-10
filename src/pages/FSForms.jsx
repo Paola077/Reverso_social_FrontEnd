@@ -13,7 +13,6 @@ const FSForms = () => {
   const [initialData, setInitialData] = useState();
   const [loading, setLoading] = useState(true);
 
-  console.log("formType:", formType);
 
   useEffect(() => {
     if (id) {
