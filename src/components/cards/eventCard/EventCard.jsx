@@ -6,8 +6,11 @@ import Alert from "../../modal/alerts/Alert";
 import { useAuth } from "../../../context/AuthContext";
 import InteractivePop from "../../modal/Interactive/InteractivePop";
 import { useLocation, useNavigate } from "react-router-dom";
-import { subscribeUserToEvent, getEvent, unsubscribeUserToEvent } from "../../../services/eventApi";
-
+import {
+  subscribeUserToEvent,
+  getEvent,
+  unsubscribeUserToEvent,
+} from "../../../services/eventApi";
 
 const truncateText = (text, limit) => {
   const words = text.split(" ");
@@ -28,6 +31,7 @@ const EventCard = ({
   email,
   phoneNumber,
   description,
+  buttonText,
   contentText,
   name,
   id,
@@ -42,25 +46,29 @@ const EventCard = ({
   const [maxParticipants, setMaxParticipants] = useState(0);
   const [isEventFull, setIsEventFull] = useState(false);
   const [alertOpenForMoreInfo, setAlertOpenForMoreInfo] = useState(false);
-  const [alertOpenForRegistration, setAlertOpenForRegistration] = useState(false);
+  const [alertOpenForRegistration, setAlertOpenForRegistration] =
+    useState(false);
   const [alertConfirmation, setAlertConfirmation] = useState(false);
   const [isPopupOpen, setPopupOpen] = useState(false);
   const pathLocation = useLocation();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
   const createdByUser = user?.email === createdBy;
+  const eventDate = new Date(date);
+  const isPastEvent = eventDate < new Date();
 
   useEffect(() => {
     const checkEventStatus = async () => {
       if (!id) return;
       try {
         const eventData = await getEvent(id, token);
-        console.log("Datos completos del evento:", eventData);
-    
+
         setIsEventFull(eventData.eventFull || false);
         setCurrentParticipants(eventData.currentParticipants || 0);
-        setMaxParticipants(eventData.maxParticipants || propMaxParticipants || 0);
-    
+        setMaxParticipants(
+          eventData.maxParticipants || propMaxParticipants || 0
+        );
+
         if (isAuthenticated) {
           const isSubscribed = eventData.userSubscribed || false;
           setIsAttending(isSubscribed);
@@ -73,14 +81,10 @@ const EventCard = ({
         setIsLoading(false);
       }
     };
-  
-    console.log("Ejecutando useEffect. Token:", token);
-  
-  
-      checkEventStatus();
-    
-    
+
+    checkEventStatus();
   }, [id, token]);
+
   const handleSubscribe = async () => {
     try {
       await subscribeUserToEvent(id, token);
@@ -91,9 +95,7 @@ const EventCard = ({
       if (newParticipantCount >= maxParticipants) {
         setIsEventFull(true);
       }
-      console.log("Número de participantes:", participantsCount);
-      console.log("Máximo de participantes:", maxParticipants);
-
+      
       setAlertConfirmation(true);
     } catch (error) {
       console.error("Error al suscribirse:", error);
@@ -126,7 +128,7 @@ const EventCard = ({
   const handleButton = () => {
     switch (entityType) {
       case "evento":
-        toggleAttendance();
+        onButtonClick();
         break;
       case "servicio":
         break;
@@ -136,7 +138,6 @@ const EventCard = ({
         } else {
           setAlertOpenForRegistration(true);
         }
-        window.location.href = curriculum;
         break;
       case "recurso":
         fetchData = getResourceById(id);
@@ -160,29 +161,23 @@ const EventCard = ({
     setPopupOpen(false);
   };
 
-  console.log("isEventFull:", isEventFull);
-console.log("isAttending:", isAttending);
+  let onButtonClick = null;
 
-let buttonText = null;
-let onButtonClick = null;
-
-if (!createdByUser) {
-  if (isLoading) {
-    buttonText = "Cargando...";
-    onButtonClick = null;
-  } else if (isEventFull && !isAttending) {
-    buttonText = "Aforo Completo";
-    onButtonClick = null;
-  } else if (!isAuthenticated) {
-    buttonText = "Apúntate";
-    onButtonClick = () => {
-      setAlertOpenForRegistration(true);
-    };
-  } else {
-    buttonText = isAttending ? "Cancelar asistencia" : "Apúntate";
-    onButtonClick = toggleAttendance;
+  if (!createdByUser && entityType === "evento") {
+    if (isLoading) {
+      buttonText = "Cargando...";
+    } else if (isEventFull && !isAttending) {
+      buttonText = "Aforo Completo";
+    } else if (!isAuthenticated) {
+      buttonText = "Apúntate";
+      onButtonClick = () => {
+        setAlertOpenForRegistration(true);
+      };
+    } else {
+      buttonText = isAttending ? "Cancelar asistencia" : "Apúntate";
+      onButtonClick = toggleAttendance;
+    }
   }
-}
   return (
     <div className="eventCard">
       {isAuthenticated && (createdByUser || role === "FEMSENIORADMIN") && (
@@ -247,7 +242,7 @@ if (!createdByUser) {
         />
       </Alert>
 
-      {!createdByUser && (
+      {
         <InteractivePop
           isOpen={isPopupOpen}
           onClose={handleClosePopup}
@@ -264,9 +259,9 @@ if (!createdByUser) {
           description={description}
           contentText={contentText}
           buttonText={buttonText}
-          onButtonClick={onButtonClick}
+          onButtonClick={handleButton}
         />
-      )}
+      }
 
       <Alert
         isOpen={alertConfirmation}
@@ -287,7 +282,7 @@ if (!createdByUser) {
         onclose={() => setAlertOpenForRegistration(false)}
         alert="Necesitas estar registrada para apuntarte."
       >
-        <Button 
+        <Button
           textButton={"Cancelar"}
           backgroundColor={"white"}
           width={"12.5rem"}
@@ -304,7 +299,6 @@ if (!createdByUser) {
           border={"0.15rem solid #7176f8"}
           color={"white"}
           onClick={() => navigate("/reverso-social/login")}
-        
         />
       </Alert>
     </div>
