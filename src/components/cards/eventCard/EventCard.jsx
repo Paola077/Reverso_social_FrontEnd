@@ -39,6 +39,8 @@ const EventCard = ({
   maxParticipants: propMaxParticipants,
   sector,
   curriculum,
+  resourceUrl,
+  resourceFile,
 }) => {
   const { isAuthenticated, user, role, token } = useAuth();
   const [isAttending, setIsAttending] = useState(false);
@@ -95,7 +97,7 @@ const EventCard = ({
       if (newParticipantCount >= maxParticipants) {
         setIsEventFull(true);
       }
-      
+
       setAlertConfirmation(true);
     } catch (error) {
       console.error("Error al suscribirse:", error);
@@ -140,7 +142,11 @@ const EventCard = ({
         }
         break;
       case "recurso":
-        fetchData = getResourceById(id);
+        if (isAuthenticated) {
+          window.location.href = resourceFile;
+        } else {
+          setAlertOpenForRegistration(true);
+        }
         break;
       default:
         break;
@@ -260,6 +266,7 @@ const EventCard = ({
           contentText={contentText}
           buttonText={buttonText}
           onButtonClick={handleButton}
+          resourceUrl={resourceUrl}
         />
       }
 

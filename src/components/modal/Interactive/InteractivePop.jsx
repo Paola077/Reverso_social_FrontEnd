@@ -22,6 +22,7 @@ const InteractivePop = ({
   user_id,
   contentText,
   sector,
+  resourceUrl,
 }) => {
   if (!isOpen) return null;
 
@@ -134,16 +135,20 @@ const InteractivePop = ({
         <div className="popUpButton">
           {currentPage === "SERVICIOS" && renderContactSection()}
           {currentPage === "EMPLEO" && (
-            <div className="buttonCurriculum">
+            <div className="buttonFile">
               {renderContentText()}
               {buttonText && renderButton()}
             </div>
           )}
           {currentPage === "RECURSOS" && (
-            <>
-              {renderContentText()}
+            <div className="buttonFile">
+              {resourceUrl && (
+                <div className="popUpContentText">
+                  <p>{resourceUrl}</p>
+                </div>
+              )}
               {buttonText && renderButton()}
-            </>
+            </div>
           )}
           {currentPage === "EVENTOS" && buttonText && renderButton()}
         </div>
