@@ -25,7 +25,6 @@ const SearchDetail = () => {
         setLoading(false);
       }
     };
-
     fetchEvent();
   }, [id, section]);
 

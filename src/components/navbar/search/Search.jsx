@@ -37,16 +37,15 @@ const Search = () => {
       const combinedResults = [
         ...eventsData.map((item) => ({
           ...item,
-          section: "events", 
+          section: "events",
           id: item.id,
         })),
         ...servicesData.map((item) => ({
           ...item,
-          section: "services", 
+          section: "services",
           id: item.id,
         })),
       ];
-
       setResults(combinedResults);
       setDropdownVisible(combinedResults.length > 0);
     } catch (error) {
@@ -71,11 +70,9 @@ const Search = () => {
       console.error("Resultado no válido:", result);
       return;
     }
-
     navigate(
       `/reverso-social/femsenior/detalles/${result.section}/${result.id}`
     );
-
     resetSearch();
   };
 
