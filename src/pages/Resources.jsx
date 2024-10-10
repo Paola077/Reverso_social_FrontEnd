@@ -12,6 +12,7 @@ function Resources() {
     queryKey: ["resources"],
     queryFn: getAllResources,
   });
+  
   return (
     <div>
       {resourcesStatus === "loading" || resourcesStatus === "pending" ? (
@@ -28,10 +29,12 @@ function Resources() {
             key={resource.id}
             title={resource.title}
             description={resource.description}
-            url={resource.url}
-            contentText={"RECURSO"}
+            resourceFile={resource.fileUrl}
+            buttonText={"Descargar"}
             entityType="recurso"
             createdBy={resource.creatorEmail}
+            summary={resource.description}
+            resourceUrl={resource.url}
           />
         ))
       )}

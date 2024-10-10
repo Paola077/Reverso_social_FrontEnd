@@ -13,7 +13,6 @@ const FSForms = () => {
   const [initialData, setInitialData] = useState();
   const [loading, setLoading] = useState(true);
 
-  console.log("formType:", formType);
 
   useEffect(() => {
     if (id) {
@@ -265,11 +264,10 @@ const FSForms = () => {
         },
         {
           title: "Documento",
-          //type: "file",
-          type: "text",
+          type: "file",
           placeholder: "Selecciona un documento",
           name: "file",
-          //accept: "multimedia",
+        //  accept: "multimedia",
         },
       ],
     },

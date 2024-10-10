@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./_EventCard.scss";
 import EventCardButton from "../../buttons/eventsCardButtons/EventCardButton";
 import { Button } from "../../buttons/button/Button";
@@ -6,6 +6,11 @@ import Alert from "../../modal/alerts/Alert";
 import { useAuth } from "../../../context/AuthContext";
 import InteractivePop from "../../modal/Interactive/InteractivePop";
 import { useLocation, useNavigate } from "react-router-dom";
+import {
+  subscribeUserToEvent,
+  getEvent,
+  unsubscribeUserToEvent,
+} from "../../../services/eventApi";
 
 const truncateText = (text, limit) => {
   const words = text.split(" ");
@@ -26,27 +31,94 @@ const EventCard = ({
   email,
   phoneNumber,
   description,
-  contentText,
   buttonText,
+  contentText,
   name,
   id,
   entityType,
+  maxParticipants: propMaxParticipants,
   sector,
   curriculum,
+  resourceUrl,
+  resourceFile,
 }) => {
-  const { isAuthenticated, role, user } = useAuth();
+  const { isAuthenticated, user, role, token } = useAuth();
+  const [isAttending, setIsAttending] = useState(false);
+  const [currentParticipants, setCurrentParticipants] = useState(0);
+  const [maxParticipants, setMaxParticipants] = useState(0);
+  const [isEventFull, setIsEventFull] = useState(false);
   const [alertOpenForMoreInfo, setAlertOpenForMoreInfo] = useState(false);
   const [alertOpenForRegistration, setAlertOpenForRegistration] =
     useState(false);
+  const [alertConfirmation, setAlertConfirmation] = useState(false);
   const [isPopupOpen, setPopupOpen] = useState(false);
-  const [isAttending, setIsAttending] = useState(false);
   const pathLocation = useLocation();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
   const createdByUser = user?.email === createdBy;
-
   const eventDate = new Date(date);
   const isPastEvent = eventDate < new Date();
 
+  useEffect(() => {
+    const checkEventStatus = async () => {
+      if (!id) return;
+      try {
+        const eventData = await getEvent(id, token);
+
+        setIsEventFull(eventData.eventFull || false);
+        setCurrentParticipants(eventData.currentParticipants || 0);
+        setMaxParticipants(
+          eventData.maxParticipants || propMaxParticipants || 0
+        );
+
+        if (isAuthenticated) {
+          const isSubscribed = eventData.userSubscribed || false;
+          setIsAttending(isSubscribed);
+        } else {
+          setIsAttending(false);
+        }
+      } catch (error) {
+        console.error("Error al obtener el estado del evento:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    checkEventStatus();
+  }, [id, token]);
+
+  const handleSubscribe = async () => {
+    try {
+      await subscribeUserToEvent(id, token);
+      setIsAttending(true);
+      const newParticipantCount = currentParticipants + 1;
+      setCurrentParticipants(newParticipantCount);
+
+      if (newParticipantCount >= maxParticipants) {
+        setIsEventFull(true);
+      }
+
+      setAlertConfirmation(true);
+    } catch (error) {
+      console.error("Error al suscribirse:", error);
+      if (error.response?.status === 409) {
+        setIsEventFull(true);
+        alert("El evento ya ha alcanzado el aforo máximo.");
+      }
+    }
+  };
+
+  const handleUnsubscribe = async () => {
+    try {
+      await unsubscribeUserToEvent(id, token);
+      setIsAttending(false);
+      const newParticipantCount = currentParticipants - 1;
+      setCurrentParticipants(newParticipantCount);
+      setIsEventFull(false); // Actualiza el estado del evento
+    } catch (error) {
+      console.error("Error al cancelar la suscripción:", error);
+    }
+  };
   const handlePopupOpen = () => {
     if (isAuthenticated || pathLocation.pathname.includes("/eventos")) {
       setPopupOpen(true);
@@ -58,7 +130,7 @@ const EventCard = ({
   const handleButton = () => {
     switch (entityType) {
       case "evento":
-        toggleAttendance();
+        onButtonClick();
         break;
       case "servicio":
         break;
@@ -68,10 +140,13 @@ const EventCard = ({
         } else {
           setAlertOpenForRegistration(true);
         }
-        window.location.href = curriculum;
         break;
       case "recurso":
-        fetchData = getResourceById(id);
+        if (isAuthenticated) {
+          window.location.href = resourceFile;
+        } else {
+          setAlertOpenForRegistration(true);
+        }
         break;
       default:
         break;
@@ -79,10 +154,12 @@ const EventCard = ({
   };
 
   const toggleAttendance = () => {
-    if (isAuthenticated) {
-      setIsAttending(!isAttending);
-    } else {
+    if (!isAuthenticated) {
       setAlertOpenForRegistration(true);
+    } else if (isEventFull && !isAttending) {
+      alert("El evento ya ha alcanzado el aforo completo.");
+    } else {
+      isAttending ? handleUnsubscribe() : handleSubscribe();
     }
   };
 
@@ -93,6 +170,24 @@ const EventCard = ({
   const buttonWidth = window.innerWidth < 480 ? "9rem" : "12.5rem";
   const buttonHeight = window.innerWidth < 480 ? "2rem" : "2.75rem";
 
+
+  let onButtonClick = null;
+
+  if (!createdByUser && entityType === "evento") {
+    if (isLoading) {
+      buttonText = "Cargando...";
+    } else if (isEventFull && !isAttending) {
+      buttonText = "Aforo Completo";
+    } else if (!isAuthenticated) {
+      buttonText = "Apúntate";
+      onButtonClick = () => {
+        setAlertOpenForRegistration(true);
+      };
+    } else {
+      buttonText = isAttending ? "Cancelar asistencia" : "Apúntate";
+      onButtonClick = toggleAttendance;
+    }
+  }
   return (
     <div className="eventCard">
       {isAuthenticated && (createdByUser || role === "FEMSENIORADMIN") && (
@@ -100,10 +195,10 @@ const EventCard = ({
           <EventCardButton id={id} entityType={entityType} />
         </div>
       )}
+
       <div className="eventCard__content">
         <div className="eventCard__content__info">
           <h3 className="eventCard__content__info__title">{title}</h3>
-
           <div className="eventCard__content__info__details">
             {sector && entityType == "evento" && <span>{sector}</span>}
             {location && <span>{location}</span>}
@@ -113,6 +208,7 @@ const EventCard = ({
             {summary ? <span>{truncateText(summary, 20)}</span> : null}
           </div>
         </div>
+
         <div className="eventCard__content__button">
           {isPastEvent ? (
             <span className="pastEvent">Finalizado</span>
@@ -130,6 +226,7 @@ const EventCard = ({
           )}
         </div>
       </div>
+
       <Alert
         isOpen={alertOpenForMoreInfo}
         onclose={() => setAlertOpenForMoreInfo(false)}
@@ -154,31 +251,43 @@ const EventCard = ({
           onClick={() => navigate("/reverso-social/login")}
         />
       </Alert>
-      <InteractivePop
-        isOpen={isPopupOpen}
-        onClose={handleClosePopup}
-        title={title}
-        modality={modality}
-        date={date}
-        time={time}
-        location={location}
-        type={type}
-        position={position}
-        email={email}
-        phoneNumber={phoneNumber}
-        name={name}
-        description={description}
-        buttonText={
-          !createdByUser
-            ? isAttending
-              ? "Cancelar asistencia"
-              : "Apúntate"
-            : buttonText
-        }
-        onButtonClick={() => handleButton()}
-        contentText={contentText}
-        sector={sector}
-      />
+
+      {
+        <InteractivePop
+          isOpen={isPopupOpen}
+          onClose={handleClosePopup}
+          title={title}
+          modality={modality}
+          date={date}
+          time={time}
+          location={location}
+          type={type}
+          position={position}
+          email={email}
+          phoneNumber={phoneNumber}
+          name={name}
+          description={description}
+          contentText={contentText}
+          buttonText={buttonText}
+          onButtonClick={handleButton}
+          resourceUrl={resourceUrl}
+        />
+      }
+
+      <Alert
+        isOpen={alertConfirmation}
+        onclose={() => setAlertConfirmation(false)}
+        alert="¡Te has apuntado al evento con éxito!"
+      >
+        <Button
+          textButton={"Aceptar"}
+          backgroundColor={"#7176f8"}
+          width={"12.5rem"}
+          height={"2.75rem"}
+          color={"white"}
+          onClick={() => setAlertConfirmation(false)}
+        />
+      </Alert>
       <Alert
         isOpen={alertOpenForRegistration}
         onclose={() => setAlertOpenForRegistration(false)}
@@ -206,5 +315,4 @@ const EventCard = ({
     </div>
   );
 };
-
 export default EventCard;
