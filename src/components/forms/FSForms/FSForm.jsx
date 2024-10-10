@@ -33,11 +33,19 @@ const FSForm = ({ text, formType, formFields, initialData }) => {
   }, [initialData]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    const { name, value, type, files } = e.target;
+
+    if (type === "file") {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: files[0],
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -108,7 +116,7 @@ const FSForm = ({ text, formType, formFields, initialData }) => {
                 title={field.title}
                 type={field.type}
                 placeholder={field.placeholder}
-                value={formData[field.name] || ""}
+                value={field.type === "file" ? "" : formData[field.name] || ""}
                 name={field.name}
                 onChange={handleChange}
                 options={field.options || []}

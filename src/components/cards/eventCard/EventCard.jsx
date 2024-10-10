@@ -32,6 +32,7 @@ const EventCard = ({
   id,
   entityType,
   sector,
+  curriculum,
 }) => {
   const { isAuthenticated, role, user } = useAuth();
   const [alertOpenForMoreInfo, setAlertOpenForMoreInfo] = useState(false);
@@ -51,6 +52,29 @@ const EventCard = ({
       setPopupOpen(true);
     } else {
       setAlertOpenForMoreInfo(true);
+    }
+  };
+
+  const handleButton = () => {
+    switch (entityType) {
+      case "evento":
+        toggleAttendance();
+        break;
+      case "servicio":
+        break;
+      case "curriculum":
+        if (isAuthenticated) {
+          window.location.href = curriculum;
+        } else {
+          setAlertOpenForRegistration(true);
+        }
+        window.location.href = curriculum;
+        break;
+      case "recurso":
+        fetchData = getResourceById(id);
+        break;
+      default:
+        break;
     }
   };
 
@@ -146,10 +170,11 @@ const EventCard = ({
             ? isAttending
               ? "Cancelar asistencia"
               : "Apúntate"
-            : null
+            : buttonText
         }
-        onButtonClick={toggleAttendance}
+        onButtonClick={() => handleButton()}
         contentText={contentText}
+        sector={sector}
       />
       <Alert
         isOpen={alertOpenForRegistration}
