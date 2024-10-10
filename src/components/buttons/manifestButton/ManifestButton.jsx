@@ -20,6 +20,8 @@ const ManifestButton = () => {
     navigate("/reverso-social/signin");
   };
 
+  
+
   return (
     <div className="manifestBtnContainer">
       <button className="manifestBtn" onClick={handleOpenPopup}>
