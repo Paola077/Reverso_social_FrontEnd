@@ -265,11 +265,10 @@ const FSForms = () => {
         },
         {
           title: "Documento",
-          //type: "file",
-          type: "text",
+          type: "file",
           placeholder: "Selecciona un documento",
           name: "file",
-          //accept: "multimedia",
+        //  accept: "multimedia",
         },
       ],
     },
