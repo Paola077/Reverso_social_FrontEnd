@@ -2,11 +2,19 @@ import axios from "axios";
 import { EMPLOY_URL, EMPLOY_URL_ID } from "../config/url";
 
 export const createEmployOffer = async (data, token) => {
-  let headers = undefined;
+  const formData = new FormData();
+  formData.append("position", data.position);
+  formData.append("description", data.description);
+  formData.append("sector", data.sector);
+
+  if (data.curriculum) {
+    formData.append("curriculum", data.curriculum);
+  }
+  let headers = { "Content-Type": "multipart/form-data" };
   if (token) {
     headers = { Authorization: `Bearer ${token}` };
   }
-  const res = await axios.post(EMPLOY_URL, data, { headers });
+  const res = await axios.post(EMPLOY_URL, formData, { headers });
   return res.data;
 };
 
