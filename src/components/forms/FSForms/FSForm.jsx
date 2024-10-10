@@ -104,6 +104,8 @@ const FSForm = ({ text, formType, formFields, initialData }) => {
   const buttonMargin = window.innerWidth < 480 ? "2rem  auto 0" : "3rem 0.5rem 0 0";
   const buttonWidth = window.innerWidth < 1024 ? "15rem" : "20rem";
   const buttonHeight = window.innerWidth < 1024 ? "2.5rem" : "3rem";
+  const buttonAlertWidth = window.innerWidth < 480 ? "9rem" : "12.5rem";
+  const buttonAlertHeight = window.innerWidth < 480 ? "2rem" : "2.75rem";
 
 
 
@@ -198,8 +200,8 @@ const FSForm = ({ text, formType, formFields, initialData }) => {
         >
           <Button
             textButton={"Aceptar"}
-            width={"12.5rem"}
-            height={"2.75rem"}
+            width={buttonAlertWidth}
+            height={buttonAlertHeight}
             backgroundColor={"#7176f8"}
             border={"0.15rem solid #7176f8"}
             color={"white"}

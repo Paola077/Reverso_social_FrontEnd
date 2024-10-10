@@ -1,5 +1,4 @@
 import React from "react";
-import Alert from "../components/modal/alerts/Alert";
 import { useQuery } from "@tanstack/react-query";
 import { getAllResources } from "../services/resourceApi";
 import EventCard from "../components/cards/eventCard/EventCard";

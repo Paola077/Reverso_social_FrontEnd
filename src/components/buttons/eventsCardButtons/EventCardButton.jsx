@@ -44,6 +44,9 @@ const EventCardButton = ({ id, entityType }) => {
     mutationDelete.mutate(id);
   };
 
+  const buttonWidth = window.innerWidth < 480 ? "9rem" : "12.5rem";
+  const buttonHeight = window.innerWidth < 480 ? "2rem" : "2.75rem";
+
   return (
     <>
       <div className="tabButtonContainer">
@@ -77,16 +80,16 @@ const EventCardButton = ({ id, entityType }) => {
           <Button
             textButton={"Cancelar"}
             backgroundColor={"white"}
-            width={"12.5rem"}
-            height={"2.75rem"}
+            width={buttonWidth}
+            height={buttonHeight}
             border={"0.15rem solid #7176f8"}
             color={"#7176f8"}
             onClick={() => setIsConfirmationOpen(false)}
           />
           <Button
             textButton={"Aceptar"}
-            width={"12.5rem"}
-            height={"2.75rem"}
+            width={buttonWidth}
+            height={buttonHeight}
             backgroundColor={"#7176f8"}
             border={"0.15rem solid #7176f8"}
             color={"white"}
@@ -104,8 +107,8 @@ const EventCardButton = ({ id, entityType }) => {
         >
           <Button
             textButton={"Aceptar"}
-            width={"12.5rem"}
-            height={"2.75rem"}
+            width={buttonWidth}
+            height={buttonHeight}
             backgroundColor={"#7176f8"}
             border={"0.15rem solid #7176f8"}
             color={"white"}
@@ -123,8 +126,8 @@ const EventCardButton = ({ id, entityType }) => {
         >
           <Button
             textButton={"Aceptar"}
-            width={"12.5rem"}
-            height={"2.75rem"}
+            width={buttonWidth}
+            height={buttonHeight}
             backgroundColor={"#7176f8"}
             border={"0.15rem solid #7176f8"}
             color={"white"}
