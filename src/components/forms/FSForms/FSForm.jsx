@@ -28,7 +28,7 @@ const FSForm = ({ text, formType, formFields, initialData }) => {
 
   useEffect(() => {
     if (initialData) {
-      setFormData(initialData); // Si hay datos iniciales, actualizamos formData
+      setFormData(initialData);
     }
   }, [initialData]);
 
@@ -52,6 +52,12 @@ const FSForm = ({ text, formType, formFields, initialData }) => {
     e.preventDefault();
     setResponse(null);
     setError(null);
+
+    const sectorField = formFields.find((field) => field.name === "sector");
+    if (sectorField && !formData[sectorField.name]) {
+      setError({ message: "No se ha seleccionado el sector" });
+      return;
+    }
 
     try {
       let res;
