@@ -7,7 +7,15 @@
     gap: 5rem; 
     padding: 1.25rem; 
     margin-bottom: 5rem;
-    
+    transition: all 0.3s ease-out;
+    @media (max-width:1024px){
+      gap: 1rem;
+    }
+    @media (max-width:720px){
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      padding: 0;
+    }
   }
   
   .cardPhoto {

@@ -48,7 +48,7 @@
       }
       .popUpTime {
         margin: 0;
-        font-size: $font-size-h6;
+        font-size: $font-size-h5;
       }
 
       .popUpModality {
@@ -158,5 +158,14 @@
       margin-top: 1rem;
       color: $lightLila;
     }
+    .popUpButton {
+      .buttonCurriculum {
+        .button {
+          margin: 2rem auto !important;
+        }
+      }
+    }
+
+    /*.popUpButton {display: flex; justify-content: center; }*/
   }
 }
