@@ -37,12 +37,13 @@ const Search = () => {
       const combinedResults = [
         ...eventsData.map((item) => ({
           ...item,
-          section: "events",
+          section: "events", 
           id: item.id,
         })),
         ...servicesData.map((item) => ({
           ...item,
-          section: "services",
+          section: "services", 
+          id: item.id,
         })),
       ];
 
@@ -141,7 +142,12 @@ const Search = () => {
                   role="button"
                   onFocus={() => setSelectedIndex(index)}
                 >
-                  {result.title}
+                  <div>
+                    {result.title}
+                    <span className="sectionLabel">
+                      {result.section === "events" ? "Evento" : "Servicio"}
+                    </span>
+                  </div>
                 </li>
               ))}
             </ul>
