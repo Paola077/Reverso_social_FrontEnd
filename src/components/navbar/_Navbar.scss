@@ -51,7 +51,11 @@
 
     .navLink {
       @include navLink-style;
-
+      
+      &:hover,
+      &:active {
+        @include navLink-style-hover;
+      }
       @media (max-width: 1200px) {
         font-size: 0.5rem;
         padding: 0.25rem 0.5rem;
