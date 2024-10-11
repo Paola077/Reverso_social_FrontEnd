@@ -60,12 +60,12 @@ const MonthlyCalendar = () => {
 
   const goToNextMonth = () => {
     const newDate = addMonths(currentDate, 1);
-    setCurrentDate(newDate); // Cambiamos el mes globalmente
+    setCurrentDate(newDate); 
   };
 
   const goToPreviousMonth = () => {
     const newDate = subMonths(currentDate, 1);
-    setCurrentDate(newDate); // Cambiamos el mes globalmente
+    setCurrentDate(newDate);
   };
 
   const renderToolbar = () => {
@@ -159,8 +159,7 @@ const MonthlyCalendar = () => {
         startAccessor="start"
         endAccessor="end"
         date={currentDate}
-        onNavigate={setCurrentDate} // Asegurar que navega al cambiar el mes
-        views={["month"]}
+        onNavigate={setCurrentDate} 
         toolbar={false}
         style={{
           height: "100%",

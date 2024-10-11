@@ -19,3 +19,15 @@
     padding-bottom: 1rem;
   }
 }
+
+.cardSectionContainerFS{
+  width: 100%;
+   @media (max-width: 480px) {
+    max-width: 480px;
+    width: 90%;
+    gap: 0;
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem;
+   }
+}

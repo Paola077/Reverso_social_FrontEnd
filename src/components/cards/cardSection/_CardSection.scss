@@ -8,6 +8,19 @@
   padding: 1.5rem;
   width: 100%;
   height: auto;
+  @media (max-width: 860px) {
+    width: 100%;
+    gap: 4rem;
+    padding: 1rem 0.5rem;
+  }
+  @media (max-width: 480px) {
+    margin: 1rem;
+    width: 100%;
+    padding: 1rem 0;
+    gap: 1.5rem;
+    background-color: $dark;
+    border-radius: 1rem;
+  }
 }
 
 .sectionCard {
@@ -35,20 +48,49 @@
     pointer-events: none;
     box-sizing: border-box;
   }
+  @media (max-width: 480px) {
+    width: 3rem;
+    height: 3rem;
+    padding-block: 1.7rem;
+    &.selected::after {
+      outline: 0.1rem solid white;
+    }
+    &.selected {
+      background-color: white;
+      z-index: 0;
+    }
+  }
 }
 
 .sectionImage {
   width: 5rem;
   height: 5rem;
+  
+  @media (max-width: 480px) {
+    width: 2rem;
+          z-index: 10000000000000000;
+
+    &.selected {
+      filter: invert(80%) sepia(07%) saturate(3186%) hue-rotate(170deg)
+        brightness(100%) contrast(110%);
+    }
+  }
 }
 
 .sectionCardTitle {
   margin-top: 1rem;
   @include card-title;
   color: $white;
-  
+  @media (max-width: 480px) {
+    display: none;
+  }
 }
 
-.sectionLink{
-    text-decoration: none
+.sectionLink {
+  text-decoration: none;
+  display: inline;
+
+  @media (max-width: 480px) {
+    width: 10%;
+  }
 }
