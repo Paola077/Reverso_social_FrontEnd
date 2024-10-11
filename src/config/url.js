@@ -25,6 +25,6 @@ export const EMPLOY_URL_ID = (id) => `${EMPLOY_URL}/${id}`;
 
 //RESOURCE URL
 
-export const RESOURCE_URL = BASE_URL + "resource"
+export const RESOURCE_URL = BASE_URL + "resources"
 
 export const RESOURCE_URL_ID = (id) =>`${RESOURCE_URL}/${id}`;

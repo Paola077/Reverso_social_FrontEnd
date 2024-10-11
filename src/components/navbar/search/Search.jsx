@@ -19,7 +19,7 @@ const Search = () => {
       return;
     }
     try {
-      const [eventsData, servicesData] = await Promise.all([
+      const [eventsData, servicesData, employsData, resourcesData] = await Promise.all([
         fetch(
           `http://localhost:3001/api/events/search?title=${value.trim()}`
         ).then((res) => {
@@ -32,6 +32,18 @@ const Search = () => {
           if (!res.ok) throw new Error("Error en la búsqueda de servicios");
           return res.json();
         }),
+        fetch(
+          `http://localhost:3001/api/employs/search?title=${value.trim()}`
+        ).then((res) => {
+          if (!res.ok) throw new Error("Error en la búsqueda de Cv's");
+          return res.json();
+        }),
+        fetch(
+          `http://localhost:3001/api/resources/search?title=${value.trim()}`
+        ).then((res) => {
+          if (!res.ok) throw new Error("Error en la búsqueda de recursos");
+          return res.json();
+        })
       ]);
 
       const combinedResults = [
@@ -45,11 +57,19 @@ const Search = () => {
           section: "services",
           id: item.id,
         })),
+        ...employsData.map((item) => ({
+          ...item,
+          section: "employs"
+        })),
+        ...resourcesData.map((item) => ({
+          ...item,
+          section: "resources"
+        }))
       ];
       setResults(combinedResults);
       setDropdownVisible(combinedResults.length > 0);
     } catch (error) {
-      console.error("Error al buscar eventos y servicios:", error);
+      console.error("Error al buscar eventos, servicios, empleos y recursos:", error);
       resetSearch();
     }
   }, []);
