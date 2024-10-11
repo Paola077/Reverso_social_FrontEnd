@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import dayjs from "dayjs";
-import EventCard from "../components/cards/eventCard/EventCard";
+import InfoCard from "../components/cards/infoCard/InfoCard";
 import { useQuery } from "@tanstack/react-query";
 import { getAllEvents } from "../services/eventApi";
 import { DateContext } from "../context/DateContext";
@@ -36,8 +36,8 @@ function Events() {
         const isPastA = dateA < today;
         const isPastB = dateB < today;
 
-        if (isPastA && !isPastB) return 1; 
-        if (!isPastA && isPastB) return -1; 
+        if (isPastA && !isPastB) return 1;
+        if (!isPastA && isPastB) return -1;
         return dateA - dateB;
       });
 
@@ -55,7 +55,7 @@ function Events() {
         <p>No hay eventos para este mes.</p>
       ) : (
         filteredEvents.map((event) => (
-          <EventCard
+          <InfoCard
             id={event.id}
             key={event.id}
             title={event.title}
