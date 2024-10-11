@@ -1,4 +1,4 @@
-import EventCard from "../components/cards/eventCard/EventCard";
+import InfoCard from "../components/cards/infoCard/InfoCard";
 import { useQuery } from "@tanstack/react-query";
 import { getAllEmploys } from "../services/employApi";
 
@@ -20,7 +20,7 @@ function Employment() {
         <p>{employsError?.response?.data?.message}</p>
       ) : (
         employs.map((employ) => (
-          <EventCard
+          <InfoCard
             id={employ.id}
             key={employ.id}
             sector={employ.sector}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import "./_EventCard.scss";
-import EventCardButton from "../../buttons/eventsCardButtons/EventCardButton";
+import "./_InfoCard.scss";
+import InfoCardButton from "../../buttons/infoCardButtons/InfoCardButton";
 import { Button } from "../../buttons/button/Button";
 import Alert from "../../modal/alerts/Alert";
 import { useAuth } from "../../../context/AuthContext";
@@ -17,7 +17,7 @@ const truncateText = (text, limit) => {
   return words.length > limit ? words.slice(0, limit).join(" ") + "..." : text;
 };
 
-const EventCard = ({
+const InfoCard = ({
   title,
   details,
   location,
@@ -59,68 +59,70 @@ const EventCard = ({
   const eventDate = new Date(date);
   const isPastEvent = eventDate < new Date();
 
-useEffect(() => {
-  const checkEventStatus = async () => {
-    if (!id) return;
-    try {
-      const eventData = await getEvent(id, token);
+  useEffect(() => {
+    const checkEventStatus = async () => {
+      if (!id) return;
+      try {
+        const eventData = await getEvent(id, token);
 
-      console.log("Datos del evento:", eventData);
+        console.log("Datos del evento:", eventData);
 
-      setIsEventFull(eventData.eventFull || false);
-      setCurrentParticipants(eventData.currentParticipants || 0);
-      setMaxParticipants(eventData.maxParticipants || propMaxParticipants || 0);
+        setIsEventFull(eventData.eventFull || false);
+        setCurrentParticipants(eventData.currentParticipants || 0);
+        setMaxParticipants(
+          eventData.maxParticipants || propMaxParticipants || 0
+        );
 
-      if (isAuthenticated) {
-        const isSubscribed = eventData.userSubscribed || false;
-        setIsAttending(isSubscribed);
-      } else {
-        setIsAttending(false);
+        if (isAuthenticated) {
+          const isSubscribed = eventData.userSubscribed || false;
+          setIsAttending(isSubscribed);
+        } else {
+          setIsAttending(false);
+        }
+      } catch (error) {
+        console.error("Error al obtener el estado del evento:", error);
+      } finally {
+        setIsLoading(false);
       }
+    };
+
+    checkEventStatus();
+  }, [id, token]);
+
+  const handleSubscribe = async () => {
+    try {
+      await subscribeUserToEvent(id, token);
+      setIsAttending(true);
+      setCurrentParticipants((prevCount) => prevCount + 1);
+
+      if (currentParticipants + 1 >= maxParticipants) {
+        setIsEventFull(true);
+      }
+
+      setAlertConfirmation(true);
+
+      checkEventStatus();
     } catch (error) {
-      console.error("Error al obtener el estado del evento:", error);
-    } finally {
-      setIsLoading(false);
+      console.error("Error al suscribirse:", error);
+      if (error.response?.status === 409) {
+        setIsEventFull(true);
+        alert("El evento ya ha alcanzado el aforo máximo.");
+      }
     }
   };
+  const handleUnsubscribe = async () => {
+    try {
+      await unsubscribeUserToEvent(id, token);
+      setIsAttending(false);
+      setCurrentParticipants((prevCount) => prevCount - 1);
 
-  checkEventStatus();
-}, [id, token]);
+      setIsEventFull(false);
 
-const handleSubscribe = async () => {
-  try {
-    await subscribeUserToEvent(id, token);
-    setIsAttending(true);
-    setCurrentParticipants((prevCount) => prevCount + 1);
-
-    if (currentParticipants + 1 >= maxParticipants) {
-      setIsEventFull(true);
+      checkEventStatus();
+    } catch (error) {
+      console.error("Error al cancelar la suscripción:", error);
     }
-
-    setAlertConfirmation(true);
-
-    checkEventStatus();
-  } catch (error) {
-    console.error("Error al suscribirse:", error);
-    if (error.response?.status === 409) {
-      setIsEventFull(true);
-      alert("El evento ya ha alcanzado el aforo máximo.");
-    }
-  }
-};
-const handleUnsubscribe = async () => {
-  try {
-    await unsubscribeUserToEvent(id, token);
-    setIsAttending(false);
-    setCurrentParticipants((prevCount) => prevCount - 1);
-
-    setIsEventFull(false);
-
-    checkEventStatus();
-  } catch (error) {
-    console.error("Error al cancelar la suscripción:", error);
-  }
-};
+  };
   const handlePopupOpen = () => {
     if (isAuthenticated || pathLocation.pathname.includes("/eventos")) {
       setPopupOpen(true);
@@ -189,17 +191,17 @@ const handleUnsubscribe = async () => {
   }
 
   return (
-    <div className="eventCard">
+    <div className="infoCard">
       {isAuthenticated && (createdByUser || role === "FEMSENIORADMIN") && (
-        <div className="eventCard__lateralButtons">
-          <EventCardButton id={id} entityType={entityType} />
+        <div className="infoCard__lateralButtons">
+          <InfoCardButton id={id} entityType={entityType} />
         </div>
       )}
 
-      <div className="eventCard__content">
-        <div className="eventCard__content__info">
-          <h3 className="eventCard__content__info__title">{title}</h3>
-          <div className="eventCard__content__info__details">
+      <div className="infoCard__content">
+        <div className="infoCard__content__info">
+          <h3 className="infoCard__content__info__title">{title}</h3>
+          <div className="infoCard__content__info__details">
             {sector && entityType == "evento" && <span>{sector}</span>}
             {location && <span>{location}</span>}
             {date && <span>Fecha: {date}</span>}
@@ -209,7 +211,7 @@ const handleUnsubscribe = async () => {
           </div>
         </div>
 
-        <div className="eventCard__content__button">
+        <div className="infoCard__content__button">
           {isPastEvent ? (
             <span className="pastEvent">Finalizado</span>
           ) : (
@@ -315,4 +317,4 @@ const handleUnsubscribe = async () => {
     </div>
   );
 };
-export default EventCard;
+export default InfoCard;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import EventCard from "../../cards/eventCard/EventCard";
+import InfoCard from "../../cards/infoCard/InfoCard";
 
 const SearchDetail = () => {
   const { section, id } = useParams();
@@ -34,7 +34,7 @@ const SearchDetail = () => {
   if (!item) return <div>Evento no encontrado</div>;
 
   return (
-    <EventCard
+    <InfoCard
       id={item.id}
       title={item.title}
       type={item.type}
