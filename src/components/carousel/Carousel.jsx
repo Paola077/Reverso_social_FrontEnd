@@ -3,6 +3,10 @@ import ModalWeOffer from "../modal/ModalWeOffer";
 import "./_Carousel.scss";
 
 const services = [
+  { title: "PLANES DE IGUALDAD", image: "images/plan-igualdad.jpg", text: `
+    <p>Con los Planes de Igualdad buscamos transformar estructuras sociales para <b>eliminar la discriminación y fomentar la igualdad</b>.</p> <br/>
+    <p>Esto incluye <b>erradicar violencias y discriminaciones</b> hacia mujeres y niñas, garantizar su acceso a la salud y promover su participación en decisiones políticas y económicas.</p> <br/>
+    <p>Además, se propone <b>profesionalizar el trabajo doméstico y remunerar los cuidados</b>, así como mejorar las habilidades laborales de las mujeres. También se enfatiza en la coeducación, la prevención de violencias machistas y el apoyo a la investigación sobre género. La meta es <b>construir una sociedad inclusiva y equitativa</b>, que valore y respete la diversidad.</p>`  },
   { title: "CONSULTORÍAS", image: "images/consultoria.jpg", text: `
     <p>Consultoría para empresas y administraciones públicas, agentes sociales (sindicatos, patronal, etc).</p>
     <br/>
@@ -19,10 +23,7 @@ const services = [
   { title: "FORMACIONES", image: "images/formaciones.jpg", text: "Nuestras formaciones abarcan temas actuales y relevantes para el crecimiento personal y profesional. Cursos prácticos y teóricos impartidos por expertos en sus respectivos campos." },
   { title: "AUDITORÍAS", image: "images/auditoria.jpg",  text: "Realizamos auditorías completas para optimizar el rendimiento y asegurar el cumplimiento normativo de las empresas. Identificamos áreas de mejora y ofrecemos recomendaciones claras."  },
   { title: "RED MUJERES", image: "images/red-mujeres.jpg", text: "Fomentamos la creación de redes de apoyo y empoderamiento para mujeres en el ámbito laboral. Proporcionamos recursos y espacios para promover la igualdad de género en el trabajo."  },
-  { title: "PLANES DE IGUALDAD", image: "images/plan-igualdad.jpg", text: `
-    <p>Con los Planes de Igualdad buscamos transformar estructuras sociales para <b>eliminar la discriminación y fomentar la igualdad</b>.</p> <br/>
-    <p>Esto incluye <b>erradicar violencias y discriminaciones</b> hacia mujeres y niñas, garantizar su acceso a la salud y promover su participación en decisiones políticas y económicas.</p> <br/>
-    <p>Además, se propone <b>profesionalizar el trabajo doméstico y remunerar los cuidados</b>, así como mejorar las habilidades laborales de las mujeres. También se enfatiza en la coeducación, la prevención de violencias machistas y el apoyo a la investigación sobre género. La meta es <b>construir una sociedad inclusiva y equitativa</b>, que valore y respete la diversidad.</p>`  },
+ 
   
 ];
 
