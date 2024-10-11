@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "../../buttons/button/Button";
 import closeIcon from "/icons/Exit.svg";
 import "../Interactive/_InteractivePop.scss";
+import { useAuth } from "../../../context/AuthContext";
 import { useLocation } from "react-router-dom";
 
 const InteractivePop = ({
@@ -19,12 +20,14 @@ const InteractivePop = ({
   phoneNumber,
   buttonText,
   onButtonClick,
-  user_id,
+  createdBy,
+  participantsCount,
   contentText,
   sector,
-  resourceUrl,
 }) => {
-  if (!isOpen) return null;
+  const { user } = useAuth();
+
+  const isCreator = user?.email === createdBy;
 
   const { pathname } = useLocation();
 
@@ -61,7 +64,6 @@ const InteractivePop = ({
       )}
     </div>
   );
-
   const renderButton = () => (
     <Button
       className="contentButton"
@@ -85,7 +87,6 @@ const InteractivePop = ({
       )}
     </div>
   );
-
   return (
     <div className="popUpInteractive">
       <div className="popUpContent">
@@ -106,12 +107,12 @@ const InteractivePop = ({
               {time && <p className="popUpTime">{time}</p>}
             </div>
           )}
+          {position && (
+            <div className="popUpPosition">
+              <strong>{position}</strong>
+            </div>
+          )}
         </div>
-        {position && (
-          <div className="popUpPosition">
-            <strong>{position}</strong>
-          </div>
-        )}
         <div className="popUpContentBody">
           {type && (
             <div className="PopUpType">
@@ -132,6 +133,17 @@ const InteractivePop = ({
             </>
           )}
         </div>
+        <div className="popUpContactSection">
+          {location && (
+            <>
+              <p>
+                <strong>Ubicación:</strong> {location}
+              </p>
+            </>
+          )}
+          {phoneNumber && <p>Tel: {phoneNumber}</p>}
+          {email && <p>Email: {email}</p>}
+        </div>
         <div className="popUpButton">
           {currentPage === "SERVICIOS" && renderContactSection()}
           {currentPage === "EMPLEO" && (
@@ -147,10 +159,17 @@ const InteractivePop = ({
                   <p>{resourceUrl}</p>
                 </div>
               )}
-              {buttonText && renderButton()}
             </div>
           )}
-          {currentPage === "EVENTOS" && buttonText && renderButton()}
+          {currentPage === "EVENTOS" &&
+            (isCreator ? (
+              <div className="participantsCount">
+                <strong>Número de participantes inscritos:</strong>{" "}
+                {participantsCount}
+              </div>
+            ) : (
+              buttonText && renderButton()
+            ))}
         </div>
       </div>
     </div>

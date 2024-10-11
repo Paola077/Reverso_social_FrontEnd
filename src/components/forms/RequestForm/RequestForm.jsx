@@ -4,6 +4,7 @@ import { InputForm } from "../../Inputs/InputForm";
 import { Button } from "../../buttons/button/Button";
 import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
+import Alert from "../../modal/alerts/Alert";
 
 export const RequestForm = ({ text }) => {
   const navigate = useNavigate();
@@ -13,6 +14,9 @@ export const RequestForm = ({ text }) => {
     description: "",
     contact: "",
   });
+
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -37,8 +41,19 @@ export const RequestForm = ({ text }) => {
 
     emailjs
       .send(serviceId, templateId, templateParams, publicKey)
-      .then((result) => console.log(result.text))
-      .catch((error) => console.error(error));
+      .then((result) => {
+        setAlertMessage("Formulario enviado con éxito");
+        setIsAlertOpen(true);
+      })
+      .catch((error) => {
+        setAlertMessage("Ha ocurrido un error. Inténtalo de nuevo");
+        setIsAlertOpen(true);
+      });
+  };
+
+  const handleAlertClose = () => {
+    setIsAlertOpen(false);
+    navigate("/");
   };
 
   const buttonMargin = window.innerWidth < 480 ? "2rem  auto 0" : "3rem 0.5rem 0 0";
@@ -124,6 +139,21 @@ export const RequestForm = ({ text }) => {
           </div>
         </div>
       </form>
+      <Alert
+        isOpen={isAlertOpen}
+        onclose={handleAlertClose}
+        alert={alertMessage}
+      >
+        <Button
+          textButton={"Aceptar"}
+          backgroundColor={"#35399b"}
+          border={"0.15rem solid #35399b"}
+          color={"white"}
+          onClick={handleAlertClose}
+          width={"10rem"}
+          height={"2.5rem"}
+        />
+      </Alert>
     </div>
   );
 };

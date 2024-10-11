@@ -59,66 +59,68 @@ const EventCard = ({
   const eventDate = new Date(date);
   const isPastEvent = eventDate < new Date();
 
-  useEffect(() => {
-    const checkEventStatus = async () => {
-      if (!id) return;
-      try {
-        const eventData = await getEvent(id, token);
+useEffect(() => {
+  const checkEventStatus = async () => {
+    if (!id) return;
+    try {
+      const eventData = await getEvent(id, token);
 
-        setIsEventFull(eventData.eventFull || false);
-        setCurrentParticipants(eventData.currentParticipants || 0);
-        setMaxParticipants(
-          eventData.maxParticipants || propMaxParticipants || 0
-        );
+      console.log("Datos del evento:", eventData);
 
-        if (isAuthenticated) {
-          const isSubscribed = eventData.userSubscribed || false;
-          setIsAttending(isSubscribed);
-        } else {
-          setIsAttending(false);
-        }
-      } catch (error) {
-        console.error("Error al obtener el estado del evento:", error);
-      } finally {
-        setIsLoading(false);
+      setIsEventFull(eventData.eventFull || false);
+      setCurrentParticipants(eventData.currentParticipants || 0);
+      setMaxParticipants(eventData.maxParticipants || propMaxParticipants || 0);
+
+      if (isAuthenticated) {
+        const isSubscribed = eventData.userSubscribed || false;
+        setIsAttending(isSubscribed);
+      } else {
+        setIsAttending(false);
       }
-    };
+    } catch (error) {
+      console.error("Error al obtener el estado del evento:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  checkEventStatus();
+}, [id, token]);
+
+const handleSubscribe = async () => {
+  try {
+    await subscribeUserToEvent(id, token);
+    setIsAttending(true);
+    setCurrentParticipants((prevCount) => prevCount + 1);
+
+    if (currentParticipants + 1 >= maxParticipants) {
+      setIsEventFull(true);
+    }
+
+    setAlertConfirmation(true);
 
     checkEventStatus();
-  }, [id, token]);
-
-  const handleSubscribe = async () => {
-    try {
-      await subscribeUserToEvent(id, token);
-      setIsAttending(true);
-      const newParticipantCount = currentParticipants + 1;
-      setCurrentParticipants(newParticipantCount);
-
-      if (newParticipantCount >= maxParticipants) {
-        setIsEventFull(true);
-      }
-
-      setAlertConfirmation(true);
-    } catch (error) {
-      console.error("Error al suscribirse:", error);
-      if (error.response?.status === 409) {
-        setIsEventFull(true);
-        alert("El evento ya ha alcanzado el aforo máximo.");
-      }
+  } catch (error) {
+    console.error("Error al suscribirse:", error);
+    if (error.response?.status === 409) {
+      setIsEventFull(true);
+      alert("El evento ya ha alcanzado el aforo máximo.");
     }
-  };
+  }
+};
+const handleUnsubscribe = async () => {
+  try {
+    await unsubscribeUserToEvent(id, token);
+    setIsAttending(false);
+    setCurrentParticipants((prevCount) => prevCount - 1);
 
-  const handleUnsubscribe = async () => {
-    try {
-      await unsubscribeUserToEvent(id, token);
-      setIsAttending(false);
-      const newParticipantCount = currentParticipants - 1;
-      setCurrentParticipants(newParticipantCount);
-      setIsEventFull(false); // Actualiza el estado del evento
-    } catch (error) {
-      console.error("Error al cancelar la suscripción:", error);
-    }
-  };
+    setIsEventFull(false);
+
+    checkEventStatus();
+  } catch (error) {
+    console.error("Error al cancelar la suscripción:", error);
+  }
+};
   const handlePopupOpen = () => {
     if (isAuthenticated || pathLocation.pathname.includes("/eventos")) {
       setPopupOpen(true);
@@ -172,8 +174,9 @@ const EventCard = ({
 
 
   let onButtonClick = null;
-
-  if (!createdByUser && entityType === "evento") {
+  if (createdByUser && entityType === "evento") {
+    buttonText = `${currentParticipants}/${maxParticipants} participantes`;
+  } else if (!createdByUser && entityType === "evento") {
     if (isLoading) {
       buttonText = "Cargando...";
     } else if (isEventFull && !isAttending) {
@@ -188,6 +191,7 @@ const EventCard = ({
       onButtonClick = toggleAttendance;
     }
   }
+
   return (
     <div className="eventCard">
       {isAuthenticated && (createdByUser || role === "FEMSENIORADMIN") && (
