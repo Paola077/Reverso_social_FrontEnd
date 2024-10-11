@@ -107,12 +107,12 @@ const InteractivePop = ({
               {time && <p className="popUpTime">{time}</p>}
             </div>
           )}
-          {position && (
-            <div className="popUpPosition">
-              <strong>{position}</strong>
-            </div>
-          )}
         </div>
+        {position && (
+          <div className="popUpPosition">
+            <strong>{position}</strong>
+          </div>
+        )}
         <div className="popUpContentBody">
           {type && (
             <div className="PopUpType">
@@ -133,17 +133,6 @@ const InteractivePop = ({
             </>
           )}
         </div>
-        <div className="popUpContactSection">
-          {location && (
-            <>
-              <p>
-                <strong>Ubicación:</strong> {location}
-              </p>
-            </>
-          )}
-          {phoneNumber && <p>Tel: {phoneNumber}</p>}
-          {email && <p>Email: {email}</p>}
-        </div>
         <div className="popUpButton">
           {currentPage === "SERVICIOS" && renderContactSection()}
           {currentPage === "EMPLEO" && (
@@ -159,17 +148,10 @@ const InteractivePop = ({
                   <p>{resourceUrl}</p>
                 </div>
               )}
+              {buttonText && renderButton()}
             </div>
           )}
-          {currentPage === "EVENTOS" &&
-            (isCreator ? (
-              <div className="participantsCount">
-                <strong>Número de participantes inscritos:</strong>{" "}
-                {participantsCount}
-              </div>
-            ) : (
-              buttonText && renderButton()
-            ))}
+          {currentPage === "EVENTOS" && buttonText && renderButton()}
         </div>
       </div>
     </div>
