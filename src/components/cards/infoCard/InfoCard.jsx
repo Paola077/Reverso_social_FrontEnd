@@ -171,6 +171,10 @@ const InfoCard = ({
     setPopupOpen(false);
   };
 
+  const buttonWidth = window.innerWidth < 480 ? "9rem" : "12.5rem";
+  const buttonHeight = window.innerWidth < 480 ? "2rem" : "2.75rem";
+
+
   let onButtonClick = null;
   if (createdByUser && entityType === "evento") {
     buttonText = `${currentParticipants}/${maxParticipants} participantes`;
@@ -237,16 +241,16 @@ const InfoCard = ({
         <Button
           textButton={"Cancelar"}
           backgroundColor={"white"}
-          width={"12.5rem"}
-          height={"2.75rem"}
+          width={buttonWidth}
+          height={buttonHeight}
           border={"0.15rem solid #7176f8"}
           color={"#7176f8"}
           onClick={() => setAlertOpenForMoreInfo(false)}
         />
         <Button
           textButton={"Registrarse"}
-          width={"12.5rem"}
-          height={"2.75rem"}
+          width={buttonWidth}
+          height={buttonHeight}
           backgroundColor={"#7176f8"}
           border={"0.15rem solid #7176f8"}
           color={"white"}
@@ -298,16 +302,16 @@ const InfoCard = ({
         <Button
           textButton={"Cancelar"}
           backgroundColor={"white"}
-          width={"12.5rem"}
-          height={"2.75rem"}
+          width={buttonWidth}
+          height={buttonHeight}
           border={"0.15rem solid #7176f8"}
           color={"#7176f8"}
           onClick={() => setAlertOpenForRegistration(false)}
         />
         <Button
           textButton={"Registrarse"}
-          width={"12.5rem"}
-          height={"2.75rem"}
+          width={buttonWidth}
+          height={buttonHeight}
           backgroundColor={"#7176f8"}
           border={"0.15rem solid #7176f8"}
           color={"white"}

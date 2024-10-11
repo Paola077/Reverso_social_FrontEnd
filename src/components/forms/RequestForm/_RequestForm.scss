@@ -12,12 +12,29 @@
     
 
     .formBox{
-        width: 58rem;
-        padding: 3rem 0 4.5rem 0;
+        width: 100%;
+        max-width: 58rem;
+        padding: 3rem 4rem 4.5rem 4rem;
         background-color: white;
         margin: auto;
         border-radius: 1.25rem;
         position: relative;
+        transition: all 0.5s ease-out;
+
+        
+        @media (max-width:1024px) {
+            width: 90%;
+            padding: 3rem 3rem 4rem 3rem;
+        }
+        @media (max-width:720px) {
+            width:100%;
+            padding: 3rem 2rem 4rem 2rem;
+        }
+        @media (max-width: 480px){
+            width: 100vW;
+            border-radius: 5rem 0 0 0;
+            margin-top: 10%;
+        }
 
         .buttonExit{
             background-color: transparent;
@@ -30,6 +47,13 @@
             img{
                 width: 2rem;
             }
+
+            @media (max-width: 480px){
+                position: absolute;
+                right:  1.25rem;
+                top:  -6%;
+                filter: brightness(0) invert(1);
+                }
         }
         .requestTitle{
             text-align: center;
@@ -38,13 +62,24 @@
             font-weight: $font-weight-bold;
             padding-bottom: 2rem;
             color: $purple;
+
+            @media (max-width: 480px){
+            position: absolute;
+            left: 37%;
+            top: -3rem;
+            color: white;
+            }
         }
     
         .buttonBox{
-            width: 45rem;
+            width: 100%;
             margin: auto;
             display: flex;
             justify-content: space-between;
+
+            @media (max-width:720px) {
+                flex-direction: column-reverse;
+            }
         }
     
     }

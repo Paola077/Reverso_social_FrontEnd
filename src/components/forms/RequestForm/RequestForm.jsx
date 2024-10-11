@@ -56,6 +56,8 @@ export const RequestForm = ({ text }) => {
     navigate("/");
   };
 
+  const buttonMargin = window.innerWidth < 480 ? "2rem  auto 0" : "3rem 0.5rem 0 0";
+
   return (
     <div className="formBackground">
       <form ref={refForm} onSubmit={handleSubmit}>
@@ -114,7 +116,7 @@ export const RequestForm = ({ text }) => {
               color={"#35399b"}
               width={"20rem"}
               height={"3rem"}
-              margin={"3rem 0 0"}
+              margin={buttonMargin}
               onClick={() =>
                 setFormData({
                   title: "",
@@ -132,7 +134,7 @@ export const RequestForm = ({ text }) => {
               type={"submit"}
               width={"20rem"}
               height={"3rem"}
-              margin={"3rem 0 0"}
+              margin={buttonMargin}
             />
           </div>
         </div>

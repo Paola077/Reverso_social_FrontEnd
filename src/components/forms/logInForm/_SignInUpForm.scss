@@ -30,14 +30,19 @@
       height: 100%;
       text-align: center;
 
-      h2 {
+      .logInTitle, .registerTitle{
         text-align: center;
         @include subtitle-font;
         margin: 0;
+
+        @media (max-width:720px) {
+          font-size: $font-size-h3;
+        }
       }
 
-      input {
+      .inputLogin {
         border: none;
+        border-bottom: 0.1rem solid $lila;
         padding: 0.75rem 0.93rem;
         margin-top: 0.5rem;
         width: 100%;
@@ -53,7 +58,7 @@
         align-self: flex-start;
       }
 
-      button {
+      .loginButton {
         border-radius: 1.25rem;
         border: 1px solid $lightLila;
         background-color: $lila;
@@ -66,6 +71,10 @@
         transition: transform 80ms ease-in;
         width: 17rem;
         margin-top: 0.62rem;
+        
+        @media (max-width:720px) {
+          width: 14rem;
+        }
 
         &:active {
           transform: scale(0.95);
@@ -74,12 +83,14 @@
         &:focus {
           outline: none;
         }
+
+        .ghost {
+          background-color: transparent;
+          background-color: $lila;
+        }
       }
 
-      button.ghost {
-        background-color: transparent;
-        background-color: $lila;
-      }
+      
 
       p {
         font-weight: $font-weight-regular;
@@ -88,6 +99,10 @@
         letter-spacing: 0.03rem;
         margin: 1.25rem 0 1.8rem;
         padding-left: 1.5rem;
+        
+        @media (max-width:720px) {
+          font-size: 0.8rem;
+        }
         span {
           font-size: 0.9rem;
           cursor: pointer;
@@ -97,7 +112,7 @@
     }
 
     .inputError {
-      input {
+      .inputLogin {
         height: 1.5rem;
       }
     }
@@ -180,6 +195,8 @@
     width: 50%;
     opacity: 0;
     z-index: 1;
+
+    
   }
   .signInContainer {
     left: 0;
@@ -212,4 +229,48 @@
     z-index: 5;
     animation: show 0.6s;
   }
+
+  
 }
+
+@media (max-width:480px) {
+
+      .loginContainer{
+        display: none;
+        
+      }
+
+      .signContainer .formContainer form {
+        padding: 0;
+        
+      }
+
+      .signPanelActive .signUpContainer{
+        transform: translateX(50%);
+        margin-top: -3rem;
+      }
+
+      .signContainer .signInContainer {
+        left: 0; 
+        width: 100%;
+        z-index: 2;
+        padding: 0 0;
+        margin-top: -3.5rem;
+      }
+
+      .signContainer{
+        box-shadow: none;
+      }
+      .registerTitle .logInTitle{
+        font-size: 0.5rem;
+      }
+
+      .inputLogin{
+        max-width: 15rem;
+      }
+      .inputSignin{
+        max-width: 100%;
+      }
+
+      
+    }

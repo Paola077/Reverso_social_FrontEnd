@@ -126,7 +126,7 @@ const SignInUpForm = () => {
       >
         <form onSubmit={handleRegister} className={error ? "inputError" : ""}>
           <h2 className="registerTitle">Crea una cuenta</h2>
-          <input
+          <input className="inputLogin inputSignin" 
             type="text"
             placeholder="Nombre"
             onChange={handleChange}
@@ -135,7 +135,7 @@ const SignInUpForm = () => {
           />
           {error?.name && <p className="errorText">{error?.name.message}</p>}
 
-          <input
+          <input className="inputLogin inputSignin"
             type="text"
             placeholder="Apellido"
             onChange={handleChange}
@@ -146,7 +146,7 @@ const SignInUpForm = () => {
             <p className="errorText">{error?.lastname.message}</p>
           )}
 
-          <input
+          <input className="inputLogin inputSignin"
             type="text"
             placeholder="Email"
             onChange={handleChange}
@@ -155,7 +155,7 @@ const SignInUpForm = () => {
           />
           {error?.email && <p className="errorText">{error?.email.message}</p>}
 
-          <input
+          <input className="inputLogin inputSignin"
             type="text"
             placeholder="Nombre de usuario"
             onChange={handleChange}
@@ -166,7 +166,7 @@ const SignInUpForm = () => {
             <p className="errorText">{error?.username.message}</p>
           )}
 
-          <input
+          <input className="inputLogin inputSignin"
             type="date"
             placeholder="Fecha de nacimiento"
             onChange={handleChange}
@@ -177,7 +177,7 @@ const SignInUpForm = () => {
             <p className="errorText">{error?.birthday.message}</p>
           )}
 
-          <input
+          <input className="inputLogin inputSignin"
             type="password"
             placeholder="Contraseña"
             onChange={handleChange}
@@ -188,7 +188,7 @@ const SignInUpForm = () => {
             <p className="errorText">{error?.password.message}</p>
           )}
 
-          <button className="ghost" type="submit">
+          <button className="loginButton ghost" type="submit">
             Registrar
           </button>
           <p>
@@ -218,7 +218,7 @@ const SignInUpForm = () => {
         )}
         <form onSubmit={handleLogin}>
           <h2 className="logInTitle">Accede a tu cuenta</h2>
-          <input
+          <input className="inputLogin"
             type="text"
             placeholder="Email"
             onChange={handleChange}
@@ -227,7 +227,7 @@ const SignInUpForm = () => {
           />
           {error?.email && <p className="errorText">{error?.email.message}</p>}
 
-          <input
+          <input className="inputLogin"
             type="password"
             placeholder="Contraseña"
             onChange={handleChange}
@@ -239,7 +239,7 @@ const SignInUpForm = () => {
           )}
           {error && <p className="errorText">{error?.message}</p>}
 
-          <button type="submit">Ingresar</button>
+          <button className="loginButton" type="submit">Ingresar</button>
           <p>
             No tienes cuenta? Regístrate{" "}
             <Link

@@ -12,19 +12,12 @@ const ManifestPop = ({
   onButtonClick,
 }) => {
 
-  // useEffect(() => {
-  //   if (isOpen) {
-  //     document.body.style.overflow = 'hidden'; // Deshabilitar scroll en el body
-  //   } else {
-  //     document.body.style.overflow = 'auto'; // Restaurar scroll cuando el modal se cierra
-  //   }
-
-  //   return () => {
-  //     document.body.style.overflow = 'auto'; // Asegurarse de restaurar scroll al desmontar
-  //   };
-  // }, [isOpen]);
+  
   if (!isOpen) return null;
   
+  const buttonWidth = window.innerWidth < 420 ? "15rem" : "19rem"; 
+  const buttonHeight = window.innerWidth < 420 ? "2.5rem" : "3rem"; 
+  const buttonMargin = window.innerWidth < 420 ? "1rem" : "1.5rem";
 
 
   return (
@@ -52,10 +45,10 @@ const ManifestPop = ({
               textButton={buttonText}
               backgroundColor="#7176F8"
               border="none"
-              width="19rem"
-              height="3rem"
+              width={buttonWidth}
+              height={buttonHeight}
               color="white"
-              margin="1.5rem"
+              margin={buttonMargin}
               onClick={onButtonClick}
             />
           </div>
