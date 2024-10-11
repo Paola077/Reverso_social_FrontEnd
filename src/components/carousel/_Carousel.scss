@@ -19,6 +19,8 @@
   height: 29rem;
   box-shadow: 0.313rem 0.313rem 0.625rem #00000033;
   transition: all 0.3s ease-out;
+  cursor: pointer;
+  
 
   @media (max-width: 1024px) {
     margin-top: 4rem;
