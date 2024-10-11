@@ -207,7 +207,7 @@ const InfoCard = ({
             {date && <span>Fecha: {date}</span>}
             {time && <span>Hora: {time}</span>}
             {details && <span>Ubicación: {details}</span>}
-            {summary ? <span>{truncateText(summary, 20)}</span> : null}
+            {summary ? <span>{truncateText(summary, 10)}</span> : null}
           </div>
         </div>
 
