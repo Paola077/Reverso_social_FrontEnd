@@ -96,17 +96,17 @@ const Navbar = () => {
             sx={{
               position: "absolute",
               top: "-1rem",
-              right: 0,
-              width: "100vw",
+              // right: 0,
+              width: "95vw",
               backgroundColor: "white",
               boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
               zIndex: 10,
               padding: "1rem",
               display: "flex",
               flexDirection: "column",
-              gap: "0.5rem",
+              gap: "0.9rem",
               borderRadius: "0 0 20px 20px",
-              paddingTop: "4.5rem",
+              paddingTop: "5rem",
             }}
           >
             <IconButton

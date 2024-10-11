@@ -40,8 +40,9 @@
         }
       }
 
-      input {
+      .inputLogin {
         border: none;
+        border-bottom: 0.1rem solid $lila;
         padding: 0.75rem 0.93rem;
         margin-top: 0.5rem;
         width: 100%;
@@ -57,7 +58,7 @@
         align-self: flex-start;
       }
 
-      button {
+      .loginButton {
         border-radius: 1.25rem;
         border: 1px solid $lightLila;
         background-color: $lila;
@@ -82,12 +83,14 @@
         &:focus {
           outline: none;
         }
+
+        .ghost {
+          background-color: transparent;
+          background-color: $lila;
+        }
       }
 
-      button.ghost {
-        background-color: transparent;
-        background-color: $lila;
-      }
+      
 
       p {
         font-weight: $font-weight-regular;
@@ -109,7 +112,7 @@
     }
 
     .inputError {
-      input {
+      .inputLogin {
         height: 1.5rem;
       }
     }
@@ -231,9 +234,7 @@
 }
 
 @media (max-width:480px) {
-      *{
-        box-sizing: content-box;
-      }
+
       .loginContainer{
         display: none;
         
@@ -241,21 +242,20 @@
 
       .signContainer .formContainer form {
         padding: 0;
-      }
-
-      .input{
-        margin: auto;
+        
       }
 
       .signPanelActive .signUpContainer{
         transform: translateX(50%);
+        margin-top: -3rem;
       }
 
       .signContainer .signInContainer {
-        left: 0; // Asegúrate de que esté alineado a la izquierda
-        width: 100%; // Cambia a 100% para centrarlo
+        left: 0; 
+        width: 100%;
         z-index: 2;
         padding: 0 0;
+        margin-top: -3.5rem;
       }
 
       .signContainer{
@@ -265,12 +265,12 @@
         font-size: 0.5rem;
       }
 
-      input{
+      .inputLogin{
         max-width: 15rem;
       }
-
-      button {
-        max-width: 8rem;
+      .inputSignin{
+        max-width: 100%;
       }
+
       
     }
