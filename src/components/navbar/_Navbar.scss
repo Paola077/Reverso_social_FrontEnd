@@ -51,7 +51,11 @@
 
     .navLink {
       @include navLink-style;
-
+      
+      &:hover,
+      &:active {
+        @include navLink-style-hover;
+      }
       @media (max-width: 1200px) {
         font-size: 0.5rem;
         padding: 0.25rem 0.5rem;
@@ -119,7 +123,7 @@
   }
 
   .searchContainer {
-    width: 20%;
+    width: auto;
     @include flex_center;
 
     @media (max-width: 480px) {
@@ -145,31 +149,32 @@
     cursor: pointer;
     color: $dark;
     font-size: $font-size-h6;
-  
-  .drawerLinks {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 0.25rem 0;
-    list-style: none !important;
-    text-decoration: none !important;
 
-    .navLinkBurger {
-      color: $dark;
-      border: none !important;
-      box-shadow: none !important;
+    .drawerLinks {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 0.25rem 0;
+      list-style: none !important;
+      text-decoration: none !important;
 
-      &.navLinkBold {
-        font-weight: $font-weight-bold ;
-      }
-      &:hover,
-      &:active,
-      &:focus {
-        text-decoration: none !important;
+      .navLinkBurger {
+        color: $dark;
         border: none !important;
         box-shadow: none !important;
-      }}
+
+        &.navLinkBold {
+          font-weight: $font-weight-bold;
+        }
+        &:hover,
+        &:active,
+        &:focus {
+          text-decoration: none !important;
+          border: none !important;
+          box-shadow: none !important;
+        }
+      }
     }
   }
 
@@ -200,13 +205,13 @@
 .reversoNavbar {
   .search {
     @include search-transparent;
-
+    visibility: hidden !important;
     .searchIcon {
       @include search-icon-transparent;
     }
-
     input {
       @include transparent-background;
+      color: transparent !important;
     }
   }
 }

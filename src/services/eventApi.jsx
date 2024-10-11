@@ -13,8 +13,9 @@ export const createEvent = async (data, token) => {
   return res.data;
 };
 
-export const getEvent = async (id) => {
-  const res = await axios.get(EVENT_URL_ID(id));
+export const getEvent = async (id, token) => {
+  const headers = token ? { Authorization: `Bearer ${token}` } : {};
+  const res = await axios.get(EVENT_URL_ID(id), { headers });
   return res.data;
 };
 
@@ -42,5 +43,15 @@ export const deleteEvent = async (id, token) => {
   const res = await axios.delete(EVENT_URL_ID(id), {
     headers,
   });
+  return res.data;
+};
+export const subscribeUserToEvent = async (eventId, token) => {
+  const headers = { Authorization: `Bearer ${token}` };
+  const res = await axios.post(`${EVENT_URL_ID(eventId)}/subscribe`, {}, { headers });
+  return res.data;
+};
+export const unsubscribeUserToEvent = async (eventId, token) => {
+  const headers = { Authorization: `Bearer ${token}` };
+  const res = await axios.delete(`${EVENT_URL_ID(eventId)}/unsubscribe`, { headers });
   return res.data;
 };

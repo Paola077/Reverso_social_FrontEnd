@@ -23,10 +23,14 @@
     box-shadow: 0px 4px 20px #0000001a;
     color: $dark;
 
+    .popUpButton {
+      @include flex-center;
+      justify-content: center;
+    }
+
     .titleAndDateContainer {
-      display: flex;
+      @include flex-center;
       justify-content: space-between;
-      align-items: center;
       padding-right: 3.12rem;
       font-family: $font-family-title;
       font-weight: $font-weight-semibold;
@@ -44,7 +48,7 @@
       }
       .popUpTime {
         margin: 0;
-        font-size: 1rem;
+        font-size: $font-size-h5;
       }
 
       .popUpModality {
@@ -85,14 +89,12 @@
 
     .popUpPosition {
       font-family: $font-family-text;
-      font-size: 1.25rem;
+      font-size: $font-size-h5;
       text-align: left;
     }
 
     .popUpContentText {
-      font-weight: $font-weight-bold;
-      font-family: $font-family-text;
-      font-size: 1.25rem;
+      @include text-font-bold;
       text-align: left;
       padding-bottom: 0.93rem;
     }
@@ -102,7 +104,7 @@
 
       .popUpContentBodyText {
         font-family: $font-family-title;
-        font-size: 1rem;
+        font-size: $font-size-h6;
         line-height: 1.6;
         color: black;
         margin-bottom: 1.25rem;
@@ -110,10 +112,8 @@
       }
 
       .popUpPosition {
-        font-weight: $font-weight-bold;
-        font-family: $font-family-text;
+        @include text-font-bold;
         color: $dark;
-        font-size: 1.25rem;
         padding-bottom: 0.5rem;
         text-align: left;
       }
@@ -133,7 +133,7 @@
 
     .contentText {
       color: $dark;
-      font-size: 1.25rem;
+      font-size: $font-size-h5;
     }
     .contentContact {
       font-family: $font-family-text;
@@ -145,7 +145,7 @@
     .popUpTypeText {
       text-align: left;
       font-family: $font-family-text;
-      font-size: 1.25rem;
+      font-size: $font-size-h5;
       padding-bottom: 0.93rem;
     }
 
@@ -154,8 +154,12 @@
       padding-right: 2.5rem;
     }
 
+    .participantsCount {
+      margin-top: 1rem;
+      color: $lightLila;
+    }
     .popUpButton {
-      .buttonCurriculum {
+      .buttonFile {
         .button {
           margin: 2rem auto !important;
         }

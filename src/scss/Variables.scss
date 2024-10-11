@@ -36,7 +36,7 @@ $font-weight-bold: 700;
 
 // Mixin
 
-@mixin title-font{
+@mixin title-font {
   font-family: $font-family-title;
   font-size: $font-size-h1;
   font-weight: $font-weight-bold;
@@ -45,21 +45,21 @@ $font-weight-bold: 700;
   position: relative;
 }
 
-@mixin subtitle-font{
+@mixin subtitle-font {
   font-family: $font-family-title;
   font-size: $font-size-h2;
   font-weight: $font-weight-bold;
   color: $dark;
 }
 
-@mixin card-title{
+@mixin card-title {
   font-size: $font-size-h5;
   font-family: $font-family-title;
   font-weight: $font-weight-semibold;
 }
 
-@mixin text-font{
- font-family: $font-family-text;
+@mixin text-font {
+  font-family: $font-family-text;
   font-size: $font-size-h5;
   font-weight: $font-weight-regular;
   color: $dark;
@@ -68,6 +68,11 @@ $font-weight-bold: 700;
   line-height: 2rem;
 }
 
+@mixin text-font-bold {
+  font-weight: $font-weight-bold;
+  font-family: $font-family-text;
+  font-size: $font-size-h5;
+}
 
 @mixin transparent-background {
   background-color: transparent !important;
@@ -76,12 +81,12 @@ $font-weight-bold: 700;
 }
 
 @mixin navLink-style {
-      font-size: 16px;
-      color: $dark;
-      text-decoration: none;
-      font-size: $font-size-h5;
-      font-weight: $font-weight-semibold;
-      padding: 0.5rem 2rem; 
+  font-size: 16px;
+  color: $dark;
+  text-decoration: none;
+  font-size: $font-size-h5;
+  font-weight: $font-weight-semibold;
+  padding: 0.5rem 2rem;
 }
 
 @mixin navLink-style-hover {
@@ -106,10 +111,10 @@ $font-weight-bold: 700;
   display: flex;
 }
 
-@mixin errorTextForm{
+@mixin errorTextForm {
   color: red;
-      font-family: $font-family-text;
-      font-size: 0.8rem;
-      margin-left: 22rem;
-      margin-top: 0.3rem;
+  font-family: $font-family-text;
+  font-size: 0.8rem;
+  margin-left: 22rem;
+  margin-top: 0.3rem;
 }

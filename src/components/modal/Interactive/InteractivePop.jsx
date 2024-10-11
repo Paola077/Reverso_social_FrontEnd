@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "../../buttons/button/Button";
 import closeIcon from "/icons/Exit.svg";
 import "../Interactive/_InteractivePop.scss";
+import { useAuth } from "../../../context/AuthContext";
 import { useLocation } from "react-router-dom";
 
 const InteractivePop = ({
@@ -19,11 +20,16 @@ const InteractivePop = ({
   phoneNumber,
   buttonText,
   onButtonClick,
-  user_id,
+  createdBy,
+  participantsCount,
   contentText,
   sector,
+  resourceUrl,
+  user_id
 }) => {
-  if (!isOpen) return null;
+  const { user } = useAuth();
+
+  const isCreator = user?.email === createdBy;
 
   const { pathname } = useLocation();
 
@@ -60,7 +66,6 @@ const InteractivePop = ({
       )}
     </div>
   );
-
   const renderButton = () => (
     <Button
       className="contentButton"
@@ -84,7 +89,6 @@ const InteractivePop = ({
       )}
     </div>
   );
-
   return (
     <div className="popUpInteractive">
       <div className="popUpContent">
@@ -134,16 +138,20 @@ const InteractivePop = ({
         <div className="popUpButton">
           {currentPage === "SERVICIOS" && renderContactSection()}
           {currentPage === "EMPLEO" && (
-            <div className="buttonCurriculum">
+            <div className="buttonFile">
               {renderContentText()}
               {buttonText && renderButton()}
             </div>
           )}
           {currentPage === "RECURSOS" && (
-            <>
-              {renderContentText()}
+            <div className="buttonFile">
+              {resourceUrl && (
+                <div className="popUpContentText">
+                  <p>{resourceUrl}</p>
+                </div>
+              )}
               {buttonText && renderButton()}
-            </>
+            </div>
           )}
           {currentPage === "EVENTOS" && buttonText && renderButton()}
         </div>
