@@ -70,10 +70,6 @@ const SignInUpForm = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setError(null);
-    const credentials = {
-      email: form.email,
-      password: form.password,
-    };
     loginMutation.mutate(form);
   };
 
@@ -90,15 +86,13 @@ const SignInUpForm = () => {
   });
 
   const loginMutation = useMutation({
-    mutationFn: (credentials) => userLogin(credentials),
+    mutationFn: (form) => userLogin(form),
     onSuccess: (res) => {
       const accessToken = res?.accessToken;
-      const username = res?.username;
-  
-      if (accessToken && username) {
+      if (accessToken) {
         const decodedToken = jwtDecode(accessToken);
         const role = decodedToken?.authorities?.[0] || "USER";
-        login(accessToken, username, role); 
+        login(accessToken, { email: form.email }, role);
         queryClient.invalidateQueries({ queryKey: ["user"] });
       } else {
         setError("Error al recibir los datos de autenticación.");
@@ -126,7 +120,7 @@ const SignInUpForm = () => {
       >
         <form onSubmit={handleRegister} className={error ? "inputError" : ""}>
           <h2 className="registerTitle">Crea una cuenta</h2>
-          <input className="inputLogin inputSignin" 
+          <input className="inputLogin" 
             type="text"
             placeholder="Nombre"
             onChange={handleChange}
@@ -135,7 +129,7 @@ const SignInUpForm = () => {
           />
           {error?.name && <p className="errorText">{error?.name.message}</p>}
 
-          <input className="inputLogin inputSignin"
+          <input className="inputLogin"
             type="text"
             placeholder="Apellido"
             onChange={handleChange}
@@ -146,7 +140,7 @@ const SignInUpForm = () => {
             <p className="errorText">{error?.lastname.message}</p>
           )}
 
-          <input className="inputLogin inputSignin"
+          <input className="inputLogin"
             type="text"
             placeholder="Email"
             onChange={handleChange}
@@ -155,7 +149,7 @@ const SignInUpForm = () => {
           />
           {error?.email && <p className="errorText">{error?.email.message}</p>}
 
-          <input className="inputLogin inputSignin"
+          <input className="inputLogin"
             type="text"
             placeholder="Nombre de usuario"
             onChange={handleChange}
@@ -166,7 +160,7 @@ const SignInUpForm = () => {
             <p className="errorText">{error?.username.message}</p>
           )}
 
-          <input className="inputLogin inputSignin"
+          <input className="inputLogin"
             type="date"
             placeholder="Fecha de nacimiento"
             onChange={handleChange}
@@ -177,7 +171,7 @@ const SignInUpForm = () => {
             <p className="errorText">{error?.birthday.message}</p>
           )}
 
-          <input className="inputLogin inputSignin"
+          <input className="inputLogin"
             type="password"
             placeholder="Contraseña"
             onChange={handleChange}

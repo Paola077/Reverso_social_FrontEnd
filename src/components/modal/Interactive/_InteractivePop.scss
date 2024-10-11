@@ -22,6 +22,24 @@
     position: relative;
     box-shadow: 0px 4px 20px #0000001a;
     color: $dark;
+    overflow-y: auto;
+    transition: all 0.5s ease-out;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    scrollbar-width: none;
+
+    @media (max-width:720px){
+      padding: 2.5rem 1.5rem;
+      max-height: 35rem;
+    }
+
+    @media (max-width:480px){
+      max-height: 35rem;
+    }
+    
 
     .popUpButton {
       @include flex-center;
@@ -34,6 +52,12 @@
       padding-right: 3.12rem;
       font-family: $font-family-title;
       font-weight: $font-weight-semibold;
+      @media (max-width:720px){
+        flex-direction: column;
+        align-items:flex-start;
+        padding-right: 0;
+        padding-top: 1rem;
+      }
 
       .dateAndTime {
         display: flex;
@@ -41,20 +65,34 @@
         align-items: flex-end;
         gap: 0.31rem;
         padding-bottom: 0.62rem;
+        @media (max-width:720px){
+          align-items:flex-start;
+        }
       }
 
       .popUpDate {
         font-size: 1.56rem;
+
+        @media (max-width:720px){
+          font-size: 1rem;
+        }
       }
       .popUpTime {
         margin: 0;
         font-size: $font-size-h5;
+        @media (max-width:720px){
+          font-size: 0.9rem;
+        }
       }
 
       .popUpModality {
         text-align: left;
         font-weight: $font-weight-bold;
         font-size: 1.15rem;
+        
+        @media (max-width:720px){
+          font-size: 1rem;
+        }
       }
     }
 
@@ -67,8 +105,8 @@
       cursor: pointer;
 
       .popUpCloseIcon {
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 2rem;
+        height: 2rem;
       }
     }
 
@@ -80,6 +118,9 @@
       text-align: left;
       padding-bottom: 0.5rem;
       margin: 0;
+      @media (max-width:720px){
+        font-size: $font-size-h5;
+      }
     }
 
     .popUpContentTitle {
@@ -91,12 +132,16 @@
       font-family: $font-family-text;
       font-size: $font-size-h5;
       text-align: left;
+
     }
 
     .popUpContentText {
       @include text-font-bold;
       text-align: left;
       padding-bottom: 0.93rem;
+      @media (max-width:720px){
+        font-size: 1rem;
+      }
     }
 
     .popUpContentBody {
@@ -109,6 +154,9 @@
         color: black;
         margin-bottom: 1.25rem;
         text-align: justify;
+        @media (max-width:480px){
+          font-size: 0.8rem;
+        }
       }
 
       .popUpPosition {
@@ -116,6 +164,9 @@
         color: $dark;
         padding-bottom: 0.5rem;
         text-align: left;
+        @media (max-width:720px){
+          font-size: 1rem;
+        }
       }
     }
 
