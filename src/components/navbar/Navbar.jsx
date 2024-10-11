@@ -6,10 +6,11 @@ import Search from "./search/Search";
 import { Button } from "../buttons/button/Button";
 import { useAuth } from "../../context/AuthContext";
 import "./_Navbar.scss";
+import Alert from "../modal/alerts/Alert";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const { isAuthenticated, logout } = useAuth();
@@ -39,7 +40,12 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/reverso-social/femsenior");
+    setIsAlertOpen(true); // Muestra el alert
+  };
+
+  const handleAlertClose = () => {
+    setIsAlertOpen(false); // Oculta el alert
+    navigate("/reverso-social/femsenior"); // Navega después de cerrar el alert
   };
 
   const handleMenuToggle = () => {
@@ -324,7 +330,19 @@ const Navbar = () => {
           )}
         </Box>
       </Toolbar>
+      <Alert isOpen={isAlertOpen} onclose={handleAlertClose} alert="Se ha cerrado la sesión correctamente.">
+      <Button
+          textButton={"Aceptar"}
+          backgroundColor={"#7176f8"}
+          border={"#7176f8"}
+          width={"12.5rem"}
+          height={"2.75rem"}
+          color={"white"}
+          onClick={() => setIsAlertOpen(false)}
+        />
+        </Alert>
     </AppBar>
+    
   );
 };
 
