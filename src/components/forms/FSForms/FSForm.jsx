@@ -208,7 +208,7 @@ const FSForm = ({ text, formType, formFields, initialData }) => {
             color={"white"}
             onClick={() => setError(null)}
           />
-        </Alert>
+        </Alert> 
       )}
     </div>
   );

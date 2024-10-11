@@ -12,7 +12,7 @@ import {
   unsubscribeUserToEvent,
 } from "../../../services/eventApi";
 
-const truncateText = (text, limit) => {
+const truncateText = (text, limit = 7) => {
   const words = text.split(" ");
   return words.length > limit ? words.slice(0, limit).join(" ") + "..." : text;
 };
