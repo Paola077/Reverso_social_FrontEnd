@@ -4,13 +4,11 @@ import { RESOURCE_URL, RESOURCE_URL_ID } from "../config/url";
 
 export const createResource = async (data, token) => {
   const formData = new FormData();
-  data.title? formData.append("title", data.title): null
-  data.url? formData.append("url", data.url): null
-  data.description? formData.append("description", data.description): null
-  data.file ? formData.append("file", data.file): null
+  data.title ? formData.append("title", data.title) : null;
+  data.url ? formData.append("url", data.url) : null;
+  data.description ? formData.append("description", data.description) : null;
+  data.file ? formData.append("file", data.file) : null;
 
-  console.info(data.file);
-  
   let headers = { "Content-Type": "multipart/form-data" };
   if (token) {
     headers = { Authorization: `Bearer ${token}` };
@@ -33,11 +31,17 @@ export const getAllResources = async () => {
 };
 
 export const updateResource = async (id, data, token) => {
-  let headers = undefined;
+  const formData = new FormData();
+  data.title ? formData.append("title", data.title) : null;
+  data.url ? formData.append("url", data.url) : null;
+  data.description ? formData.append("description", data.description) : null;
+  data.file ? formData.append("file", data.file) : null;
+
+  let headers = { "Content-Type": "multipart/form-data" };
   if (token) {
     headers = { Authorization: `Bearer ${token}` };
   }
-  const res = await axios.put(RESOURCE_URL_ID(id), data, {
+  const res = await axios.put(RESOURCE_URL_ID(id), formData, {
     headers,
   });
   return res.data;
