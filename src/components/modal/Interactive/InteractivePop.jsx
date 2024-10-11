@@ -24,6 +24,8 @@ const InteractivePop = ({
   participantsCount,
   contentText,
   sector,
+  resourceUrl,
+  user_id,
 }) => {
   const { user } = useAuth();
 
@@ -87,6 +89,7 @@ const InteractivePop = ({
       )}
     </div>
   );
+
   return (
     <div className="popUpInteractive">
       <div className="popUpContent">

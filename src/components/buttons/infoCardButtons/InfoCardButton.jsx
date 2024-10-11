@@ -1,4 +1,4 @@
-import "./_EventCardButton.scss";
+import "./_InfoCardButton.scss";
 import editIcon from "/icons/Edit.svg";
 import deleteIcon from "/icons/Delete.svg";
 import { deleteEvent } from "../../../services/eventApi";
@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { deleteEmployOffer } from "../../../services/employApi";
 import { deleteResource } from "../../../services/resourceApi";
 
-const EventCardButton = ({ id, entityType }) => {
+const InfoCardButton = ({ id, entityType }) => {
   const queryClient = useQueryClient();
   const [error, setError] = useState(null);
   const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
@@ -21,10 +21,10 @@ const EventCardButton = ({ id, entityType }) => {
   const navigate = useNavigate();
 
   const deleteFunctionMap = {
-    "evento": deleteEvent,
-    "servicio": deleteService,
-    "curriculum": deleteEmployOffer,
-    "recurso": deleteResource,
+    evento: deleteEvent,
+    servicio: deleteService,
+    curriculum: deleteEmployOffer,
+    recurso: deleteResource,
   };
 
   const mutationDelete = useMutation({
@@ -32,7 +32,7 @@ const EventCardButton = ({ id, entityType }) => {
     onSuccess: () => {
       setIsConfirmationOpen(false);
       setIsSuccessOpen(true);
-      queryClient.invalidateQueries(entityType); 
+      queryClient.invalidateQueries(entityType);
     },
     onError: (error) => {
       console.log("Error al eliminar: ", error);
@@ -50,7 +50,10 @@ const EventCardButton = ({ id, entityType }) => {
   return (
     <>
       <div className="tabButtonContainer">
-        <button className="tabButtonContainer__editButton" onClick={() => navigate(`/formulariofs/${entityType}/editar/${id}`)}>
+        <button
+          className="tabButtonContainer__editButton"
+          onClick={() => navigate(`/formulariofs/${entityType}/editar/${id}`)}
+        >
           <img
             className="tabButtonContainer__editButton__editIcon"
             src={editIcon}
@@ -139,4 +142,4 @@ const EventCardButton = ({ id, entityType }) => {
   );
 };
 
-export default EventCardButton;
+export default InfoCardButton;
