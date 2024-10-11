@@ -1,7 +1,7 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getAllResources } from "../services/resourceApi";
-import EventCard from "../components/cards/eventCard/EventCard";
+import InfoCard from "../components/cards/infoCard/InfoCard";
 
 function Resources() {
   const {
@@ -12,7 +12,7 @@ function Resources() {
     queryKey: ["resources"],
     queryFn: getAllResources,
   });
-  
+
   return (
     <div>
       {resourcesStatus === "loading" || resourcesStatus === "pending" ? (
@@ -23,8 +23,7 @@ function Resources() {
         <p>No hay recursos.</p>
       ) : (
         resources.map((resource) => (
-          
-          <EventCard
+          <InfoCard
             id={resource.id}
             key={resource.id}
             title={resource.title}

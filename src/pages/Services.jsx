@@ -1,7 +1,7 @@
 import React from "react";
-import { getAllServices} from "../services/servicesApi"
+import { getAllServices } from "../services/servicesApi";
 import { useQuery } from "@tanstack/react-query";
-import EventCard from "../components/cards/eventCard/EventCard";
+import InfoCard from "../components/cards/infoCard/InfoCard";
 
 function Services() {
   const {
@@ -12,7 +12,7 @@ function Services() {
     queryKey: ["service"],
     queryFn: getAllServices,
   });
-    return (
+  return (
     <div>
       {servicesStatus === "loading" || servicesStatus === "pending" ? (
         <p>Cargando servicios...</p>
@@ -20,7 +20,7 @@ function Services() {
         <p>{servicesError?.response?.data?.message}</p>
       ) : (
         services?.map((services) => (
-          <EventCard
+          <InfoCard
             id={services.id}
             key={services.id}
             title={services.title}
