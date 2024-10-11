@@ -13,7 +13,7 @@ const Navbar = () => {
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, username } = useAuth();
   const isFemseniors = location.pathname.startsWith(
     "/reverso-social/femsenior"
   );
@@ -300,6 +300,8 @@ const Navbar = () => {
             </>
           )}
           {isFemseniors && isAuthenticated && (
+            <>
+            <span className="username">{username}</span>
             <button
               className="logout-icon"
               onClick={handleLogout}
@@ -311,6 +313,7 @@ const Navbar = () => {
                 alt="cerrar sesión"
               />
             </button>
+            </>
           )}
           {isReversoSocial && (
             <Button

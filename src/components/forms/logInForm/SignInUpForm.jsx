@@ -70,6 +70,10 @@ const SignInUpForm = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setError(null);
+    const credentials = {
+      email: form.email,
+      password: form.password,
+    };
     loginMutation.mutate(form);
   };
 
@@ -86,13 +90,15 @@ const SignInUpForm = () => {
   });
 
   const loginMutation = useMutation({
-    mutationFn: (form) => userLogin(form),
+    mutationFn: (credentials) => userLogin(credentials),
     onSuccess: (res) => {
       const accessToken = res?.accessToken;
-      if (accessToken) {
+      const username = res?.username;
+  
+      if (accessToken && username) {
         const decodedToken = jwtDecode(accessToken);
         const role = decodedToken?.authorities?.[0] || "USER";
-        login(accessToken, { email: form.email }, role);
+        login(accessToken, username, role); 
         queryClient.invalidateQueries({ queryKey: ["user"] });
       } else {
         setError("Error al recibir los datos de autenticación.");
