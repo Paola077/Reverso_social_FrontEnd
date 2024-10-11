@@ -29,10 +29,11 @@
     .logofemsenior {
       width: 100%;
     }
-    @media (max-width: 480px) {
+    @media (max-width: 860px) {
       width: 30%;
       z-index: 1000;
     }
+    
   }
 
   .linksContainer {
@@ -51,7 +52,7 @@
 
     .navLink {
       @include navLink-style;
-      
+
       &:hover,
       &:active {
         @include navLink-style-hover;
@@ -116,6 +117,11 @@
     gap: 15px;
     text-transform: capitalize;
     flex-wrap: nowrap;
+    Button {
+      @media (max-width: 1200px) {
+        font-size: 0.6rem;
+      }
+    }
 
     @media (max-width: 480px) {
       display: none;
