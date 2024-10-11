@@ -25,6 +25,7 @@ const InteractivePop = ({
   contentText,
   sector,
   resourceUrl,
+  user_id
 }) => {
   const { user } = useAuth();
 
