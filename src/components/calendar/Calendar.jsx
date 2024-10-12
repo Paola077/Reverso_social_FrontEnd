@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+import "./_Calendar.scss"
 import {
   format,
   parse,
@@ -42,7 +43,7 @@ const MonthlyCalendar = () => {
           const startDate = new Date(`${event.date}T${event.time}`);
 
           return {
-            title: ".",
+            title: "O",
             start: startDate,
             end: startDate,
             eventData: event,
@@ -57,6 +58,16 @@ const MonthlyCalendar = () => {
 
     fetchEvents();
   }, []);
+
+ useEffect(() => {
+   const handleResize = () => {
+     window.location.reload(); 
+   };
+   window.addEventListener("resize", handleResize);
+   return () => {
+     window.removeEventListener("resize", handleResize); 
+   };
+ }, []);
 
   const goToNextMonth = () => {
     const newDate = addMonths(currentDate, 1);
@@ -117,16 +128,22 @@ const MonthlyCalendar = () => {
   const eventStyleGetter = (event) => {
     const style = {
       backgroundColor: "#7176f8",
-      borderRadius: "50%",
+      // borderRadius: "50%",
       color: "white",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      width: "0.8rem",
-      height: "0.8rem",
+      // width: "0.8rem",
+      // height: "0.8rem",
       fontSize: "0.8rem",
       cursor: "pointer",
-      color:"#7176f8",
+      color: "#7176f8",
+      // marginLeft: "0.25rem",
+      width: window.innerWidth < 480 ? "1.5rem" : "0.8rem",
+      height: window.innerWidth < 480 ? "1.5rem" : "0.8rem",
+      borderRadius: window.innerWidth < 480 ? "10%" : "50%",
+      marginLeft: window.innerWidth < 480 ? "0.1" : "0.25rem",
+      marginTop: window.innerWidth < 480 ? "-0.5rem" : "",
     };
     return { style };
   };
@@ -146,20 +163,30 @@ const MonthlyCalendar = () => {
 
   return (
     <div
+      className="calendarContainer"
       style={{
-        width: "28rem",
-        height: "22rem",
-        margin: "0 auto",
+        width: "40%",
+        // height: "auto",
+        // margin: "0 auto",
+        width: window.innerWidth < 480 ? "13rem" : "40%",
+        height: window.innerWidth < 480 ? "1.25rem" : "auto",
+        margin: window.innerWidth < 480 ? "1rem" : "1rem",
+        marginTop: window.innerWidth < 480 ? "3rem" : "",
+        // border: window.innerWidth < 480 ? "1px solid black" : "none",
+        display: window.innerWidth < 480 ? "flex" : "block",
+        justifyContent: window.innerWidth < 480 ? "center" : "initial",
+        alignItems: window.innerWidth < 480 ? "center" : "initial",
       }}
     >
       {renderToolbar()}
       <Calendar
+        className="calendarStyle"
         localizer={localizer}
         events={events}
         startAccessor="start"
         endAccessor="end"
         date={currentDate}
-        onNavigate={setCurrentDate} 
+        onNavigate={setCurrentDate}
         toolbar={false}
         style={{
           height: "100%",
