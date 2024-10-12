@@ -29,10 +29,11 @@
     .logofemsenior {
       width: 100%;
     }
-    @media (max-width: 480px) {
+    @media (max-width: 860px) {
       width: 30%;
       z-index: 1000;
     }
+    
   }
 
   .linksContainer {
@@ -45,19 +46,19 @@
       gap: 0.5rem;
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 860px) {
       display: none;
     }
 
     .navLink {
       @include navLink-style;
-      
+
       &:hover,
       &:active {
         @include navLink-style-hover;
       }
       @media (max-width: 1200px) {
-        font-size: 0.5rem;
+        font-size: 0.6rem;
         padding: 0.25rem 0.5rem;
       }
     }
@@ -116,8 +117,13 @@
     gap: 15px;
     text-transform: capitalize;
     flex-wrap: nowrap;
+    Button {
+      @media (max-width: 1200px) {
+        font-size: 0.6rem;
+      }
+    }
 
-    @media (max-width: 480px) {
+    @media (max-width: 860px) {
       display: none;
     }
   }
@@ -126,7 +132,13 @@
     width: auto;
     @include flex_center;
 
-    @media (max-width: 480px) {
+
+      @media (max-width: 1200px) {
+        width: 40%;
+        position: absolute;
+      
+    }
+    @media (max-width: 860px) {
       display: none;
     }
   }
@@ -134,7 +146,7 @@
   .menuButton {
     display: none;
 
-    @media (max-width: 480px) {
+    @media (max-width: 860px) {
       display: block;
       margin-left: auto;
       color: $dark;

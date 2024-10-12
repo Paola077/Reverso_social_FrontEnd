@@ -40,31 +40,39 @@ const CardSection = ({ onTabChange }) => {
     }
   };
 
+  const selectedTitle = sections.find(
+    (section) => section.id === selectedSection
+  )?.title;
+
   return (
-    <div className="cardSectionContainer">
-      {sections.map((section) => (
-        <Link
-          key={section.id}
-          to={`/reverso-social/femsenior/${section.title.toLowerCase()}`} 
-          className="sectionLink"
-        >
-          <button
-            className={`sectionCard ${
-              selectedSection === section.id ? "selected" : ""
-            }`}
-            onClick={() => handleSelect(section.id)}
-            aria-pressed={selectedSection === section.id}
+    <>
+      {" "}
+      <h3 className="sectionName">{selectedTitle.toLowerCase()}</h3>
+      <div className="cardSectionContainer">
+        {sections.map((section) => (
+          <Link
+            key={section.id}
+            to={`/reverso-social/femsenior/${section.title.toLowerCase()}`}
+            className="sectionLink"
           >
-            <img
-              src={section.imageUrl}
-              alt={section.title}
-              className="sectionImage"
-            />
-            <h3 className="sectionCardTitle">{section.title}</h3>
-          </button>
-        </Link>
-      ))}
-    </div>
+            <button
+              className={`sectionCard ${
+                selectedSection === section.id ? "selected" : ""
+              }`}
+              onClick={() => handleSelect(section.id)}
+              aria-pressed={selectedSection === section.id}
+            >
+              <img
+                src={section.imageUrl}
+                alt={section.title}
+                className="sectionImage"
+              />
+              <h3 className="sectionCardTitle">{section.title}</h3>
+            </button>
+          </Link>
+        ))}
+      </div>
+    </>
   );
 };
 

@@ -68,7 +68,7 @@ function Femsenior() {
           setCurrentDate={setCurrentDate}
         />
       </div>
-      <div>
+      <div className="cardSectionContainerFS">
         <CardSection onTabChange={handleTabChange} />
         {showDynamicTab && (
           <DynamicTab
