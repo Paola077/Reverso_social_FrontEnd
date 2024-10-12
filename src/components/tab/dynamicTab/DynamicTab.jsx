@@ -21,12 +21,15 @@ const DynamicTab = ({ label, onClick,showSector }) => {
   };
 
     return (
-      <div className="secctionTabContainer">
-         {showSector && <SectorSelect />}
-      <div className="secctionTab" onClick={() => navigate(getFormRoute(label))}>
-        {label}
-      </div>
-      <div className="underlineTab" ></div>
+      <div className="sectionTabContainer">
+        {showSector && <SectorSelect />}
+        <div
+          className="sectionTab"
+          onClick={() => navigate(getFormRoute(label))}
+        >
+          <span className="tabLabel">{label}</span>{" "}
+        </div>
+        <div className="underlineTab"></div>
       </div>
     );
   };

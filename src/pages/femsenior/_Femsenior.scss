@@ -13,6 +13,7 @@
   padding-left: 1rem;
   padding-bottom: 3rem;
   @media (max-width: 480px) {
+    height: 10%;
     flex-direction: column;
     padding: 2rem;
     padding-top: 1rem;
@@ -20,14 +21,14 @@
   }
 }
 
-.cardSectionContainerFS{
+.cardSectionContainerFS {
   width: 100%;
-   @media (max-width: 480px) {
+  @media (max-width: 480px) {
     max-width: 480px;
-    width: 90%;
-    gap: 0;
+    gap: 0.5rem;
     display: flex;
+    flex-direction: column;;
     justify-content: center;
-    margin: 0.5rem;
-   }
+    padding: 0.5rem;
+  }
 }
