@@ -65,8 +65,6 @@ const InfoCard = ({
       try {
         const eventData = await getEvent(id, token);
 
-        console.log("Datos del evento:", eventData);
-
         setIsEventFull(eventData.eventFull || false);
         setCurrentParticipants(eventData.currentParticipants || 0);
         setMaxParticipants(

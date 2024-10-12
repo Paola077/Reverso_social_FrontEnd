@@ -89,11 +89,14 @@ const SignInUpForm = () => {
     mutationFn: (form) => userLogin(form),
     onSuccess: (res) => {
       const accessToken = res?.accessToken;
-      if (accessToken) {
+      const username = res?.username;
+      if (accessToken && username) {
         const decodedToken = jwtDecode(accessToken);
         const role = decodedToken?.authorities?.[0] || "USER";
-        login(accessToken, { email: form.email }, role);
+        
+        login(accessToken, { username, email: form.email }, role);
         queryClient.invalidateQueries({ queryKey: ["user"] });
+
       } else {
         setError("Error al recibir los datos de autenticación.");
       }
