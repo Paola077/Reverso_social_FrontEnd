@@ -97,8 +97,7 @@ const Navbar = () => {
             sx={{
               position: "absolute",
               top: "-1rem",
-              // right: 0,
-              width: "95vw",
+              width: "100vw",
               backgroundColor: "white",
               boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
               zIndex: 10,
