@@ -8,6 +8,8 @@ import logoReversoWhite from "/images/RSLogoWhite.svg";
 import FSLogoWhite from "/images/FSLogoWhite.svg";
 import { jwtDecode } from "jwt-decode";
 import Alert from "../../modal/alerts/Alert";
+import OpenEyeIcon from "/icons/Open.svg";
+import CloseEyeIcon from "/icons/Close.svg";
 
 const SignInUpForm = () => {
   const location = useLocation();
@@ -25,7 +27,8 @@ const SignInUpForm = () => {
     password: "",
     birthday: "",
   });
-
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  
   useEffect(() => {
     if (location.state?.isSignPanelActive) {
       setIsSignPanelActive(true);
@@ -89,11 +92,14 @@ const SignInUpForm = () => {
     mutationFn: (form) => userLogin(form),
     onSuccess: (res) => {
       const accessToken = res?.accessToken;
-      if (accessToken) {
+      const username = res?.username;
+      if (accessToken && username) {
         const decodedToken = jwtDecode(accessToken);
         const role = decodedToken?.authorities?.[0] || "USER";
-        login(accessToken, { email: form.email }, role);
+        
+        login(accessToken, { username, email: form.email }, role);
         queryClient.invalidateQueries({ queryKey: ["user"] });
+
       } else {
         setError("Error al recibir los datos de autenticación.");
       }
@@ -109,6 +115,10 @@ const SignInUpForm = () => {
     setIsSignPanelActive(!isSignPanelActive);
   };
 
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
   return (
     <div
       className={`signContainer ${isSignPanelActive ? "signPanelActive" : ""}`}
@@ -120,7 +130,7 @@ const SignInUpForm = () => {
       >
         <form onSubmit={handleRegister} className={error ? "inputError" : ""}>
           <h2 className="registerTitle">Crea una cuenta</h2>
-          <input
+          <input className="inputLogin" 
             type="text"
             placeholder="Nombre"
             onChange={handleChange}
@@ -129,7 +139,7 @@ const SignInUpForm = () => {
           />
           {error?.name && <p className="errorText">{error?.name.message}</p>}
 
-          <input
+          <input className="inputLogin"
             type="text"
             placeholder="Apellido"
             onChange={handleChange}
@@ -140,7 +150,7 @@ const SignInUpForm = () => {
             <p className="errorText">{error?.lastname.message}</p>
           )}
 
-          <input
+          <input className="inputLogin"
             type="text"
             placeholder="Email"
             onChange={handleChange}
@@ -149,7 +159,7 @@ const SignInUpForm = () => {
           />
           {error?.email && <p className="errorText">{error?.email.message}</p>}
 
-          <input
+          <input className="inputLogin"
             type="text"
             placeholder="Nombre de usuario"
             onChange={handleChange}
@@ -160,7 +170,7 @@ const SignInUpForm = () => {
             <p className="errorText">{error?.username.message}</p>
           )}
 
-          <input
+          <input className="inputLogin"
             type="date"
             placeholder="Fecha de nacimiento"
             onChange={handleChange}
@@ -170,19 +180,26 @@ const SignInUpForm = () => {
           {error?.birthday && (
             <p className="errorText">{error?.birthday.message}</p>
           )}
-
-          <input
-            type="password"
+          <div className="passwordContainer">
+          <input className="inputLogin"
+            type={isPasswordVisible ? "text" : "password"}
             placeholder="Contraseña"
             onChange={handleChange}
             name="password"
             value={form.password}
           />
+          <img src={isPasswordVisible ? CloseEyeIcon : OpenEyeIcon} 
+            alt={isPasswordVisible ? "Hide Password" : "Show Password"} 
+            className="eyeSignIn"
+            onClick={togglePasswordVisibility}/>
+            
+          </div>
+          
           {error?.password && (
             <p className="errorText">{error?.password.message}</p>
           )}
 
-          <button className="ghost" type="submit">
+          <button className="loginButton ghost" type="submit">
             Registrar
           </button>
           <p>
@@ -212,7 +229,7 @@ const SignInUpForm = () => {
         )}
         <form onSubmit={handleLogin}>
           <h2 className="logInTitle">Accede a tu cuenta</h2>
-          <input
+          <input className="inputLogin"
             type="text"
             placeholder="Email"
             onChange={handleChange}
@@ -220,20 +237,26 @@ const SignInUpForm = () => {
             value={form.email}
           />
           {error?.email && <p className="errorText">{error?.email.message}</p>}
-
-          <input
-            type="password"
-            placeholder="Contraseña"
-            onChange={handleChange}
-            name="password"
-            value={form.password}
-          />
+          <div className="passwordContainer">
+            <input className="inputLogin"
+              type={isPasswordVisible ? "text" : "password"}
+              placeholder="Contraseña"
+              onChange={handleChange}
+              name="password"
+              value={form.password}
+            />
+            <img src={isPasswordVisible ? CloseEyeIcon : OpenEyeIcon} 
+              alt={isPasswordVisible ? "Hide Password" : "Show Password"} 
+              className="eyeSignIn"
+              onClick={togglePasswordVisibility}/>
+          </div>
+          
           {error?.password && (
             <p className="errorText">{error?.password.message}</p>
           )}
           {error && <p className="errorText">{error?.message}</p>}
 
-          <button type="submit">Ingresar</button>
+          <button className="loginButton" type="submit">Ingresar</button>
           <p>
             No tienes cuenta? Regístrate{" "}
             <Link

@@ -90,6 +90,8 @@ const MonthlyCalendar = () => {
           alignItems: "center",
           backgroundColor: "white",
           color: "#35399b",
+          
+          
         }}
       >
         <button
@@ -186,7 +188,8 @@ const MonthlyCalendar = () => {
         startAccessor="start"
         endAccessor="end"
         date={currentDate}
-        onNavigate={setCurrentDate}
+        onNavigate={setCurrentDate} 
+        views={["month"]}
         toolbar={false}
         style={{
           height: "100%",

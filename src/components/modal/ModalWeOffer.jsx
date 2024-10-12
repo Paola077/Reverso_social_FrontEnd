@@ -22,6 +22,12 @@ const ModalWeOffer = ({ isOpen, onClose, title, text, imageUrl }) => {
           </div>
         </div>
       </div>
+      <div className="modalOfferContentOut">
+        <button className="modalOfferClose" onClick={onClose}>
+          <img src={closeIcon} alt="Cerrar" className="closeIcon__Out" />
+        </button>
+        <img src={imageUrl} alt={title} className="modalOfferImageOut"/>
+      </div>
     </div>
   );
 };

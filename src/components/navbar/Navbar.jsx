@@ -6,13 +6,15 @@ import Search from "./search/Search";
 import { Button } from "../buttons/button/Button";
 import { useAuth } from "../../context/AuthContext";
 import "./_Navbar.scss";
+import Alert from "../modal/alerts/Alert";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, username } = useAuth();
+  console.log("Username en el componente:", username);
   const isFemseniors = location.pathname.startsWith(
     "/reverso-social/femsenior"
   );
@@ -39,6 +41,11 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logout();
+    setIsAlertOpen(true);
+  };
+
+  const handleAlertClose = () => {
+    setIsAlertOpen(false); 
     navigate("/reverso-social/femsenior");
   };
 
@@ -90,17 +97,17 @@ const Navbar = () => {
             sx={{
               position: "absolute",
               top: "-1rem",
-              right: 0,
-              width: "100vw",
+              // right: 0,
+              width: "95vw",
               backgroundColor: "white",
               boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
               zIndex: 10,
               padding: "1rem",
               display: "flex",
               flexDirection: "column",
-              gap: "0.5rem",
+              gap: "0.9rem",
               borderRadius: "0 0 20px 20px",
-              paddingTop: "4.5rem",
+              paddingTop: "5rem",
             }}
           >
             <IconButton
@@ -294,6 +301,8 @@ const Navbar = () => {
             </>
           )}
           {isFemseniors && isAuthenticated && (
+            <>
+            <span className="username">{username}</span>
             <button
               className="logout-icon"
               onClick={handleLogout}
@@ -305,6 +314,7 @@ const Navbar = () => {
                 alt="cerrar sesión"
               />
             </button>
+            </>
           )}
           {isReversoSocial && (
             <Button
@@ -324,7 +334,19 @@ const Navbar = () => {
           )}
         </Box>
       </Toolbar>
+      <Alert isOpen={isAlertOpen} onclose={handleAlertClose} alert="Se ha cerrado la sesión correctamente.">
+      <Button
+          textButton={"Aceptar"}
+          backgroundColor={"#7176f8"}
+          border={"#7176f8"}
+          width={"12.5rem"}
+          height={"2.75rem"}
+          color={"white"}
+          onClick={() => setIsAlertOpen(false)}
+        />
+        </Alert>
     </AppBar>
+    
   );
 };
 

@@ -12,8 +12,13 @@
   overflow: hidden;
   @include flex-center;
 
+  @media (max-width:720px) {
+    height: 100%;
+}
+
   &__content {
     background-color: $white;
+    position: relative;
     padding: 3rem;
     border-radius: 0.8rem;
     width: 90%;
@@ -24,6 +29,9 @@
     color: $dark;
     margin: 2rem 0;
     overflow-y: auto;
+    transition: all 0.5s ease-out;
+
+  
 
     &::-webkit-scrollbar {
       display: none;
@@ -31,13 +39,24 @@
 
     scrollbar-width: none;
 
+    @media (max-width:720px) {
+      padding: 2rem;
+  }
+    @media (max-width:480px) {
+      padding: 1.7rem;
+  }
+
     &__close {
       position: absolute;
       top: 1.25rem;
-      right: 1.25rem;
+      right: 1.25rem !important;
       background: none;
       border: none;
       cursor: pointer;
+
+      @media (max-width:480px) {
+        right: 9%;
+    }
 
       &__icon {
         width: 2rem;
@@ -51,6 +70,13 @@
       font-weight: $font-weight-bold;
       text-align: center;
       margin: 1.25rem 0 1.75rem 0;
+      @media (max-width:720px) {
+          font-size: $font-size-h5;
+          margin: 1rem 0 1.5rem 0;
+      }
+      @media (max-width:480px) {
+        font-size: $font-size-h6;
+    }
     }
 
     &__body {
@@ -63,15 +89,21 @@
         line-height: 1.6;
         color: $dark;
         margin-bottom: 1.5rem;
-        @media (max-width: 480px) {
-          font-size: $font-size-h6;
+
+        @media (max-width:720px) {
+          font-size: 0.8rem;
+          line-height: 1.4;
+          margin-bottom: 1.3rem;
+        }
+        @media (max-width:480px) {
+          font-size: 0.7rem;
         }
       }
     }
   }
-Button{
-  @media (max-width: 480px) {
-         width: 100% !important;
-        }
-}
+//   .popUpWindow__content__body__joinButton {
+//   @media (max-width: 480px) {
+//          width: 100% !important;
+//         }
+// }
 }

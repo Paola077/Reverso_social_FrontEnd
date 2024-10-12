@@ -58,14 +58,13 @@ const InfoCard = ({
   const createdByUser = user?.email === createdBy;
   const eventDate = new Date(date);
   const isPastEvent = eventDate < new Date();
+  
 
   useEffect(() => {
     const checkEventStatus = async () => {
       if (!id) return;
       try {
         const eventData = await getEvent(id, token);
-
-        console.log("Datos del evento:", eventData);
 
         setIsEventFull(eventData.eventFull || false);
         setCurrentParticipants(eventData.currentParticipants || 0);
@@ -171,6 +170,10 @@ const InfoCard = ({
     setPopupOpen(false);
   };
 
+  const buttonWidth = window.innerWidth < 480 ? "9rem" : "12.5rem";
+  const buttonHeight = window.innerWidth < 480 ? "2rem" : "2.75rem";
+
+
   let onButtonClick = null;
   if (createdByUser && entityType === "evento") {
     buttonText = `${currentParticipants}/${maxParticipants} participantes`;
@@ -200,7 +203,7 @@ const InfoCard = ({
 
       <div className="infoCard__content">
         <div className="infoCard__content__info">
-          <h3 className="infoCard__content__info__title">{title}</h3>
+          <h3 className="infoCard__content__info__title">{title ? title : position}</h3>
           <div className="infoCard__content__info__details">
             {sector && entityType == "evento" && <span><strong>Sector: </strong>{sector}</span>}
             {location && (
@@ -261,16 +264,16 @@ const InfoCard = ({
         <Button
           textButton={"Cancelar"}
           backgroundColor={"white"}
-          width={"12.5rem"}
-          height={"2.75rem"}
+          width={buttonWidth}
+          height={buttonHeight}
           border={"0.15rem solid #7176f8"}
           color={"#7176f8"}
           onClick={() => setAlertOpenForMoreInfo(false)}
         />
         <Button
           textButton={"Registrarse"}
-          width={"12.5rem"}
-          height={"2.75rem"}
+          width={buttonWidth}
+          height={buttonHeight}
           backgroundColor={"#7176f8"}
           border={"0.15rem solid #7176f8"}
           color={"white"}
@@ -308,6 +311,7 @@ const InfoCard = ({
         <Button
           textButton={"Aceptar"}
           backgroundColor={"#7176f8"}
+          border={"none"}
           width={"12.5rem"}
           height={"2.75rem"}
           color={"white"}
@@ -322,16 +326,16 @@ const InfoCard = ({
         <Button
           textButton={"Cancelar"}
           backgroundColor={"white"}
-          width={"12.5rem"}
-          height={"2.75rem"}
+          width={buttonWidth}
+          height={buttonHeight}
           border={"0.15rem solid #7176f8"}
           color={"#7176f8"}
           onClick={() => setAlertOpenForRegistration(false)}
         />
         <Button
           textButton={"Registrarse"}
-          width={"12.5rem"}
-          height={"2.75rem"}
+          width={buttonWidth}
+          height={buttonHeight}
           backgroundColor={"#7176f8"}
           border={"0.15rem solid #7176f8"}
           color={"white"}
