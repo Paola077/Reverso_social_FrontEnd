@@ -9,8 +9,21 @@ export const InputForm = ({
     onChange,
     name,
     options = [],
-    borderColor
+    borderColor,
+    min
 }) => {
+    
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+
+        if (name === "maxParticipants") {
+            const validValue = Math.max(0, value); 
+            onChange({ target: { name, value: validValue } }); 
+        } else {
+            onChange(e);
+        }
+    };
+
 
     return(
         <div className="inputBox">
@@ -47,7 +60,7 @@ export const InputForm = ({
             type={type}
             placeholder={placeholder}
             value={value}
-            onChange={onChange}
+            onChange={handleInputChange}
             name={name}
             style={{borderColor: borderColor || "#7176f8"}}
             />
