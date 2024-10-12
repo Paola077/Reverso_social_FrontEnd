@@ -8,6 +8,8 @@ import logoReversoWhite from "/images/RSLogoWhite.svg";
 import FSLogoWhite from "/images/FSLogoWhite.svg";
 import { jwtDecode } from "jwt-decode";
 import Alert from "../../modal/alerts/Alert";
+import OpenEyeIcon from "/icons/Open.svg";
+import CloseEyeIcon from "/icons/Close.svg";
 
 const SignInUpForm = () => {
   const location = useLocation();
@@ -25,7 +27,8 @@ const SignInUpForm = () => {
     password: "",
     birthday: "",
   });
-
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  
   useEffect(() => {
     if (location.state?.isSignPanelActive) {
       setIsSignPanelActive(true);
@@ -112,6 +115,10 @@ const SignInUpForm = () => {
     setIsSignPanelActive(!isSignPanelActive);
   };
 
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
   return (
     <div
       className={`signContainer ${isSignPanelActive ? "signPanelActive" : ""}`}
@@ -173,14 +180,21 @@ const SignInUpForm = () => {
           {error?.birthday && (
             <p className="errorText">{error?.birthday.message}</p>
           )}
-
+          <div className="passwordContainer">
           <input className="inputLogin"
-            type="password"
+            type={isPasswordVisible ? "text" : "password"}
             placeholder="Contraseña"
             onChange={handleChange}
             name="password"
             value={form.password}
           />
+          <img src={isPasswordVisible ? CloseEyeIcon : OpenEyeIcon} 
+            alt={isPasswordVisible ? "Hide Password" : "Show Password"} 
+            className="eyeSignIn"
+            onClick={togglePasswordVisibility}/>
+            
+          </div>
+          
           {error?.password && (
             <p className="errorText">{error?.password.message}</p>
           )}
@@ -223,14 +237,20 @@ const SignInUpForm = () => {
             value={form.email}
           />
           {error?.email && <p className="errorText">{error?.email.message}</p>}
-
-          <input className="inputLogin"
-            type="password"
-            placeholder="Contraseña"
-            onChange={handleChange}
-            name="password"
-            value={form.password}
-          />
+          <div className="passwordContainer">
+            <input className="inputLogin"
+              type={isPasswordVisible ? "text" : "password"}
+              placeholder="Contraseña"
+              onChange={handleChange}
+              name="password"
+              value={form.password}
+            />
+            <img src={isPasswordVisible ? CloseEyeIcon : OpenEyeIcon} 
+              alt={isPasswordVisible ? "Hide Password" : "Show Password"} 
+              className="eyeSignIn"
+              onClick={togglePasswordVisibility}/>
+          </div>
+          
           {error?.password && (
             <p className="errorText">{error?.password.message}</p>
           )}
