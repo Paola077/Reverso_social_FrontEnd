@@ -48,6 +48,29 @@
         width: 100%;
       }
 
+      .passwordContainer {
+        position: relative;
+        width: 100%;
+      
+        .inputLogin{
+        border: none;
+        border-bottom: 0.1rem solid $lila;
+        padding: 0.75rem 0.93rem;
+        margin-top: 0.5rem;
+        width: 100%;        
+      }
+
+      .eyeSignIn{
+        width: 1.25rem;
+        position: absolute;
+        top: 1.25rem;
+        right: 1rem;
+        cursor: pointer;
+      }
+    }
+
+      
+
       .errorText {
         font-size: 0.8rem;
         color: red;

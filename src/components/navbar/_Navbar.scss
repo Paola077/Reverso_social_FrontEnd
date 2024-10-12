@@ -177,6 +177,12 @@
       }
     }
   }
+  .username{
+    color: $dark;
+    font-size: $font-size-h5;
+    font-weight: $font-weight-semibold;
+    font-family: $font-family-title;
+  }
 
   .logout-icon {
     border: none;
@@ -235,6 +241,7 @@
     visibility: hidden;
     pointer-events: none;
   }
+
 }
 
 .navbar .alertBox .alertText {

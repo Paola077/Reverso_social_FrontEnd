@@ -58,6 +58,7 @@ const InfoCard = ({
   const createdByUser = user?.email === createdBy;
   const eventDate = new Date(date);
   const isPastEvent = eventDate < new Date();
+  
 
   useEffect(() => {
     const checkEventStatus = async () => {
@@ -286,6 +287,7 @@ const InfoCard = ({
         <Button
           textButton={"Aceptar"}
           backgroundColor={"#7176f8"}
+          border={"none"}
           width={"12.5rem"}
           height={"2.75rem"}
           color={"white"}

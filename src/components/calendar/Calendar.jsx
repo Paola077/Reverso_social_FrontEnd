@@ -42,7 +42,7 @@ const MonthlyCalendar = () => {
           const startDate = new Date(`${event.date}T${event.time}`);
 
           return {
-            title: ".",
+            title: "O",
             start: startDate,
             end: startDate,
             eventData: event,
@@ -79,6 +79,8 @@ const MonthlyCalendar = () => {
           alignItems: "center",
           backgroundColor: "white",
           color: "#35399b",
+          
+          
         }}
       >
         <button
@@ -127,6 +129,7 @@ const MonthlyCalendar = () => {
       fontSize: "0.8rem",
       cursor: "pointer",
       color:"#7176f8",
+      marginLeft:"0.25rem"
     };
     return { style };
   };
@@ -159,7 +162,7 @@ const MonthlyCalendar = () => {
         startAccessor="start"
         endAccessor="end"
         date={currentDate}
-        onNavigate={setCurrentDate} // Asegurar que navega al cambiar el mes
+        onNavigate={setCurrentDate} 
         views={["month"]}
         toolbar={false}
         style={{
