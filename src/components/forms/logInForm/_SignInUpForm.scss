@@ -63,9 +63,10 @@
       .eyeSignIn{
         width: 1.25rem;
         position: absolute;
-        top: 1.25rem;
+        top: 1.75rem;
         right: 1rem;
         cursor: pointer;
+        transform: translateY(-50%);
       }
     }
 
