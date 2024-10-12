@@ -3,56 +3,60 @@ import React from "react";
 
 
 export const AuthContext = createContext();
-
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [role, setRole] = useState(null);
   const [token, setToken] = useState(null);
+  const [user, setUser] = useState(null);
   const [username, setUsername] = useState(null);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
-    const storedUsername = localStorage.getItem("username");
+    const storedUser = JSON.parse(localStorage.getItem("user"));
     const storedRole = localStorage.getItem("role");
+    const storedUsername = localStorage.getItem("username");
 
-    if (storedToken && storedUsername && storedRole) {
+    if (storedToken && storedUser && storedRole && storedUsername) {
       setIsAuthenticated(true);
-      setToken(storedToken);
-      setUsername(storedUsername);
       setRole(storedRole);
+      setToken(storedToken);
+      setUser(storedUser);
+      setUsername(storedUsername); 
     }
   }, []);
 
-  const login = (accessToken, username, role) => {
-    if (typeof username === "object") {
-      username = username.username || username.email || JSON.stringify(username);
-    }
-  
+  const login = (accessToken, user, role) => {
+    const username = user?.username; 
+
+   
     localStorage.setItem("authToken", accessToken);
-    localStorage.setItem("username", username);
+    localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("role", role);
-  
+    localStorage.setItem("username", username);
+
+   
     setToken(accessToken);
-    setUsername(username); 
     setRole(role);
+    setUser(user);
+    setUsername(username); 
     setIsAuthenticated(true);
-  
-    console.log("Username obtenido en login:", username); 
   };
 
   const logout = () => {
     localStorage.removeItem("authToken");
-    localStorage.removeItem("username");
+    localStorage.removeItem("user");
     localStorage.removeItem("role");
+    localStorage.removeItem("username");
 
     setIsAuthenticated(false);
     setToken(null);
+    setUser(null);
     setUsername(null);
     setRole(null);
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout, token, role, username }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout, token, role, user, username }}>
       {children}
     </AuthContext.Provider>
   );

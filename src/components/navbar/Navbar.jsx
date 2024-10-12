@@ -14,6 +14,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { isAuthenticated, logout, username } = useAuth();
+  console.log("Username en el componente:", username);
   const isFemseniors = location.pathname.startsWith(
     "/reverso-social/femsenior"
   );
@@ -40,12 +41,12 @@ const Navbar = () => {
 
   const handleLogout = () => {
     logout();
-    setIsAlertOpen(true); // Muestra el alert
+    setIsAlertOpen(true);
   };
 
   const handleAlertClose = () => {
-    setIsAlertOpen(false); // Oculta el alert
-    navigate("/reverso-social/femsenior"); // Navega después de cerrar el alert
+    setIsAlertOpen(false); 
+    navigate("/reverso-social/femsenior");
   };
 
   const handleMenuToggle = () => {
