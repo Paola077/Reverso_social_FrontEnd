@@ -13,70 +13,72 @@ const Search = () => {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const navigate = useNavigate();
 
+  const fetchData = async (url, errorMessage) => {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error(errorMessage);
+    return response.json();
+  };
+
   const fetchResults = useCallback(async (value) => {
     if (!value.trim()) {
       resetSearch();
       return;
     }
-    try {
-      const [eventsData, servicesData, employsData, resourcesData] = await Promise.all([
-        fetch(
-          `http://localhost:3001/api/events/search?title=${value.trim()}`
-        ).then((res) => {
-          if (!res.ok) throw new Error("Error en la búsqueda de eventos");
-          return res.json();
-        }),
-        fetch(
-          `http://localhost:3001/api/services/search?title=${value.trim()}`
-        ).then((res) => {
-          if (!res.ok) throw new Error("Error en la búsqueda de servicios");
-          return res.json();
-        }),
-        fetch(
-          `http://localhost:3001/api/employs/search?title=${value.trim()}`
-        ).then((res) => {
-          if (!res.ok) throw new Error("Error en la búsqueda de Cv's");
-          return res.json();
-        }),
-        fetch(
-          `http://localhost:3001/api/resources/search?title=${value.trim()}`
-        ).then((res) => {
-          if (!res.ok) throw new Error("Error en la búsqueda de recursos");
-          return res.json();
-        })
-      ]);
 
-      const combinedResults = [
-        ...eventsData.map((item) => ({
-          ...item,
-          section: "events",
-          id: item.id,
-        })),
-        ...servicesData.map((item) => ({
-          ...item,
-          section: "services",
-          id: item.id,
-        })),
-        ...employsData.map((item) => ({
-          ...item,
-          section: "employs"
-        })),
-        ...resourcesData.map((item) => ({
-          ...item,
-          section: "resources"
-        }))
-      ];
+   const trimmedValue = value.trim();
+
+    const endpoints = [
+      {
+        url: `http://localhost:3001/api/events/search?title=${trimmedValue}`,
+        section: 'events',
+        searchLabel: 'Evento',
+        errorMessage: 'Error en la búsqueda de eventos',
+      },
+      {
+        url: `http://localhost:3001/api/services/search?title=${trimmedValue}`,
+        section: 'services',
+        searchLabel: 'Servicios',
+        errorMessage: 'Error en la búsqueda de servicios',
+      },
+      {
+        url: `http://localhost:3001/api/employs/search?position=${trimmedValue}`,
+        section: 'employs',
+        searchLabel: 'Empleos',
+        errorMessage: 'Error en la búsqueda de empleos',
+      },
+      {
+        url: `http://localhost:3001/api/resources/search?title=${trimmedValue}`,
+        section: 'resources',
+        searchLabel: 'Recursos',
+        errorMessage: 'Error en la búsqueda de recursos',
+      },
+    ];
+
+    try {
+      const resultsArray = await Promise.all(
+        endpoints.map((endpoint) =>
+          fetchData(endpoint.url, endpoint.errorMessage).then((data) =>
+            data.map((item) => ({
+              ...item,
+              section: endpoint.section,
+              searchLabel: endpoint.searchLabel,
+              id: item.id,
+            }))
+          )
+        )
+      );
+
+      const combinedResults = resultsArray.flat();
+
       setResults(combinedResults);
       setDropdownVisible(combinedResults.length > 0);
     } catch (error) {
-      console.error("Error al buscar eventos, servicios, empleos y recursos:", error);
+      console.error('Error al buscar datos:', error);
       resetSearch();
     }
   }, []);
 
-  const debouncedFetchResults = useCallback(debounce(fetchResults, 300), [
-    fetchResults,
-  ]);
+  const debouncedFetchResults = useCallback(debounce(fetchResults, 600), [fetchResults]);
 
   const handleSearchChange = (event) => {
     const value = event.target.value;
@@ -160,9 +162,9 @@ const Search = () => {
                   onFocus={() => setSelectedIndex(index)}
                 >
                   <div>
-                    {result.title}
+                    {result.title ? result.title : result.position}
                     <span className="sectionLabel">
-                      {result.section === "events" ? "Evento" : "Servicio"}
+                      {result.searchLabel}
                     </span>
                   </div>
                 </li>

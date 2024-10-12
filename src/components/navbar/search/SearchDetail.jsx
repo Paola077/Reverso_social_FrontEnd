@@ -36,13 +36,13 @@ const SearchDetail = () => {
   return (
     <InfoCard
       id={item.id}
-      title={item.title}
+      title={item.title ? item.title : item.position}
       type={item.type}
       modality={item.modality}
       date={item.date}
       time={item.time}
       location={item.location}
-      description={item.description}
+      summary={item.description}
       buttonText={"Apúntate"}
       contentText={"Ubicación"}
       createdBy={item.creatorEmail}
