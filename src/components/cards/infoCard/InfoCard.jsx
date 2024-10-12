@@ -202,7 +202,7 @@ const InfoCard = ({
 
       <div className="infoCard__content">
         <div className="infoCard__content__info">
-          <h3 className="infoCard__content__info__title">{title}</h3>
+          <h3 className="infoCard__content__info__title">{title ? title : position}</h3>
           <div className="infoCard__content__info__details">
             {sector && entityType == "evento" && <span>{sector}</span>}
             {location && <span>{location}</span>}
