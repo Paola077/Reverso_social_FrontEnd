@@ -202,12 +202,36 @@ const InfoCard = ({
         <div className="infoCard__content__info">
           <h3 className="infoCard__content__info__title">{title}</h3>
           <div className="infoCard__content__info__details">
-            {sector && entityType == "evento" && <span>{sector}</span>}
-            {location && <span>{location}</span>}
-            {date && <span>Fecha: {date}</span>}
-            {time && <span>Hora: {time}</span>}
-            {details && <span>Ubicación: {details}</span>}
-            {summary ? <span>{truncateText(summary, 10)}</span> : null}
+            {sector && entityType == "evento" && <span><strong>Sector: </strong>{sector}</span>}
+            {location && (
+              <span className="infoItem">
+                <strong className="boldOnlyOnSmall">Ubicación:</strong>
+                {location}
+              </span>
+            )}
+            {date && (
+              <span className="infoItem">
+                <strong className="boldOnlyOnSmall">Fecha:</strong>
+                {date}
+              </span>
+            )}
+            {time && (
+              <span className="infoItem">
+                <strong className="boldOnlyOnSmall">Hora:</strong>
+                {time}
+              </span>
+            )}
+            {details && (
+              <span className="infoItem">
+                <strong className="boldOnlyOnSmall">Detalles:</strong>
+                {details}
+              </span>
+            )}
+            {summary ? (
+              <span className="infoItem">
+                Resumen: {truncateText(summary, 10)}
+              </span>
+            ) : null}
           </div>
         </div>
 
