@@ -34,7 +34,15 @@ export const updateResource = async (id, data, token) => {
   data.title ? formData.append("title", data.title) : null;
   data.url ? formData.append("url", data.url) : null;
   data.description ? formData.append("description", data.description) : null;
-  data.file ? formData.append("file", data.file) : null;
+
+  if (document.getElementsByName('file').length > 0) {
+    formData.append("shouldModifyFile", true)
+    data.file ? formData.append("file", data.file) : null;
+  } else {
+    data.file = null;
+    data.fileUrl = null;
+    data.fileName = null;
+  }
 
   let headers = { "Content-Type": "multipart/form-data" };
   if (token) {
