@@ -24,13 +24,13 @@ La plataforma permite:
 
 ## Características Principales 🚀
 
-Gestión de Planes de Igualdad:
+**Gestión de Planes de Igualdad**:
 
 - Formulario de colabora
 - Formulario de peticiones
 - Información sobre servicios y proyectos.
   
-Gestión de Femsenior:
+**Gestión de Femsenior**:
 
 - Creación de nuevas entradas de eventos, servicios, empleo y recursos.
 - Edición de los eventos, servicios, empleo y recursos existentes.
@@ -43,6 +43,9 @@ Gestión de Femsenior:
 - Filtro de busqueda de la comunidad Femsenior
 - Formulario de colabora
 - Formulario de peticiones
+
+  **Diseño Responsivo**:
+- La interfaz está optimizada para dispositivos móviles y escritorios, garantizando una experiencia de usuario adaptable y accesible.
   
 ## Tecnologías Utilizadas 🛠️
 
