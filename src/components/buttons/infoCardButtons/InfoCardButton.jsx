@@ -35,7 +35,6 @@ const InfoCardButton = ({ id, entityType }) => {
       queryClient.invalidateQueries(entityType);
     },
     onError: (error) => {
-      console.log("Error al eliminar: ", error);
       setError(error?.response?.data);
     },
   });

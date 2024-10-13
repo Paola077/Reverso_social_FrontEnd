@@ -40,7 +40,6 @@ const FSForms = () => {
             setInitialData(data);
           })
           .catch((error) => {
-            console.log("Error al obtener los datos:", error);
           })
           .finally(() => setLoading(false));
       }

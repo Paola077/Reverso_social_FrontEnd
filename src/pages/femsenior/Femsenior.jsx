@@ -50,7 +50,6 @@ function Femsenior() {
     }
   };
 
-  console.log("Fecha actual seleccionada en Femsenior:", currentDate);
 
   return (
     <div>

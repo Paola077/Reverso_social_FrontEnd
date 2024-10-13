@@ -14,7 +14,6 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { isAuthenticated, logout, username } = useAuth();
-  console.log("Username en el componente:", username);
   const isFemseniors = location.pathname.startsWith(
     "/reverso-social/femsenior"
   );
@@ -55,7 +54,6 @@ const Navbar = () => {
     setIsMenuOpen((prev) => !prev);
   };
   useEffect(() => {
-    console.log("Ruta cambió:", location.pathname);
   }, [location.pathname]);
 
   return (
