@@ -89,6 +89,7 @@
 .sectionName {
   display: none;
   @media (max-width: 480px) {
+    font-family: $font-family-text;
     display: flex;
     justify-content: center;
     color: $lila;
