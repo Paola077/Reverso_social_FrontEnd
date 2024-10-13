@@ -126,7 +126,6 @@ const Navbar = () => {
               &#10005;
             </IconButton>
 
-            {/* Unificar Username y enlaces en el mismo menú */}
             {isAuthenticated ? (
               <>
                 <Box
@@ -151,7 +150,6 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                {/* Mostrar los enlaces de "Iniciar sesión" y "Registrarse" */}
                 <NavLink
                   to="/reverso-social/login"
                   className="navLinkBurger navLinkBold"
@@ -167,7 +165,6 @@ const Navbar = () => {
               </>
             )}
 
-            {/* Si estamos en login o signin */}
             {isLoginOrSignin ? (
               <>
                 <NavLink
@@ -186,7 +183,6 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                {/* Si estamos en FEMseniors */}
                 {isFemseniors && (
                   <>
                     <NavLink
@@ -205,7 +201,6 @@ const Navbar = () => {
                   </>
                 )}
 
-                {/* Si estamos en ReversoSocial */}
                 {isReversoSocial && (
                   <>
                     <NavLink

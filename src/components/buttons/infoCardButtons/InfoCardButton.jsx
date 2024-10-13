@@ -73,7 +73,6 @@ const InfoCardButton = ({ id, entityType }) => {
         </button>
       </div>
 
-      {/* Modal de confirmación */}
       {isConfirmationOpen && (
         <Alert
           alert={`¿Quieres eliminar este ${entityType}?`}
@@ -101,7 +100,6 @@ const InfoCardButton = ({ id, entityType }) => {
         </Alert>
       )}
 
-      {/* Modal de éxito */}
       {isSuccessOpen && (
         <Alert
           alert={`¡El ${entityType} ha sido eliminado!`}
@@ -120,7 +118,6 @@ const InfoCardButton = ({ id, entityType }) => {
         </Alert>
       )}
 
-      {/* Mostrar error si ocurre */}
       {error && (
         <Alert
           alert={`Error: ${error.message || "No se pudo eliminar el evento"}`}

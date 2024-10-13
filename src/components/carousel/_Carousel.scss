@@ -34,7 +34,7 @@
   }
 
   @media (max-width: 480px) {
-    width: 100vw; // Se extiende al 100% del ancho de la pantalla
+    width: 100vw;  
     height: 16rem;
   }
 
@@ -160,11 +160,11 @@
 
             @media (max-width: 1024px) {
               padding: 0.5rem;
-              font-size: 0.875rem; // Reducir el tamaño del texto
+              font-size: 0.875rem;
             }
 
             @media (max-width: 480px) {
-              font-size: 0.875rem; // Reducir el tamaño del texto
+              font-size: 0.875rem;
               padding-bottom: 0.75rem;
               padding-top: 0.05rem;
               font-size: 0.7rem;
@@ -182,7 +182,7 @@
           @media (max-width: 480px) {
             opacity: 1;
             &:not(.active) {
-              opacity: 0.75; // Opacidad de las cards no centradas
+              opacity: 0.75; 
             }
           }
         }

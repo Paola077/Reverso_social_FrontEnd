@@ -5,7 +5,7 @@ import router from "./routes/router";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import "./scss/_Global.scss";
 import { AuthProvider } from "./context/AuthContext";
-import { DateProvider } from "./context/DateContext"; // Cambiar a DateProvider
+import { DateProvider } from "./context/DateContext"; 
 
 const queryClient = new QueryClient();
 

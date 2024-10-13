@@ -40,9 +40,9 @@
     }
   }
   .navbar .invisibleSearch {
-    visibility: hidden !important; // Fuerza la invisibilidad sobre cualquier otro estilo
-    pointer-events: none !important; // Desactiva la interacción del usuario
-    width: 0 !important; // Ajusta el tamaño para evitar cualquier ancho residual
+    visibility: hidden !important; 
+    pointer-events: none !important; 
+    width: 0 !important; 
     height: 0 !important;
   }
   .linksContainer {

@@ -32,7 +32,6 @@ const RSForms = () => {
         <RequestForm 
         text={currentForm.text}
         formFields={currentForm.fields}
-        // onSubmit={(e) => e.preventDefault()}
         />
     )
 

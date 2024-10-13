@@ -63,7 +63,7 @@
     overflow-y: auto;
 
     &::-webkit-scrollbar {
-      display: none; // Esconde la barra de scroll en Chrome, Safari y Edge
+      display: none; 
     }
 
     scrollbar-width: none;
