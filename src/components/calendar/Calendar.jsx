@@ -222,7 +222,6 @@ const MonthlyCalendar = () => {
         phoneNumber={popupData.phoneNumber}
         name={popupData.name}
         description={popupData.description}
-        buttonText={popupData.buttonText || "Apúntate"}
         contentText={popupData.contentText}
       />
     </div>
