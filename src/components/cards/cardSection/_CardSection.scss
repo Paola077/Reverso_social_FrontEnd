@@ -1,0 +1,108 @@
+@import "../../../scss/Variables.scss";
+
+.cardSectionContainer {
+  @include flex_center;
+  justify-content: center;
+  gap: 4.5rem;
+  flex-direction: row;
+  padding: 1.5rem;
+  width: 100%;
+  height: auto;
+  position: relative;
+  @media (max-width: 860px) {
+    width: 100%;
+    gap: 4rem;
+    padding: 1rem 0.5rem;
+  }
+  @media (max-width: 480px) {
+    margin: 0;
+    gap: 1.5rem;
+    padding: 0.7rem;
+    background-color: $dark;
+    border-radius: 1rem;
+    justify-content: space-around;
+  }
+}
+
+.sectionCard {
+  @include flex_center;
+  flex-direction: column;
+  justify-content: center;
+  width: 12rem;
+  height: 10rem;
+  text-align: center;
+  cursor: pointer;
+  background-color: $dark;
+  border-radius: 1rem;
+  border: none;
+  position: relative;
+  z-index: 1;
+
+  &.selected::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    outline: 1rem solid white;
+    pointer-events: none;
+    box-sizing: border-box;
+  }
+  @media (max-width: 480px) {
+    width: 3rem;
+    height: 3rem;
+    padding-block: 1.7rem;
+    background-color: transparent;
+    &.selected::after {
+      outline: 0.2rem solid white;
+    }
+    &.selected {
+      z-index: 2;
+    }
+  }
+}
+
+.sectionImage {
+  width: 5rem;
+  height: 5rem;
+
+  @media (max-width: 480px) {
+    width: 2rem;
+    &.selected {
+      filter: invert(80%) sepia(07%) saturate(3186%) hue-rotate(170deg)
+        brightness(100%) contrast(110%);
+    }
+  }
+}
+
+.sectionCardTitle {
+  margin-top: 1rem;
+  @include card-title;
+  color: $white;
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+.sectionName {
+  display: none;
+  @media (max-width: 480px) {
+    font-family: $font-family-text;
+    display: flex;
+    justify-content: center;
+    color: $lila;
+    margin: 0;
+    text-transform: capitalize;
+  }
+}
+
+.sectionLink {
+  text-decoration: none;
+  display: inline;
+
+  @media (max-width: 480px) {
+    width: 15%;
+  }
+}

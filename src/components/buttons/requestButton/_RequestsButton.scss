@@ -1,0 +1,15 @@
+@import "../../../scss/Variables.scss";
+
+.requestButton{
+    background-color: $turquose;
+    border: none;
+    border-radius: 5rem;
+    font-family: $font-family-title;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+        transform: scale(0.97);
+    }
+}

@@ -1,0 +1,72 @@
+@import "../../../scss/Variables.scss";
+
+.sectionTabContainer {
+  display: flex;
+  position: relative;
+  width: 100%;
+  justify-content: space-between;
+  @media (max-width: 480px) {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.sectionTab {
+  font-family: $font-family-title;
+  font-weight: $font-weight-regular;
+  background-color: $lila;
+  color: $white;
+  padding: 0.62rem 0.75rem;
+  border-radius: 0.75rem 0.75rem 0 0;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  margin-left: auto;
+  margin-right: 24.5%;
+  z-index: 10;
+  &:hover {
+    background-color: #5a63d8;
+  }
+
+  @media (max-width: 480px) {
+    background-image: url("../../../../icons/AddButton.svg");
+    display: flex;
+    justify-content: center;
+    margin-left: 0;
+    margin-right: 0;
+    width: 3rem;
+    height: 3rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 60%;
+
+    .tabLabel {
+      visibility: hidden;
+      margin: 0 0;
+      z-index: 10;
+      position: absolute;
+    }
+  }
+}
+
+.underlineTab {
+  width: 100%;
+  height: 0.06rem;
+  background-color: #736db3;
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+.sectorOption{
+   @media (max-width: 480px) {
+   max-width: 480px;
+   font-size: 14px;
+  }
+}

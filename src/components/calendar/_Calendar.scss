@@ -1,0 +1,18 @@
+.calendarContainer {
+  width: 10rem;
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+}
+
+.rbc-month-view {
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+.calendarStyle {
+  @media (max-width: 480px) {
+    display: none;
+  }
+}

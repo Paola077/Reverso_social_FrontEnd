@@ -1,0 +1,88 @@
+@import '../../../scss/Variables.scss';
+
+
+.cardPhotoContainer {
+    display: flex;
+    justify-content: center; 
+    gap: 5rem; 
+    padding: 1.25rem; 
+    margin-bottom: 5rem;
+    transition: all 0.3s ease-out;
+    @media (max-width:1024px){
+      gap: 1rem;
+    }
+    @media (max-width:720px){
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      padding: 0;
+    }
+  }
+  
+  .cardPhoto {
+    width: 14rem; 
+    background-color: $lightLila2;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); 
+    border-radius: 1.25rem 1.25rem 1.25rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    box-shadow: 0.313rem 0.313rem 0.625rem #00000033;
+
+    .cardPhotoCircle{
+      width: 7.5rem;
+      height: 7.5rem;
+      border-radius: 4rem;
+      margin-top: 1rem;
+      overflow: hidden;
+      justify-content: center;
+    }
+  }
+  
+  .cardPhotoImage {
+    width: 7.6rem;
+    object-fit: cover; 
+    image-rendering: auto;
+  }
+  
+  .cardPhotoInfo {
+    padding-top: 0.8rem;
+    width: 100%; 
+
+    color: $white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .cardPhotoName {
+    font-family: $font-family-title;
+    font-size: $font-size-h6;
+    font-weight: $font-weight-semibold;
+    margin-left: 1rem;
+    text-align: left;
+
+  }
+  .cardTitleContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.3rem 0;
+
+  }
+  
+  .cardPhotoTitle {
+    font-family: $font-family-title;
+    font-size: 0.8rem;
+    font-weight: $font-weight-regular;
+    text-align: left;
+    margin: 0.5rem 1rem 1rem 1rem;
+    
+  }
+  
+  .linkedin-icon {
+    font-size: 2.2rem;
+    color: $white; 
+    margin-right: 1rem;
+  }
+  

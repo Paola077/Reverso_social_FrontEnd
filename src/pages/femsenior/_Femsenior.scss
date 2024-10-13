@@ -1,0 +1,36 @@
+@import "../../scss/Variables.scss";
+
+.header {
+  display: flex;
+  flex-direction: row;
+  max-width: 90rem;
+  margin: auto;
+  color: $white;
+  font-family: $font-family-title;
+  width: 100%;
+  line-height: 1.9rem;
+  font-size: $font-size-h5;
+  padding-left: 1rem;
+  padding-bottom: 3rem;
+  @media (max-width: 480px) {
+    height: 10%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+.cardSectionContainerFS {
+  width: 100%;
+  @media (max-width: 480px) {
+    max-width: 480px;
+    gap: 0.5rem;
+    display: flex;
+    flex-direction: column;;
+    justify-content: center;
+    padding: 0.5rem;
+  }
+}

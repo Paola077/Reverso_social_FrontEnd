@@ -1,0 +1,42 @@
+@import "../../../scss/Variables.scss";
+
+.manifest {
+  max-width: 43%;
+  margin-left: 3rem;
+  @media (max-width: 480px) {
+    max-width: 100%;
+    font-size: $font-size-h6;
+    margin-left: 0;
+  }
+}
+
+.h3Text {
+  font-size: $font-size-h4;
+  font-weight: $font-weight-bold;
+  @media (max-width: 480px) {
+    max-width: 100%;
+    font-size: $font-size-h5;
+  }
+}
+
+.h4Text {
+  font-size: $font-size-h5;
+  @media (max-width: 480px) {
+    max-width: 100%;
+    font-size: $font-size-h6;
+  }
+}
+
+.manifest p {
+  margin-bottom: 1.75rem;
+  @media (max-width: 480px) {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.manifestButton {
+  @media (max-width: 480px) {
+    display: flex;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,222 @@
+@import "../../../scss/Variables.scss";
+
+.popUpInteractive {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba($color: #c9cdf3, $alpha: 0.5);
+  z-index: 1000;
+
+  .popUpContent {
+    background-color: $white;
+    padding: 2.5rem;
+    border-radius: 1.25rem;
+    width: 80%;
+    max-width: 70rem;
+    text-align: center;
+    position: relative;
+    box-shadow: 0px 4px 20px #0000001a;
+    color: $dark;
+    overflow-y: auto;
+    transition: all 0.5s ease-out;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    scrollbar-width: none;
+
+    @media (max-width:720px){
+      padding: 2.5rem 1.5rem;
+      max-height: 35rem;
+    }
+
+    @media (max-width:480px){
+      max-height: 35rem;
+    }
+    
+
+    .popUpButton {
+      justify-content: center;
+      display: flex;
+    }
+
+    .titleAndDateContainer {
+      @include flex-center;
+      justify-content: space-between;
+      padding-right: 3.12rem;
+      font-family: $font-family-title;
+      font-weight: $font-weight-semibold;
+      @media (max-width:720px){
+        flex-direction: column;
+        align-items:flex-start;
+        padding-right: 0;
+        padding-top: 1rem;
+      }
+
+      .dateAndTime {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.31rem;
+        padding-bottom: 0.62rem;
+        @media (max-width:720px){
+          align-items:flex-start;
+        }
+      }
+
+      .popUpDate {
+        font-size: 1.56rem;
+
+        @media (max-width:720px){
+          font-size: 1rem;
+        }
+      }
+      .popUpTime {
+        margin: 0;
+        font-size: $font-size-h5;
+        @media (max-width:720px){
+          font-size: 0.9rem;
+        }
+      }
+
+      .popUpModality {
+        text-align: left;
+        font-weight: $font-weight-bold;
+        font-size: 1.15rem;
+        
+        @media (max-width:720px){
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .popUpContentClose {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+
+      .popUpCloseIcon {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+
+    .titlePopUp {
+      font-family: $font-family-title;
+      font-size: $font-size-h3;
+      font-weight: $font-weight-bold;
+      margin-bottom: 1.25rem;
+      text-align: left;
+      padding-bottom: 0.5rem;
+      margin: 0;
+      @media (max-width:720px){
+        font-size: $font-size-h5;
+      }
+    }
+
+    .popUpContentTitle {
+      font-family: $font-family-title;
+      text-align: left;
+    }
+
+    .popUpPosition {
+      font-family: $font-family-text;
+      font-size: $font-size-h5;
+      text-align: left;
+
+    }
+
+    .popUpContentText {
+      @include text-font-bold;
+      text-align: left;
+      padding-bottom: 0.93rem;
+      @media (max-width:720px){
+        font-size: 1rem;
+      }
+    }
+
+    .popUpContentBody {
+      margin-top: 1.25rem;
+
+      .popUpContentBodyText {
+        font-family: $font-family-title;
+        font-size: $font-size-h6;
+        line-height: 1.6;
+        color: black;
+        margin-bottom: 1.25rem;
+        text-align: justify;
+        @media (max-width:480px){
+          font-size: 0.8rem;
+        }
+      }
+
+      .popUpPosition {
+        @include text-font-bold;
+        color: $dark;
+        padding-bottom: 0.5rem;
+        text-align: left;
+        @media (max-width:720px){
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .popUpLocationValue {
+      font-family: $font-family-text;
+      text-align: left;
+      color: black;
+      padding-bottom: 0.93rem;
+    }
+
+    .popUpLocationTitle {
+      font-family: $font-family-text;
+      text-align: left;
+    }
+
+    .contentText {
+      color: $dark;
+      font-size: $font-size-h5;
+    }
+    .contentContact {
+      font-family: $font-family-text;
+      font-size: 0.93rem;
+      text-align: left;
+      color: black;
+    }
+
+    .popUpTypeText {
+      text-align: left;
+      font-family: $font-family-text;
+      font-size: $font-size-h5;
+      padding-bottom: 0.93rem;
+    }
+
+    .popUpEventDateTime {
+      text-align: right;
+      padding-right: 2.5rem;
+    }
+
+    .participantsCount {
+      margin-top: 1rem;
+      color: $lightLila;
+    }
+    .popUpButton {
+      .buttonFile {
+        .button {
+          margin: 2rem auto !important;
+        }
+      }
+    }
+
+    /*.popUpButton {display: flex; justify-content: center; }*/
+  }
+}

@@ -1,0 +1,77 @@
+html,
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+   @media (max-width: 480px) {
+    max-width: 480px
+  }
+}
+
+.layoutContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+   @media (max-width: 480px) {
+    max-width: 480px
+  }
+}
+
+.reversoGradient {
+  background: linear-gradient(
+    144deg,
+    rgba(227, 255, 252, 1) 0%,
+    rgba(151, 245, 236, 1) 30%,
+    rgba(113, 118, 248, 1) 80%,
+    rgba(151, 245, 236, 1) 130%
+  );
+  background-size: 100% 38%;
+  background-repeat: no-repeat;
+  width: 100%;
+
+  @media (max-width:480px) {
+    background-size: 100% 30%;
+  }
+}
+
+.femseniorGradient {
+  background: linear-gradient(
+    165deg,
+    rgba(211, 216, 255, 1) -5%,
+    rgba(42, 45, 207, 1) 100%
+  );
+  background-size: 100% 42.5rem;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
+.transparentGradient {
+  background-color: transparent !important;
+}
+
+.layoutNavbar {
+  z-index: 10;
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+   @media (max-width: 480px) {
+    max-width: 480px
+  }
+}
+
+.mainContent {
+  padding-top: 2rem;
+  flex-grow: 1;
+  width: 100%;
+  max-width: 100vw;
+}
+
+.layoutFooter {
+  height: 8rem;
+  width: 100%;
+  margin-top: auto;
+  max-width: 1440px;
+  @media (max-width: 480px) {
+    max-width: 480px
+  }
+}

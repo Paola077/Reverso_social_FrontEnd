@@ -1,0 +1,24 @@
+@import "../../../scss/Variables.scss";
+
+.sectorSelect {
+  display: none;
+  font-family: $font-family-title;
+  font-weight: $font-weight-regular;
+  background-color: $lila;
+  color: $white;
+  padding: 0.62rem 1.25rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  margin-left: 26.3%;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  @media (max-width: 480px) {
+    margin-top: 0.5rem;
+    width: 100%;
+    margin-left: 0;
+    display: flex;
+    justify-content: center;
+      display: none;
+  }
+}

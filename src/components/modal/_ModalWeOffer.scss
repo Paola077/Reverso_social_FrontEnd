@@ -1,0 +1,191 @@
+@import '../../scss/Variables.scss';
+
+.modalOfferOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(32, 34, 94, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; 
+
+    
+    .modalOfferContentOut{
+      display: none;
+      transition: all 0.5s ease-out;
+    }
+
+    @media (max-width: 720px) {
+      .modalOfferContentOut {
+        display: block; /* Se muestra solo a partir de 720px */
+        position: absolute;
+        top: 15%;
+        left: 25;
+        z-index: -1;
+        width: 80%;
+        height: 40%;
+        max-width: 60rem; 
+        border-radius: 0 2rem 0 0;
+        overflow: hidden;
+
+        .modalOfferImageOut {
+          width: 100%;
+          height: auto;
+          object-fit: cover;
+          display: block;
+          object-position: center top;
+        }
+      }
+    }
+    @media (max-width: 480px) {
+      .modalOfferContentOut {
+        top: 12%;
+      }
+    }
+  }
+  
+  .modalOfferContent {
+    background-color: $white;
+    padding: 3.5rem 5rem;
+    border-radius: 0 2rem 2rem 2rem;
+    width: 80%;
+    max-width: 60rem; 
+    min-height: 17rem;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease-out;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      display: none; 
+    }
+
+    scrollbar-width: none;
+
+
+    @media (max-width:1024px) {
+      padding: 3rem 4.5rem;
+    }
+    
+    @media (max-width:720px) {
+      border-radius: 2rem;
+      padding: 3rem 4.1rem;
+      max-height: 20rem;
+    }
+    @media (max-width:480px) {
+      padding: 2rem 2rem;
+    }
+  }
+  
+  .modalOfferClose {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    
+    
+  }
+  .closeIcon {
+    width: 2rem; 
+    transition: all 0.5s ease-out;
+
+    @media (max-width:720px) {
+      display: none;
+    }
+    
+    &__Out{
+      display: none;
+      @media (max-width:720px) {
+        width: 2rem;
+        display: block;
+      }
+  }
+  }
+  
+  .modalOfferTitle {
+    text-align: center;
+    font-size: $font-size-h3;
+    font-family: $font-family-title;
+    font-weight: $font-weight-bold;
+    margin-bottom: 1.5rem;
+    color: $dark;
+    transition: all 0.5s ease-out;
+
+
+    @media (max-width: 1024px) {
+      font-size: $font-size-h4;
+    }
+    @media (max-width: 720px) {
+      font-size: $font-size-h5;
+      margin-bottom: 1rem;
+    }
+    @media (max-width: 480px) {
+      font-size: $font-size-h6;
+    }
+  }
+  
+  .modalOfferBody {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    transition: all 0.5s ease-out;
+    @media (max-width: 1024px) {
+      gap:1.5rem;
+    }
+  
+  }
+  
+  .modalOfferText {
+    flex: 1;
+    text-align: left;
+    font-size: $font-size-h5;
+    font-family: $font-family-text;
+    font-weight: $font-weight-regular;
+    color: $dark;
+    transition: all 0.5s ease-out;
+
+    @media (max-width: 1024px) {
+      font-size: $font-size-h6;
+    }
+    @media (max-width: 720px) {
+      font-size: 0.9rem;
+    }
+    @media (max-width: 480px) {
+      font-size: 0.8rem;
+    }
+  }
+  
+  .modalOfferImage {
+    flex: 1;
+    max-width: 18rem; 
+    height: 18rem;
+    
+    img {
+      width: 100%;
+      height: 100%; 
+      object-fit: cover;
+      object-position: center;
+      border-radius: 2rem;
+      transition: all 0.5s ease-out;
+
+    }
+    @media (max-width: 1024px) {
+      max-width: 14rem;
+      height: 14rem;
+    }
+    @media (max-width: 720px) {
+      display: none;
+    }
+
+    
+    
+  }

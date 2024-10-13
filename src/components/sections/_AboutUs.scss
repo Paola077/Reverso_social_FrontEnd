@@ -1,0 +1,90 @@
+@import '../../scss/Variables.scss';
+
+.aboutUsContainer {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    padding: 1.5rem; 
+    max-width: 83rem;
+    margin: auto;
+  
+  }
+  
+  .aboutUsTitle {
+    font-family: $font-family-title;
+    font-size: $font-size-h2;
+    font-weight: $font-weight-bold;
+    color: $dark;
+    text-align: center;
+    position: relative; 
+    margin-bottom: 3rem;
+    transition: all 0.3s ease-in-out;
+
+    @media (max-width:1024px) {
+      font-size: $font-size-h3;
+    }
+    @media (max-width:720px) {
+      font-size: $font-size-h4;
+      margin-bottom: 1.5rem;
+    }
+  
+    &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 35%;
+        height: 0.01rem;
+        background-color: $dark;
+        transform: translateX(5%);
+        transition: all 0.3s ease-in-out;
+        @media (max-width: 1139px){
+          width: 30%;
+        }
+        @media (max-width: 1024px){
+          display: none;
+        }
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 0;
+        width: 35%;
+        height: 0.01rem;
+        background-color: $dark;
+        transform: translateX(-5%);
+        transition: all 0.3s ease-in-out;
+        @media (max-width: 1139px){
+          width: 30%;
+        }
+        @media (max-width: 1024px){
+          display: none;
+        }
+    }
+
+    
+  }
+  
+  .textAboutUs {
+    font-family: $font-family-text;
+    font-size: $font-size-h5;
+    font-weight: $font-weight-regular;
+    color: $dark;
+    padding-bottom: 1.5rem;
+    margin-top: 1.5rem; 
+    line-height: 2rem;
+    margin: auto;
+    transition: all 0.3s ease-in-out;
+
+    @media (max-width:1024px) {
+      font-size: $font-size-h6;
+    }
+    @media (max-width:720px) {
+      font-size: 0.9rem;
+      padding-bottom: 1rem; 
+      line-height: 1.5rem;
+    }
+
+  }

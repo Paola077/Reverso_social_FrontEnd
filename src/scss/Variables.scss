@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap");
+
+// Colors
+
+$white: #ffffff;
+$lightTurquose: #97f5ec;
+$turquose: #39dfe6;
+$light: #dddeff;
+$lightLila: #b6b8ff;
+$lightLila2: #8d91ff;
+$lila: #7176f8;
+$purple: #35399b;
+$dark: #090d6d;
+
+// Typography
+
+$font-family-title: "Poppins", sans-serif;
+$font-family-text: "Source Sans 3", sans-serif;
+
+$font-size-h1: 45px;
+$font-size-h2: 34px;
+$font-size-h3: 30px;
+$font-size-h4: 24px;
+$font-size-h5: 20px;
+$font-size-h6: 16px;
+
+$font-weight-regular: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+// Mixin
+
+@mixin title-font {
+  font-family: $font-family-title;
+  font-size: $font-size-h1;
+  font-weight: $font-weight-bold;
+  color: $dark;
+  text-align: left;
+  position: relative;
+}
+
+@mixin subtitle-font {
+  font-family: $font-family-title;
+  font-size: $font-size-h2;
+  font-weight: $font-weight-bold;
+  color: $dark;
+}
+
+@mixin card-title {
+  font-size: $font-size-h5;
+  font-family: $font-family-title;
+  font-weight: $font-weight-semibold;
+}
+
+@mixin text-font {
+  font-family: $font-family-text;
+  font-size: $font-size-h5;
+  font-weight: $font-weight-regular;
+  color: $dark;
+  text-align: justify;
+  margin-top: 1.5rem;
+  line-height: 2rem;
+}
+
+@mixin text-font-bold {
+  font-weight: $font-weight-bold;
+  font-family: $font-family-text;
+  font-size: $font-size-h5;
+}
+
+@mixin transparent-background {
+  background-color: transparent !important;
+  color: transparent !important;
+  border: none !important;
+}
+
+@mixin navLink-style {
+  font-size: 16px;
+  color: $dark;
+  text-decoration: none;
+  font-size: $font-size-h5;
+  font-weight: $font-weight-semibold;
+  padding: 0.5rem 2rem;
+}
+
+@mixin navLink-style-hover {
+  color: white;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  background-color: $lila;
+}
+
+@mixin search-transparent {
+  background-color: transparent !important;
+  pointer-events: none !important;
+}
+
+@mixin search-icon-transparent {
+  color: transparent !important;
+  fill: none;
+}
+
+@mixin flex_center {
+  align-items: center;
+  display: flex;
+}
+
+@mixin errorTextForm {
+  color: red;
+  font-family: $font-family-text;
+  font-size: 0.8rem;
+  margin-left: 22rem;
+  margin-top: 0.3rem;
+}

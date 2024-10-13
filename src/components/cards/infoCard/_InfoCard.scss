@@ -1,0 +1,97 @@
+@import "../../../scss/Variables.scss";
+
+.infoCard {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+  .pastEvent {
+    color: gray;
+    font-weight: $font-weight-semibold;
+    @media (max-width: 480px) {
+      margin: 0.25rem 0;
+      align-items: center;
+      width: 100%;
+    }
+  }
+  &__lateralButtons {
+    &.show {
+      display: flex;
+    }
+
+    &.hide {
+      display: none;
+    }
+  }
+
+  &__content {
+    @include flex-center;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: $light;
+    padding: 2rem;
+    max-width: 65rem;
+    width: 100%;
+    box-shadow: 0.5rem 0.25rem 0.5rem #0000001a;
+    @media (max-width: 480px) {
+      flex-direction: column;
+      justify-content: center;
+      padding: 0.25rem;
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 70%;
+      gap: 1rem;
+
+      &__title {
+        @include card-title;
+        color: $dark;
+        @media (max-width: 480px) {
+          @include flex-center;
+          flex-direction: column;
+          justify-content: center;
+          margin-top: 0.25rem;
+        }
+      }
+
+      &__details {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        font-family: $font-family-title;
+        font-size: $font-size-h6;
+        color: $dark;
+        .boldOnlyOnSmall {
+          font-weight: bold;
+          margin-right: 0.5rem; /* Aplica espacio entre el título y los datos */
+        }
+        @media (max-width: 480px) {
+          flex-direction: column;
+          justify-content: center;
+          line-height: 1.2rem;
+          .infoItem {
+            display: flex; /* Hace que el contenedor sea un flexbox */
+            align-items: center; /* Alinea verticalmente el contenido */
+          }
+        }
+      }
+    }
+
+    &__button {
+      display: flex;
+      justify-content: flex-end;
+      width: 25%;
+
+      @media (max-width: 480px) {
+        width: 30%;
+        margin: 0.25rem 0;
+        position: relative;
+      }
+    }
+  }
+}

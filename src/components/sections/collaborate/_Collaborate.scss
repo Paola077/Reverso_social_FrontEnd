@@ -1,0 +1,77 @@
+@import "../../../scss/Variables.scss";
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  max-width:83rem;
+  padding: 2rem;
+  margin: auto;
+  transition: all 0.3s ease-out;
+
+  &__contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: $purple;
+    box-shadow: 0.313rem 0.313rem 0.625rem #00000033;
+    border-radius: 0 2.5rem 2.5rem 2.5rem;
+    padding: 3rem;
+    width: 40rem;
+    transition: all 0.5s ease-out;
+
+    @media (max-width:720px) {
+      padding: 1.25rem;
+      border-radius: 0 2rem 2rem 2rem;
+    }
+
+    &__title {
+      font-family: $font-family-title;
+      padding-bottom: 3rem;
+      color: $white;
+      font-size: $font-size-h3;
+      
+      transition: all 0.5s ease-out;
+
+      @media (max-width:720px) {
+        font-size: $font-size-h5;
+        padding-bottom: 1.5rem;
+      }
+    }
+
+    &__button {
+      font-family: $font-family-title;
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  &__image {
+    width: 25rem;
+    height: 15rem;
+    overflow: hidden;
+    border-radius: 2.5rem;
+      box-shadow: 0.313rem 0.313rem 0.625rem #00000033;
+    &__collaborateWomen {
+      width: 25rem !important;
+      box-shadow: 0.313rem 0.313rem 0.625rem #00000033;
+    }
+
+    @media(max-width: 1143px){
+      display: none;
+    }
+    
+  }
+  &.image-hidden {
+    &__contact {
+      flex-grow: 1;
+    }
+
+    &__image {
+      display: none;
+    }
+  }
+}
