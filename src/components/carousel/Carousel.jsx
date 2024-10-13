@@ -29,7 +29,7 @@ const services = [
 
 function Carousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedService, setSelectedService] = useState(null); // Estado para el modal
+  const [selectedService, setSelectedService] = useState(null);
 
   const carouselRef = useRef(null);
 
@@ -46,11 +46,11 @@ const handleNextClick = () => {
 };
 
   const openModal = (service) => {
-    setSelectedService(service); // Abre el modal con el servicio seleccionado
+    setSelectedService(service); 
   };
 
   const closeModal = () => {
-    setSelectedService(null); // Cierra el modal
+    setSelectedService(null); 
   };
 
   return (
@@ -66,7 +66,7 @@ const handleNextClick = () => {
             <div
               key={index}
               className="slide">
-              <div className="card" onClick={() => openModal(service)}> {/* Al hacer clic en la imagen se abre el modal */}
+              <div className="card" onClick={() => openModal(service)}> 
                 <img
                   src={service.image}
                   alt={service.title}
@@ -83,11 +83,10 @@ const handleNextClick = () => {
         </button>
       </div>
 
-      {/* Aquí renderizamos el modal si hay un servicio seleccionado */}
       {selectedService && (
         <ModalWeOffer
           isOpen={!!selectedService}
-          onClose={closeModal} // Pasamos la función para cerrar el modal
+          onClose={closeModal} 
           title={selectedService.title}
           text={selectedService.text }
           imageUrl={selectedService.image}

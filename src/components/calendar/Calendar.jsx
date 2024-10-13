@@ -28,7 +28,7 @@ const localizer = dateFnsLocalizer({
 });
 
 const MonthlyCalendar = () => {
-  const { currentDate, setCurrentDate } = useContext(DateContext); // Usamos el contexto
+  const { currentDate, setCurrentDate } = useContext(DateContext); 
   const [events, setEvents] = useState([]);
   const { isAuthenticated, role, user } = useAuth();
   const [isPopupOpen, setPopupOpen] = useState(false);
@@ -130,17 +130,13 @@ const MonthlyCalendar = () => {
   const eventStyleGetter = (event) => {
     const style = {
       backgroundColor: "#7176f8",
-      // borderRadius: "50%",
       color: "white",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      // width: "0.8rem",
-      // height: "0.8rem",
       fontSize: "0.8rem",
       cursor: "pointer",
       color: "#7176f8",
-      // marginLeft: "0.25rem",
       width: window.innerWidth < 480 ? "1.5rem" : "0.8rem",
       height: window.innerWidth < 480 ? "1.5rem" : "0.8rem",
       borderRadius: window.innerWidth < 480 ? "10%" : "50%",
@@ -168,13 +164,10 @@ const MonthlyCalendar = () => {
       className="calendarContainer"
       style={{
         width: "40%",
-        // height: "auto",
-        // margin: "0 auto",
         width: window.innerWidth < 480 ? "13rem" : "40%",
         height: window.innerWidth < 480 ? "1.25rem" : "auto",
         margin: window.innerWidth < 480 ? "1rem" : "1rem",
         marginTop: window.innerWidth < 480 ? "3rem" : "",
-        // border: window.innerWidth < 480 ? "1px solid black" : "none",
         display: window.innerWidth < 480 ? "flex" : "block",
         justifyContent: window.innerWidth < 480 ? "center" : "initial",
         alignItems: window.innerWidth < 480 ? "center" : "initial",

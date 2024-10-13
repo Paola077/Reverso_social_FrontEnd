@@ -1,7 +1,6 @@
 import { Button } from "../../buttons/button/Button";
 import "./_ManifestPop.scss";
 import closeIcon from "/icons/Exit.svg";
-// import React, { useEffect } from "react";
 
 const ManifestPop = ({
   isOpen,
