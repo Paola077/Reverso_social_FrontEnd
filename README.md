@@ -2,13 +2,24 @@
 
 ## Descripción General 👭 💪
 
-Este proyecto promueve la igualdad de género y el empoderamiento de las mujeres a través de dos iniciativas principales: Planes de Igualdad y FEMsenior.
-### Planes de Igualdad:
-Dirigido a cargos políticos, sindicales, administraciones públicas y empresas privadas. Nuestro objetivo es eliminar todas las formas de discriminación basadas en sexo, género, orientación sexual, origen, religión o clase social.
-### FEMsenior:
-FEMsenior es una comunidad para mujeres de 50 años o más que enfrentan estereotipos relacionados con la edad. Buscamos cambiar la narrativa y mostrar que la edad es una fuente de poder.   
+Este proyecto, desarrollado como parte del programa pedagógico de Factoria F5, es un proyecto final creado en colaboración con un cliente real. La plataforma promueve la igualdad de género y el empoderamiento de las mujeres mediante dos enfoques principales: Planes de Igualdad y FEMsenior.
 
-Este proyecto invita a todas las mujeres y entidades comprometidas con la igualdad y el empoderamiento femenino a unirse y colaborar en la creación de un futuro más justo y equitativo.
+Planes de Igualdad:
+Dirigido a cargos políticos, sindicales, administraciones públicas y empresas privadas. Este módulo tiene como objetivo eliminar todas las formas de discriminación basadas en sexo, género, orientación sexual, origen, religión o clase social, ofreciendo recursos y herramientas para fomentar la igualdad en diversos ámbitos.
+
+FEMsenior:
+FEMsenior es una comunidad creada para mujeres de 50 años o más, con el fin de desafiar los estereotipos relacionados con la edad. Este espacio permite a las usuarias compartir experiencias, participar en eventos, y acceder a oportunidades de empleo y recursos que destacan el poder de la edad como fuente de fortaleza.
+
+La plataforma permite:
+
+- Crear, editar y eliminar eventos: Las administradoras y Femsenior pueden gestionar las distintas secciones tales como son los eventos, los servicios, empleo y recursos desde su creación hasta su eliminación.   
+- Acceder a recursos y participación activa: Las usuarias pueden explorar y aprovechar los recursos disponibles, incluyendo mentorías que ofreceran las FemSenior, formaciones y los recursos que se compartan en la comunidad.   
+- Unirse a una comunidad activa: La comunidad facilita la colaboración y el apoyo entre mujeres de distintas edades y trasfondos, ofreciendo un espacio para mentorías, participación en servicios y acceso a herramientas tales como una sección de empleo donde podrán 
+  subir sus currículumns para que promuevan su desarrollo personal y profesional.   
+- Este proyecto invita a mujeres y entidades comprometidas con la igualdad a colaborar en la construcción de un futuro más equitativo.
+
+![image](https://github.com/user-attachments/assets/53e052ac-0ded-4837-afa7-feabf22542f2)
+
 
 ## Características Principales 🚀
 
@@ -34,13 +45,13 @@ Gestión de Femsenior:
   
 ## Tecnologías Utilizadas 🛠️
 
-- React: Framework de frontend.
-- Axios: Cliente HTTP para realizar solicitudes al backend.
-- React Router: Manejo de rutas y navegación en la aplicación.
-- React Query: Para consultas Api.
-- HTML5 Y SCSS: Estilización avanzada con SASS.
-- Cloudinary: Servicio para subir y gestionar archivos en la nube.
-- EmailJs: Gestionar los formularios.
+- **[React](https://es.react.dev/)**: Framework de frontend.
+- **[Axios](https://axios-http.com/es/docs/intro)**: Cliente HTTP para realizar solicitudes al backend.
+- **[React Router](https://reactrouter.com/en/main)**: Manejo de rutas y navegación en la aplicación.
+- **[React Query](https://www.npmjs.com/package/react-query)**: Para consultas Api.
+- **[HTML5]() Y [SCSS](https://sass-lang.com/)**: Estilización avanzada con SASS.
+- **[Cloudinary](https://cloudinary.com/)**: Servicio para subir y gestionar archivos en la nube.
+- **[EmailJs](https://www.emailjs.com/)**: Gestionar los formularios.
 - Otros..
 
   
