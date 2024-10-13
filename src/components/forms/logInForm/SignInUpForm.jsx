@@ -247,7 +247,7 @@ const SignInUpForm = () => {
             />
             <img src={isPasswordVisible ? CloseEyeIcon : OpenEyeIcon} 
               alt={isPasswordVisible ? "Hide Password" : "Show Password"} 
-              className="eyeSignIn"
+              className="eyeLogin"
               onClick={togglePasswordVisibility}/>
           </div>
           
