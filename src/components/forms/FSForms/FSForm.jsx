@@ -13,6 +13,7 @@ import {
   updateEmployOffer,
 } from "../../../services/employApi";
 import { createResource, updateResource } from "../../../services/resourceApi";
+import { FileInputForm } from "../../Inputs/FileInputForm/FileInputForm";
 
 const FSForm = ({ text, formType, formFields, initialData }) => {
   const navigate = useNavigate();
@@ -119,17 +120,29 @@ const FSForm = ({ text, formType, formFields, initialData }) => {
 
           {formFields.map((field, index) => (
             <Fragment key={index}>
-              <InputForm
-                title={field.title}
-                type={field.type}
-                placeholder={field.placeholder}
-                value={
-                  field.type === "file" ? undefined : formData[field.name] || ""
-                }
-                name={field.name}
-                onChange={handleChange}
-                options={field.options || []}
-              />
+
+              {isEdit && formType === 'recurso' && field.name === 'file' ? (
+                <FileInputForm
+                  title={field.title}
+                  placeholder={field.placeholder}
+                  fileName={formData.fileName}
+                  name={field.name}
+                  onChange={handleChange}
+                />
+              ) : (
+                <InputForm
+                  title={field.title}
+                  type={field.type}
+                  placeholder={field.placeholder}
+                  value={
+                    field.type === "file" ? undefined : formData[field.name] || ""
+                  }
+                  name={field.name}
+                  onChange={handleChange}
+                  options={field.options || []}
+                />
+              )}
+
               <p className="errorText">{error?.[field.name]?.message}</p>
             </Fragment>
           ))}
