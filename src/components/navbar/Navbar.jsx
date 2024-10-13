@@ -121,7 +121,8 @@ const Navbar = () => {
               &#10005;
             </IconButton>
 
-            {location.pathname.startsWith("/reverso-social/femsenior") && (
+            {location.pathname === "/reverso-social/login" ||
+            location.pathname === "/reverso-social/signin" ? (
               <>
                 <NavLink
                   to="/reverso-social"
@@ -131,64 +132,84 @@ const Navbar = () => {
                 </NavLink>
 
                 <NavLink
-                  to="/formulario/colabora"
-                  className="navLinkBurger navLinkBold"
-                >
-                  Contactar
-                </NavLink>
-
-                <NavLink
-                  to="/reverso-social/login"
-                  className="navLinkBurger navLinkBold"
-                >
-                  Iniciar sesión
-                </NavLink>
-
-                <NavLink
-                  to="/reverso-social/signin"
-                  className="navLinkBurger navLinkBold"
-                >
-                  Registrarse
-                </NavLink>
-              </>
-            )}
-
-            {location.pathname === "/reverso-social" && (
-              <>
-                <NavLink
                   to="/reverso-social/femsenior"
                   className="navLinkBurger navLinkBold"
                 >
                   FEMseniors
                 </NavLink>
+              </>
+            ) : (
+              <>
+                {location.pathname.startsWith("/reverso-social/femsenior") && (
+                  <>
+                    <NavLink
+                      to="/reverso-social"
+                      className="navLinkBurger navLinkBold"
+                    >
+                      Reverso Social
+                    </NavLink>
 
-                <NavLink
-                  to="#intro"
-                  className="navLinkBurger"
-                  onClick={() => scrollToSection("intro")}
-                >
-                  Nuestro propósito
-                </NavLink>
-                <NavLink
-                  to="#carousel"
-                  className="navLinkBurger"
-                  onClick={() => scrollToSection("carousel")}
-                >
-                  Qué ofrecemos
-                </NavLink>
-                <NavLink
-                  to="#aboutUs"
-                  className="navLinkBurger"
-                  onClick={() => scrollToSection("aboutUs")}
-                >
-                  Quienes somos
-                </NavLink>
-                <NavLink
-                  to="/formulario/colabora"
-                  className="navLinkBurger navLinkBold"
-                >
-                  Contactar
-                </NavLink>
+                    <NavLink
+                      to="/formulario/colabora"
+                      className="navLinkBurger navLinkBold"
+                    >
+                      Contactar
+                    </NavLink>
+
+                    <NavLink
+                      to="/reverso-social/login"
+                      className="navLinkBurger navLinkBold"
+                    >
+                      Iniciar sesión
+                    </NavLink>
+
+                    <NavLink
+                      to="/reverso-social/signin"
+                      className="navLinkBurger navLinkBold"
+                    >
+                      Registrarse
+                    </NavLink>
+                  </>
+                )}
+
+                {location.pathname === "/reverso-social" && (
+                  <>
+                    <NavLink
+                      to="/reverso-social/femsenior"
+                      className="navLinkBurger navLinkBold"
+                    >
+                      FEMseniors
+                    </NavLink>
+
+                    <NavLink
+                      to="#intro"
+                      className="navLinkBurger"
+                      onClick={() => scrollToSection("intro")}
+                    >
+                      Nuestro propósito
+                    </NavLink>
+                    <NavLink
+                      to="#carousel"
+                      className="navLinkBurger"
+                      onClick={() => scrollToSection("carousel")}
+                    >
+                      Qué ofrecemos
+                    </NavLink>
+                    <NavLink
+                      to="#aboutUs"
+                      className="navLinkBurger"
+                      onClick={() => scrollToSection("aboutUs")}
+                    >
+                      Quienes somos
+                    </NavLink>
+                    <NavLink
+                      to="/formulario/colabora"
+                      className="navLinkBurger navLinkBold"
+                    >
+                      Contactar
+                    </NavLink>
+                  </>
+                )}
               </>
             )}
           </Box>
@@ -301,18 +322,18 @@ const Navbar = () => {
           )}
           {isFemseniors && isAuthenticated && (
             <>
-            <span className="username">{username}</span>
-            <button
-              className="logout-icon"
-              onClick={handleLogout}
-              title="Cerrar sesión"
-            >
-              <img
-                className="logo-icon-img"
-                src="/icons/Logout.svg"
-                alt="cerrar sesión"
-              />
-            </button>
+              <span className="username">{username}</span>
+              <button
+                className="logout-icon"
+                onClick={handleLogout}
+                title="Cerrar sesión"
+              >
+                <img
+                  className="logo-icon-img"
+                  src="/icons/Logout.svg"
+                  alt="cerrar sesión"
+                />
+              </button>
             </>
           )}
           {isReversoSocial && (
@@ -333,8 +354,12 @@ const Navbar = () => {
           )}
         </Box>
       </Toolbar>
-      <Alert isOpen={isAlertOpen} onclose={handleAlertClose} alert="Se ha cerrado la sesión correctamente.">
-      <Button
+      <Alert
+        isOpen={isAlertOpen}
+        onclose={handleAlertClose}
+        alert="Se ha cerrado la sesión correctamente."
+      >
+        <Button
           textButton={"Aceptar"}
           backgroundColor={"#7176f8"}
           border={"#7176f8"}
@@ -343,9 +368,8 @@ const Navbar = () => {
           color={"white"}
           onClick={() => setIsAlertOpen(false)}
         />
-        </Alert>
+      </Alert>
     </AppBar>
-    
   );
 };
 
