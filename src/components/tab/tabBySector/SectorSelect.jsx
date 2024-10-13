@@ -15,18 +15,26 @@ const SectorSelect = ({onChange}) => {
     ];
   
     return (
-     <>
-      <select name="sector" id="sector" onChange={onChange} className="sectorSelect"> 
-        <option value="">
-          SECTOR 
-        </option>
-        {sectors.map((sector) => (
-          <option key={sector.value} value={sector.value}>
-            {sector.label}
+      <>
+        <select
+          name="sector"
+          id="sector"
+          onChange={onChange}
+          className="sectorSelect"
+        >
+          <option value="" className="sectorOption">
+            SECTOR
           </option>
-        ))}
-      </select>
-   
+          {sectors.map((sector) => (
+            <option
+              key={sector.value}
+              value={sector.value}
+              className="sectorOption"
+            >
+              {sector.label}
+            </option>
+          ))}
+        </select>
       </>
     );
   };
