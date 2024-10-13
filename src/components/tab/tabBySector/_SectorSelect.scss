@@ -1,6 +1,7 @@
 @import "../../../scss/Variables.scss";
 
 .sectorSelect {
+  display: none;
   font-family: $font-family-title;
   font-weight: $font-weight-regular;
   background-color: $lila;
@@ -18,5 +19,6 @@
     margin-left: 0;
     display: flex;
     justify-content: center;
+      display: none;
   }
 }
