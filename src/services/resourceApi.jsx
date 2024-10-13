@@ -16,7 +16,6 @@ export const createResource = async (data, token) => {
   const res = await axios.post(RESOURCE_URL, formData, {
     headers,
   });
-  console.log(data);
   return res.data;
 };
 
