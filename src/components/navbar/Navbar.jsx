@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, NavLink, useNavigate } from "react-router-dom";
 import { AppBar, Toolbar, Box, IconButton, Popover } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -19,8 +19,9 @@ const Navbar = () => {
     "/reverso-social/femsenior"
   );
   const isLoginOrSignin =
-    location.pathname === "/reverso-social/login" ||
-    location.pathname === "/reverso-social/signin";
+    location.pathname.includes("/reverso-social/login") ||
+    location.pathname.includes("/reverso-social/signin");
+
   const isReversoSocial =
     location.pathname === "/reverso-social" && !isLoginOrSignin;
 
@@ -38,6 +39,7 @@ const Navbar = () => {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+  const loginNavbar = isLoginOrSignin ? "loginNavbar" : "";
 
   const handleLogout = () => {
     logout();
@@ -45,13 +47,16 @@ const Navbar = () => {
   };
 
   const handleAlertClose = () => {
-    setIsAlertOpen(false); 
+    setIsAlertOpen(false);
     navigate("/reverso-social/femsenior");
   };
 
   const handleMenuToggle = () => {
     setIsMenuOpen((prev) => !prev);
   };
+  useEffect(() => {
+    console.log("Ruta cambió:", location.pathname);
+  }, [location.pathname]);
 
   return (
     <AppBar
@@ -121,26 +126,68 @@ const Navbar = () => {
               &#10005;
             </IconButton>
 
-            {location.pathname === "/reverso-social/login" ||
-            location.pathname === "/reverso-social/signin" ? (
+            {/* Unificar Username y enlaces en el mismo menú */}
+            {isAuthenticated ? (
+              <>
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "flex-end",
+                    paddingBottom: "1rem",
+                    marginTop: "-1.5rem",
+                    marginBottom: "0"
+                  }}
+                >
+                  <span className="username">{username}</span>
+                  <IconButton onClick={handleLogout} title="Cerrar sesión">
+                    <img
+                      className="logo-icon-img"
+                      src="/icons/Logout.svg"
+                      alt="Cerrar sesión"
+                    />
+                  </IconButton>
+                </Box>
+              </>
+            ) : (
+              <>
+                {/* Mostrar los enlaces de "Iniciar sesión" y "Registrarse" */}
+                <NavLink
+                  to="/reverso-social/login"
+                  className="navLinkBurger navLinkBold"
+                >
+                  Iniciar sesión
+                </NavLink>
+                <NavLink
+                  to="/reverso-social/signin"
+                  className="navLinkBurger navLinkBold"
+                >
+                  Registrarse
+                </NavLink>
+              </>
+            )}
+
+            {/* Si estamos en login o signin */}
+            {isLoginOrSignin ? (
               <>
                 <NavLink
                   to="/reverso-social"
-                  className="navLinkBurger navLinkBold"
+                  className="navLinkBurger navLinkBold loginMenu"
                 >
                   Reverso Social
                 </NavLink>
 
                 <NavLink
                   to="/reverso-social/femsenior"
-                  className="navLinkBurger navLinkBold"
+                  className="navLinkBurger navLinkBold loginMenu"
                 >
                   FEMseniors
                 </NavLink>
               </>
             ) : (
               <>
-                {location.pathname.startsWith("/reverso-social/femsenior") && (
+                {/* Si estamos en FEMseniors */}
+                {isFemseniors && (
                   <>
                     <NavLink
                       to="/reverso-social"
@@ -155,24 +202,11 @@ const Navbar = () => {
                     >
                       Contactar
                     </NavLink>
-
-                    <NavLink
-                      to="/reverso-social/login"
-                      className="navLinkBurger navLinkBold"
-                    >
-                      Iniciar sesión
-                    </NavLink>
-
-                    <NavLink
-                      to="/reverso-social/signin"
-                      className="navLinkBurger navLinkBold"
-                    >
-                      Registrarse
-                    </NavLink>
                   </>
                 )}
 
-                {location.pathname === "/reverso-social" && (
+                {/* Si estamos en ReversoSocial */}
+                {isReversoSocial && (
                   <>
                     <NavLink
                       to="/reverso-social/femsenior"
@@ -282,11 +316,12 @@ const Navbar = () => {
           ) : null}
         </Box>
 
-        <Box className="searchContainer">
-          <Search
-            disabled={isLoginOrSignin}
-            className={isLoginOrSignin ? "invisibleSearch" : ""}
-          />
+        <Box
+          className={`searchContainer ${
+            isLoginOrSignin ? "invisibleSearch" : ""
+          }`}
+        >
+          <Search disabled={isLoginOrSignin} />
         </Box>
 
         <Box className="authButtons">
