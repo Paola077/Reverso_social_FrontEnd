@@ -2,7 +2,8 @@
 
 ## Descripción General 👭 💪
 
-Este proyecto, desarrollado como parte del programa pedagógico de Factoria F5, es un proyecto final creado en colaboración con un cliente real. La plataforma promueve la igualdad de género y el empoderamiento de las mujeres mediante dos enfoques principales: Planes de Igualdad y FEMsenior.
+Este proyecto, desarrollado como parte del programa pedagógico de Factoria F5, es un proyecto final creado en colaboración con un cliente real.   
+La plataforma promueve la igualdad de género y el empoderamiento de las mujeres mediante dos enfoques principales: Planes de Igualdad y FEMsenior.
 
 Planes de Igualdad:
 Dirigido a cargos políticos, sindicales, administraciones públicas y empresas privadas. Este módulo tiene como objetivo eliminar todas las formas de discriminación basadas en sexo, género, orientación sexual, origen, religión o clase social, ofreciendo recursos y herramientas para fomentar la igualdad en diversos ámbitos.
@@ -49,12 +50,63 @@ Gestión de Femsenior:
 - **[Axios](https://axios-http.com/es/docs/intro)**: Cliente HTTP para realizar solicitudes al backend.
 - **[React Router](https://reactrouter.com/en/main)**: Manejo de rutas y navegación en la aplicación.
 - **[React Query](https://www.npmjs.com/package/react-query)**: Para consultas Api.
-- **[HTML5]() Y [SCSS](https://sass-lang.com/)**: Estilización avanzada con SASS.
+- **[HTML5](https://www.w3schools.com/html/) Y [SCSS](https://sass-lang.com/)**: Estilización avanzada con SASS.
 - **[Cloudinary](https://cloudinary.com/)**: Servicio para subir y gestionar archivos en la nube.
 - **[EmailJs](https://www.emailjs.com/)**: Gestionar los formularios.
 - Otros..
 
-  
+## Arquitectura del Proyecto 🗂️
+
+Este proyecto sigue una arquitectura basada en componentes, donde la interfaz de usuario se divide en módulos independientes y reutilizables.   
+Cada componente cumple con una función específica y está organizado de manera lógica, lo que facilita su mantenimiento y escalabilidad.   
+Esta arquitectura permite un desarrollo modular, ya que cada parte de la aplicación, como botones, formularios o secciones, se encapsula en su propio componente.   
+Esta estructura favorece la reutilización y asegura una experiencia de desarrollo más eficiente y estructurada.
+
+```
+├── public              # Archivos públicos y estáticos
+│ ├── icons             # Iconos usados en la aplicación
+│ └── images            # Imágenes de uso general
+├── src                 # Código fuente principal
+│ ├── components        # Componentes reutilizables
+│ │ ├── buttons         # Componentes de botones (e.g., RequestButton.jsx)
+│ │ ├── calendar        # Componente de calendario
+│ │ ├── cards           # Tarjetas de información
+│ │ ├── carousel        # Componente de carrusel
+│ │ ├── footer          # Pie de página
+│ │ ├── forms           # Formularios
+| | ├── inputs          # Inputs
+│ │ ├── intro           # Componentes de introducción
+│ │ ├── modal           # Ventanas modales
+│ │ ├── navbar          # Barra de navegación
+│ │ ├── sections        # Secciones de la aplicación
+│ │ └── tabs            # Componentes de pestañas
+│ ├── config            # Configuraciones generales
+│ ├── context           # Manejo de estados globales (React Context)
+│ ├── layout            # Componentes de diseño y estructura
+│ ├── pages             # Páginas principales de la aplicación
+│ ├── routes            # Definición de rutas y navegación
+│ ├── scss              # Estilos globales en SCSS
+│ └── services          # Lógica de interacción con la API
+├── .gitignore          # Archivos y carpetas ignorados por Git
+├── README.md           # Documentación del proyecto
+├── eslint.config.js    # Configuración de ESLint
+├── index.html          # Archivo HTML de entrada
+├── package-lock.json   # Control de versiones de dependencias
+├── package.json        # Dependencias y scripts del proyecto
+└── vite.config.js      # Configuración del bundler Vite
+ ```
+### Descripción de Carpetas 🗂️
+
+- **public**: Archivos estáticos y públicos, como iconos e imágenes.
+- **src/components**: Componentes de interfaz, cada uno con sus subcomponentes y estilos.
+- **config**: Configuración general del proyecto.
+- **context**: Define contextos para el manejo de estados globales.
+- **layout**: Componentes de estructura para el diseño global.
+- **pages**: Páginas de la aplicación que representan vistas completas.
+- **routes**: Definición de rutas y lógica de navegación.
+- **scss**: Estilos SCSS organizados para una mejor mantenibilidad.
+- **services**: Funciones para la interacción con el backend/API.
+
 ## Guía de Instalación 🧑‍💻
 
 Clonar este repositorio:
