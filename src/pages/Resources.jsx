@@ -29,10 +29,9 @@ function Resources() {
             title={resource.title}
             description={resource.description}
             resourceFile={resource.fileUrl}
-            buttonText={"Descargar"}
+            buttonText={"Ver Recurso en linea"}
             entityType="recurso"
             createdBy={resource.creatorEmail}
-            summary={resource.description}
             resourceUrl={resource.url}
           />
         ))

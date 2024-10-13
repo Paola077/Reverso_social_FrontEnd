@@ -26,6 +26,7 @@ const InteractivePop = ({
   sector,
   resourceUrl,
   user_id,
+  showFileButton
 }) => {
   const { user } = useAuth();
 
@@ -148,10 +149,10 @@ const InteractivePop = ({
             <div className="buttonFile">
               {resourceUrl && (
                 <div className="popUpContentText">
-                  <p>{resourceUrl}</p>
+                  <a href={resourceUrl} target="_blank">{resourceUrl}</a>
                 </div>
               )}
-              {buttonText && renderButton()}
+              {showFileButton && buttonText && renderButton()}
             </div>
           )}
           {currentPage === "EVENTOS" && buttonText && renderButton()}

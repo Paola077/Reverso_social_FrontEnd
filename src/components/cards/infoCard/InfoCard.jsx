@@ -300,6 +300,7 @@ const InfoCard = ({
           buttonText={buttonText}
           onButtonClick={handleButton}
           resourceUrl={resourceUrl}
+          showFileButton={resourceFile !== null && resourceFile !== ''}
         />
       }
 
