@@ -44,7 +44,7 @@ La plataforma permite:
 - Formulario de colabora
 - Formulario de peticiones
 
-  **Diseño Responsivo**:
+**Diseño Responsivo**:
 - La interfaz está optimizada para dispositivos móviles y escritorios, garantizando una experiencia de usuario adaptable y accesible.
   
 ## Tecnologías Utilizadas 🛠️
