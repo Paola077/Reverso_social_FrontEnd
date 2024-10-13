@@ -134,7 +134,7 @@ Iniciar el servidor de desarrollo:
 npm run dev
 ```
 
-## Contribución 👥
+## Contribución 🤝
 
 Las contribuciones son bienvenidas. Para colaborar, sigue estos pasos:
 
